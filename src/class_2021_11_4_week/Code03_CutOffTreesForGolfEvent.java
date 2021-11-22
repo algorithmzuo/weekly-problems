@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.com/problems/cut-off-trees-for-golf-event/
-public class Code04_CutOffTreesForGolfEvent {
+public class Code03_CutOffTreesForGolfEvent {
 
 	public static int cutOffTree(List<List<Integer>> forest) {
 		int n = forest.size(), m = forest.get(0).size();
