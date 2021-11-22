@@ -8,7 +8,7 @@ public class Code02_XtoYMinDistance {
 	// 暴力方法
 	// dfs尝试所有情况
 	// 没有优化，就是纯暴力
-	public static int minDistance1(int n, int m, int[][] roads, int x, int y) {
+	public static int minDistance1(int n, int[][] roads, int x, int y) {
 		// 第一步生成邻接矩阵
 		int[][] map = new int[n + 1][n + 1];
 		for (int i = 0; i <= n; i++) {
@@ -50,7 +50,7 @@ public class Code02_XtoYMinDistance {
 	}
 
 	// Dijkstra的解
-	public static int minDistance2(int n, int m, int[][] roads, int x, int y) {
+	public static int minDistance2(int n, int[][] roads, int x, int y) {
 		// 第一步生成邻接矩阵
 		int[][] map = new int[n + 1][n + 1];
 		for (int i = 0; i <= n; i++) {
@@ -137,10 +137,10 @@ public class Code02_XtoYMinDistance {
 		int y = 4;
 
 		// 暴力方法的解
-		System.out.println(minDistance1(n, m, roads, x, y));
+		System.out.println(minDistance1(n, roads, x, y));
 
 		// Dijkstra的解
-		System.out.println(minDistance2(n, m, roads, x, y));
+		System.out.println(minDistance2(n, roads, x, y));
 
 		// 下面开始随机验证
 		int cityMaxSize = 12;
@@ -153,8 +153,8 @@ public class Code02_XtoYMinDistance {
 			roads = randomRoads(n, m, pathMax);
 			x = (int) (Math.random() * n) + 1;
 			y = (int) (Math.random() * n) + 1;
-			int ans1 = minDistance1(n, m, roads, x, y);
-			int ans2 = minDistance2(n, m, roads, x, y);
+			int ans1 = minDistance1(n, roads, x, y);
+			int ans2 = minDistance2(n, roads, x, y);
 			if (ans1 != ans2) {
 				System.out.println("出错了！");
 			}
