@@ -33,6 +33,7 @@ public class Code06_StartToEndBinaryOneTarget {
 	}
 
 	// 正式方法
+	// 递归展示其思路，但是不做动态规划的优化
 	public static long nums2(long start, long end, int target) {
 		if (start < 0 || end < 0 || start > end || target < 0) {
 			return -1;
@@ -99,7 +100,8 @@ public class Code06_StartToEndBinaryOneTarget {
 		}
 	}
 
-	// 正式方法
+	// 最优解方法
+	// 方法二的思路 + 动态规划
 	public static long nums3(long start, long end, int target) {
 		if (start < 0 || end < 0 || start > end || target < 0) {
 			return -1;
