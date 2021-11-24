@@ -1,5 +1,7 @@
 package class_2021_11_4_week;
 
+import java.util.Arrays;
+
 // 来自真实面试，同学给我的问题
 // 限制：0 <= start <= end，0 <= target <= 64
 // [start,end]范围上的数字，有多少数字二进制中1的个数等于target
@@ -43,14 +45,14 @@ public class Code06_StartToEndBinaryOneTarget {
 			ehigh--;
 		}
 		if (start == 0) {
-			return process(ehigh, 0, target, end);
+			return process2(ehigh, 0, target, end);
 		} else {
 			start--;
 			int shigh = 62;
 			while (shigh >= 0 && (start & (1L << shigh)) == 0) {
 				shigh--;
 			}
-			return process(ehigh, 0, target, end) - process(shigh, 0, target, start);
+			return process2(ehigh, 0, target, end) - process2(shigh, 0, target, start);
 		}
 	}
 
@@ -70,7 +72,7 @@ public class Code06_StartToEndBinaryOneTarget {
 	// 自己改动态规划吧
 	// 只有index、less、rest这三个有效可变参数、num是固定参数
 	// 所以可以改成三维动态规划
-	public static long process(int index, int less, int rest, long num) {
+	public static long process2(int index, int less, int rest, long num) {
 		if (rest > index + 1) {
 			return 0;
 		}
@@ -82,35 +84,138 @@ public class Code06_StartToEndBinaryOneTarget {
 			if (rest == index + 1) {
 				return 1;
 			} else {
-				return process(index - 1, 1, rest - 1, num) + process(index - 1, 1, rest, num);
+				return process2(index - 1, 1, rest - 1, num) + process2(index - 1, 1, rest, num);
 			}
 		} else { // less == 0
 			if (rest == index + 1) {
-				return (num & (1L << index)) == 0 ? 0 : process(index - 1, 0, rest - 1, num);
+				return (num & (1L << index)) == 0 ? 0 : process2(index - 1, 0, rest - 1, num);
 			} else {
 				if ((num & (1L << index)) == 0) {
-					return process(index - 1, 0, rest, num);
+					return process2(index - 1, 0, rest, num);
 				} else {
-					return process(index - 1, 0, rest - 1, num) + process(index - 1, 1, rest, num);
+					return process2(index - 1, 0, rest - 1, num) + process2(index - 1, 1, rest, num);
 				}
 			}
 		}
 	}
 
+	// 正式方法
+	public static long nums3(long start, long end, int target) {
+		if (start < 0 || end < 0 || start > end || target < 0) {
+			return -1;
+		}
+		if (start == 0 && end == 0) {
+			return target == 0 ? 1 : 0;
+		}
+		int ehigh = 62;
+		while ((end & (1L << ehigh)) == 0) {
+			ehigh--;
+		}
+		long[][][] dpe = new long[ehigh + 1][2][target + 1];
+		for (int i = 0; i <= ehigh; i++) {
+			Arrays.fill(dpe[i][0], -1);
+			Arrays.fill(dpe[i][1], -1);
+		}
+		long anse = process3(ehigh, 0, target, end, dpe);
+		if (start == 0) {
+			return anse;
+		} else {
+			start--;
+			int shigh = 62;
+			while (shigh >= 0 && (start & (1L << shigh)) == 0) {
+				shigh--;
+			}
+			long[][][] dps = new long[shigh + 1][2][target + 1];
+			for (int i = 0; i <= shigh; i++) {
+				Arrays.fill(dps[i][0], -1);
+				Arrays.fill(dps[i][1], -1);
+			}
+			long anss = process3(shigh, 0, target, start, dps);
+			return anse - anss;
+		}
+	}
+
+	public static long process3(int index, int less, int rest, long num, long[][][] dp) {
+		if (rest > index + 1) {
+			return 0;
+		}
+		if (rest == 0) {
+			return 1L;
+		}
+		if (dp[index][less][rest] != -1) {
+			return dp[index][less][rest];
+		}
+		long ans = 0;
+		if (less == 1) {
+			if (rest == index + 1) {
+				ans = 1;
+			} else {
+				ans = process3(index - 1, 1, rest - 1, num, dp) + process3(index - 1, 1, rest, num, dp);
+			}
+		} else {
+			if (rest == index + 1) {
+				ans = (num & (1L << index)) == 0 ? 0 : process3(index - 1, 0, rest - 1, num, dp);
+			} else {
+				if ((num & (1L << index)) == 0) {
+					ans = process3(index - 1, 0, rest, num, dp);
+				} else {
+					ans = process3(index - 1, 0, rest - 1, num, dp) + process3(index - 1, 1, rest, num, dp);
+				}
+			}
+		}
+		dp[index][less][rest] = ans;
+		return ans;
+	}
+
 	public static void main(String[] args) {
 		long range = 600L;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (long start = 0L; start < range; start++) {
 			for (long end = start; end < range; end++) {
 				int target = (int) (Math.random() * 10);
 				long ans1 = nums1(start, end, target);
 				long ans2 = nums2(start, end, target);
-				if (ans1 != ans2) {
+				long ans3 = nums3(start, end, target);
+				if (ans1 != ans2 || ans1 != ans3) {
 					System.out.println("出错了！");
 				}
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
+
+		long start = 33281731L;
+		long end = 64356810L;
+		int target = 17;
+		long startTime;
+		long endTime;
+		long ans1;
+		long ans2;
+		long ans3;
+
+		System.out.println("大范围性能测试，开始");
+		startTime = System.currentTimeMillis();
+		ans1 = nums1(start, end, target);
+		endTime = System.currentTimeMillis();
+		System.out.println("方法一答案：" + ans1 + ", 运行时间(毫秒) : " + (endTime - startTime));
+		startTime = System.currentTimeMillis();
+		ans2 = nums2(start, end, target);
+		endTime = System.currentTimeMillis();
+		System.out.println("方法二答案：" + ans2 + ", 运行时间(毫秒) : " + (endTime - startTime));
+		startTime = System.currentTimeMillis();
+		ans3 = nums3(start, end, target);
+		endTime = System.currentTimeMillis();
+		System.out.println("方法三答案：" + ans3 + ", 运行时间(毫秒) : " + (endTime - startTime));
+		System.out.println("大范围性能测试，结束");
+
+		System.out.println("超大范围性能测试，开始");
+		start = 88193819381L;
+		end = 92371283713182371L;
+		target = 30;
+		startTime = System.currentTimeMillis();
+		ans3 = nums3(start, end, target);
+		endTime = System.currentTimeMillis();
+		System.out.println("方法三答案：" + ans3 + ", 运行时间(毫秒) : " + (endTime - startTime));
+		System.out.println("超大范围性能测试，结束");
 	}
 
 }
