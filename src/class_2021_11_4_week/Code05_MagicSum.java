@@ -21,7 +21,7 @@ import java.util.Arrays;
 // n <= 10^7
 // m <= 10^6
 // arr中的值和c的范围 <= 10^12
-public class Code03_MagicSum {
+public class Code05_MagicSum {
 
 	// 暴力解，写出来为了验证正式方法而已
 	public static int maxSum1(int[] arr, int[][] magics) {

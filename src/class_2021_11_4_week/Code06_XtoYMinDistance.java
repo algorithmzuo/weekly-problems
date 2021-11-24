@@ -3,7 +3,7 @@ package class_2021_11_4_week;
 import java.util.PriorityQueue;
 
 // 来自真实面试，同学给我的问题
-public class Code02_XtoYMinDistance {
+public class Code06_XtoYMinDistance {
 
 	// 暴力方法
 	// dfs尝试所有情况
