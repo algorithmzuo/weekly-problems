@@ -1,7 +1,7 @@
 package class_2021_11_4_week;
 
 // 测试链接 : https://leetcode.com/problems/guess-number-higher-or-lower-ii/
-public class Code05_GuessNumberHigherOrLowerII {
+public class Code04_GuessNumberHigherOrLowerII {
 
 	// 暴力递归
 	public static int getMoneyAmount1(int n) {

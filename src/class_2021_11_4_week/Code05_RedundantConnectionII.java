@@ -1,7 +1,7 @@
 package class_2021_11_4_week;
 
 // 测试链接 : https://leetcode.com/problems/redundant-connection-ii/
-public class Code07_RedundantConnectionII {
+public class Code05_RedundantConnectionII {
 
 	public static int[] findRedundantDirectedConnection(int[][] edges) {
 		int N = edges.length;
