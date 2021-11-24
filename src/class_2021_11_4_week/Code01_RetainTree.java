@@ -20,20 +20,27 @@ public class Code01_RetainTree {
 		}
 	}
 
-	public static Node retain(Node head) {
-		if (head.nexts.isEmpty()) {
-			return head.retain ? head : null;
+	// 给定一棵树的头节点head
+	// 请按照题意，保留节点，没有保留的节点删掉
+	// 树调整完之后，返回头节点
+	public static Node retain(Node x) {
+		if (x.nexts.isEmpty()) {
+			return x.retain ? x : null;
 		}
+		// x下层有节点
 		List<Node> newNexts = new ArrayList<>();
-		for (Node next : head.nexts) {
+		for (Node next : x.nexts) {
 			Node newNext = retain(next);
 			if (newNext != null) {
 				newNexts.add(newNext);
 			}
 		}
-		if (!newNexts.isEmpty() || head.retain) {
-			head.nexts = newNexts;
-			return head;
+		// x.nexts  老的链表，下级节点
+		// newNexts 新的链表，只有保留的在里面
+		// 
+		if (!newNexts.isEmpty() || x.retain) {
+			x.nexts = newNexts;
+			return x;
 		}
 		return null;
 	}

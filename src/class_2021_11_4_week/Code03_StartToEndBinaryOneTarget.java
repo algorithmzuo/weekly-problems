@@ -41,13 +41,14 @@ public class Code03_StartToEndBinaryOneTarget {
 		if (start == 0 && end == 0) {
 			return target == 0 ? 1 : 0;
 		}
+		// 寻找end这数，最高位的1在哪？
 		int ehigh = 62;
 		while ((end & (1L << ehigh)) == 0) {
 			ehigh--;
 		}
 		if (start == 0) {
 			return process2(ehigh, 0, target, end);
-		} else {
+		} else { // 170 ~ 3657 0 ~ 169 0 ~ 3657
 			start--;
 			int shigh = 62;
 			while (shigh >= 0 && (start & (1L << shigh)) == 0) {
@@ -56,6 +57,10 @@ public class Code03_StartToEndBinaryOneTarget {
 			return process2(ehigh, 0, target, end) - process2(shigh, 0, target, start);
 		}
 	}
+	// 11 10 9 8 7 6 5 4 3 2 1 0
+	// num : 0 1 1 0 0 1 1 0 0 1 0 1 0
+	// 1.....
+	// 0.....
 
 	// 如果num最高位的1在i位，也就是说num[i...0]才有意义，比i再高的位置都是0
 	// 那么从第i位开始做决定，依次往低位进行决定
@@ -73,27 +78,62 @@ public class Code03_StartToEndBinaryOneTarget {
 	// 自己改动态规划吧
 	// 只有index、less、rest这三个有效可变参数、num是固定参数
 	// 所以可以改成三维动态规划
+	//
+	// num [h....index+1] 决定完了，需要保证之前做的决定，不能比num大，
+	// 1) 之前做的决定 已经小于 num所对应的前缀状态了，
+	// 2) 之前做的决定 等于 num所对应的前缀状态了，
+	// index..... 去做决定吧！
+	// less == 1 之前做的决定 已经小于 num所对应的前缀状态了
+	// less == 0 之前做的决定 等于 num所对应的前缀状态
+	// 剩余几个1，需要出现！
+	// [index.....]
+	// index -> 62~0 63种变化
+	// less -> 0 1 2种变化
+	// rest -> 0 64种变化
+	// 63 * 2 * 64
 	public static long process2(int index, int less, int rest, long num) {
 		if (rest > index + 1) {
 			return 0;
 		}
+		// rest <= index + 1
 		if (rest == 0) {
 			return 1L;
 		}
 		// 0 < rest <= index + 1
-		if (less == 1) {
+		// 还有1需要去消耗
+		// 位数也够用
+		if (less == 1) { // less == 1 之前做的决定 已经小于 num所对应的前缀状态了
 			if (rest == index + 1) {
 				return 1;
 			} else {
+				// 后面剩余的位数 > 需要消耗掉1的数量的！
+				// 某些位置填1，某些位置填0
+				// index 0 1
+				// index 0
+				// process2(index - 1, 1, rest, num );
+				// index 1
+				// process2(index - 1, 1, rest - 1, num);
 				return process2(index - 1, 1, rest - 1, num) + process2(index - 1, 1, rest, num);
 			}
-		} else { // less == 0
-			if (rest == index + 1) {
+		} else { // less == 0, 之前做的决定 等于 num所对应的前缀状态的
+			if (rest == index + 1) { // 后面剩余的位数，必须都填1，才能消耗完
+				// index
+				// 1 1 1 1 1 1 1 1 1
+				// num
+				// 1
+				// index 1
+				//
+				// num 111111111 1
 				return (num & (1L << index)) == 0 ? 0 : process2(index - 1, 0, rest - 1, num);
 			} else {
+				// less == 0, 之前做的决定 等于 num所对应的前缀状态的
+				// 后面剩余的位数 > 需要消耗掉1的数量的！
+				// 某些位置填1，某些位置填0
 				if ((num & (1L << index)) == 0) {
 					return process2(index - 1, 0, rest, num);
-				} else {
+				} else { // num 当前位置 1
+					// index 1
+					// index 0
 					return process2(index - 1, 0, rest - 1, num) + process2(index - 1, 1, rest, num);
 				}
 			}
@@ -137,6 +177,13 @@ public class Code03_StartToEndBinaryOneTarget {
 		}
 	}
 
+	// dp 傻缓存
+	// dp 63 * 2 * 64
+	// 一定能装下所有的解！
+	// index+less+rest
+	// dp[index][less][rest] 请直接拿数据
+	// dp[index][less][rest] == -1 表示 没算过，去算！
+	// dp[index][less][rest] != -1 表示 算过！结果就是dp[index][less][rest]
 	public static long process3(int index, int less, int rest, long num, long[][][] dp) {
 		if (rest > index + 1) {
 			return 0;
@@ -147,6 +194,7 @@ public class Code03_StartToEndBinaryOneTarget {
 		if (dp[index][less][rest] != -1) {
 			return dp[index][less][rest];
 		}
+		// 没算过！
 		long ans = 0;
 		if (less == 1) {
 			if (rest == index + 1) {
