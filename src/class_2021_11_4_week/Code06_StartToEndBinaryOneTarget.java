@@ -186,7 +186,7 @@ public class Code06_StartToEndBinaryOneTarget {
 		System.out.println("功能测试结束");
 
 		long start = 33281731L;
-		long end = 64356810L;
+		long end = 204356810L;
 		int target = 17;
 		long startTime;
 		long endTime;
