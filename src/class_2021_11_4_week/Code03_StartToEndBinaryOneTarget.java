@@ -217,6 +217,63 @@ public class Code03_StartToEndBinaryOneTarget {
 		return ans;
 	}
 
+	// 利用排列组合的方法
+	public static long nums4(long start, long end, int target) {
+		if (start < 0 || end < 0 || start > end || target < 0) {
+			return -1;
+		}
+		long anse = process4(63, target, end);
+		if (start == 0) {
+			return anse;
+		} else {
+			long anss = process4(63, target, start - 1);
+			return anse - anss;
+		}
+	}
+
+	public static long process4(int index, int rest, long num) {
+		if (rest > index + 1) {
+			return 0;
+		}
+		if (rest == 0) {
+			return 1;
+		}
+		if ((num & (1L << index)) == 0) {
+			return process4(index - 1, rest, num);
+		} else {
+			return c(index, rest) + process4(index - 1, rest - 1, num);
+		}
+	}
+
+	// 求C(N,A)的解
+	// N! / (A! * (N - A)!)
+	// 即 : (A+1 * A+2 * ... * N) / (2 * 3 * 4 * (N-A))
+	// 为了不溢出，每一步求一个最大公约数，然后消掉
+	public static long c(long n, long a) {
+		if (n < a) {
+			return 0L;
+		}
+		long up = 1L;
+		long down = 1L;
+		for (long i = a + 1, j = 2; i <= n || j <= n - a;) {
+			if (i <= n) {
+				up *= i++;
+			}
+			if (j <= n - a) {
+				down *= j++;
+			}
+			long gcd = gcd(up, down);
+			up /= gcd;
+			down /= gcd;
+		}
+		return up / down;
+	}
+
+	// 求m和n的最大公约数
+	public static long gcd(long m, long n) {
+		return n == 0 ? m : gcd(n, m % n);
+	}
+
 	public static void main(String[] args) {
 		long range = 600L;
 		System.out.println("功能测试开始");
@@ -226,7 +283,8 @@ public class Code03_StartToEndBinaryOneTarget {
 				long ans1 = nums1(start, end, target);
 				long ans2 = nums2(start, end, target);
 				long ans3 = nums3(start, end, target);
-				if (ans1 != ans2 || ans1 != ans3) {
+				long ans4 = nums4(start, end, target);
+				if (ans1 != ans2 || ans1 != ans3 || ans1 != ans4) {
 					System.out.println("出错了！");
 				}
 			}
@@ -241,6 +299,7 @@ public class Code03_StartToEndBinaryOneTarget {
 		long ans1;
 		long ans2;
 		long ans3;
+		long ans4;
 
 		System.out.println("大范围性能测试，开始");
 		startTime = System.currentTimeMillis();
@@ -255,6 +314,9 @@ public class Code03_StartToEndBinaryOneTarget {
 		ans3 = nums3(start, end, target);
 		endTime = System.currentTimeMillis();
 		System.out.println("方法三答案：" + ans3 + ", 运行时间(毫秒) : " + (endTime - startTime));
+		ans4 = nums4(start, end, target);
+		endTime = System.currentTimeMillis();
+		System.out.println("方法四答案：" + ans4 + ", 运行时间(毫秒) : " + (endTime - startTime));
 		System.out.println("大范围性能测试，结束");
 
 		System.out.println("超大范围性能测试，开始");
@@ -265,6 +327,10 @@ public class Code03_StartToEndBinaryOneTarget {
 		ans3 = nums3(start, end, target);
 		endTime = System.currentTimeMillis();
 		System.out.println("方法三答案：" + ans3 + ", 运行时间(毫秒) : " + (endTime - startTime));
+		startTime = System.currentTimeMillis();
+		ans4 = nums4(start, end, target);
+		endTime = System.currentTimeMillis();
+		System.out.println("方法四答案：" + ans4 + ", 运行时间(毫秒) : " + (endTime - startTime));
 		System.out.println("超大范围性能测试，结束");
 	}
 
