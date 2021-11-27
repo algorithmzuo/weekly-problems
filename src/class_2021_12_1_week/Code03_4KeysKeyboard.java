@@ -1,7 +1,7 @@
 package class_2021_12_1_week;
 
 // 测试链接 : https://leetcode.com/problems/4-keys-keyboard/
-public class Code01_4KeysKeyboard {
+public class Code03_4KeysKeyboard {
 
 	public static int maxA(int n) {
 		int[] dp = new int[n];
