@@ -10,10 +10,10 @@ import java.util.List;
 // 每个节点的颜色只会是0、1、2、3中的一种
 // 任何两个节点之间的都有路径
 // 如果节点a和节点b的路径上，包含全部的颜色，这条路径算达标路径
-// (a,b)和(b,a)算两条路径
+// (a -> ... -> b)和(b -> ... -> a)算两条路径
 // 求多叉树上达标的路径一共有多少？
 // 点的数量 <= 10^5
-public class Colors {
+public class Code04_Colors {
 
 	public static class Node {
 		public int color;
@@ -178,7 +178,7 @@ public class Colors {
 	public static void main(String[] args) {
 		int len = 6;
 		int childs = 6;
-		int testTime = 1000;
+		int testTime = 3000;
 		System.out.println("测试开始");
 		for (int i = 0; i < testTime; i++) {
 			Node head = randomTree(len, childs);
