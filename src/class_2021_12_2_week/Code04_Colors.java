@@ -3,7 +3,9 @@ package class_2021_12_2_week;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 // 来自美团
 // 给定一棵多叉树的头节点head
@@ -83,7 +85,7 @@ public class Code04_Colors {
 	}
 
 	// 正式方法
-	public static int colors(Node head) {
+	public static long colors(Node head) {
 		if (head == null) {
 			return 0;
 		}
@@ -91,12 +93,12 @@ public class Code04_Colors {
 	}
 
 	public static class Info {
-		public int all;
-		public int[] colors;
+		public long all;
+		public long[] colors;
 
 		public Info() {
 			all = 0;
-			colors = new int[16];
+			colors = new long[16];
 		}
 	}
 
@@ -111,13 +113,13 @@ public class Code04_Colors {
 				infos[i] = process(h.nexts.get(i - 1));
 				ans.all += infos[i].all;
 			}
-			int[][] lefts = new int[n + 2][16];
+			long[][] lefts = new long[n + 2][16];
 			for (int i = 1; i <= n; i++) {
 				for (int status = 1; status < 16; status++) {
 					lefts[i][status] = lefts[i - 1][status] + infos[i].colors[status];
 				}
 			}
-			int[][] rights = new int[n + 2][16];
+			long[][] rights = new long[n + 2][16];
 			for (int i = n; i >= 1; i--) {
 				for (int status = 1; status < 16; status++) {
 					rights[i][status] = rights[i + 1][status] + infos[i].colors[status];
@@ -175,15 +177,39 @@ public class Code04_Colors {
 	}
 
 	// 为了测试
+	// 生成高度为9的满5叉树，每个节点的颜色在0~3上随机
+	// 这棵树的节点个数已经达到5 * 10^5的规模
+	public static Node randomTree() {
+		Queue<Node> curq = new LinkedList<>();
+		Queue<Node> nexq = new LinkedList<>();
+		Node head = new Node((int) (Math.random() * 4));
+		curq.add(head);
+		for (int len = 1; len < 9; len++) {
+			while (!curq.isEmpty()) {
+				Node cur = curq.poll();
+				for (int i = 0; i < 5; i++) {
+					Node next = new Node((int) (Math.random() * 4));
+					cur.nexts.add(next);
+					nexq.add(next);
+				}
+			}
+			Queue<Node> tmp = nexq;
+			nexq = curq;
+			curq = tmp;
+		}
+		return head;
+	}
+
+	// 为了测试
 	public static void main(String[] args) {
 		int len = 6;
 		int childs = 6;
 		int testTime = 3000;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < testTime; i++) {
 			Node head = randomTree(len, childs);
 			int ans1 = test(head);
-			int ans2 = colors(head);
+			long ans2 = colors(head);
 			if (ans1 != ans2) {
 				System.out.println("出错了");
 				printTree(head);
@@ -193,7 +219,16 @@ public class Code04_Colors {
 				break;
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
+
+		System.out.println("性能测试开始");
+		Node h = randomTree();
+		long start = System.currentTimeMillis();
+		long ans = colors(h);
+		long end = System.currentTimeMillis();
+		System.out.println("节点数量达到 5*(10^5) 规模");
+		System.out.println("答案 : " + ans + ", 运行时间 : " + (end - start) + " 毫秒");
+		System.out.println("性能测试结束");
 	}
 
 }
