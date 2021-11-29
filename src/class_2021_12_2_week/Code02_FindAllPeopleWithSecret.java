@@ -17,7 +17,7 @@ public class Code02_FindAllPeopleWithSecret {
 		int size = 2;
 		for (int i = 1; i < m; i++) {
 			if (meetings[i][2] != meetings[i - 1][2]) {
-				setSecrets(help, size, uf);
+				share(help, size, uf);
 				help[0] = meetings[i][0];
 				help[1] = meetings[i][1];
 				size = 2;
@@ -26,7 +26,7 @@ public class Code02_FindAllPeopleWithSecret {
 				help[size++] = meetings[i][1];
 			}
 		}
-		setSecrets(help, size, uf);
+		share(help, size, uf);
 		List<Integer> ans = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			if (uf.know(i)) {
@@ -36,7 +36,7 @@ public class Code02_FindAllPeopleWithSecret {
 		return ans;
 	}
 
-	public static void setSecrets(int[] help, int size, UnionFind uf) {
+	public static void share(int[] help, int size, UnionFind uf) {
 		for (int i = 0; i < size; i += 2) {
 			uf.union(help[i], help[i + 1]);
 		}
