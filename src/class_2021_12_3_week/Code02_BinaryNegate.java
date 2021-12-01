@@ -1,5 +1,7 @@
 package class_2021_12_3_week;
 
+//测试链接 : https://www.nowcoder.com/test/33701596/summary
+//本题目为第2题
 public class Code02_BinaryNegate {
 
 	public static String maxLexicographical(String num) {
