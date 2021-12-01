@@ -2,7 +2,7 @@ package class_2021_12_1_week;
 
 // 来自微软，真正考的时候阉割了难度
 // 测试链接 : https://leetcode.com/problems/redundant-connection-ii/
-public class Code05_RedundantConnectionII {
+public class Code04_RedundantConnectionII {
 
 	public static int[] findRedundantDirectedConnection(int[][] edges) {
 		int N = edges.length;
