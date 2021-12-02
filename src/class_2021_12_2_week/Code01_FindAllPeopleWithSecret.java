@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // 链接测试 : https://leetcode.com/problems/find-all-people-with-secret/
-public class Code02_FindAllPeopleWithSecret {
+public class Code01_FindAllPeopleWithSecret {
 
 	public List<Integer> findAllPeople(int n, int[][] meetings, int firstPerson) {
 		UnionFind uf = new UnionFind(n, firstPerson);

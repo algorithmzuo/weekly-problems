@@ -1,4 +1,4 @@
-package class_2021_12_2_week;
+package class_2021_12_4_week;
 
 import java.util.HashSet;
 
@@ -11,7 +11,7 @@ import java.util.HashSet;
 // 返回这个无向图中所有合法路径的代表集合数量
 // 题目给定点的数量n <= 15，边的数量m <= 60
 // 所有的点编号都是从0~n-1的
-public class Code03_FiveNodesListNumbers {
+public class Code01_FiveNodesListNumbers {
 
 	// graph[i] = { a, b, c} 代表：点i直接相邻的节点有a,b,c
 	// graph[j] = { d } 代表：点j直接相邻的节点有d

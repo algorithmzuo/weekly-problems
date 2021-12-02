@@ -7,7 +7,7 @@ package class_2021_12_2_week;
 // 飞船一旦开始进入黑洞，就会被吸进黑洞里
 // 返回：
 // 如果统一所有黑洞的半径，最大半径是多少，依然能保证飞船从(0,0)能到达(x,y)
-public class Code01_AwayFromBlackHole {
+public class Code02_AwayFromBlackHole {
 
 	public static int maxRadius(int[][] holes, int x, int y) {
 		int L = 1;

@@ -1,4 +1,4 @@
-package class_2021_12_2_week;
+package class_2021_12_4_week;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ import java.util.List;
 // spliter为逗号 "," 最终转化成JSON的形式，并且同级的地域需要被合并，最终生成的JSON字符串如下所示
 // 返回: {"中国":{"四川":{"成都":10]},"浙江":{"义乌":22,"杭州":25}}}
 // 请实现下面的方法 public String mergeCount(List<AreaResource> areas) 
-public class Code05_MergeArea {
+public class Code02_MergeArea {
 
 	// 原始类
 	public static class AreaResource {

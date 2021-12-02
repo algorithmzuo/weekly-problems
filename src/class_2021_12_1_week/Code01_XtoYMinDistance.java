@@ -50,6 +50,8 @@ public class Code01_XtoYMinDistance {
 	}
 
 	// Dijkstra的解
+	// n是城市数量
+	// 城市编号：1 ~ n    0弃而不用
 	public static int minDistance2(int n, int[][] roads, int x, int y) {
 		// 第一步生成邻接矩阵
 		int[][] map = new int[n + 1][n + 1];
@@ -58,6 +60,7 @@ public class Code01_XtoYMinDistance {
 				map[i][j] = Integer.MAX_VALUE;
 			}
 		}
+		// 建立路！
 		for (int[] road : roads) {
 			map[road[0]][road[1]] = Math.min(map[road[0]][road[1]], road[2]);
 			map[road[1]][road[0]] = Math.min(map[road[1]][road[0]], road[2]);
@@ -69,10 +72,13 @@ public class Code01_XtoYMinDistance {
 		PriorityQueue<Node> heap = new PriorityQueue<>((a, b) -> (a.pathSum - b.pathSum));
 		heap.add(new Node(x, 0));
 		while (!heap.isEmpty()) {
+			// x -> ... -> 当前的城市, 有距离
 			Node cur = heap.poll();
 			if (computed[cur.city]) {
 				continue;
 			}
+			// 没算过
+			// 开始算！
 			if (cur.city == y) {
 				return cur.pathSum;
 			}
