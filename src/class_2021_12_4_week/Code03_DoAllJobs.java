@@ -90,10 +90,10 @@ public class Code03_DoAllJobs {
 	}
 
 	public static void main(String[] args) {
-		// 2 -> 5 -> 7
+		// 2 -> 5 -> 6
 		//           |
 		//           v
-		// 1 -> 4 -> 6
+		// 1 -> 4 -> 7
 		//      ^
 		//      |
 		// 0 -> 3
@@ -102,9 +102,9 @@ public class Code03_DoAllJobs {
 				{ 4, 1 },
 				{ 5, 2 },
 				{ 4, 3 },
-				{ 7, 5 },
-				{ 6, 4 },
-				{ 6, 7 }
+				{ 6, 5 },
+				{ 7, 4 },
+				{ 7, 6 }
 			};
 		System.out.println(days(3, 8, d));
 		System.out.println(days(2, 8, d));
