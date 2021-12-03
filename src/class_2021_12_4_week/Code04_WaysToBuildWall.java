@@ -8,7 +8,7 @@ package class_2021_12_4_week;
 // 2）会有很多方法铺满整个区域，整块区域哪怕有一点点不一样，就算不同的方法
 // 3）区域内部(不算区域整体的4条边界)，不能有任何砖块的边界线，是从上一直贯穿到下的直线
 // 返回符合三条规则下，铺满n行m列的区域，有多少种不同的摆放方法
-public class Code03_WaysToBuildWall {
+public class Code04_WaysToBuildWall {
 
 	public static long[] r = { 0, 1, 2, 4, 8 };
 
