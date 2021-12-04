@@ -13,13 +13,13 @@ import java.util.Arrays;
 // 那么任意三个点都可以组成一个三角形，返回能组成钝角三角形的数量
 public class Code03_HowManyObtuseAngles {
 
-	public static long obtuseAngles(int[] angles) {
-		int n = angles.length;
+	public static long obtuseAngles(int[] arr) {
+		int n = arr.length;
 		int m = n << 1;
 		int[] enlarge = new int[m];
 		for (int i = 0, j = 0; i < n; i++) {
-			enlarge[j++] = angles[i];
-			enlarge[j++] = angles[i] + 36000;
+			enlarge[j++] = arr[i];
+			enlarge[j++] = arr[i] + 36000;
 		}
 		Arrays.sort(enlarge);
 		long ans = 0;
