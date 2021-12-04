@@ -1,4 +1,4 @@
-package class_2021_12_4_week;
+package class_2021_12_5_week;
 
 // 来自hulu
 // 你只有1*1、1*2、1*3、1*4，四种规格的砖块

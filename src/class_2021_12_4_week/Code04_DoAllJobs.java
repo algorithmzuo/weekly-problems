@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 // 1个人1天可以完成1个任务，每个人都会选当前能做任务里，标号最小的任务
 // 一个任务所依赖的任务都完成了，该任务才能开始做
 // 返回n个人做完m个任务，需要几天
-public class Code03_DoAllJobs {
+public class Code04_DoAllJobs {
 
 	public static int days(int n, int m, int[][] depends) {
 		if (n < 1) {
