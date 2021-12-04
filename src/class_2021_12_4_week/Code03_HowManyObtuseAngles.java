@@ -17,11 +17,11 @@ public class Code03_HowManyObtuseAngles {
 		int n = arr.length;
 		int m = n << 1;
 		int[] enlarge = new int[m];
-		for (int i = 0, j = 0; i < n; i++) {
-			enlarge[j++] = arr[i];
-			enlarge[j++] = arr[i] + 36000;
+		Arrays.sort(arr);
+		for (int i = 0; i < n; i++) {
+			enlarge[i] = arr[i];
+			enlarge[i + n] = arr[i] + 36000;
 		}
-		Arrays.sort(enlarge);
 		long ans = 0;
 		// 这里不用二分查找(太慢)，能做一个不回退的优化
 		for (int i = 0, j = 0; i < n; i++) {
