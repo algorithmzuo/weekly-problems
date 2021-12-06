@@ -29,7 +29,7 @@ public class Code04_Colors {
 
 	// 暴力方法
 	// 为了验证
-	public static int test(Node head) {
+	public static int colors1(Node head) {
 		if (head == null) {
 			return 0;
 		}
@@ -85,11 +85,11 @@ public class Code04_Colors {
 	}
 
 	// 正式方法
-	public static long colors(Node head) {
+	public static long colors2(Node head) {
 		if (head == null) {
 			return 0;
 		}
-		return process(head).all;
+		return process2(head).all;
 	}
 
 	public static class Info {
@@ -102,7 +102,7 @@ public class Code04_Colors {
 		}
 	}
 
-	public static Info process(Node h) {
+	public static Info process2(Node h) {
 		Info ans = new Info();
 		int hs = 1 << h.color;
 		ans.colors[hs] = 1;
@@ -110,7 +110,7 @@ public class Code04_Colors {
 			int n = h.nexts.size();
 			Info[] infos = new Info[n + 1];
 			for (int i = 1; i <= n; i++) {
-				infos[i] = process(h.nexts.get(i - 1));
+				infos[i] = process2(h.nexts.get(i - 1));
 				ans.all += infos[i].all;
 			}
 			long[][] lefts = new long[n + 2][16];
@@ -136,6 +136,73 @@ public class Code04_Colors {
 							ans.all += infos[from].colors[fromStatus]
 									* (lefts[from - 1][toStatus] + rights[from + 1][toStatus]);
 						}
+					}
+				}
+			}
+		}
+		return ans;
+	}
+
+	// 最后的优化版本
+	// 和方法二没有本质区别
+	// 优化的点：每个状态需要和哪些状态结合，都放在辅助数组consider里
+	public static long colors3(Node head) {
+		if (head == null) {
+			return 0;
+		}
+		return process3(head).all;
+	}
+
+	public static int[][] consider = { {}, // 0
+			{ 14, 15 }, // 1 -> 0001
+			{ 13, 15 }, // 2 -> 0010
+			{ 12, 13, 14, 15 }, // 3 -> 0011
+			{ 11, 15 }, // 4 -> 0100
+			{ 10, 11, 14, 15 }, // 5 -> 0101
+			{ 9, 11, 13, 15 }, // 6 -> 0110
+			{ 8, 9, 10, 11, 12, 13, 14, 15 }, // 7 -> 0111
+			{ 7, 15 }, // 8 -> 1000
+			{ 6, 7, 14, 15 }, // 9 -> 1001
+			{ 5, 7, 13, 15 }, // 10 -> 1010
+			{ 4, 5, 6, 7, 12, 13, 14, 15 }, // 11 -> 1011
+			{ 3, 7, 11, 15 }, // 12 -> 1100
+			{ 2, 3, 6, 7, 10, 11, 14, 15 }, // 13 -> 1101
+			{ 1, 3, 5, 7, 9, 11, 13, 15 }, // 14 -> 1110
+			{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 } // 15 -> 1111
+	};
+
+	public static Info process3(Node h) {
+		Info ans = new Info();
+		int hs = 1 << h.color;
+		ans.colors[hs] = 1;
+		if (!h.nexts.isEmpty()) {
+			int n = h.nexts.size();
+			Info[] infos = new Info[n + 1];
+			for (int i = 1; i <= n; i++) {
+				infos[i] = process3(h.nexts.get(i - 1));
+				ans.all += infos[i].all;
+			}
+			long[][] lefts = new long[n + 2][16];
+			for (int i = 1; i <= n; i++) {
+				for (int status = 1; status < 16; status++) {
+					lefts[i][status] = lefts[i - 1][status] + infos[i].colors[status];
+				}
+			}
+			long[][] rights = new long[n + 2][16];
+			for (int i = n; i >= 1; i--) {
+				for (int status = 1; status < 16; status++) {
+					rights[i][status] = rights[i + 1][status] + infos[i].colors[status];
+				}
+			}
+			for (int status = 1; status < 16; status++) {
+				ans.colors[status | hs] += rights[1][status];
+			}
+			ans.all += ans.colors[15] << 1;
+			for (int from = 1; from <= n; from++) {
+				for (int fromStatus = 1; fromStatus < 16; fromStatus++) {
+					for (int toStatus : consider[fromStatus | hs]) {
+						ans.all += infos[from].colors[fromStatus]
+								* (lefts[from - 1][toStatus] + rights[from + 1][toStatus]);
 					}
 				}
 			}
@@ -208,26 +275,38 @@ public class Code04_Colors {
 		System.out.println("功能测试开始");
 		for (int i = 0; i < testTime; i++) {
 			Node head = randomTree(len, childs);
-			int ans1 = test(head);
-			long ans2 = colors(head);
-			if (ans1 != ans2) {
+			int ans1 = colors1(head);
+			long ans2 = colors2(head);
+			long ans3 = colors3(head);
+			if (ans1 != ans2 || ans2 != ans3) {
 				System.out.println("出错了");
 				printTree(head);
 				System.out.println();
 				System.out.println(ans1);
 				System.out.println(ans2);
+				System.out.println(ans3);
 				break;
 			}
 		}
 		System.out.println("功能测试结束");
 
 		System.out.println("性能测试开始");
+
 		Node h = randomTree();
-		long start = System.currentTimeMillis();
-		long ans = colors(h);
-		long end = System.currentTimeMillis();
 		System.out.println("节点数量达到 5*(10^5) 规模");
-		System.out.println("答案 : " + ans + ", 运行时间 : " + (end - start) + " 毫秒");
+		long start;
+		long end;
+
+		start = System.currentTimeMillis();
+		long ans2 = colors2(h);
+		end = System.currentTimeMillis();
+		System.out.println("方法二答案 : " + ans2 + ", 方法二运行时间 : " + (end - start) + " 毫秒");
+
+		start = System.currentTimeMillis();
+		long ans3 = colors3(h);
+		end = System.currentTimeMillis();
+		System.out.println("方法三答案 : " + ans3 + ", 方法三运行时间 : " + (end - start) + " 毫秒");
+
 		System.out.println("性能测试结束");
 	}
 
