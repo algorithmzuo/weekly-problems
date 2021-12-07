@@ -22,7 +22,7 @@ public class Code04_CutOffTreesForGolfEvent {
 		cells.sort((a, b) -> a[2] - b[2]);
 		int ans = 0, lastR = 0, lastC = 0;
 		for (int[] cell : cells) {
-			int step = distance(forest, lastR, lastC, cell[0], cell[1]);
+			int step = bestWalk(forest, lastR, lastC, cell[0], cell[1]);
 			if (step == -1) {
 				return -1;
 			}
@@ -34,7 +34,9 @@ public class Code04_CutOffTreesForGolfEvent {
 		return ans;
 	}
 
-	public static int distance(List<List<Integer>> forest, int sr, int sc, int tr, int tc) {
+	public static int[] next = { -1, 0, 1, 0, -1 };
+
+	public static int bestWalk(List<List<Integer>> forest, int sr, int sc, int tr, int tc) {
 		if (sr == tr && sc == tc) {
 			return 0;
 		}
@@ -42,32 +44,23 @@ public class Code04_CutOffTreesForGolfEvent {
 		int m = forest.get(0).size();
 		boolean[][] seen = new boolean[n][m];
 		LinkedList<int[]> deque = new LinkedList<>();
-		seen[sr][sc] = true;
 		deque.offerFirst(new int[] { 0, sr, sc });
-		int[] dr = { -1, 1, 0, 0 };
-		int[] dc = { 0, 0, -1, 1 };
 		while (!deque.isEmpty()) {
 			int[] cur = deque.pollFirst();
 			int step = cur[0], r = cur[1], c = cur[2];
+			if (r == tr && c == tc) {
+				return step;
+			}
 			seen[r][c] = true;
-			for (int di = 0; di < 4; ++di) {
-				int nr = r + dr[di];
-				int nc = c + dc[di];
-				if (nr >= 0 && nr < n && nc >= 0 && nc < m && !seen[nr][nc]) {
-					if (nr == tr && nc == tc) {
-						return step + 1;
-					}
-					if (forest.get(nr).get(nc) > 0) {
-						boolean closer = 
-								(di == 0 && r > tr) 
-								|| (di == 1 && r < tr) 
-								|| (di == 2 && c > tc)
-								|| (di == 3 && c < tc);
-						if (closer) {
-							deque.offerFirst(new int[] { step + 1, nr, nc });
-						} else {
-							deque.offerLast(new int[] { step + 1, nr, nc });
-						}
+			for (int i = 1; i < 5; i++) {
+				int nr = r + next[i - 1];
+				int nc = c + next[i];
+				if (nr >= 0 && nr < n && nc >= 0 && nc < m && !seen[nr][nc] && forest.get(nr).get(nc) > 0) {
+					int[] move = { step + 1, nr, nc };
+					if ((i == 1 && r > tr) || (i == 2 && c < tc) || (i == 3 && r < tr) || (i == 4 && c > tc)) {
+						deque.offerFirst(move);
+					} else {
+						deque.offerLast(move);
 					}
 				}
 			}
