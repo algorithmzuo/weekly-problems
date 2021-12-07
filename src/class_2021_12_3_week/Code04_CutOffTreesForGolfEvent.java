@@ -1,15 +1,16 @@
 package class_2021_12_3_week;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.com/problems/cut-off-trees-for-golf-event/
 public class Code04_CutOffTreesForGolfEvent {
 
 	public static int cutOffTree(List<List<Integer>> forest) {
-		int n = forest.size(), m = forest.get(0).size();
-		PriorityQueue<int[]> cells = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+		int n = forest.size();
+		int m = forest.get(0).size();
+		ArrayList<int[]> cells = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				int val = forest.get(i).get(j);
@@ -18,23 +19,22 @@ public class Code04_CutOffTreesForGolfEvent {
 				}
 			}
 		}
-		int res = 0;
-		int curX = 0, curY = 0;
-		while (!cells.isEmpty()) {
-			int[] curCell = cells.poll();
-			int step = dist(forest, curX, curY, curCell[0], curCell[1]);
+		cells.sort((a, b) -> a[2] - b[2]);
+		int ans = 0, lastR = 0, lastC = 0;
+		for (int[] cell : cells) {
+			int step = distance(forest, lastR, lastC, cell[0], cell[1]);
 			if (step == -1) {
 				return -1;
 			}
-			res += step;
-			curX = curCell[0];
-			curY = curCell[1];
-			forest.get(curX).set(curY, 1);
+			ans += step;
+			lastR = cell[0];
+			lastC = cell[1];
+			forest.get(lastR).set(lastC, 1);
 		}
-		return res;
+		return ans;
 	}
 
-	public static int dist(List<List<Integer>> forest, int sr, int sc, int tr, int tc) {
+	public static int distance(List<List<Integer>> forest, int sr, int sc, int tr, int tc) {
 		if (sr == tr && sc == tc) {
 			return 0;
 		}
@@ -42,6 +42,7 @@ public class Code04_CutOffTreesForGolfEvent {
 		int m = forest.get(0).size();
 		boolean[][] seen = new boolean[n][m];
 		LinkedList<int[]> deque = new LinkedList<>();
+		seen[sr][sc] = true;
 		deque.offerFirst(new int[] { 0, sr, sc });
 		int[] dr = { -1, 1, 0, 0 };
 		int[] dc = { 0, 0, -1, 1 };
@@ -56,12 +57,12 @@ public class Code04_CutOffTreesForGolfEvent {
 					if (nr == tr && nc == tc) {
 						return step + 1;
 					}
-					boolean closer = 
-							(di == 0 && r > tr) 
-							|| (di == 1 && r < tr) 
-							|| (di == 2 && c > tc)
-							|| (di == 3 && c < tc);
 					if (forest.get(nr).get(nc) > 0) {
+						boolean closer = 
+								(di == 0 && r > tr) 
+								|| (di == 1 && r < tr) 
+								|| (di == 2 && c > tc)
+								|| (di == 3 && c < tc);
 						if (closer) {
 							deque.offerFirst(new int[] { step + 1, nr, nc });
 						} else {
