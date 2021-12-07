@@ -37,9 +37,6 @@ public class Code04_CutOffTreesForGolfEvent {
 	public static int[] next = { -1, 0, 1, 0, -1 };
 
 	public static int bestWalk(List<List<Integer>> forest, int sr, int sc, int tr, int tc) {
-		if (sr == tr && sc == tc) {
-			return 0;
-		}
 		int n = forest.size();
 		int m = forest.get(0).size();
 		boolean[][] seen = new boolean[n][m];
