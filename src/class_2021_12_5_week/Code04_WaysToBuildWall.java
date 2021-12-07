@@ -16,6 +16,7 @@ public class Code04_WaysToBuildWall {
 		if (n <= 0 || m <= 1) {
 			return 1;
 		}
+		// len[i] = 一共有1行的情况下，列的长度为i的时候有几种摆法(所有，不分合法和非法)
 		long[] len = new long[m + 1];
 		for (int i = 1; i <= m; i++) {
 			len[i] = r[i];
@@ -23,10 +24,12 @@ public class Code04_WaysToBuildWall {
 		for (int i = 5; i <= m; i++) {
 			len[i] = len[i - 1] + len[i - 2] + len[i - 3] + len[i - 4];
 		}
+		// any[i] = 一共有n行的情况下，列的长度为i的时候有几种摆法(所有，不分合法和非法)
 		long[] any = new long[m + 1];
 		for (int i = 1; i <= m; i++) {
 			any[i] = power(len[i], n);
 		}
+		// solid[i] = 一共有n行的情况下，列的长度为i的时候有几种合法的摆法
 		long[] solid = new long[m + 1];
 		solid[1] = 1;
 		for (int i = 2; i <= m; i++) {
