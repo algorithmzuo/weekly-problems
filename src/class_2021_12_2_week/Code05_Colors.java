@@ -93,7 +93,13 @@ public class Code05_Colors {
 	}
 
 	public static class Info {
+		// 我这棵子树，总共合法的路径有多少？
 		public long all;
+		// 课上没有强调！但是请务必注意！
+		// 一定要从头节点出发的情况下！
+		// 一定要从头节点出发的情况下！
+		// 一定要从头节点出发的情况下！
+		// 走出来每种状态路径的条数
 		public long[] colors;
 
 		public Info() {
@@ -104,10 +110,13 @@ public class Code05_Colors {
 
 	public static Info process2(Node h) {
 		Info ans = new Info();
+		// 头节点拥有的颜色
+		// 2 0100 0 0001 3 1000
 		int hs = 1 << h.color;
 		ans.colors[hs] = 1;
 		if (!h.nexts.isEmpty()) {
 			int n = h.nexts.size();
+			// 0(不用) 1 2 3 4
 			Info[] infos = new Info[n + 1];
 			for (int i = 1; i <= n; i++) {
 				infos[i] = process2(h.nexts.get(i - 1));
@@ -126,8 +135,11 @@ public class Code05_Colors {
 				}
 			}
 			for (int status = 1; status < 16; status++) {
+				// x : 0010 子：0001 10个
+				// 0011 + 10个
 				ans.colors[status | hs] += rights[1][status];
 			}
+			// 头节点出发，全颜色搞定，100个，200
 			ans.all += ans.colors[15] << 1;
 			for (int from = 1; from <= n; from++) {
 				for (int fromStatus = 1; fromStatus < 16; fromStatus++) {

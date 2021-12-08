@@ -44,6 +44,7 @@ public class Code03_MagicSum {
 	// O(N) + O(M * logM) + O(M * logN) + O(N * logN)
 	public static int maxSum2(int[] arr, int[][] magics) {
 		int n = arr.length;
+		// 线段树里的下标，从1开始，不从0开始！
 		SegmentTree2 st = new SegmentTree2(n);
 		Arrays.sort(magics, (a, b) -> (a[2] - b[2]));
 		for (int[] magic : magics) {

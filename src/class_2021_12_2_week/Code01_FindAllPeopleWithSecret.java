@@ -8,14 +8,19 @@ import java.util.List;
 public class Code01_FindAllPeopleWithSecret {
 
 	public List<Integer> findAllPeople(int n, int[][] meetings, int firstPerson) {
+		// 0~n-1号专家，各自建立小集合
+		// (0, firstPerson)合在一起，作为知道秘密的集合
 		UnionFind uf = new UnionFind(n, firstPerson);
 		int m = meetings.length;
 		Arrays.sort(meetings, (a, b) -> a[2] - b[2]);
+		// [1,7,1]  [2,4,2] [3,6,2]
+		//  1,7   2,4   3,6  
 		int[] help = new int[m << 1];
 		help[0] = meetings[0][0];
 		help[1] = meetings[0][1];
 		int size = 2;
 		for (int i = 1; i < m; i++) {
+			// i 2
 			if (meetings[i][2] != meetings[i - 1][2]) {
 				share(help, size, uf);
 				help[0] = meetings[i][0];

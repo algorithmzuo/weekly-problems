@@ -20,7 +20,11 @@ public class Code04_LowestCommonAncestorOfABinaryTreeIV {
 	}
 
 	public static class Info {
+		// 找没找到最低公共祖先
+		// 没找到，find = null
+		// 找到了最低公共祖先，find是最低公共祖先
 		public TreeNode find;
+		// 我这颗子树上，删掉了几个节点！
 		public int removes;
 
 		public Info(TreeNode f, int r) {
@@ -29,22 +33,22 @@ public class Code04_LowestCommonAncestorOfABinaryTreeIV {
 		}
 	}
 
-	public static Info process(TreeNode root, HashSet<Integer> set, int all) {
-		if (root == null) {
+	public static Info process(TreeNode x, HashSet<Integer> set, int all) {
+		if (x == null) {
 			return new Info(null, 0);
 		}
-		Info left = process(root.left, set, all);
+		Info left = process(x.left, set, all);
 		if (left.find != null) {
 			return left;
 		}
-		Info right = process(root.right, set, all);
+		Info right = process(x.right, set, all);
 		if (right.find != null) {
 			return right;
 		}
-		int cur = set.contains(root.val) ? 1 : 0;
-		set.remove(root.val);
+		int cur = set.contains(x.val) ? 1 : 0;
+		set.remove(x.val);
 		if (left.removes + right.removes + cur == all) {
-			return new Info(root, all);
+			return new Info(x, all);
 		} else {
 			return new Info(null, left.removes + right.removes + cur);
 		}

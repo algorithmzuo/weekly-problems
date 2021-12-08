@@ -7,6 +7,7 @@ package class_2021_12_2_week;
 // 飞船一旦开始进入黑洞，就会被吸进黑洞里
 // 返回：
 // 如果统一所有黑洞的半径，最大半径是多少，依然能保证飞船从(0,0)能到达(x,y)
+// 1000  1000*1000  10^6 * 二分
 public class Code02_AwayFromBlackHole {
 
 	public static int maxRadius(int[][] holes, int x, int y) {
@@ -42,7 +43,7 @@ public class Code02_AwayFromBlackHole {
 	}
 
 	public static boolean touch(int x1, int y1, int x2, int y2, int r) {
-		return (r << 1) > Math.sqrt((Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2)));
+		return (r << 1) >= Math.sqrt((Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2)));
 	}
 
 	public static class UnionFind {
@@ -103,7 +104,9 @@ public class Code02_AwayFromBlackHole {
 
 		public boolean block(int i, int x, int y) {
 			i = find(i);
-			return (xmin[i] <= 0 && xmax[i] >= x) || (ymin[i] <= 0 && ymax[i] >= y) || (xmin[i] <= 0 && ymin[i] <= 0)
+			return (xmin[i] <= 0 && xmax[i] >= x) 
+					|| (ymin[i] <= 0 && ymax[i] >= y) 
+					|| (xmin[i] <= 0 && ymin[i] <= 0)
 					|| (xmax[i] >= x && ymax[i] >= y);
 		}
 
