@@ -15,7 +15,7 @@ import java.util.Queue;
 // (a -> ... -> b)和(b -> ... -> a)算两条路径
 // 求多叉树上达标的路径一共有多少？
 // 点的数量 <= 10^5
-public class Code04_Colors {
+public class Code05_Colors {
 
 	public static class Node {
 		public int color;
