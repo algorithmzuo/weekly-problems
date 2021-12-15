@@ -43,17 +43,16 @@ public class Code01_RightMoveInBinaryTree {
 		for (int i = level - 1; i > 0; i--) {
 			int downLeft = ends[i - 1];
 			int downRight = ends[i] - 1;
-			int downSize = downRight - downLeft + 1;
-			int downRightSize = k % downSize;
-			int downBegin =  downRightSize == 0 ? downLeft : (downRight - downRightSize + 1);
+			int downRightSize = k % (downRight - downLeft + 1);
+			int downIndex = downRightSize == 0 ? downLeft : (downRight - downRightSize + 1);
 			int curLeft = i - 2 >= 0 ? ends[i - 2] : 0;
 			int curRight = ends[i - 1] - 1;
 			for (int j = curLeft; j <= curRight; j++) {
 				if (queue[j] != null) {
-					queue[j].left = queue[downBegin];
-					downBegin = nextIndex(downBegin, downLeft, downRight);
-					queue[j].right = queue[downBegin];
-					downBegin = nextIndex(downBegin, downLeft, downRight);
+					queue[j].left = queue[downIndex];
+					downIndex = nextIndex(downIndex, downLeft, downRight);
+					queue[j].right = queue[downIndex];
+					downIndex = nextIndex(downIndex, downLeft, downRight);
 				}
 			}
 		}
