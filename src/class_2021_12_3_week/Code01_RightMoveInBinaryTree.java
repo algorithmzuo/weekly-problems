@@ -20,7 +20,7 @@ public class Code01_RightMoveInBinaryTree {
 
 	// 提交下面的代码
 
-	public static TreeNode[] queue = new TreeNode[500000];
+	public static TreeNode[] queue = new TreeNode[300000];
 
 	public static int[] ends = new int[50];
 
@@ -43,38 +43,25 @@ public class Code01_RightMoveInBinaryTree {
 		for (int i = level - 1; i > 0; i--) {
 			int downLeft = ends[i - 1];
 			int downRight = ends[i] - 1;
-			rightMove(queue, downLeft, downRight, k);
+			int downSize = downRight - downLeft + 1;
+			int downRightSize = k % downSize;
+			int downBegin =  downRightSize == 0 ? downLeft : (downRight - downRightSize + 1);
 			int curLeft = i - 2 >= 0 ? ends[i - 2] : 0;
 			int curRight = ends[i - 1] - 1;
 			for (int j = curLeft; j <= curRight; j++) {
 				if (queue[j] != null) {
-					queue[j].left = queue[downLeft++];
-					queue[j].right = queue[downLeft++];
+					queue[j].left = queue[downBegin];
+					downBegin = nextIndex(downBegin, downLeft, downRight);
+					queue[j].right = queue[downBegin];
+					downBegin = nextIndex(downBegin, downLeft, downRight);
 				}
 			}
 		}
 		return root;
 	}
 
-	public static void rightMove(TreeNode[] arr, int l, int r, int k) {
-		int e = r + 1 - (k % (r - l + 1));
-		if (e <= r) {
-			for (int i = l, j = e - 1; i < j; i++, j--) {
-				swap(arr, i, j);
-			}
-			for (int i = e, j = r; i < j; i++, j--) {
-				swap(arr, i, j);
-			}
-			for (int i = l, j = r; i < j; i++, j--) {
-				swap(arr, i, j);
-			}
-		}
-	}
-
-	public static void swap(TreeNode[] arr, int i, int j) {
-		TreeNode tmp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = tmp;
+	public static int nextIndex(int i, int l, int r) {
+		return i == r ? l : i + 1;
 	}
 
 }
