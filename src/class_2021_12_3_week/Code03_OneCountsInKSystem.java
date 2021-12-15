@@ -1,7 +1,8 @@
 package class_2021_12_3_week;
 
-//测试链接 : https://www.nowcoder.com/test/33701596/summary
-//本题目为第3题
+// 测试链接 : https://www.nowcoder.com/test/33701596/summary
+// 本题目为第3题
+// 核心方法，在大厂刷题班19节，第3题
 public class Code03_OneCountsInKSystem {
 
 	public static long minM(int n, int k) {

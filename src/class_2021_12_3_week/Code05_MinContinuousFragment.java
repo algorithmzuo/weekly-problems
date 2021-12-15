@@ -58,8 +58,10 @@ public class Code05_MinContinuousFragment {
 			}
 		}
 		set(str, L, R);
+		// 下面的for循环，是单独处理，条件5）
 		for (int i = 1; i < N; i++) {
 			if (str[i] == '?') {
+				// baaaa?bbbbbbbba
 				for (L = i - 1; L >= 0 && str[L] == str[i - 1]; L--)
 					;
 				for (R = i + 1; R < N && str[R] == str[i + 1]; R++)
@@ -76,6 +78,9 @@ public class Code05_MinContinuousFragment {
 		return maxLen(str);
 	}
 
+	// L...R 都是？
+	// 如果这一坨问号，满足1）2）3）4）中的一种，就填好
+	// 如果满足5），就不填！a?b
 	public static void set(char[] str, int L, int R) {
 		int N = str.length;
 		if (L > R) {
@@ -144,6 +149,14 @@ public class Code05_MinContinuousFragment {
 			}
 		}
 		System.out.println("测试结束");
+
+		len = 10000000;
+		String s = randomString(len);
+		long start = System.currentTimeMillis();
+		minContinuous2(s);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间（毫秒）：" + (end - start));
+
 	}
 
 }

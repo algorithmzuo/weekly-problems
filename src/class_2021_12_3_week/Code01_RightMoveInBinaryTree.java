@@ -41,6 +41,12 @@ public class Code01_RightMoveInBinaryTree {
 			level++;
 		}
 		for (int i = level - 1; i > 0; i--) {
+			
+			// 当前层 : curLeft....curRight
+			//            3(null) 4(a) 5(null) 6(b)
+			// 下一层 ：downLeft....downRight
+			//              7 8 9 10
+			// downIndex : 下一层需要根据，k和下一层的长度，来右移。右移之后，从哪个位置开始，分配节点给当前层第一个不空的节点
 			int downLeft = ends[i - 1];
 			int downRight = ends[i] - 1;
 			int downRightSize = k % (downRight - downLeft + 1);
@@ -59,6 +65,8 @@ public class Code01_RightMoveInBinaryTree {
 		return root;
 	}
 
+	// l......r    i -> next index
+	// 4.....9   i = 7 8 9 4
 	public static int nextIndex(int i, int l, int r) {
 		return i == r ? l : i + 1;
 	}
