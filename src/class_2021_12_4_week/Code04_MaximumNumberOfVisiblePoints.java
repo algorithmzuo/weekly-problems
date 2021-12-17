@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // 测试链接 : https://leetcode.com/problems/maximum-number-of-visible-points/
-public class Code05_MaximumNumberOfVisiblePoints {
+public class Code04_MaximumNumberOfVisiblePoints {
 
 	public static int visiblePoints(List<List<Integer>> points, int angle, List<Integer> location) {
 		int n = points.size();

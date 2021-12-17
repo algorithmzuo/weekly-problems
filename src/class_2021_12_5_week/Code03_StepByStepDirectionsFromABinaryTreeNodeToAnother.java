@@ -3,7 +3,7 @@ package class_2021_12_5_week;
 import java.util.LinkedList;
 
 // 测试链接 : https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
-public class Code01_StepByStepDirectionsFromABinaryTreeNodeToAnother {
+public class Code03_StepByStepDirectionsFromABinaryTreeNodeToAnother {
 
 	// 提交代码时不要提交这个类
 	public static class TreeNode {

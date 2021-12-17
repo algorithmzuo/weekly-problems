@@ -1,10 +1,10 @@
-package class_2022_01_4_week;
+package class_2021_12_4_week;
 
 // 测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
 // 提交以下的code，提交时请把类名改成"Main"
 import java.util.Scanner;
 
-public class Code02_SplitApples {
+public class Code05_SplitApples {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
