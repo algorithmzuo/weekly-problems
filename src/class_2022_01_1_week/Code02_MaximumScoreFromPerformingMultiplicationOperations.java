@@ -1,7 +1,7 @@
 package class_2022_01_1_week;
 
 // 测试链接 : https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/
-public class Code01_MaximumScoreFromPerformingMultiplicationOperations {
+public class Code02_MaximumScoreFromPerformingMultiplicationOperations {
 
 	public static int maximumScore1(int[] A, int[] B) {
 		if (A == null || A.length == 0 || B == null || B.length == 0 || A.length < B.length) {
