@@ -16,7 +16,7 @@ public class Problem_0679_24Game {
 
 	public static boolean judge(Number[] arr, int size) {
 		if (size == 1) {
-			return arr[0].up == 24 && arr[0].down == 1;
+			return arr[0].numerator == 24 && arr[0].denominator == 1;
 		}
 		for (int i = 0; i < size; i++) {
 			for (int j = i + 1; j < size; j++) {
@@ -55,29 +55,29 @@ public class Problem_0679_24Game {
 	}
 
 	public static class Number {
-		public int up;
-		public int down;
+		public int numerator;
+		public int denominator;
 
 		public Number(int n, int d) {
-			up = n;
-			down = d;
+			numerator = n;
+			denominator = d;
 		}
 	}
 
 	public static Number add(Number a, Number b) {
-		return simple(a.up * b.down + b.up * a.down, a.down * b.down);
+		return simple(a.numerator * b.denominator + b.numerator * a.denominator, a.denominator * b.denominator);
 	}
 
 	public static Number minus(Number a, Number b) {
-		return simple(a.up * b.down - b.up * a.down, a.down * b.down);
+		return simple(a.numerator * b.denominator - b.numerator * a.denominator, a.denominator * b.denominator);
 	}
 
 	public static Number multiply(Number a, Number b) {
-		return simple(a.up * b.up, a.down * b.down);
+		return simple(a.numerator * b.numerator, a.denominator * b.denominator);
 	}
 
 	public static Number divide(Number a, Number b) {
-		return b.up == 0 ? null : simple(a.up * b.down, a.down * b.up);
+		return b.numerator == 0 ? null : simple(a.numerator * b.denominator, a.denominator * b.numerator);
 	}
 
 	public static Number simple(int up, int down) {
