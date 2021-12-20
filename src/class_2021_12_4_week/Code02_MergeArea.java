@@ -91,11 +91,11 @@ public class Code02_MergeArea {
 	public static void main(String[] args) {
 		AreaResource a1 = new AreaResource("中国,四川,成都", ",", 10);
 		AreaResource a2 = new AreaResource("中国,浙江,杭州", ",", 50);
-		AreaResource a3 = new AreaResource("中国_浙江_杭州", "_", 25);
-		AreaResource a4 = new AreaResource("中国!浙江!义务", "!", 22);
-		AreaResource a5 = new AreaResource("中国0四川0成都", "0", 15);
-		AreaResource a6 = new AreaResource("中国a四川a攀枝花", "a", 12);
-		AreaResource a7 = new AreaResource("中国 浙江 宁波", " ", 16);
+		AreaResource a3 = new AreaResource("中国,浙江,杭州", ",", 25);
+		AreaResource a4 = new AreaResource("中国,浙江,义务", ",", 22);
+		AreaResource a5 = new AreaResource("中国,四川,成都", ",", 15);
+		AreaResource a6 = new AreaResource("中国,四川,攀枝花", ",", 12);
+		AreaResource a7 = new AreaResource("中国,浙江,宁波", ",", 16);
 
 		List<AreaResource> areas = new ArrayList<>();
 		areas.add(a1);
