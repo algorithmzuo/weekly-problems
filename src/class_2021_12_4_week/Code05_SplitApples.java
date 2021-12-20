@@ -1,5 +1,10 @@
 package class_2021_12_4_week;
 
+// 有m个同样的苹果，认为苹果之间无差别
+// 有n个同样的盘子，认为盘子之间也无差别
+// 还有，比如5个苹果如果放进3个盘子，
+// 那么1、3、1和1、1、3和3、1、1的放置方法，也认为是一种方法
+// 如上的设定下，返回有多少种放置方法
 // 测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
 // 提交以下的code，提交时请把类名改成"Main"
 import java.util.Scanner;
