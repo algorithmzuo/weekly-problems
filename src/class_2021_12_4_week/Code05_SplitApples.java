@@ -17,12 +17,38 @@ public class Code05_SplitApples {
 		while (sc.hasNext()) {
 			int m = sc.nextInt();
 			int n = sc.nextInt();
-			int ways = f1(m, n);
+			int ways = ways3(m, n);
 			System.out.println(ways);
 		}
 		sc.close();
 	}
 
+	// 思路来自于分裂数问题
+	// 体系学习班代码第22节，题目3，split number问题
+	public static int ways1(int apples, int plates) {
+		return process1(1, apples, plates);
+	}
+
+	public static int process1(int pre, int apples, int plates) {
+		if (apples == 0) {
+			return 1;
+		}
+		if (plates == 0) {
+			return 0;
+		}
+		// apples != 0 && plates != 0
+		if (pre > apples) {
+			return 0;
+		}
+		// apples != 0 && plates != 0 && pre <= apples
+		int way = 0;
+		for (int cur = pre; cur <= apples; cur++) {
+			way += process1(cur, apples - cur, plates - 1);
+		}
+		return way;
+	}
+
+	// 新的尝试，最优解
 	// 苹果有apples个，盘子有plates个
 	// 返回有几种摆法
 	// 如果苹果数为0，有1种摆法：什么也不摆
@@ -42,7 +68,7 @@ public class Code05_SplitApples {
 	// 剩余苹果数 = apples - plates
 	// 然后继续讨论，剩下的这些苹果，怎么摆进plates个盘子里，
 	// 所以后续是f(apples - plates, plates)
-	public static int f1(int apples, int plates) {
+	public static int ways2(int apples, int plates) {
 		if (apples == 0) {
 			return 1;
 		}
@@ -50,23 +76,26 @@ public class Code05_SplitApples {
 			return 0;
 		}
 		if (plates > apples) {
-			return f1(apples, apples);
+			return ways2(apples, apples);
 		} else { // apples >= plates;
-			return f1(apples, plates - 1) + f1(apples - plates, plates);
+			return ways2(apples, plates - 1) + ways2(apples - plates, plates);
 		}
 	}
 
-	// 下面的方法就是上面方法的记忆化搜索版本
-	public static int[][] dp = new int[20][20];
+	// 上面最优解尝试的记忆化搜索版本
+	public static int[][] dp = null;
 
-	public static int f2(int apples, int plates) {
-		for (int i = 0; i <= apples; i++) {
-			Arrays.fill(dp[i], -1);
+	public static int ways3(int apples, int plates) {
+		if (dp == null) {
+			dp = new int[11][11];
+			for (int i = 0; i <= 10; i++) {
+				Arrays.fill(dp[i], -1);
+			}
 		}
-		return g(apples, plates, dp);
+		return process3(apples, plates, dp);
 	}
 
-	public static int g(int apples, int plates, int[][] dp) {
+	public static int process3(int apples, int plates, int[][] dp) {
 		if (dp[apples][plates] != -1) {
 			return dp[apples][plates];
 		}
@@ -76,9 +105,9 @@ public class Code05_SplitApples {
 		} else if (plates == 0) {
 			ans = 0;
 		} else if (plates > apples) {
-			ans = g(apples, apples, dp);
+			ans = process3(apples, apples, dp);
 		} else {
-			ans = g(apples, plates - 1, dp) + g(apples - plates, plates, dp);
+			ans = process3(apples, plates - 1, dp) + process3(apples - plates, plates, dp);
 		}
 		dp[apples][plates] = ans;
 		return ans;
