@@ -1,12 +1,13 @@
 package class_2021_12_4_week;
 
-// 有m个同样的苹果，认为苹果之间无差别
-// 有n个同样的盘子，认为盘子之间也无差别
-// 还有，比如5个苹果如果放进3个盘子，
-// 那么1、3、1和1、1、3和3、1、1的放置方法，也认为是一种方法
-// 如上的设定下，返回有多少种放置方法
-// 测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
-// 提交以下的code，提交时请把类名改成"Main"
+//有m个同样的苹果，认为苹果之间无差别
+//有n个同样的盘子，认为盘子之间也无差别
+//还有，比如5个苹果如果放进3个盘子，
+//那么1、3、1和1、1、3和3、1、1的放置方法，也认为是一种方法
+//如上的设定下，返回有多少种放置方法
+//测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
+//提交以下的code，提交时请把类名改成"Main"
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Code05_SplitApples {
@@ -16,7 +17,7 @@ public class Code05_SplitApples {
 		while (sc.hasNext()) {
 			int m = sc.nextInt();
 			int n = sc.nextInt();
-			int ways = f(m, n);
+			int ways = f1(m, n);
 			System.out.println(ways);
 		}
 		sc.close();
@@ -41,7 +42,7 @@ public class Code05_SplitApples {
 	// 剩余苹果数 = apples - plates
 	// 然后继续讨论，剩下的这些苹果，怎么摆进plates个盘子里，
 	// 所以后续是f(apples - plates, plates)
-	public static int f(int apples, int plates) {
+	public static int f1(int apples, int plates) {
 		if (apples == 0) {
 			return 1;
 		}
@@ -49,14 +50,38 @@ public class Code05_SplitApples {
 			return 0;
 		}
 		if (plates > apples) {
-			return f(apples, apples);
+			return f1(apples, apples);
 		} else { // apples >= plates;
-			return f(apples, plates - 1) + f(apples - plates, plates);
+			return f1(apples, plates - 1) + f1(apples - plates, plates);
 		}
 	}
 
-	// 上面的递归过程，无非就是两个可变参数的尝试
-	// 可以轻易的改出二维记忆化搜索的方法(从顶到底的动态规划)
-	// 请自行改出这一方法，如果改不出来，请一定要看"体系学习班"中，"从暴力递归到动态规划"的章节
+	// 下面的方法就是上面方法的记忆化搜索版本
+	public static int[][] dp = new int[20][20];
+
+	public static int f2(int apples, int plates) {
+		for (int i = 0; i <= apples; i++) {
+			Arrays.fill(dp[i], -1);
+		}
+		return g(apples, plates, dp);
+	}
+
+	public static int g(int apples, int plates, int[][] dp) {
+		if (dp[apples][plates] != -1) {
+			return dp[apples][plates];
+		}
+		int ans = 0;
+		if (apples == 0) {
+			ans = 1;
+		} else if (plates == 0) {
+			ans = 0;
+		} else if (plates > apples) {
+			ans = g(apples, apples, dp);
+		} else {
+			ans = g(apples, plates - 1, dp) + g(apples - plates, plates, dp);
+		}
+		dp[apples][plates] = ans;
+		return ans;
+	}
 
 }
