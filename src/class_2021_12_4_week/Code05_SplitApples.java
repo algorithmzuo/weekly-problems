@@ -29,10 +29,15 @@ public class Code05_SplitApples {
 		return process1(1, apples, plates);
 	}
 
+	// pre : 上一个盘子分到的苹果数量，当前的盘子分到的数量不能小于pre
+	// apples : 剩余的苹果数量
+	// plates : 剩余的盘子数量
+	// 在盘子够用的情况下，把苹果分完，有几种方法
 	public static int process1(int pre, int apples, int plates) {
 		if (apples == 0) {
 			return 1;
 		}
+		// apples != 0
 		if (plates == 0) {
 			return 0;
 		}
@@ -42,6 +47,8 @@ public class Code05_SplitApples {
 		}
 		// apples != 0 && plates != 0 && pre <= apples
 		int way = 0;
+		// 之前的盘子分了3个苹果，现在还剩下8个苹果
+		// 当前的盘子，可以装几个苹果：3、4、5、6、7、8
 		for (int cur = pre; cur <= apples; cur++) {
 			way += process1(cur, apples - cur, plates - 1);
 		}

@@ -12,18 +12,31 @@ import java.util.List;
 // spliter = ,
 // count表示门店数
 // class AreaResource {
-// String area;
-// String spliter;
-// long count;
+//     String area;
+//     String spliter;
+//     long count;
 // }
+
+// area = "中国,四川,成都"
+// spliter = ","
+// count = 10
+
 // 现在需要把  List<AreaResource> 进行字符串转换，供下游处理，需要做到同级的地域能合并
-// 比如 area为中国,四川,成都 有10个门店，   中国,浙江,杭州 有25个门店 中国,浙江,义乌有22个门店
+// 比如 
+// area为 中国,四川,成都  有10个门店
+//        中国,浙江,杭州 有25个门店 
+//        中国,浙江,义乌 有22个门店
+//        中国,四川,成都 有25个门店
 // spliter为逗号 "," 最终转化成JSON的形式，并且同级的地域需要被合并，最终生成的JSON字符串如下所示
-// 返回: {"中国":{"四川":{"成都":10]},"浙江":{"义乌":22,"杭州":25}}}
+// 
+// 返回: {
+//    "中国":
+//           {"四川":{"成都":35]},
+//            "浙江":{"义乌":22,"杭州":25}}}
 // 请实现下面的方法 public String mergeCount(List<AreaResource> areas) 
 public class Code02_MergeArea {
 
-	// 原始类
+	// 系统给你的原始类
 	public static class AreaResource {
 		public String area;
 		public String spliter;
@@ -40,17 +53,23 @@ public class Code02_MergeArea {
 	public static String mergeCount(List<AreaResource> areas) {
 		Area all = new Area("", 0);
 		for (AreaResource r : areas) {
+			//  中国,四川,成都  , 10个门店
 			String[] path = r.area.split(r.spliter);
+			// 中国   四川  成都
 			long count = r.count;
 			f(path, 0, all, count);
 		}
 		return all.toString();
 	}
 
+	// [中国，四川，成都]
+	//   0    1    2
 	public static void f(String[] path, int index, Area pre, long count) {
 		if (index == path.length) {
 			pre.count += count;
 		} else {
+			// 前一个节点 pre 中国
+			// cur = 四川
 			String cur = path[index];
 			if (!pre.next.containsKey(cur)) {
 				pre.next.put(cur, new Area(cur, 0));
@@ -59,8 +78,13 @@ public class Code02_MergeArea {
 		}
 	}
 
+	// 自己定义的！前缀树节点
 	public static class Area {
+		// 地区名称：中国
+		// 四川
+		// 成都
 		public String name;
+		//  中国   key : 省名   value: 下级节点
 		public HashMap<String, Area> next;
 		public long count;
 
@@ -72,12 +96,16 @@ public class Code02_MergeArea {
 
 		public String toString() {
 			StringBuilder ans = new StringBuilder();
+			// :   ""
+			// str =  "中国": 
+			// str = "成都":100
 			if (!name.equals("")) {
 				ans.append("\"" + name + "\"" + ":");
 			}
 			if (next.isEmpty()) {
 				ans.append(count);
 			} else {
+				// "中国":{ 四川如何如何,河南如何如何,江苏如何如何}
 				ans.append("{");
 				for (Area child : next.values()) {
 					ans.append(child.toString() + ",");

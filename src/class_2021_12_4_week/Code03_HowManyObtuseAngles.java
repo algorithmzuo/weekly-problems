@@ -14,6 +14,8 @@ import java.util.Arrays;
 public class Code03_HowManyObtuseAngles {
 
 	public static long obtuseAngles(int[] arr) {
+		// n长度的排序，O(N * logN)
+		// O(N)
 		int n = arr.length;
 		int m = n << 1;
 		int[] enlarge = new int[m];
@@ -24,11 +26,11 @@ public class Code03_HowManyObtuseAngles {
 		}
 		long ans = 0;
 		// 这里不用二分查找(太慢)，能做一个不回退的优化
-		for (int i = 0, j = 0; i < n; i++) {
-			while (j < m && enlarge[j] - enlarge[i] < 18000) {
-				j++;
+		for (int L = 0, R = 0; L < n; L++) {
+			while (R < m && enlarge[R] - enlarge[L] < 18000) {
+				R++;
 			}
-			ans += num(j - i - 1);
+			ans += num(R - L - 1);
 		}
 		return ans;
 	}

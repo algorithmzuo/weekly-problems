@@ -31,11 +31,11 @@ public class Code04_MaximumNumberOfVisiblePoints {
 		}
 		Arrays.sort(arr, 0, m);
 		int max = 0;
-		for (int i = 0, j = 0; i < n; i++) {
-			while (j < m && arr[j] - arr[i] <= angle) {
-				j++;
+		for (int L = 0, R = 0; L < n; L++) {
+			while (R < m && arr[R] - arr[L] <= angle) {
+				R++;
 			}
-			max = Math.max(max, j - i);
+			max = Math.max(max, R - L);
 		}
 		return max + zero;
 	}
