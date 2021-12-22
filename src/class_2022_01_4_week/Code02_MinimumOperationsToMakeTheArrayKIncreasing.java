@@ -2,7 +2,7 @@ package class_2022_01_4_week;
 
 // 来自Leetcode周赛第5题
 // 测试链接 : https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/
-public class Problem_2111_MinimumOperationsToMakeTheArrayKIncreasing {
+public class Code02_MinimumOperationsToMakeTheArrayKIncreasing {
 
 	public static int kIncreasing(int[] arr, int k) {
 		int n = arr.length;
