@@ -21,7 +21,6 @@ public class Code02_DoAllJobs {
 		}
 		int[][] nexts = nexts(depends, m);
 		int[] indegree = indegree(nexts, m);
-		int[] start = new int[m];
 		PriorityQueue<Integer> workers = new PriorityQueue<>();
 		for (int i = 0; i < n; i++) {
 			workers.add(0);
@@ -32,6 +31,7 @@ public class Code02_DoAllJobs {
 				zeroIn.add(i);
 			}
 		}
+		int[] start = new int[m];
 		int finishAll = 0;
 		int done = 0;
 		while (!zeroIn.isEmpty()) {
