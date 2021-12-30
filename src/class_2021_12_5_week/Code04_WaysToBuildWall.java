@@ -18,7 +18,7 @@ public class Code04_WaysToBuildWall {
 		}
 		// len[i] = 一共有1行的情况下，列的长度为i的时候有几种摆法(所有，不分合法和非法)
 		long[] len = new long[m + 1];
-		for (int i = 1; i <= m; i++) {
+		for (int i = 1; i <= Math.min(m, 4); i++) {
 			len[i] = r[i];
 		}
 		for (int i = 5; i <= m; i++) {
@@ -27,6 +27,7 @@ public class Code04_WaysToBuildWall {
 		// any[i] = 一共有n行的情况下，列的长度为i的时候有几种摆法(所有，不分合法和非法)
 		long[] any = new long[m + 1];
 		for (int i = 1; i <= m; i++) {
+			// n * i的区域：总共的摆法！不区分合法、不合法
 			any[i] = power(len[i], n);
 		}
 		// solid[i] = 一共有n行的情况下，列的长度为i的时候有几种合法的摆法
@@ -34,6 +35,12 @@ public class Code04_WaysToBuildWall {
 		solid[1] = 1;
 		for (int i = 2; i <= m; i++) {
 			long invalid = 0;
+			// N * i
+			// 1) （N * 1 合法） * （N * (i-1) 总共）
+			// 2) （N * 2 合法） * （N * (i-2) 总共）
+			// 3) （N * 3 合法） * （N * (i-3) 总共）
+			//
+			// j) （N * j 合法） * （N * (i-j) 总共）
 			for (int j = 1; j < i; j++) {
 				invalid += solid[j] * any[i - j];
 			}

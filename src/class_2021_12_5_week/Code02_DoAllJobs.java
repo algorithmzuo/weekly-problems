@@ -19,27 +19,38 @@ public class Code02_DoAllJobs {
 		if (m <= 0) {
 			return 0;
 		}
+		// nexts[0] = {1,4}
 		int[][] nexts = nexts(depends, m);
 		int[] indegree = indegree(nexts, m);
+		// 工人队列！
 		PriorityQueue<Integer> workers = new PriorityQueue<>();
 		for (int i = 0; i < n; i++) {
 			workers.add(0);
 		}
+		// zeroIn ： 放着工作，放着可以开始做的工作，不能做的任务，不在其中
+		// 小根堆：标号小的任务，一定要先做！
 		PriorityQueue<Integer> zeroIn = new PriorityQueue<>();
 		for (int i = 0; i < m; i++) {
 			if (indegree[i] == 0) {
 				zeroIn.add(i);
 			}
 		}
+		// start[i] ：i之前必须完成的任务，占了几天，导致i任务只能从那天开始！
 		int[] start = new int[m];
+		// 完成所有任务的最大天数
 		int finishAll = 0;
 		int done = 0;
-		while (!zeroIn.isEmpty()) {
+		while (!zeroIn.isEmpty()) { // 有任务可做
+			// 当前可以做的任务中，标号最小的任务
 			int job = zeroIn.poll();
+			// 当前可用的工人里，最早醒的！
 			int wake = workers.poll();
+			// job 何时完成呢？
+			// (工人醒来，开工时间)最晚的！+1
 			int finish = Math.max(start[job], wake) + 1;
 			finishAll = Math.max(finishAll, finish);
 			done++;
+			// 消除影响
 			for (int next : nexts[job]) {
 				start[next] = Math.max(start[next], finish);
 				if (--indegree[next] == 0) {
@@ -97,6 +108,11 @@ public class Code02_DoAllJobs {
 		//      ^
 		//      |
 		// 0 -> 3
+		// 两个人
+		// {1，2} 工人队列
+		// 0 : 干0号工作 ，1
+		// 0 : 干1号工作 ，1
+		// 1 : 干2号工作，2
 		int[][] d = {
 				{ 3, 0 },
 				{ 4, 1 },
