@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.com/problems/cat-and-mouse/
-public class Code03_CatAndMouse {
+public class Code02_CatAndMouse {
 
 	// 不贪心，就递归 + 记忆化搜索
 	public static int catMouseGame1(int[][] graph) {
