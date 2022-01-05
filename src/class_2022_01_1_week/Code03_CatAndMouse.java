@@ -78,6 +78,52 @@ public class Code03_CatAndMouse {
 	}
 
 	// 为了测试
+	// 暴力尝试
+	public static int right(int[][] graph) {
+		int n = graph.length;
+		boolean[][][] path = new boolean[n][n][2];
+		return win(graph, 2, 1, 1, path);
+	}
+
+	// 暴力尝试
+	public static int win(int[][] graph, int cat, int mouse, int turn, boolean[][][] path) {
+		if (path[cat][mouse][turn]) {
+			return 0;
+		}
+		path[cat][mouse][turn] = true;
+		int ans = 0;
+		if (cat == mouse) {
+			ans = 2;
+		} else if (mouse == 0) {
+			ans = 1;
+		} else {
+			if ((turn & 1) == 1) { // 老鼠回合
+				ans = 2;
+				for (int next : graph[mouse]) {
+					int p = win(graph, cat, next, turn ^ 1, path);
+					ans = p == 1 ? 1 : (p == 0 ? 0 : ans);
+					if (ans == 1) {
+						break;
+					}
+				}
+			} else { // 猫回合
+				ans = 1;
+				for (int next : graph[cat]) {
+					if (next != 0) {
+						int p = win(graph, next, mouse, turn ^ 1, path);
+						ans = p == 2 ? 2 : (p == 0 ? 0 : ans);
+						if (ans == 2) {
+							break;
+						}
+					}
+				}
+			}
+		}
+		path[cat][mouse][turn] = false;
+		return ans;
+	}
+
+	// 为了测试
 	public static int[][] randomGraph(int n) {
 		ArrayList<ArrayList<Integer>> g = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
@@ -102,9 +148,10 @@ public class Code03_CatAndMouse {
 		return graph;
 	}
 
+	// 为了测试
 	public static void main(String[] args) {
 		System.out.println("证什么证！？对数器万岁!");
-		int N = 8;
+		int N = 7;
 		int testTime = 3000000;
 		System.out.println("测试开始");
 		for (int i = 0; i < testTime; i++) {
@@ -131,23 +178,21 @@ public class Code03_CatAndMouse {
 		// 给你记录一个错误的例子
 		int[][] graph = {
 				// 0 :
-				{ 2, 3, 5 },
+				{ 2, 6, 7 },
 				// 1 :
-				{ 4, 5, 7, 8 },
+				{ 3, 4, 5, 7 },
 				// 2 :
-				{ 0, 4, 5, 7 },
+				{ 0, 3, 4, 7 },
 				// 3 :
-				{ 0, 6 },
+				{ 1, 2, 5, 6 },
 				// 4 :
-				{ 1, 2, 5, 8 },
+				{ 1, 2, 5, 7 },
 				// 5 :
-				{ 0, 1, 2, 4, 6 },
+				{ 1, 3, 4, 6 },
 				// 6 :
-				{ 3, 5, 7, 8 },
+				{ 0, 3, 5, 7 },
 				// 7 :
-				{ 1, 2, 6, 8 },
-				// 8 :
-				{ 1, 4, 6, 7 } };
+				{ 0, 1, 2, 4, 6 } };
 		System.out.println(catMouseGame1(graph));
 		System.out.println(catMouseGame2(graph));
 
