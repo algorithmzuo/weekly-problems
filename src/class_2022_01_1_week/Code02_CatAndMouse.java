@@ -16,7 +16,7 @@ public class Code02_CatAndMouse {
 				Arrays.fill(dp[i][j], -1);
 			}
 		}
-		return process(graph, 2, 1, 1, dp);
+		return process(graph, limit, 2, 1, 1, dp);
 	}
 
 	// 贪心 + 递归 + 记忆化搜索
@@ -35,11 +35,11 @@ public class Code02_CatAndMouse {
 				Arrays.fill(dp[i][j], -1);
 			}
 		}
-		return process(graph, 2, 1, 1, dp);
+		return process(graph, limit, 2, 1, 1, dp);
 	}
 
-	public static int process(int[][] graph, int cat, int mouse, int turn, int[][][] dp) {
-		if (turn == dp[0][0].length) {
+	public static int process(int[][] graph, int limit, int cat, int mouse, int turn, int[][][] dp) {
+		if (turn == limit) {
 			return 0;
 		}
 		if (dp[cat][mouse][turn] != -1) {
@@ -54,7 +54,7 @@ public class Code02_CatAndMouse {
 			if ((turn & 1) == 1) { // 老鼠回合
 				ans = 2;
 				for (int next : graph[mouse]) {
-					int p = process(graph, cat, next, turn + 1, dp);
+					int p = process(graph, limit, cat, next, turn + 1, dp);
 					ans = p == 1 ? 1 : (p == 0 ? 0 : ans);
 					if (ans == 1) {
 						break;
@@ -64,7 +64,7 @@ public class Code02_CatAndMouse {
 				ans = 1;
 				for (int next : graph[cat]) {
 					if (next != 0) {
-						int p = process(graph, next, mouse, turn + 1, dp);
+						int p = process(graph, limit, next, mouse, turn + 1, dp);
 						ans = p == 2 ? 2 : (p == 0 ? 0 : ans);
 						if (ans == 2) {
 							break;
