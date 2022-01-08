@@ -5,8 +5,9 @@ import java.util.PriorityQueue;
 // 来自学员问题
 // 给定一个二维数组，其中全是非负数
 // 每一步都可以往上、下、左、右四个方向运动
-// 返回从左下角走到右下角的最短距离
-public class Code05_MinDistanceFromLeftUpToRightDownWalk4Directions {
+// 走过的路径，会沿途累加数字
+// 返回从左下角走到右下角的累加和最小的多少
+public class Code04_MinDistanceFromLeftUpToRightDownWalk4Directions {
 
 	public static int bestWalk1(int[][] map) {
 		int n = map.length;
@@ -31,29 +32,37 @@ public class Code05_MinDistanceFromLeftUpToRightDownWalk4Directions {
 	}
 
 	public static int bestWalk2(int[][] map) {
+		
 		int n = map.length;
 		int m = map[0].length;
+		// 堆
+		// 每一个对象，都是一个小数组
+		// {dis, row, col}
+		//  0    1    2
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-		boolean[][] used = new boolean[n][m];
+		// X,0,1 已经弹出了！ 以后在遇到(0,1)的事情，不管！
+		// poped记录哪些位置弹出，哪些没有！
+		boolean[][] poped = new boolean[n][m];
 		heap.add(new int[] { map[0][0], 0, 0 });
 		int ans = 0;
 		while (!heap.isEmpty()) {
 			int[] cur = heap.poll();
-			int cost = cur[0];
+			int dis = cur[0];
 			int row = cur[1];
 			int col = cur[2];
-			if (used[row][col]) {
+			if (poped[row][col]) {
 				continue;
 			}
-			used[row][col] = true;
+			// 接下来就是要处理这个位置了！
+			poped[row][col] = true;
 			if (row == n - 1 && col == m - 1) {
-				ans = cost;
+				ans = dis;
 				break;
 			}
-			add(cost, row - 1, col, n, m, map, used, heap);
-			add(cost, row + 1, col, n, m, map, used, heap);
-			add(cost, row, col - 1, n, m, map, used, heap);
-			add(cost, row, col + 1, n, m, map, used, heap);
+			add(dis, row - 1, col, n, m, map, poped, heap);
+			add(dis, row + 1, col, n, m, map, poped, heap);
+			add(dis, row, col - 1, n, m, map, poped, heap);
+			add(dis, row, col + 1, n, m, map, poped, heap);
 		}
 		return ans;
 	}

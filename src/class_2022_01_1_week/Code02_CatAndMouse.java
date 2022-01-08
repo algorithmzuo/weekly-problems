@@ -9,6 +9,7 @@ public class Code02_CatAndMouse {
 	// 不贪心，就递归 + 记忆化搜索
 	public static int catMouseGame1(int[][] graph) {
 		int n = graph.length;
+		// 9 : 2 * 8 * 9 再大，平局
 		int limit = ((n * (n - 1)) << 1) + 1;
 		int[][][] dp = new int[n][n][limit];
 		for (int i = 0; i < n; i++) {
@@ -28,7 +29,8 @@ public class Code02_CatAndMouse {
 		// int limit = (n << 1) + 2; 还会出错，但是概率很小，需要多跑几次
 		// int limit = (n << 1) + 3; 就没错了，或者说，概率小到很难重现
 		// 为啥？我屌你为啥！
-		int limit = (n << 1) + 2;
+		// n * 2 + 2
+		int limit = (n << 1) + 3;
 		int[][][] dp = new int[n][n][limit];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
@@ -38,7 +40,16 @@ public class Code02_CatAndMouse {
 		return process(graph, limit, 2, 1, 1, dp);
 	}
 
-	public static int process(int[][] graph, int limit, int cat, int mouse, int turn, int[][][] dp) {
+	// dp[][][]  傻缓存！
+	// dp[cat][mouse][turn] == -1 这个状态之前没算过！
+	// dp[cat][mouse][turn] == 0 这个状态之前算过！平局！
+	// dp[cat][mouse][turn] == 1 这个状态之前算过！老鼠赢！
+	// dp[cat][mouse][turn] == 2 这个状态之前算过！猫赢！
+	// 固定参数！轮数不要超过limit！如果超过，就算平局！
+	public static int process(int[][] graph, 
+			int limit, 
+			int cat, int mouse, int turn, 
+			int[][][] dp) {
 		if (turn == limit) {
 			return 0;
 		}
@@ -86,21 +97,43 @@ public class Code02_CatAndMouse {
 	}
 
 	// 暴力尝试
+	// 返回值：int
+	// 0 : 平局
+	// 1 : 老鼠赢
+	// 2 : 猫赢
+	// int[][] graph
+	// 0 : {3, 7, 9}
+	// 1 :
+	// 2 :
+	// 3 : {0, }
+	// ...
+	// 7 : {0, }
+	// ...
+	// 9 : {0, }
+	// 猫此时的位置 -> cat
+	// mouse
+	// turn == 1 老鼠的回合  turn == 0 猫的回合
+	// 当第一次出现，在老鼠的回合，猫在5位置 ，老鼠在7位置
+	// path[cat][mouse][1]  = false
+	// 不是第一次出现  path[cat][mouse][1]  = true
 	public static int win(int[][] graph, int cat, int mouse, int turn, boolean[][][] path) {
-		if (path[cat][mouse][turn]) {
+		if (path[cat][mouse][turn]) { // 之前来到过这个状态！平局！
 			return 0;
 		}
+		// 没来过！
 		path[cat][mouse][turn] = true;
 		int ans = 0;
 		if (cat == mouse) {
 			ans = 2;
 		} else if (mouse == 0) {
 			ans = 1;
-		} else {
-			if ((turn & 1) == 1) { // 老鼠回合
+		} else { // 游戏继续
+			if (turn == 1) { // 老鼠回合
+				// 最差情况，是猫赢！
 				ans = 2;
 				for (int next : graph[mouse]) {
-					int p = win(graph, cat, next, turn ^ 1, path);
+					int p = win(graph, cat, next, 0, path);
+					// p的返回值如果是1，代表老鼠赢，那么最差结果ans = 1，直接返回！
 					ans = p == 1 ? 1 : (p == 0 ? 0 : ans);
 					if (ans == 1) {
 						break;

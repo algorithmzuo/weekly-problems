@@ -12,6 +12,10 @@ public class Code01_ABDisappear {
 	public static String disappear1(String str) {
 		String ans = str;
 		for (int i = 1; i < str.length(); i++) {
+			// i == 1   0 1 是不是a和b都全，2...
+			// i == 2   1 2 是不是a和b都全，03....
+			// i == 3   2 3 是不是a和b都全，014....
+			// (i-1 i)扣掉！
 			boolean hasA = str.charAt(i - 1) == 'a' || str.charAt(i) == 'a';
 			boolean hasB = str.charAt(i - 1) == 'b' || str.charAt(i) == 'b';
 			if (hasA && hasB) {
@@ -46,6 +50,7 @@ public class Code01_ABDisappear {
 	public static String disappear3(String s) {
 		char[] str = s.toCharArray();
 		int n = str.length;
+		// 用数组结构，自己实现栈
 		int[] stack = new int[n];
 		int size = 0;
 		for (int i = 0; i < n; i++) {
@@ -80,7 +85,7 @@ public class Code01_ABDisappear {
 	public static void main(String[] args) {
 		// 字符串最大长度，可以随意改变
 		// 不过长度太大的话，方法一会超时
-		int n = 12;
+		int n = 14;
 		// 字符的种类，可以随意改变
 		int v = 2;
 		// 测试次数
