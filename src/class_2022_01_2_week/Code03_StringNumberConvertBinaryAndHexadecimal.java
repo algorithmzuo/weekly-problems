@@ -1,11 +1,11 @@
-package class_2022_01_4_week;
+package class_2022_01_2_week;
 
 // 来自兴业数金
 // 给定一个字符串形式的数，比如"3421"或者"-8731"
 // 如果这个数不在-32768~32767范围上，那么返回"NODATA"
 // 如果这个数在-32768~32767范围上，那么这个数就没有超过16个二进制位所能表达的范围
 // 返回这个数的2进制形式的字符串和16进制形式的字符串，用逗号分割
-public class Code01_StringNumberConvertBinaryAndHexadecimal {
+public class Code03_StringNumberConvertBinaryAndHexadecimal {
 
 	// 请保证输入的num字符串一定是数字的形式
 	public static String convert(String num) {

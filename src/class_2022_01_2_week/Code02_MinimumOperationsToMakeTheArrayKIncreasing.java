@@ -1,4 +1,4 @@
-package class_2022_01_4_week;
+package class_2022_01_2_week;
 
 // 来自Leetcode周赛第5题
 // 测试链接 : https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/
