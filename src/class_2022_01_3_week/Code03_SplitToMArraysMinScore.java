@@ -56,7 +56,7 @@ public class Code03_SplitToMArraysMinScore {
 	// 正式方法
 	// 时间复杂度O(M * N * N)
 	// 特别难的一个结论 : 这道题不能利用四边形不等式，我试了
-	// 这个特别难的结论不需要掌握，因为四边形不等式的技巧非常冷门
+	// 这个特别难的结论不要求必须掌握，因为四边形不等式的技巧非常冷门
 	public static int minScore2(int[] arr, int m) {
 		if (m == 0) {
 			return 0;
