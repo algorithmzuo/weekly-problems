@@ -4,6 +4,7 @@ import java.util.PriorityQueue;
 
 // 讲述A*算法
 // 预估终点距离选择曼哈顿距离
+// 要求先在体系学习班图的章节听过"Dijkstra算法"
 public class AStarAlgorithm {
 
 	// Dijkstra算法

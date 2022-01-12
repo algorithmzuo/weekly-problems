@@ -6,8 +6,6 @@ import java.util.Queue;
 
 public class Problem_1036_EscapeALargeMaze {
 
-	public static int[] direction = { -1, 0, 1, 0, -1 };
-
 	public static long offset = 1000000;
 
 	public boolean isEscapePossible(int[][] blocked, int[] source, int[] target) {
