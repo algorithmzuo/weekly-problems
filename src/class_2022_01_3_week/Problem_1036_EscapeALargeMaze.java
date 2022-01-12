@@ -40,12 +40,14 @@ public class Problem_1036_EscapeALargeMaze {
 
 	public static boolean findAdd(long row, long col, int toX, int toY, HashSet<Long> blockSet, HashSet<Long> visited,
 			Queue<Long> queue) {
+		if (row < 0 || row == offset || col < 0 || col == offset) {
+			return false;
+		}
 		if (row == toX && col == toY) {
 			return true;
 		}
 		long value = row * offset + col;
-		if (row >= 0 && row < offset && col >= 0 && col < offset && !blockSet.contains(value)
-				&& !visited.contains(value)) {
+		if (!blockSet.contains(value) && !visited.contains(value)) {
 			visited.add(value);
 			queue.add(value);
 		}
