@@ -9,7 +9,7 @@ package class_2022_01_2_week;
 // 比如 : arr = {10,1,10,10,10}，应该返回{24,27,20,20,22}
 // arr长度 <= 10^5
 // arr中值 <= 2 * 10^5
-public class Code01_QuietSum {
+public class Code06_QuietSum {
 
 	// 为了测试
 	// 彻底暴力的方法
@@ -40,6 +40,8 @@ public class Code01_QuietSum {
 		int n = arr.length;
 		SBTree sbt = new SBTree();
 		long[] ans = new long[n];
+		// arr[n-1] + n - 1 - n
+		// 
 		sbt.add(arr[n - 1] - 1);
 		for (int i = n - 2; i >= 0; i--) {
 			long moreCount = sbt.moreCount(i);
@@ -80,6 +82,8 @@ public class Code01_QuietSum {
 		}
 	}
 
+	// add count(?) sum(?) logN复杂度！
+	// 有序表提供的性能，size - balanced - tree
 	public static class SBTree {
 
 		private SBTNode root;

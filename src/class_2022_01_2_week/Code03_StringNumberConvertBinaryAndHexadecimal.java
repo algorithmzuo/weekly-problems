@@ -63,6 +63,11 @@ public class Code03_StringNumberConvertBinaryAndHexadecimal {
 		// 1110 -> 14 -> 'e'
 		// 1111 -> 15 -> 'f'
 		for (int i = 12; i >= 0; i -= 4) {
+			// 1111 << 12
+			// ( info & (1111 << 12) ) >> 12
+			// ( info & (1111 << 8)) >> 8
+			// ( info & (1111 << 4)) >> 4
+			// ( info & (1111 << 0)) >> 0
 			int cur = (info & (15 << i)) >> i;
 			if (cur < 10) {
 				builder.append(cur);
@@ -94,6 +99,9 @@ public class Code03_StringNumberConvertBinaryAndHexadecimal {
 	public static void main(String[] args) {
 		String num1 = "0";
 		System.out.println(convert(num1));
+		
+		String zuo = "457";
+		System.out.println(convert(zuo));
 
 		String num2 = "-32768";
 		System.out.println(convert(num2));
