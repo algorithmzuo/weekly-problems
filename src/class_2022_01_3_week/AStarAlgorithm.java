@@ -126,7 +126,7 @@ public class AStarAlgorithm {
 		int len = 100;
 		int value = 50;
 		int testTime = 10000;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < testTime; i++) {
 			int n = (int) (Math.random() * len) + 2;
 			int[][] map = randomMap(n, value);
@@ -146,7 +146,22 @@ public class AStarAlgorithm {
 				break;
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
+
+		System.out.println("性能测试开始");
+		int n = 10000;
+		int v = 500;
+		int[][] map = randomMap(n, v);
+		int startX = 0;
+		int startY = 0;
+		int targetX = n - 1;
+		int targetY = n - 1;
+		System.out.println("数据规模 : " + n + " * " + n);
+		long start = System.currentTimeMillis();
+		minDistance2(map, startX, startY, targetX, targetY);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间(毫秒) : " + (end - start));
+		System.out.println("性能测试结束");
 	}
 
 }
