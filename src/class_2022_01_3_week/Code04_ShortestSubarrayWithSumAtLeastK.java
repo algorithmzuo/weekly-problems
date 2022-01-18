@@ -49,19 +49,19 @@ public class Code04_ShortestSubarrayWithSumAtLeastK {
 
 	public static int shortestSubarray2(int[] arr, int K) {
 		int N = arr.length;
-		long[] preSums = new long[N + 1];
+		long[] sum = new long[N + 1];
 		for (int i = 0; i < N; i++) {
-			preSums[i + 1] = preSums[i] + arr[i];
+			sum[i + 1] = sum[i] + arr[i];
 		}
 		int ans = Integer.MAX_VALUE;
 		int[] dq = new int[N + 1];
 		int l = 0;
 		int r = 0;
 		for (int i = 0; i < N + 1; i++) {
-			while (l != r && preSums[i] - preSums[dq[l]] >= K) {
+			while (l != r && sum[i] - sum[dq[l]] >= K) {
 				ans = Math.min(ans, i - dq[l++]);
 			}
-			while (l != r && preSums[dq[r - 1]] >= preSums[i]) {
+			while (l != r && sum[dq[r - 1]] >= sum[i]) {
 				r--;
 			}
 			dq[r++] = i;
