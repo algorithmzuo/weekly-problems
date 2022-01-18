@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // 测试链接 : https://leetcode.com/problems/escape-a-large-maze/
+// 本题最强的优化是一个剪枝
 public class Code01_EscapeALargeMaze {
 
 	public static long offset = 1000000;
