@@ -63,59 +63,28 @@ public class Code05_BuyThingsAboutCollocation {
 		if (dp[index][rest] != -2) {
 			return dp[index][rest];
 		}
-		int ans = 0;
 		ArrayList<int[]> project = things.get(index);
-		if (project.size() == 1) {
-			int[] a = project.get(0);
-			int p1 = process(things, n, index + 1, rest, dp);
-			int p2 = -1;
-			int p2next = process(things, n, index + 1, rest - a[0], dp);
-			if (p2next != -1) {
-				p2 = a[0] * a[1] + p2next;
-			}
-			ans = Math.max(p1, p2);
-		} else if (project.size() == 2) {
-			int[] a = project.get(0);
-			int[] b = project.get(1);
-			int p1 = process(things, n, index + 1, rest, dp);
-			int p2 = -1;
-			int p2next = process(things, n, index + 1, rest - a[0], dp);
-			if (p2next != -1) {
-				p2 = a[0] * a[1] + p2next;
-			}
-			int p3 = -1;
-			int p3next = process(things, n, index + 1, rest - a[0] - b[0], dp);
-			if (p3next != -1) {
-				p3 = a[0] * a[1] + b[0] * b[1] + p3next;
-			}
-			ans = Math.max(p1, Math.max(p2, p3));
-		} else {
-			int[] a = project.get(0);
-			int[] b = project.get(1);
-			int[] c = project.get(2);
-			int p1 = process(things, n, index + 1, rest, dp);
-			int p2 = -1;
-			int p2next = process(things, n, index + 1, rest - a[0], dp);
-			if (p2next != -1) {
-				p2 = a[0] * a[1] + p2next;
-			}
-			int p3 = -1;
-			int p3next = process(things, n, index + 1, rest - a[0] - b[0], dp);
-			if (p3next != -1) {
-				p3 = a[0] * a[1] + b[0] * b[1] + p3next;
-			}
-			int p4 = -1;
-			int p4next = process(things, n, index + 1, rest - a[0] - c[0], dp);
-			if (p4next != -1) {
-				p4 = a[0] * a[1] + c[0] * c[1] + p4next;
-			}
-			int p5 = -1;
-			int p5next = process(things, n, index + 1, rest - a[0] - b[0] - c[0], dp);
-			if (p5next != -1) {
-				p5 = a[0] * a[1] + b[0] * b[1] + c[0] * c[1] + p5next;
-			}
-			ans = Math.max(Math.max(Math.max(p1, p2), Math.max(p3, p4)), p5);
+		int[] a = project.get(0);
+		int[] b = project.size() > 1 ? project.get(1) : null;
+		int[] c = project.size() > 2 ? project.get(2) : null;
+		int p1 = process(things, n, index + 1, rest, dp);
+		int p2 = process(things, n, index + 1, rest - a[0], dp);
+		if (p2 != -1) {
+			p2 += a[0] * a[1];
 		}
+		int p3 = b != null ? process(things, n, index + 1, rest - a[0] - b[0], dp) : -1;
+		if (p3 != -1) {
+			p3 += a[0] * a[1] + b[0] * b[1];
+		}
+		int p4 = c != null ? process(things, n, index + 1, rest - a[0] - c[0], dp) : -1;
+		if (p4 != -1) {
+			p4 += a[0] * a[1] + c[0] * c[1];
+		}
+		int p5 = c != null ? process(things, n, index + 1, rest - a[0] - b[0] - c[0], dp) : -1;
+		if (p5 != -1) {
+			p5 += a[0] * a[1] + b[0] * b[1] + c[0] * c[1];
+		}
+		int ans = Math.max(Math.max(Math.max(p1, p2), Math.max(p3, p4)), p5);
 		dp[index][rest] = ans;
 		return ans;
 	}
