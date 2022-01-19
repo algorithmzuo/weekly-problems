@@ -14,13 +14,10 @@ public class Code02_RandomPickWithBlacklist {
 
 		public Solution(int n, int[] blackArray) {
 			Arrays.sort(blackArray);
-			int m = blackArray.length - 1;
-			for (int i = 0; i <= m; i++) {
-				if (blackArray[i] >= n) {
-					break;
-				}
+			int m = blackArray.length;
+			for (int i = 0; i < m && blackArray[i] < n; i++) {
 				for (n--; n > blackArray[i]; n--) {
-					if (n == blackArray[m]) {
+					if (n == blackArray[m - 1]) {
 						m--;
 					} else {
 						convert.put(blackArray[i], n);
