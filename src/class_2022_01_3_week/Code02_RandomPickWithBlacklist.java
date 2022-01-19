@@ -12,18 +12,18 @@ public class Code02_RandomPickWithBlacklist {
 
 		private HashMap<Integer, Integer> convert = new HashMap<>();
 
-		public Solution(int n, int[] blacklist) {
-			Arrays.sort(blacklist);
-			int last = blacklist.length - 1;
-			for (int black : blacklist) {
-				if (black >= n) {
+		public Solution(int n, int[] blackArray) {
+			Arrays.sort(blackArray);
+			int m = blackArray.length - 1;
+			for (int i = 0; i <= m; i++) {
+				if (blackArray[i] >= n) {
 					break;
 				}
-				for (n--; n > black; n--) {
-					if (n == blacklist[last]) {
-						last--;
+				for (n--; n > blackArray[i]; n--) {
+					if (n == blackArray[m]) {
+						m--;
 					} else {
-						convert.put(black, n);
+						convert.put(blackArray[i], n);
 						break;
 					}
 				}
