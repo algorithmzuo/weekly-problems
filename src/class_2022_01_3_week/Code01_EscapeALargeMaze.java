@@ -12,7 +12,7 @@ public class Code01_EscapeALargeMaze {
 
 	public boolean isEscapePossible(int[][] blocked, int[] source, int[] target) {
 		int n = blocked.length;
-		int maxPoints = (n + 1) * (n + 2) / 2;
+		int maxPoints = n * (n - 1) / 2;
 		HashSet<Long> blockSet = new HashSet<>();
 		for (int i = 0; i < n; i++) {
 			blockSet.add((long) blocked[i][0] * offset + blocked[i][1]);
