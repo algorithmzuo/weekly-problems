@@ -23,7 +23,10 @@ public class Code01_AStarAlgorithm {
 		}
 		int n = map.length;
 		int m = map[0].length;
+		// heap小根堆
+		// [20,1,7]
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+		// 1,7已经处理过了，closed[1][7] = true
 		boolean[][] closed = new boolean[n][m];
 		heap.add(new int[] { map[startX][startY], startX, startY });
 		int ans = Integer.MAX_VALUE;
@@ -64,6 +67,8 @@ public class Code01_AStarAlgorithm {
 		}
 		int n = map.length;
 		int m = map[0].length;
+		// [20,1,7]
+		// [20,?,1,7]
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> (a[0] + a[1]) - (b[0] + b[1]));
 		boolean[][] closed = new boolean[n][m];
 		heap.add(new int[] { map[startX][startY], distance(startX, startY, targetX, targetY), startX, startY });
@@ -112,7 +117,7 @@ public class Code01_AStarAlgorithm {
 				if (Math.random() < 0.2) {
 					ans[i][j] = 0;
 				} else {
-					ans[i][j] = (int) (Math.random() * value) + 1;
+					ans[i][j] = (int) (Math.random() * value);
 				}
 			}
 		}
@@ -155,20 +160,36 @@ public class Code01_AStarAlgorithm {
 		}
 		System.out.println("功能测试结束");
 
-		System.out.println("性能测试开始");
-		int n = 10000;
-		int v = 500;
-		int[][] map = randomMap(n, v);
+		int[][] map = new int[4000][4000];
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[0].length; j++) {
+				map[i][j] = (int) (Math.random() * 10);
+			}
+		}
 		int startX = 0;
 		int startY = 0;
-		int targetX = n - 1;
-		int targetY = n - 1;
-		System.out.println("数据规模 : " + n + " * " + n);
+		int targetX = 3456;
+		int targetY = 3728;
+
 		long start = System.currentTimeMillis();
 		minDistance2(map, startX, startY, targetX, targetY);
 		long end = System.currentTimeMillis();
 		System.out.println("运行时间(毫秒) : " + (end - start));
-		System.out.println("性能测试结束");
+
+//		System.out.println("性能测试开始");
+//		int n = 10000;
+//		int v = 500;
+//		int[][] map = randomMap(n, v);
+//		int startX = 0;
+//		int startY = 0;
+//		int targetX = n - 1;
+//		int targetY = n - 1;
+//		System.out.println("数据规模 : " + n + " * " + n);
+//		long start = System.currentTimeMillis();
+//		minDistance2(map, startX, startY, targetX, targetY);
+//		long end = System.currentTimeMillis();
+//		System.out.println("运行时间(毫秒) : " + (end - start));
+//		System.out.println("性能测试结束");
 	}
 
 }

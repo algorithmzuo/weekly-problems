@@ -1,4 +1,4 @@
-package class_2022_01_3_week;
+package class_2022_01_4_week;
 
 // things是一个N*3的二维数组，商品有N件，商品编号从1~N
 // 比如things[3] = [300, 2, 6]
@@ -16,7 +16,7 @@ package class_2022_01_3_week;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Code04_BuyThingsAboutCollocation {
+public class Code01_BuyThingsAboutCollocation {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

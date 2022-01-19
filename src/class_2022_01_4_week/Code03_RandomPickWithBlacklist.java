@@ -1,4 +1,4 @@
-package class_2022_01_3_week;
+package class_2022_01_4_week;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 // 1 <= n <= 1000000000
 // 0 <= blacklist.length < min(100000, N)
 // 测试链接: https://leetcode.com/problems/random-pick-with-blacklist/
-public class Code06_RandomPickWithBlacklist {
+public class Code03_RandomPickWithBlacklist {
 
 	class Solution {
 

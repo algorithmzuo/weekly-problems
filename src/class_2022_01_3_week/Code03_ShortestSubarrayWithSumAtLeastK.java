@@ -58,9 +58,11 @@ public class Code03_ShortestSubarrayWithSumAtLeastK {
 		int l = 0;
 		int r = 0;
 		for (int i = 0; i < N + 1; i++) {
+			// 头部开始，符合条件的，从头部弹出！
 			while (l != r && sum[i] - sum[dq[l]] >= K) {
 				ans = Math.min(ans, i - dq[l++]);
 			}
+			// 尾部开始，前缀和比当前的前缀和大于等于的，从尾部弹出！
 			while (l != r && sum[dq[r - 1]] >= sum[i]) {
 				r--;
 			}

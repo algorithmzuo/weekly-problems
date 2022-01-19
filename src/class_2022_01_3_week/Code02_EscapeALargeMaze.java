@@ -48,7 +48,14 @@ public class Code02_EscapeALargeMaze {
 		return visited.size() > maxPoints;
 	}
 
-	public static boolean findAndAdd(long row, long col, int toX, int toY, HashSet<Long> blockSet,
+	// 来到的点，(row, col)
+	// 要寻找的目标点，toX， toY
+	// HashSet<Long> blockSet存着不能走的格子！障碍点！
+	// HashSet<Long> visited, Queue<Long> queue 为了宽度优先遍历服务的！
+	// visited，已经处理过的点，请不要重复的放入queue
+	// 如果已经到达了(toX， toY)
+	public static boolean findAndAdd(long row, long col, 
+			int toX, int toY, HashSet<Long> blockSet,
 			HashSet<Long> visited, Queue<Long> queue) {
 		if (row < 0 || row == offset || col < 0 || col == offset) {
 			return false;
