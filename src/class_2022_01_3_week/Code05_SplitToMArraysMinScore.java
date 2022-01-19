@@ -9,7 +9,7 @@ import java.util.LinkedList;
 // 阅兵仪式上会进行打分，其中有一个奇怪的扣分点是每组的最大差值，即每组最大值减去最小值
 // 长官想要让这分成的m组总扣分量最小，即这m组分别的极差之和最小
 // 长官正在思索如何安排中，就让小团来帮帮他吧
-public class Code03_SplitToMArraysMinScore {
+public class Code05_SplitToMArraysMinScore {
 
 	// 暴力方法
 	// 为了验证

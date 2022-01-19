@@ -5,7 +5,7 @@ package class_2022_01_3_week;
 // 给定一个正数k
 // 返回累加和>=k的所有子数组中，最短的子数组长度
 // 本题测试链接 : https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/
-public class Code04_ShortestSubarrayWithSumAtLeastK {
+public class Code03_ShortestSubarrayWithSumAtLeastK {
 
 	public static int shortestSubarray1(int[] arr, int k) {
 		if (arr == null || arr.length < 1) {

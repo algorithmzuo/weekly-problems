@@ -1,11 +1,22 @@
 package class_2022_01_3_week;
 
+// things是一个N*3的二维数组，商品有N件，商品编号从1~N
+// 比如things[3] = [300, 2, 6]
+// 代表第3号商品：价格300，重要度2，它是6号商品的附属商品
+// 再比如things[6] = [500, 3, 0]
+// 代表第6号商品：价格500，重要度3，它不是任何附属，它是主商品
+// 每件商品的收益是价格*重要度，花费就是价格
+// 如果一个商品是附属品，那么只有它附属的主商品购买了，它才能被购买
+// 任何一个附属商品，只会有1个主商品
+// 任何一个主商品的附属商品数量，不会超过2件
+// 主商品和附属商品的层级最多有2层
+// 给定二维数组things、钱数money，返回整体花费不超过money的情况下，最大的收益总和
 // 测试链接 : https://www.nowcoder.com/practice/f9c6f980eeec43ef85be20755ddbeaf4
 // 请把如下的代码的主类名改为"Main", 可以直接通过
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Code05_BuyThingsAboutCollocation {
+public class Code04_BuyThingsAboutCollocation {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
