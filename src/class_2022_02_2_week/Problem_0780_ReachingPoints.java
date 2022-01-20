@@ -1,4 +1,4 @@
-package class_2022_01_4_week;
+package class_2022_02_2_week;
 
 public class Problem_0780_ReachingPoints {
 

@@ -1,6 +1,7 @@
 package class_2022_01_4_week;
 
-public class Problem_0679_24Game {
+// 测试链接 : https://leetcode.com/problems/24-game/
+public class Code05_24Game {
 
 	public static boolean judgePoint24(int[] cards) {
 		if (cards == null || cards.length == 0) {
