@@ -10,6 +10,58 @@ import java.util.LinkedList;
 // 长官想要让这分成的m组总扣分量最小，即这m组分别的极差之和最小
 // 长官正在思索如何安排中，就让小团来帮帮他吧
 public class Code02_SplitToMArraysMinScore {
+	
+	
+//	public static int splitArrayMinScore(int[] arr, int k) {
+//		// arr[L...R] 
+//		int[][] record = creatRecord(arr);
+//		return f(arr, arr.length - 1, k, record, .);
+//	}
+//	
+//	
+//
+//	public static int[][] creatRecord(int[] arr) {
+//
+//		// arr[L...R] 最大值 - 最小值 是多少？
+//		int n = arr.length;
+//		int[][] ans = new int[n][n];
+//		for() {
+//			for() {
+//				
+//			}
+//		}
+//
+//		// ans[3][6] = arr[3...6] 最大值 - 最小值 是多少？
+//
+//	}
+//
+//	// arr[0......7] 8
+//	// arr[0...3] 4
+//	// arr[0..index] index + 1
+//	// arr[0....index]的数，一定要分成part组
+//	// 返回最小的扣分量
+//	public static int f(int[] arr, int index, int part, int[][] record) {
+//		if (index + 1 <= part) {
+//			return 0;
+//		}
+//		// 数字的个数 > 划分部分的
+//		// 0...index part组
+//		// 0..7 3份！
+//		// 最后一份，最右的一份: 7..7
+//		// 最后一份，最右的一份: 6..7 之前 0...5 2份
+//		// 最后一份，最右的一份: 5..7
+//		// 最后一份，最右的一份: 4..7
+//		// ...
+//		// 最后一份，最右的一份: 0..7
+//		int ans = Integer.MAX_VALUE;
+//		for (int rightTeamFirst = index; rightTeamFirst >= 0; rightTeamFirst--) {
+//			int rightTeamCost = record[rightTeamFirst][index];
+//			int preCost = f(arr, rightTeamFirst - 1, part - 1, record);
+//			int curAllCost = preCost + rightTeamCost;
+//			ans = Math.min(ans, curAllCost);
+//		}
+//		return ans;
+//	}
 
 	// 暴力方法
 	// 为了验证

@@ -1,4 +1,4 @@
-package class_2022_01_4_week;
+package class_2022_02_2_week;
 
 // 测试链接 : https://leetcode.com/problems/24-game/
 public class Code05_24Game {

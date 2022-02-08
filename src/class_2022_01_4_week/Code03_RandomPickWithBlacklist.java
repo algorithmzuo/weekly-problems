@@ -13,13 +13,19 @@ public class Code03_RandomPickWithBlacklist {
 
 	class Solution {
 
+		// 0~99 所有的数字都可以随机，可能有若干黑名单！
+		// 填到洞里去，size -> 0~size-1  是最后调整的下标范围，紧实的！
 		private int size;
 
+		// 13 -> 99
+		// 27 -> 98
 		private HashMap<Integer, Integer> convert = new HashMap<>();
 
 		public Solution(int n, int[] blackArray) {
 			Arrays.sort(blackArray);
 			int m = blackArray.length;
+			// [34, 56, 78, 103, ..., 980]
+			//  0   1    2   3        100
 			for (int i = 0; i < m && blackArray[i] < n; i++) {
 				for (n--; n > blackArray[i]; n--) {
 					if (n == blackArray[m - 1]) {
@@ -35,6 +41,9 @@ public class Code03_RandomPickWithBlacklist {
 
 		public int pick() {
 			int ans = (int) (Math.random() * size);
+			// 13 -> 99
+			// 17 -> 98
+			// 35 -> 35
 			return convert.containsKey(ans) ? convert.get(ans) : ans;
 		}
 

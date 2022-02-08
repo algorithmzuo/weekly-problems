@@ -18,6 +18,75 @@ import java.util.Scanner;
 
 public class Code01_BuyThingsAboutCollocation {
 
+//	// index.....货自由选择！剩余的钱数是rest，
+//	// 返回：在不花超的情况下，返回最大的价值
+//	public static int f(int[] prices, int[] values, int index, int rest) {
+//		if(rest < 0) {
+//			return -1;
+//		}
+//		// rest >= 0
+//		if(index == prices.length) { // 没货了！
+//			return 0;
+//		}
+//		// rest >=0 有货！
+//		// 可能1 ：index.... 自由选择，不要index位置的货！
+//		int p1 = f(prices, values, index + 1, rest);
+//		// 可能性2：index.... 自由选择，要index位置的货！
+//		int p2 = -1;
+//		int next = f(prices, values, index + 1, rest - prices[index]);
+//		if(next != -1) {
+//			p2 = values[index] + next;
+//		}
+//		return Math.max(p1, p2);
+//	}
+//	
+//	//  商品组     主商品，重要度3，价格9          附件！重要度6，价格7
+//	//   0 :    [ [3,9],                      [6,7],                   [4, 3]        ]
+//	//   1 :    [ [4,7] ]  没有附件，只有主商品
+//	//   2 :    [ [5,100] , [2,1]    ]
+//	
+//	public static int p(int[][][] matrix, int index, int rest) {
+//		if(rest < 0) {
+//			return -1;
+//		}
+//		if(index == matrix.length) {
+//			return 0;
+//		}
+//		// 有商品组！也有钱>=0;
+//		int[][] team = matrix[index];
+//		if(team.length == 1) { // 要 、不要
+//			int p1 = p(matrix, index + 1, rest);
+//			int p2 = -1;
+//			int next = p(matrix, index + 1, rest - team[0][1]);
+//			if(next != -1) {
+//				p2 = team[0][0] * team[0][1] + next;
+//			}
+//			return Math.max(p1, p2);
+//		}else if(team.length == 2) { // a b    不要  a   ab
+//			int[] a = team[0];
+//			int[] b = team[1];
+//			int p1 = p(matrix, index + 1, rest);
+//			
+//			int p2 = -1;// 只要a
+//			int next2 = p(matrix, index + 1, rest - a[1]);
+//			if(next2 != -1) {
+//				p2 = a[0] * a[1] + next2;
+//			}
+//			
+//			int p3 = -1;// 要 ab
+//			int next3= p(matrix, index + 1, rest - a[1] - b[1]);
+//			if(next3 != -1) {
+//				p3 = a[0] * a[1] + b[0] * b[1] + next3;
+//			}
+//			return Math.max(p1, Math.max(p2, p3));
+//		}else { // a : b c    不要   a   ab   ac   abc
+//			
+//		}
+//		
+//		
+//		
+//	}
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		while (sc.hasNext()) {
