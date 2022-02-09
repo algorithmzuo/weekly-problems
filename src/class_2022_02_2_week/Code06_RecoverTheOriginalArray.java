@@ -2,7 +2,8 @@ package class_2022_02_2_week;
 
 import java.util.Arrays;
 
-public class Problem_2122_RecoverTheOriginalArray {
+// 测试链接 : https://leetcode.com/problems/recover-the-original-array/
+public class Code06_RecoverTheOriginalArray {
 
 	public static int[] recoverArray(int[] nums) {
 		Arrays.sort(nums);

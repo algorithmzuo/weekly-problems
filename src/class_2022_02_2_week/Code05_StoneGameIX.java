@@ -1,6 +1,7 @@
 package class_2022_02_2_week;
 
-public class Problem_2029_StoneGameIX {
+// 测试链接 : https://leetcode.com/problems/stone-game-ix/
+public class Code05_StoneGameIX {
 
 	public static boolean stoneGameIX(int[] stones) {
 		int[] counts = new int[3];

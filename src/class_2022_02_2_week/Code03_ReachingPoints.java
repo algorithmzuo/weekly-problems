@@ -1,6 +1,7 @@
 package class_2022_02_2_week;
 
-public class Problem_0780_ReachingPoints {
+// 测试链接 : https://leetcode.com/problems/reaching-points/
+public class Code03_ReachingPoints {
 
 	// 会超时，但是揭示了大思路
 	public static boolean reachingPoints1(int sx, int sy, int tx, int ty) {

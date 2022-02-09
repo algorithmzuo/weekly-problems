@@ -1,7 +1,7 @@
 package class_2022_02_2_week;
 
 // 测试链接 : https://leetcode-cn.com/problems/design-bitset/
-public class Problem_6002_DesignBitset {
+public class Code04_DesignBitset {
 
 	class Bitset {
 
