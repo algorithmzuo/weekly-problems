@@ -15,6 +15,7 @@ public class Code01_24Game {
 		return judge(arr, cards.length);
 	}
 
+	// arr中，有效的范围arr[0...size-1] ... 再往右，都无效了，不用看了！
 	public static boolean judge(Number[] arr, int size) {
 		if (size == 1) {
 			return arr[0].numerator == 24 && arr[0].denominator == 1;

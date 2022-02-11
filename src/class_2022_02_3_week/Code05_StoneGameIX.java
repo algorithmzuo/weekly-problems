@@ -1,4 +1,4 @@
-package class_2022_02_2_week;
+package class_2022_02_3_week;
 
 // 测试链接 : https://leetcode.com/problems/stone-game-ix/
 public class Code05_StoneGameIX {
