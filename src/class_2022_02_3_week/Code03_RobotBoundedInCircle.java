@@ -1,6 +1,7 @@
 package class_2022_02_3_week;
 
-public class Problem_1041_RobotBoundedInCircle {
+// 测试链接 : https://leetcode.com/problems/robot-bounded-in-circle/
+public class Code03_RobotBoundedInCircle {
 
 	public static boolean isRobotBounded(String ins) {
 		int row = 0;

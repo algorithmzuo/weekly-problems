@@ -1,4 +1,4 @@
-package class_2022_02_3_week;
+package class_2022_02_4_week;
 
 import java.util.Arrays;
 

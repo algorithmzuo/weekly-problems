@@ -2,7 +2,9 @@ package class_2022_02_3_week;
 
 import java.util.HashMap;
 
-public class Problem_1553_MinimumNumberOfDaysToEatNOranges {
+// 来自学员看到的腾讯面试
+// 测试链接 : https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/
+public class Code02_MinimumNumberOfDaysToEatNOranges {
 
 	// 所有的答案都填在这个表里
 	// 这个表对所有的过程共用

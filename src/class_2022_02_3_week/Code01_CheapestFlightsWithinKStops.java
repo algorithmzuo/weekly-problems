@@ -2,7 +2,8 @@ package class_2022_02_3_week;
 
 import java.util.Arrays;
 
-public class Problem_0787_CheapestFlightsWithinKStops {
+// 测试链接 : https://leetcode.com/problems/cheapest-flights-within-k-stops/
+public class Code01_CheapestFlightsWithinKStops {
 
 	// Bellman Ford
 	public static int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
