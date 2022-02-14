@@ -1,6 +1,6 @@
 package class_2022_03_1_week;
 
-// 题目描述
+// 强连通分量练习题目
 // A -> B，表示A认为B是红人
 // A -> B -> C，表示A认为B是红人，B认为C是红人，规定“认为”关系有传递性，所以A也认为C是红人
 // 给定一张有向图，方式是给定M个有序对(A, B)
@@ -74,8 +74,8 @@ public class Code03_PopularCows {
 
 		// 请保证点的编号从1开始，不从0开始
 		// 注意：
-		// 如果edges里，有0、1、2、3、4、5这些点，大小为6
-		// 但是，0点是弃而不用的，所以1、2、3、4、5才是有效点所以有效大小是5
+		// 如果edges里有0、1、2...n这些点，那么容器edges的大小为n+1
+		// 但是0点是弃而不用的，所以1..n才是有效的点，所以有效大小是n
 		public StronglyConnectedComponents(ArrayList<ArrayList<Integer>> edges) {
 			nexts = edges;
 			init();

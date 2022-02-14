@@ -2,6 +2,7 @@ package class_2022_03_1_week;
 
 import java.util.ArrayList;
 
+// tarjan算法求有向图的强连通分量
 public class Code01_StronglyConnectedComponents {
 
 	public static class StronglyConnectedComponents {
@@ -18,8 +19,8 @@ public class Code01_StronglyConnectedComponents {
 
 		// 请保证点的编号从1开始，不从0开始
 		// 注意：
-		// 如果edges里，有0、1、2、3、4、5这些点，大小为6
-		// 但是，0点是弃而不用的，所以1、2、3、4、5才是有效点所以有效大小是5
+		// 如果edges里有0、1、2...n这些点，那么容器edges的大小为n+1
+		// 但是0点是弃而不用的，所以1..n才是有效的点，所以有效大小是n
 		public StronglyConnectedComponents(ArrayList<ArrayList<Integer>> edges) {
 			nexts = edges;
 			init();
