@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 public class Code01_CheapestFlightsWithinKStops {
 
 	// 类似宽度优先遍历
-	public static int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+	public static int findCheapestPrice1(int n, int[][] flights, int src, int dst, int k) {
 		ArrayList<ArrayList<int[]>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			graph.add(new ArrayList<int[]>());
