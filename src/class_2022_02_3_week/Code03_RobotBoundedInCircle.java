@@ -8,7 +8,7 @@ public class Code03_RobotBoundedInCircle {
 		int col = 0;
 		int direction = 0;
 		char[] str = ins.toCharArray();
-		for (char cur : str)
+		for (char cur : str) {
 			if (cur == 'R') {
 				direction = right(direction);
 			} else if (cur == 'L') {
@@ -17,6 +17,7 @@ public class Code03_RobotBoundedInCircle {
 				row = row(direction, row);
 				col = col(direction, col);
 			}
+		}
 		return row == 0 && col == 0 || direction != 0;
 	}
 
