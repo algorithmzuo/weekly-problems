@@ -6,7 +6,7 @@ public class Code03_RobotBoundedInCircle {
 	public static boolean isRobotBounded(String ins) {
 		int row = 0;
 		int col = 0;
-		int direction = 0;
+		int direction = 0; // 0 1 2 3
 		char[] str = ins.toCharArray();
 		for (char cur : str) {
 			if (cur == 'R') {
