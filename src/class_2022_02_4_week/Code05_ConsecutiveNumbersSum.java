@@ -1,6 +1,7 @@
 package class_2022_02_4_week;
 
-public class Problem_0829_ConsecutiveNumbersSum {
+// 测试链接 : https://leetcode.com/problems/consecutive-numbers-sum/
+public class Code05_ConsecutiveNumbersSum {
 
 	// 如果有，N = (x+1) + (x+2) + ... + (x+k)
 	// 上式子可以化简为：N = kx + k(k+1)/2
