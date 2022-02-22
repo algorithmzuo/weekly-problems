@@ -11,7 +11,7 @@ package class_2022_03_2_week;
 // 请你用棋子移动的方式，让每个格子都有一个棋子
 // 每个棋子可以上、下、左、右移动，每移动一步算1的代价
 // 返回最小的代价
-public class Code02_ToAllSpace {
+public class Code01_ToAllSpace {
 
 	// 暴力解
 	// 作为对数器

@@ -8,7 +8,7 @@ import java.util.Arrays;
 // {5, 3, 2}、{5, 3, 1}、{5, 4, 2}、{5, 4, 1}
 // {5, 2, 1}、{3, 2, 1}、{4, 2, 1}
 // 所以返回数量7
-public class Code02_NumberOfDescendingTriples {
+public class Code04_NumberOfDescendingTriples {
 
 	// 暴力方法
 	// 对数器

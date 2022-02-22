@@ -3,7 +3,7 @@ package class_2022_02_4_week;
 import java.util.HashMap;
 
 // 测试链接 : https://leetcode.com/problems/groups-of-strings/
-public class Code03_GroupsOfStrings {
+public class Code05_GroupsOfStrings {
 
 	// 可能会超时，或者打败比例很低
 	// 因为常数优化不到位
