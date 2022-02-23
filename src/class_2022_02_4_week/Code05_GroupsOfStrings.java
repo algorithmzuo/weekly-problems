@@ -71,16 +71,25 @@ public class Code05_GroupsOfStrings {
 			int yes = strs[i];
 			int no = (~yes) & ((1 << 26) - 1);
 			int tmpYes = yes;
-			int tmpNo = 0;
+			int tmpNo = no;
 			int rightOneYes = 0;
 			int rightOneNo = 0;
 			while (tmpYes != 0) {
 				rightOneYes = tmpYes & (-tmpYes);
 				uf.union(i, stands.get(yes ^ rightOneYes));
+				tmpYes ^= rightOneYes;
+			}
+			while(tmpNo != 0) {
+				rightOneNo = tmpNo & (-tmpNo);
+				uf.union(i, stands.get(yes | rightOneNo));
+				tmpNo ^= rightOneNo;
+			}
+			tmpYes = yes;
+			while (tmpYes != 0) {
+				rightOneYes = tmpYes & (-tmpYes);
 				tmpNo = no;
 				while (tmpNo != 0) {
 					rightOneNo = tmpNo & (-tmpNo);
-					uf.union(i, stands.get(yes | rightOneNo));
 					uf.union(i, stands.get((yes ^ rightOneYes) | rightOneNo));
 					tmpNo ^= rightOneNo;
 				}
