@@ -47,13 +47,13 @@ public class Code04_NumberOfDescendingTriples {
 			arr[i] = rank(sorted, arr[i]);
 			max = Math.max(max, arr[i]);
 		}
+		IndexTree it1 = new IndexTree(max);
 		IndexTree it2 = new IndexTree(max);
-		IndexTree it3 = new IndexTree(max);
 		int ans = 0;
 		for (int i = n - 1; i >= 0; i--) {
-			ans += arr[i] == 1 ? 0 : it3.sum(arr[i] - 1);
-			it2.add(arr[i], 1);
-			it3.add(arr[i], arr[i] == 1 ? 0 : it2.sum(arr[i] - 1));
+			ans += arr[i] == 1 ? 0 : it2.sum(arr[i] - 1);
+			it1.add(arr[i], 1);
+			it2.add(arr[i], arr[i] == 1 ? 0 : it1.sum(arr[i] - 1));
 		}
 		return ans;
 	}
