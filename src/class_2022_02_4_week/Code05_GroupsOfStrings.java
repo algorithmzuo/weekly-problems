@@ -70,30 +70,21 @@ public class Code05_GroupsOfStrings {
 		for (int i = 0; i < n; i++) {
 			int yes = strs[i];
 			int no = (~yes) & ((1 << 26) - 1);
-			int tmp1 = yes;
-			int tmp2 = no;
-			int rightOne1 = 0;
-			int rightOne2 = 0;
-			while (tmp1 != 0) {
-				rightOne1 = tmp1 & (-tmp1);
-				uf.union(i, stands.get(yes ^ rightOne1));
-				tmp1 ^= rightOne1;
-			}
-			while (tmp2 != 0) {
-				rightOne2 = tmp2 & (-tmp2);
-				uf.union(i, stands.get(yes | rightOne2));
-				tmp2 ^= rightOne2;
-			}
-			tmp1 = yes;
-			while (tmp1 != 0) {
-				rightOne1 = tmp1 & (-tmp1);
-				tmp2 = no;
-				while (tmp2 != 0) {
-					rightOne2 = tmp2 & (-tmp2);
-					uf.union(i, stands.get((yes ^ rightOne1) | rightOne2));
-					tmp2 ^= rightOne2;
+			int tmpYes = yes;
+			int tmpNo = 0;
+			int rightOneYes = 0;
+			int rightOneNo = 0;
+			while (tmpYes != 0) {
+				rightOneYes = tmpYes & (-tmpYes);
+				uf.union(i, stands.get(yes ^ rightOneYes));
+				tmpNo = no;
+				while (tmpNo != 0) {
+					rightOneNo = tmpNo & (-tmpNo);
+					uf.union(i, stands.get(yes | rightOneNo));
+					uf.union(i, stands.get((yes ^ rightOneYes) | rightOneNo));
+					tmpNo ^= rightOneNo;
 				}
-				tmp1 ^= rightOne1;
+				tmpYes ^= rightOneYes;
 			}
 		}
 		return new int[] { uf.sets(), uf.maxSize() };
