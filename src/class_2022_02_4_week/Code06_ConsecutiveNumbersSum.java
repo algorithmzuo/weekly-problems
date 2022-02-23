@@ -24,7 +24,24 @@ public class Code06_ConsecutiveNumbersSum {
 	// 上面的选择，去乘以：可以选择0个7..可以选择1个7...可以选择2个7...可以选择c个7，所以有c+1种选择
 	// ...
 	// 所以，一共有(a + 1) * (b + 1) * (c + 1) * (d + 1) .....这么多个奇数因子
-	public static int consecutiveNumbersSum(int N) {
+	public static int consecutiveNumbersSum1(int N) {
+		while ((N & 1) == 0) {
+			N >>= 1;
+		}
+		int res = 1;
+		for (int i = 3; i <= N; i += 2) {
+			int count = 1;
+			while (N % i == 0) {
+				N /= i;
+				count++;
+			}
+			res *= count;
+		}
+		return res;
+	}
+
+	// 进一步优化
+	public static int consecutiveNumbersSum2(int N) {
 		while ((N & 1) == 0) {
 			N >>= 1;
 		}
@@ -48,7 +65,8 @@ public class Code06_ConsecutiveNumbersSum {
 
 	public static void main(String[] args) {
 		int N = 3 * 5 * 7;
-		System.out.println(consecutiveNumbersSum(N));
+		System.out.println(consecutiveNumbersSum1(N));
+		System.out.println(consecutiveNumbersSum2(N));
 	}
 
 }
