@@ -3,9 +3,16 @@ package class_2022_02_4_week;
 // 来自微软
 // 给定一个正数num，要返回一个大于num的数，并且每一位和相邻位的数字不能相等
 // 返回达标的数字中，最小的那个
+// 10^9
 public class Code02_NearBiggerNoSameNeighbour {
 
 	public static int near(int num) {
+		// num = 174
+		// "0175"
+		// num = 899
+		// "0900"
+		// num = 999
+		// "01000"
 		char[] raw = ("0" + String.valueOf(num + 1)).toCharArray();
 		process(raw);
 		return Integer.valueOf(String.valueOf(raw));
@@ -24,6 +31,9 @@ public class Code02_NearBiggerNoSameNeighbour {
 		}
 	}
 
+	// 99.....
+	//  +1
+	//100
 	public static void addOne(char[] r, int i) {
 		boolean up = true;
 		while (up && r[i] == '9') {
@@ -33,6 +43,10 @@ public class Code02_NearBiggerNoSameNeighbour {
 	}
 
 	public static void main(String[] args) {
+		char[] test = new char[] { '0', '1', '2', '3' };
+
+		System.out.println(Integer.valueOf(String.valueOf(test)));
+
 		int num1 = 55;
 		System.out.println(near(num1));
 

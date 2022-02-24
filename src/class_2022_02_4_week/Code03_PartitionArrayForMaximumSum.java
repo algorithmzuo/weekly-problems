@@ -33,13 +33,18 @@ public class Code03_PartitionArrayForMaximumSum {
 	}
 
 	public static int maxSumAfterPartitioning2(int[] arr, int k) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
 		int n = arr.length;
 		int[] dp = new int[n];
-		for (int index = 0; index < n; index++) {
-			int max = arr[index];
-			for (int i = index, j = 1; i >= 0 && j <= k; i--, j++) {
-				max = Math.max(max, arr[i]);
-				dp[index] = Math.max(dp[index], (i - 1 >= 0 ? dp[i - 1] : 0) + (index - i + 1) * max);
+		dp[0] = arr[0];
+		for (int i = 1; i < n; i++) {
+			dp[i] = arr[i] + dp[i - 1];
+			int max = arr[i];
+			for (int j = i - 1; j >= 0 && (i - j + 1) <= k; j--) {
+				max = Math.max(max, arr[j]);
+				dp[i] = Math.max(dp[i], max * (i - j + 1) + (j - 1 >= 0 ? dp[j - 1] : 0));
 			}
 		}
 		return dp[n - 1];

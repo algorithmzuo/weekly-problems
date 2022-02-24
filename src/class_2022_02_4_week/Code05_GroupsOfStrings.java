@@ -9,8 +9,11 @@ public class Code05_GroupsOfStrings {
 	// 因为常数优化不到位
 	public static int[] groupStrings1(String[] words) {
 		int n = words.length;
+		// 0 1 2 ... n-1
 		UnionFind uf = new UnionFind(n);
 		int[] strs = new int[n];
+		// abd -> 0..01011  7
+		// 0..01011 key   value 7
 		HashMap<Integer, Integer> stands = new HashMap<>();
 		for (int i = 0; i < n; i++) {
 			int status = 0;
@@ -25,10 +28,21 @@ public class Code05_GroupsOfStrings {
 			}
 		}
 		for (int i = 0; i < n; i++) {
+			// 一个字符串，状态
 			int status = strs[i];
 			for (int j = 0; j < 26; j++) {
+				// 001101
+				// a
+				// 001101
+				// b
+				// 001111
+				// c
+				// 001101
+				// z
+				//.. 
 				uf.union(i, stands.get(status | (1 << j)));
 			}
+			// 有的字符，减少一遍
 			for (int j = 0; j < 26; j++) {
 				if ((status & (1 << j)) != 0) {
 					uf.union(i, stands.get(status ^ (1 << j)));
@@ -74,11 +88,29 @@ public class Code05_GroupsOfStrings {
 			int tmpNo = no;
 			int rightOneYes = 0;
 			int rightOneNo = 0;
+			
+			
+			// 0....0 0110011
+			// 
+			// 0....0 0110011
+			// 0....0 0000001 -> 用
+			
+			// 0....0 0110010
+			// 0....0 0000010 -> 用
+			
+			// 0....0 0110000
+			
 			while (tmpYes != 0) {
 				rightOneYes = tmpYes & (-tmpYes);
 				uf.union(i, stands.get(yes ^ rightOneYes));
 				tmpYes ^= rightOneYes;
 			}
+			
+			
+			
+			
+			
+			// tmpNo = 该去试试什么添加！
 			while(tmpNo != 0) {
 				rightOneNo = tmpNo & (-tmpNo);
 				uf.union(i, stands.get(yes | rightOneNo));
