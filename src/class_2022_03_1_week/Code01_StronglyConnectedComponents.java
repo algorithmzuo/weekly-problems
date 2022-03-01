@@ -57,9 +57,12 @@ public class Code01_StronglyConnectedComponents {
 					tarjan(q);
 					low[p] = Math.min(low[p], low[q]);
 				} else {
-					if (isInStack[q]) {
+					if (scc[q] == 0) {
 						low[p] = Math.min(low[p], dfsn[q]);
 					}
+//					if (isInStack[q]) {
+//						low[p] = Math.min(low[p], dfsn[q]);
+//					}
 				}
 			}
 			if (low[p] == dfsn[p]) {
