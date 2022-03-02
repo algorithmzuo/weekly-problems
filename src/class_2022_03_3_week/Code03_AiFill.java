@@ -19,4 +19,8 @@ package class_2022_03_3_week;
 // 返回m个结果，每个结果最多k个单词
 public class Code03_AiFill {
 
+	public static class AI {
+
+	}
+
 }

@@ -208,7 +208,7 @@ public class Code04_IgniteMinBombs {
 		public int[] stack;
 		public int stackSize;
 		public boolean[] isInStack;
-		public int[] dfsn;
+		public int[] dfn;
 		public int[] low;
 		public int cnt;
 		public int[] scc;
@@ -229,7 +229,7 @@ public class Code04_IgniteMinBombs {
 			stack = new int[n];
 			stackSize = 0;
 			isInStack = new boolean[n];
-			dfsn = new int[n];
+			dfn = new int[n];
 			low = new int[n];
 			cnt = 0;
 			scc = new int[n];
@@ -239,25 +239,25 @@ public class Code04_IgniteMinBombs {
 
 		private void scc() {
 			for (int i = 1; i <= n; i++) {
-				if (dfsn[i] == 0) {
+				if (dfn[i] == 0) {
 					tarjan(i);
 				}
 			}
 		}
 
 		private void tarjan(int p) {
-			low[p] = dfsn[p] = ++cnt;
+			low[p] = dfn[p] = ++cnt;
 			isInStack[p] = true;
 			stack[stackSize++] = p;
 			for (int q : nexts.get(p)) {
-				if (dfsn[q] == 0) {
+				if (dfn[q] == 0) {
 					tarjan(q);
 				}
 				if (scc[q] == 0) {
 					low[p] = Math.min(low[p], low[q]);
 				}
 			}
-			if (low[p] == dfsn[p]) {
+			if (low[p] == dfn[p]) {
 				sccn++;
 				int top = 0;
 				do {
