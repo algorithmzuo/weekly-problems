@@ -207,7 +207,6 @@ public class Code04_IgniteMinBombs {
 		public int n;
 		public int[] stack;
 		public int stackSize;
-		public boolean[] isInStack;
 		public int[] dfn;
 		public int[] low;
 		public int cnt;
@@ -228,7 +227,6 @@ public class Code04_IgniteMinBombs {
 			n = nexts.size();
 			stack = new int[n];
 			stackSize = 0;
-			isInStack = new boolean[n];
 			dfn = new int[n];
 			low = new int[n];
 			cnt = 0;
@@ -247,7 +245,6 @@ public class Code04_IgniteMinBombs {
 
 		private void tarjan(int p) {
 			low[p] = dfn[p] = ++cnt;
-			isInStack[p] = true;
 			stack[stackSize++] = p;
 			for (int q : nexts.get(p)) {
 				if (dfn[q] == 0) {
@@ -262,7 +259,6 @@ public class Code04_IgniteMinBombs {
 				int top = 0;
 				do {
 					top = stack[--stackSize];
-					isInStack[top] = false;
 					scc[top] = sccn;
 				} while (top != p);
 			}

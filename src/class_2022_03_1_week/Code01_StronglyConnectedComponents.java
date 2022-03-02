@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 // tarjan算法求有向图的强连通分量
 public class Code01_StronglyConnectedComponents {
-
+	
 	public static class StronglyConnectedComponents {
 		public ArrayList<ArrayList<Integer>> nexts;
 		public int n;
 		public int[] stack;
 		public int stackSize;
-		public boolean[] isInStack;
 		public int[] dfn;
 		public int[] low;
 		public int cnt;
@@ -31,7 +30,6 @@ public class Code01_StronglyConnectedComponents {
 			n = nexts.size();
 			stack = new int[n];
 			stackSize = 0;
-			isInStack = new boolean[n];
 			dfn = new int[n];
 			low = new int[n];
 			cnt = 0;
@@ -48,15 +46,24 @@ public class Code01_StronglyConnectedComponents {
 			}
 		}
 
+		// low[]
+		// dfn[]
+		// stack[]
+		// int stackSize
+		// boolean isStack[]
+		// int cnt;
+		// int sccn;
+		// scc[]
 		private void tarjan(int p) {
 			low[p] = dfn[p] = ++cnt;
-			isInStack[p] = true;
 			stack[stackSize++] = p;
 			for (int q : nexts.get(p)) {
+				// q 当前p的每一个孩子
 				if (dfn[q] == 0) {
 					tarjan(q);
 				}
-				if (scc[q] == 0) {
+				// q 肯定遍历过  1) 遍历过，结算了！2）遍历过，没结算
+				if (scc[q] == 0) { // scc[q]!=0 q已经属于某个集团了！不能用来更新
 					low[p] = Math.min(low[p], low[q]);
 				}
 			}
@@ -65,7 +72,6 @@ public class Code01_StronglyConnectedComponents {
 				int top = 0;
 				do {
 					top = stack[--stackSize];
-					isInStack[top] = false;
 					scc[top] = sccn;
 				} while (top != p);
 			}
