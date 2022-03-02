@@ -5,6 +5,8 @@
 
 package class_2022_03_2_week;
 
+import java.util.Arrays;
+
 public class KMAlgorithm {
 
 	// 暴力解
@@ -49,13 +51,13 @@ public class KMAlgorithm {
 			}
 			ly[i] = 0;
 		}
-		for (int t = 0; t < N; t++) {
-			clean(x);
-			clean(y);
+		for (int f = 0; f < N; f++) {
+			Arrays.fill(x, false);
+			Arrays.fill(y, false);
 			for (int i = 0; i < N; i++) {
 				slack[i] = invalid;
 			}
-			while (!dfs(t, x, y, lx, ly, match, slack, graph)) {
+			while (!dfs(f, x, y, lx, ly, match, slack, graph)) {
 				int d = invalid;
 				for (int i = 0; i < N; i++) {
 					if (!y[i] && slack[i] < d) {
@@ -81,26 +83,20 @@ public class KMAlgorithm {
 		return ans;
 	}
 
-	public static void clean(boolean[] arr) {
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = false;
-		}
-	}
-
-	public static boolean dfs(int t, boolean[] x, boolean[] y, int[] lx, int[] ly, int[] match, int[] slack,
+	public static boolean dfs(int f, boolean[] x, boolean[] y, int[] lx, int[] ly, int[] match, int[] slack,
 			int[][] map) {
 		int N = map.length;
-		x[t] = true;
-		for (int u = 0; u < N; u++) {
-			int d = lx[t] + ly[u] - map[t][u];
-			if (!y[u] && d == 0) {
-				y[u] = true;
-				if (match[u] == -1 || dfs(match[u], x, y, lx, ly, match, slack, map)) {
-					match[u] = t;
+		x[f] = true;
+		for (int t = 0; t < N; t++) {
+			int d = lx[f] + ly[t] - map[f][t];
+			if (!y[t] && d == 0) {
+				y[t] = true;
+				if (match[t] == -1 || dfs(match[t], x, y, lx, ly, match, slack, map)) {
+					match[t] = f;
 					return true;
 				}
 			} else {
-				slack[u] = Math.min(slack[u], d);
+				slack[t] = Math.min(slack[t], d);
 			}
 		}
 		return false;
