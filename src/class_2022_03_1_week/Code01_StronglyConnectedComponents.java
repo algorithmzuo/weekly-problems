@@ -55,14 +55,9 @@ public class Code01_StronglyConnectedComponents {
 			for (int q : nexts.get(p)) {
 				if (dfsn[q] == 0) {
 					tarjan(q);
+				}
+				if (scc[q] == 0) {
 					low[p] = Math.min(low[p], low[q]);
-				} else {
-					if (scc[q] == 0) {
-						low[p] = Math.min(low[p], dfsn[q]);
-					}
-//					if (isInStack[q]) {
-//						low[p] = Math.min(low[p], dfsn[q]);
-//					}
 				}
 			}
 			if (low[p] == dfsn[p]) {
