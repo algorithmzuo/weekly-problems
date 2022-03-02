@@ -1,9 +1,10 @@
-package class_2022_03_3_week;
+package class_2022_03_4_week;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Problem_0947_MostStonesRemovedWithSameRowOrColumn {
+// 测试链接 : https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
+public class Code01_MostStonesRemovedWithSameRowOrColumn {
 
 	public static int removeStones(int[][] stones) {
 		int N = stones.length;
