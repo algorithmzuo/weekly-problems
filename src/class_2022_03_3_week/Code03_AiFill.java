@@ -1,10 +1,14 @@
 package class_2022_03_3_week;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.TreeSet;
+
 // 来自字节飞书团队
-// 众所周知，飞书自带英文语法补全的功能，有效提升了用户聊天时的输入效率
 // 语法补全功能，比如"as soon as possible"
-// 当我们识别到"as soon as p"时, 基本即可判定用户需要键入"possible"
-// 因此我们向用户展示提示补全即可, 请设计一个统计词频的模型
+// 当我们识别到"as soon as"时, 基本即可判定用户需要键入"possible"
+// 设计一个统计词频的模型，用于这个功能
 // 类似(prefix, next word)这样的二元组
 // 比如一个上面的句子"as soon as possible"
 // 有产生如下的二元组(as, soon, 1)、(as soon, as, 1)、(as soon as, possible, 1)
@@ -19,8 +23,97 @@ package class_2022_03_3_week;
 // 返回m个结果，每个结果最多k个单词
 public class Code03_AiFill {
 
-	public static class AI {
+	public static class TrieNode {
+		public String word;
+		public int times;
+		public HashMap<String, TrieNode> nextNodes;
+		public TreeSet<TrieNode> nextRanks;
 
+		public TrieNode(String w) {
+			word = w;
+			times = 1;
+			nextNodes = new HashMap<>();
+			nextRanks = new TreeSet<>((a, b) -> a.times != b.times ? (b.times - a.times) : a.word.compareTo(b.word));
+		}
+
+	}
+
+	public static class AI {
+		public TrieNode root;
+		public int topk;
+
+		public AI(List<String> sentences, int k) {
+			root = new TrieNode("");
+			topk = k;
+			for (String sentence : sentences) {
+				fill(sentence);
+			}
+		}
+
+		public void fill(String sentence) {
+			TrieNode cur = root;
+			TrieNode next = null;
+			for (String word : sentence.split(" ")) {
+				if (!cur.nextNodes.containsKey(word)) {
+					next = new TrieNode(word);
+					cur.nextNodes.put(word, next);
+					cur.nextRanks.add(next);
+				} else {
+					next = cur.nextNodes.get(word);
+					cur.nextRanks.remove(next);
+					next.times++;
+					cur.nextRanks.add(next);
+				}
+				cur = next;
+			}
+		}
+
+		public List<String> suggest(String sentence) {
+			List<String> ans = new ArrayList<>();
+			TrieNode cur = root;
+			TrieNode next = null;
+			for (String word : sentence.split(" ")) {
+				if (!cur.nextNodes.containsKey(word)) {
+					next = new TrieNode(word);
+					cur.nextNodes.put(word, next);
+					cur.nextRanks.add(next);
+				} else {
+					next = cur.nextNodes.get(word);
+					cur.nextRanks.remove(next);
+					next.times++;
+					cur.nextRanks.add(next);
+				}
+				cur = next;
+			}
+			for (TrieNode n : cur.nextRanks) {
+				ans.add(n.word);
+				if (ans.size() == topk) {
+					break;
+				}
+			}
+			return ans;
+		}
+
+	}
+
+	public static void main(String[] args) {
+		ArrayList<String> sentences = new ArrayList<>();
+		sentences.add("i think you are good");
+		sentences.add("i think you are fine");
+		sentences.add("i think you are good man");
+		int k = 2;
+		AI ai = new AI(sentences, k);
+		for (String ans : ai.suggest("i think you are")) {
+			System.out.println(ans);
+		}
+		System.out.println("=====");
+		ai.fill("i think you are fucking good");
+		ai.fill("i think you are fucking great");
+		ai.fill("i think you are fucking genius");
+		for (String ans : ai.suggest("i think you are")) {
+			System.out.println(ans);
+		}
+		System.out.println("=====");
 	}
 
 }
