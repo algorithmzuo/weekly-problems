@@ -84,6 +84,42 @@ public class Code14_MinTowNumberSumABS {
 		}
 	}
 
+	public static int minSumABS3(int[] arr) {
+		if (arr == null || arr.length < 2) {
+			return -1;
+		}
+		Arrays.sort(arr);
+		int n = arr.length;
+		int split = -1;
+		for (int i = 0; i < n; i++) {
+			if (arr[i] >= 0) {
+				split = i;
+				break;
+			}
+		}
+		if (split == 0) {
+			return arr[0] + arr[1];
+		}
+		if (split == -1) {
+			return -arr[n - 2] - arr[n - 1];
+		}
+		int ans = Integer.MAX_VALUE;
+		if (split + 1 < n) {
+			ans = arr[split] + arr[split + 1];
+		}
+		if (split - 2 >= 0) {
+			ans = Math.min(ans, -arr[split - 1] - arr[split - 2]);
+		}
+		int r = n - 1;
+		for (int l = 0; l < split; l++) {
+			ans = Math.min(ans, Math.abs(arr[l] + arr[r]));
+			while (r - 1 >= split && Math.abs(arr[l] + arr[r]) >= Math.abs(arr[l] + arr[r - 1])) {
+				ans = Math.min(ans, Math.abs(arr[l] + arr[--r]));
+			}
+		}
+		return ans;
+	}
+
 	// 为了测试
 	public static int[] randomArray(int n, int v) {
 		int[] arr = new int[n];
@@ -104,7 +140,8 @@ public class Code14_MinTowNumberSumABS {
 			int[] arr = randomArray(n, value);
 			int ans1 = minSumABS1(arr);
 			int ans2 = minSumABS2(arr);
-			if (ans1 != ans2) {
+			int ans3 = minSumABS3(arr);
+			if (ans1 != ans2 || ans1 != ans3) {
 				System.out.println("出错了!");
 				for (int num : arr) {
 					System.out.print(num + " ");
@@ -112,6 +149,7 @@ public class Code14_MinTowNumberSumABS {
 				System.out.println();
 				System.out.println(ans1);
 				System.out.println(ans2);
+				System.out.println(ans3);
 				break;
 			}
 		}
