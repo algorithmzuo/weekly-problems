@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 // 你作为单线程的人，不能并行处理任务，但是每个任务都只需要一个单位时间完成
 // 你需要将所有任务的执行时间，位于开始做的时间和最后期限之间
 // 返回你能否做到这一点
-public class Code08_ArrangeJob {
+public class Code09_ArrangeJob {
 
 	public static class TimePoint {
 		public int time;
