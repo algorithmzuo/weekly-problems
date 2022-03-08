@@ -104,7 +104,7 @@ public class Code14_MinTowNumberSumABS {
 			int[] arr = randomArray(n, value);
 			int ans1 = minSumABS1(arr);
 			int ans2 = minSumABS2(arr);
-			if (ans1 == ans2) {
+			if (ans1 != ans2) {
 				System.out.println("出错了!");
 				for (int num : arr) {
 					System.out.print(num + " ");
