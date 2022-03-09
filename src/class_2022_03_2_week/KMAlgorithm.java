@@ -83,20 +83,20 @@ public class KMAlgorithm {
 		return ans;
 	}
 
-	public static boolean dfs(int f, boolean[] x, boolean[] y, int[] lx, int[] ly, int[] match, int[] slack,
-			int[][] map) {
+	public static boolean dfs(int f, boolean[] x, boolean[] y, int[] lx, int[] ly,
+			int[] match, int[] slack, int[][] map) {
 		int N = map.length;
 		x[f] = true;
 		for (int t = 0; t < N; t++) {
 			int d = lx[f] + ly[t] - map[f][t];
-			if (!y[t] && d == 0) {
+			if (y[t] || d != 0) {
+				slack[t] = Math.min(slack[t], d);
+			} else {
 				y[t] = true;
 				if (match[t] == -1 || dfs(match[t], x, y, lx, ly, match, slack, map)) {
 					match[t] = f;
 					return true;
 				}
-			} else {
-				slack[t] = Math.min(slack[t], d);
 			}
 		}
 		return false;
