@@ -31,12 +31,12 @@ public class Code07_MinWaitingTime {
 		if (arr == null || arr.length == 0) {
 			return -1;
 		}
-		int worse = 0;
+		int best = Integer.MAX_VALUE;
 		for (int num : arr) {
-			worse = Math.max(worse, num);
+			best = Math.min(best, num);
 		}
 		int left = 0;
-		int right = worse * m;
+		int right = best * m;
 		int mid = 0;
 		int near = 0;
 		while (left <= right) {
