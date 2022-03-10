@@ -71,19 +71,12 @@ public class Code03_AiFill {
 		public List<String> suggest(String sentence) {
 			List<String> ans = new ArrayList<>();
 			TrieNode cur = root;
-			TrieNode next = null;
 			for (String word : sentence.split(" ")) {
 				if (!cur.nextNodes.containsKey(word)) {
-					next = new TrieNode(word);
-					cur.nextNodes.put(word, next);
-					cur.nextRanks.add(next);
+					return ans;
 				} else {
-					next = cur.nextNodes.get(word);
-					cur.nextRanks.remove(next);
-					next.times++;
-					cur.nextRanks.add(next);
+					cur = cur.nextNodes.get(word);
 				}
-				cur = next;
 			}
 			for (TrieNode n : cur.nextRanks) {
 				ans.add(n.word);
