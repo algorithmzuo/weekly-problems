@@ -1,7 +1,7 @@
-package class_2022_03_4_week;
+package class_2022_03_5_week;
 
 // 测试链接 : https://leetcode.com/problems/number-of-different-subsequences-gcds/
-public class Code05_NumberOfDifferentSubsequencesGCDs {
+public class Code02_NumberOfDifferentSubsequencesGCDs {
 
 	// 1 + n/2 + n/3 + n/4 + ... + n/n -> O(N * logN)
 	public static int countDifferentSubsequenceGCDs(int[] nums) {

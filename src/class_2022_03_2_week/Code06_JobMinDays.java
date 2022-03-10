@@ -1,4 +1,4 @@
-package class_2022_03_3_week;
+package class_2022_03_2_week;
 
 // 来自微软
 // 给定一个正数数组arr，长度为N，依次代表N个任务的难度，给定一个正数k

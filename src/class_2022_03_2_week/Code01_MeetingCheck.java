@@ -1,4 +1,4 @@
-package class_2022_03_3_week;
+package class_2022_03_2_week;
 
 import java.util.Arrays;
 
@@ -20,13 +20,24 @@ import java.util.Arrays;
 public class Code01_MeetingCheck {
 
 	public static boolean[] reserveMeetings(int m, int[][] meetings) {
+		// 会议的总场次
 		int n = meetings.length;
+		// 开头时间，结尾时间
 		int[] ranks = new int[n << 1];
 		for (int i = 0; i < n; i++) {
 			ranks[i] = meetings[i][1];
 			ranks[i + n] = meetings[i][2] - 1;
 		}
 		Arrays.sort(ranks);
+		// 0 : [6, 100, 200]
+		// 1 : [4, 30,  300]
+		// 30,1  100,2  200,3  300,4
+		// [0,6,2,3]
+		// [1,4,1,4]
+		// 
+		// 0 T/F ,  1,  T/  2,  
+		
+		// [1,4,1,4]   [0,6,2,3]  ....
 		int[][] reMeetings = new int[n][4];
 		int max = 0;
 		for (int i = 0; i < n; i++) {
@@ -42,8 +53,8 @@ public class Code01_MeetingCheck {
 		for (int[] meeting : reMeetings) {
 			if (st.queryMax(meeting[2], meeting[3]) < m) {
 				ans[meeting[0]] = true;
+				st.add(meeting[2], meeting[3], 1);
 			}
-			st.add(meeting[2], meeting[3], 1);
 		}
 		return ans;
 	}

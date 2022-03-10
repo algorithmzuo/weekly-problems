@@ -13,7 +13,7 @@ import java.util.Arrays;
 // a = 1 or 2 or 3，0<=b<=10000
 // 给定一个n*2的二维数组，表示切了n刀
 // 返回豆腐中最大的一块体积是多少
-public class Code11_CutDouFu {
+public class Code04_CutDouFu {
 
 	public static long maxCut(int[][] cuts) {
 		if (cuts == null || cuts.length == 0) {

@@ -11,7 +11,7 @@ package class_2022_03_3_week;
 // 数组变成 : 6 6 3（第2个3）
 // 第二轮过后 : 6 6
 // 返回2
-public class Code09_EatFish {
+public class Code02_EatFish {
 
 	public static int minTurns1(int[] arr) {
 		int ans = 0;

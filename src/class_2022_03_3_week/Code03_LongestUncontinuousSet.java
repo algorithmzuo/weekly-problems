@@ -6,7 +6,7 @@ import java.util.Arrays;
 // 给定一个数组arr，你可以随意挑选其中的数字
 // 但是你挑选的数中，任何两个数a和b，不能让Math.abs(a - b) <= 1
 // 返回你最多能挑选几个数
-public class Code10_LongestUncontinuousSet {
+public class Code03_LongestUncontinuousSet {
 
 	public static int longestUncontinuous(int[] arr) {
 		if (arr == null || arr.length == 0) {

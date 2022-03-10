@@ -15,7 +15,7 @@ import java.util.Arrays;
 // a和b表示arr范围，范围假设从1开始，不从0开始
 // 输出：
 // 假设你可以在开始时重新排列arr，返回所有get操作返回值累计和最大是多少？
-public class Code13_ArrangeAddGetMax {
+public class Code06_ArrangeAddGetMax {
 
 	public static int maxGets(int[] arr, int[][] ops) {
 		int n = arr.length;

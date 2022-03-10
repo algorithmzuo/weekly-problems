@@ -1,4 +1,4 @@
-package class_2022_03_3_week;
+package class_2022_03_2_week;
 
 // 来自微软
 // 给定一个数组arr，给定一个正数M

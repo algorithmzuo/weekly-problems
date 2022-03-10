@@ -6,7 +6,7 @@ package class_2022_03_3_week;
 // 现在允许你在求解该问题之前翻转这个数組的连续一段
 // 如翻转(1,2,3,4,5,6)的第三个到第五个元素組成的子数组得到的是(1,2,5,4,3,6)，
 // 则翻转后该数组的最大子段和最大能达到多少？
-public class Code12_MaxSumOnReverseArray {
+public class Code05_MaxSumOnReverseArray {
 
 	public static int maxSumReverse1(int[] arr) {
 		int ans = Integer.MIN_VALUE;

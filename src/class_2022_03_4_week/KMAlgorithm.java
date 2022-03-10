@@ -3,7 +3,7 @@
 // 而在二部图graph中，所有的点有2*N个，行所对应的点有N个，列所对应的点有N个
 // 而且认为，行所对应的点之间是没有路径的，列所对应的点之间也是没有路径的！
 
-package class_2022_03_2_week;
+package class_2022_03_4_week;
 
 import java.util.Arrays;
 
