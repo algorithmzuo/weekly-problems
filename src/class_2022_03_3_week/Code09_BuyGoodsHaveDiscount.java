@@ -1,5 +1,6 @@
 package class_2022_03_3_week;
 
+// 来自字节内部训练营
 // 测试链接 : https://leetcode-cn.com/problems/tJau2o/
 // 提交以下的code，将主类名字改成"Main"
 // 可以直接通过
