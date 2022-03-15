@@ -1,6 +1,5 @@
 package class_2022_03_3_week;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 // 来自银联编程比赛
@@ -15,27 +14,35 @@ public class Code12_CoopDevelop {
 	public static long mod = 1000000007L;
 
 	public static int coopDevelop(int[][] skills) {
-		Arrays.sort(skills, (a, b) -> b.length - a.length);
 		int n = skills.length;
-		long ans = (long) n * (long) (n - 1) / 2L;
-		HashMap<Long, Long> setsNums = new HashMap<>();
+		HashMap<Long, Long> noFullSetsNums = new HashMap<>();
+		for (int[] people : skills) {
+			fillNoFullMap(people, 0, 0, true, noFullSetsNums);
+		}
+		HashMap<Long, Long> cntsNums = new HashMap<>();
+		long minus = 0L;
 		for (int[] people : skills) {
 			long status = 0L;
 			for (int skill : people) {
 				status = (status << 10) | skill;
 			}
-			ans -= setsNums.getOrDefault(status, 0L);
-			fillMap(people, 0, 0, setsNums);
+			minus += noFullSetsNums.getOrDefault(status, 0L);
+			minus += cntsNums.getOrDefault(status, 0L);
+			cntsNums.put(status, cntsNums.getOrDefault(status, 0L) + 1);
 		}
-		return (int) (ans % mod);
+		long ans = (long) n * (long) (n - 1) / 2L;
+		return (int) ((ans - minus) % mod);
 	}
 
-	public static void fillMap(int[] people, int i, long status, HashMap<Long, Long> setsNums) {
+	public static void fillNoFullMap(int[] people, int i, long status, boolean full,
+			HashMap<Long, Long> noFullSetsNums) {
 		if (i == people.length) {
-			setsNums.put(status, setsNums.getOrDefault(status, 0L) + 1);
+			if (!full) {
+				noFullSetsNums.put(status, noFullSetsNums.getOrDefault(status, 0L) + 1);
+			}
 		} else {
-			fillMap(people, i + 1, status, setsNums);
-			fillMap(people, i + 1, (status << 10) | people[i], setsNums);
+			fillNoFullMap(people, i + 1, status, false, noFullSetsNums);
+			fillNoFullMap(people, i + 1, (status << 10) | people[i], full, noFullSetsNums);
 		}
 	}
 
