@@ -1,4 +1,4 @@
-package class_2022_03_3_week;
+package class_2022_03_4_week;
 
 // 来自字节内部训练营
 // 某公司游戏平台的夏季特惠开始了，你决定入手一些游戏。现在你一共有X元的预算。
@@ -13,7 +13,7 @@ package class_2022_03_3_week;
 // 可以直接通过
 import java.util.Scanner;
 
-public class Code05_BuyGoodsHaveDiscount {
+public class Code02_BuyGoodsHaveDiscount {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

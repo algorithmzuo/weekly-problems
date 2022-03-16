@@ -1,4 +1,4 @@
-package class_2022_03_4_week;
+package class_2022_03_3_week;
 
 // 来自bilibili
 // 现在有N条鱼，每条鱼的体积为Ai，从左到右排列，数组arr给出
@@ -11,7 +11,7 @@ package class_2022_03_4_week;
 // 数组变成 : 6 6 3（第2个3）
 // 第二轮过后 : 6 6
 // 返回2
-public class Code02_EatFish {
+public class Code05_EatFish {
 
 	public static int minTurns1(int[] arr) {
 		int ans = 0;
