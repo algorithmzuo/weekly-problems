@@ -35,7 +35,7 @@ public class Code06_FinancialProduct {
 				limit -= all;
 			} else {
 				int a = limit / teams;
-				ans += get(big, big - a + 1, teams) + (long) (big - a) * (long) (limit - a * teams);
+				ans += get(big, big - a + 1, teams) + (long) (big - a) * (long) (limit % teams);
 				ans %= mod;
 				limit = 0;
 			}
