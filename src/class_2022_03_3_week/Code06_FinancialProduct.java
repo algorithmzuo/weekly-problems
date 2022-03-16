@@ -11,7 +11,7 @@ import java.util.Arrays;
 // 为控制市场稳定，每人交易次数不得大于 limit。(首次投资和追加投入均记作 1 次交易)
 // 若对所有理财项目中最多进行 limit 次交易，使得投入金额总和最大，请返回这个最大值的总和。
 // 测试链接 : https://leetcode-cn.com/contest/cnunionpay-2022spring/problems/I4mOGz/
-public class Code11_FinancialProduct {
+public class Code06_FinancialProduct {
 
 	public static long mod = 1000000007L;
 

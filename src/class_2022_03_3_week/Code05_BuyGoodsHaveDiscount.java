@@ -13,7 +13,7 @@ package class_2022_03_3_week;
 // 可以直接通过
 import java.util.Scanner;
 
-public class Code08_BuyGoodsHaveDiscount {
+public class Code05_BuyGoodsHaveDiscount {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

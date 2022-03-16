@@ -9,7 +9,7 @@ import java.util.HashMap;
 // 请返回当前有多少对开发成员满足「合作开发」的条件。
 // 由于答案可能很大，请你返回答案对 10^9 + 7 取余的结果。
 // 测试链接 : https://leetcode-cn.com/contest/cnunionpay-2022spring/problems/lCh58I/
-public class Code12_CoopDevelop {
+public class Code07_CoopDevelop {
 
 	public static long mod = 1000000007L;
 

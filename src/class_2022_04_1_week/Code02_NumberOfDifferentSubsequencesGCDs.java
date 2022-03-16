@@ -1,4 +1,4 @@
-package class_2022_03_5_week;
+package class_2022_04_1_week;
 
 // 测试链接 : https://leetcode.com/problems/number-of-different-subsequences-gcds/
 public class Code02_NumberOfDifferentSubsequencesGCDs {

@@ -17,7 +17,7 @@ package class_2022_03_3_week;
 // 这两个问法解法都几乎一样，区别无非是:
 // 美团的: 可进行一次翻转情况下，子数组最大累加和
 // 字节的: 可进行一次翻转情况下，子数组最大价值和
-public class Code05_MaxSumOnReverseArray {
+public class Code03_MaxSumOnReverseArray {
 
 	public static int maxSumReverse1(int[] arr) {
 		int ans = Integer.MIN_VALUE;

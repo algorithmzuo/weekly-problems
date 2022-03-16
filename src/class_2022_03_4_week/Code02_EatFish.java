@@ -1,4 +1,4 @@
-package class_2022_03_3_week;
+package class_2022_03_4_week;
 
 // 来自bilibili
 // 现在有N条鱼，每条鱼的体积为Ai，从左到右排列，数组arr给出
