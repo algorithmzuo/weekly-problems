@@ -19,6 +19,8 @@ public class Code02_CutDouFu {
 		if (cuts == null || cuts.length == 0) {
 			return 10000L * 10000L * 10000L;
 		}
+		// 0 类型
+		// 1 切哪了
 		Arrays.sort(cuts, (a, b) -> a[0] != b[0] ? (a[0] - b[0]) : (a[1] - b[1]));
 		int n = cuts.length;
 		int i = 0;

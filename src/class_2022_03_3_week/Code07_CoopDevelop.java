@@ -15,6 +15,8 @@ public class Code07_CoopDevelop {
 
 	public static int coopDevelop(int[][] skills) {
 		int n = skills.length;
+		// key : 子集
+		// value : 个数
 		HashMap<Long, Long> noFullSetsNums = new HashMap<>();
 		for (int[] people : skills) {
 			fillNoFullMap(people, 0, 0, true, noFullSetsNums);
