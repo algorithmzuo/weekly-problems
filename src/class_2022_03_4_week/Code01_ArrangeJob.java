@@ -13,8 +13,11 @@ import java.util.PriorityQueue;
 public class Code01_ArrangeJob {
 
 	public static class TimePoint {
+		// 时间
 		public int time;
 		public int end;
+		// add = true time 任务的添加时间
+		// add = false time 任务的结束时间
 		public boolean add;
 
 		public TimePoint(int t, int e, boolean a) {
@@ -40,7 +43,7 @@ public class Code01_ArrangeJob {
 		for (int i = 0, lastTime = arr[0].time; i < arr.length; i++) {
 			if (arr[i].add) {
 				heap.add(arr[i].end);
-			} else {
+			} else { // 检查时间
 				int curTime = arr[i].time;
 				for (int j = lastTime; j < curTime; j++) {
 					if (heap.isEmpty()) {
