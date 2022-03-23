@@ -50,8 +50,8 @@ public class Code09_EggXtoY {
 	}
 
 	public static void main(String[] args) {
-		int max = 2000;
-		int testTime = 200;
+		int max = 3000;
+		int testTime = 500;
 		System.out.println("测试开始");
 		for (int i = 0; i < testTime; i++) {
 			int x = (int) (Math.random() * max) + 1;

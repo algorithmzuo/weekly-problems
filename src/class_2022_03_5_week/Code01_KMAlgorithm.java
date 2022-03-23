@@ -7,7 +7,7 @@ package class_2022_03_5_week;
 
 import java.util.Arrays;
 
-public class KMAlgorithm {
+public class Code01_KMAlgorithm {
 
 	// 暴力解
 	public static int right(int[][] graph) {

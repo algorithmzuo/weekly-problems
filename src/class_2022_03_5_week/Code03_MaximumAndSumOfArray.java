@@ -6,7 +6,7 @@ import java.util.Arrays;
 // 1, 状态压缩动态规划
 // 2, km算法
 // 3, 最小费用最大流(以后安排)
-public class Code02_MaximumAndSumOfArray {
+public class Code03_MaximumAndSumOfArray {
 
 	public static int maximumANDSum1(int[] arr, int m) {
 		int status = (int) Math.pow(3, m) - 1;
