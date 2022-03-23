@@ -9,11 +9,16 @@ package class_2022_03_4_week;
 // 练一下，用平凡解做限制
 public class Code09_EggXtoY {
 
+	// 彻底贪心！
 	public static int minTimes1(int x, int y) {
 		if (x <= y) {
-			return (y - x);
+			return y - x;
 		}
+		// 0 0
+		// 1 2
+		// 2 1
 		int mod = x % 3;
+		// 鸡蛋拿到3的整数倍，需要耗费的行动点数
 		int need = mod == 0 ? 0 : (mod == 1 ? 2 : 1);
 		return need + 1 + minTimes1((x + 2) / 3, y);
 	}
@@ -27,6 +32,9 @@ public class Code09_EggXtoY {
 		return process(x, y, 0, limit, dp);
 	}
 
+	// 当前鸡蛋数量cur，目标aim
+	// 之前已经用了多少行动点，pre
+	// limit : 一定行动点，超过limit，不需要尝试了！
 	public static int process(int cur, int aim, int pre, int limit, int[][] dp) {
 		if (pre > limit) {
 			return Integer.MAX_VALUE;

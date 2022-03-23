@@ -12,6 +12,8 @@ import java.util.PriorityQueue;
 // 返回你能否做到这一点
 public class Code01_ArrangeJob {
 
+	// 1 开 7
+	// 5 闭 end没有用！
 	public static class TimePoint {
 		// 时间
 		public int time;
@@ -40,6 +42,7 @@ public class Code01_ArrangeJob {
 		}
 		Arrays.sort(arr, (a, b) -> a.time - b.time);
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
+		// 经过一个一个的时间点，遭遇事件：添加时间、检查时间
 		for (int i = 0, lastTime = arr[0].time; i < arr.length; i++) {
 			if (arr[i].add) {
 				heap.add(arr[i].end);
