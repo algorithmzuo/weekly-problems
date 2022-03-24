@@ -7,7 +7,7 @@ package class_2022_03_4_week;
 // 返回从x到y的最小操作次数
 // 1 <= x,y <= 10^18
 // 练一下，用平凡解做限制
-public class Code09_EggXtoY {
+public class Code08_EggXtoY {
 
 	// 彻底贪心！
 	public static int minTimes1(int x, int y) {

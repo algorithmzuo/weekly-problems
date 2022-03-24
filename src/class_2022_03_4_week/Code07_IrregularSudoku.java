@@ -10,6 +10,8 @@ package class_2022_03_4_week;
 // 每个集团的区域都一定是一个连在一起的整体，可能不规则
 // 每个集团内要填1~3
 // 如果只有一个解返回"Unique"，如果有多个解返回"Multiple"，如果没有解返回"No"
+// 解析请看，大厂刷题班，28节，leetcode原题，数独那两个题
+// 本题就是改变一下桶的归属而已
 public class Code07_IrregularSudoku {
 
 	// sudoku[i][j] == 0，代表这个位置没有数字，需要填
