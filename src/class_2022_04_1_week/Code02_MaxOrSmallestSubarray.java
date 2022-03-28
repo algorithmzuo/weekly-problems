@@ -2,7 +2,7 @@ package class_2022_04_1_week;
 
 // 来自学员问题
 // 找到非负数组中拥有"最大或的结果"的最短子数组
-public class Code04_MaxOrSmallestSubarray {
+public class Code02_MaxOrSmallestSubarray {
 
 	public static int longest1(int[] arr) {
 		if (arr == null || arr.length == 0) {

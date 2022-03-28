@@ -9,7 +9,7 @@ import java.util.Arrays;
 // 现在牛牛想知道，自己最多可以进行多少次这样的操作
 // 扩展问题来自leetcode 2141，掌握了这个题原始问题就非常简单了
 // leetcode测试链接 : https://leetcode.com/problems/maximum-running-time-of-n-computers/
-public class Code03_FourNumbersMinusOne {
+public class Code01_FourNumbersMinusOne {
 
 	public static long maxRunTime(int n, int[] arr) {
 		Arrays.sort(arr);
