@@ -56,7 +56,9 @@ public class Code06_MaxMoneyMostMin {
 	}
 
 	// 正式方法
-	// 时间复杂度O( log(所有价值乘积) * 员工数量 * log(员工数量) )
+	// 所有员工数量为N
+	// 假设所有员工建设积分乘起来为M
+	// 时间复杂度O(N * logN * logM)
 	public static long mostMin2(int a, int b, int[] value, int[] trouble) {
 		int n = value.length;
 		long l = 0;
