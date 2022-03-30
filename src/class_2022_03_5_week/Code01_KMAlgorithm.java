@@ -52,28 +52,26 @@ public class Code01_KMAlgorithm {
 			ly[i] = 0;
 		}
 		for (int f = 0; f < N; f++) {
-			Arrays.fill(x, false);
-			Arrays.fill(y, false);
 			for (int i = 0; i < N; i++) {
 				slack[i] = invalid;
 			}
+			Arrays.fill(x, false);
+			Arrays.fill(y, false);
 			while (!dfs(f, x, y, lx, ly, match, slack, graph)) {
 				int d = invalid;
 				for (int i = 0; i < N; i++) {
-					if (!y[i] && slack[i] < d) {
-						d = slack[i];
-					}
+					d = !y[i] ? (Math.min(slack[i], d)) : d;
 				}
 				for (int i = 0; i < N; i++) {
 					if (x[i]) {
 						lx[i] = lx[i] - d;
-						x[i] = false;
 					}
 					if (y[i]) {
 						ly[i] = ly[i] + d;
-						y[i] = false;
 					}
 				}
+				Arrays.fill(x, false);
+				Arrays.fill(y, false);
 			}
 		}
 		int ans = 0;
@@ -83,18 +81,18 @@ public class Code01_KMAlgorithm {
 		return ans;
 	}
 
-	public static boolean dfs(int f, boolean[] x, boolean[] y, int[] lx, int[] ly,
-			int[] match, int[] slack, int[][] map) {
+	public static boolean dfs(int from, boolean[] x, boolean[] y, int[] lx, int[] ly, int[] match, int[] slack,
+			int[][] map) {
 		int N = map.length;
-		x[f] = true;
-		for (int t = 0; t < N; t++) {
-			int d = lx[f] + ly[t] - map[f][t];
-			if (y[t] || d != 0) {
-				slack[t] = Math.min(slack[t], d);
+		x[from] = true;
+		for (int to = 0; to < N; to++) {
+			int d = lx[from] + ly[to] - map[from][to];
+			if (y[to] || d != 0) {
+				slack[to] = Math.min(slack[to], d);
 			} else {
-				y[t] = true;
-				if (match[t] == -1 || dfs(match[t], x, y, lx, ly, match, slack, map)) {
-					match[t] = f;
+				y[to] = true;
+				if (match[to] == -1 || dfs(match[to], x, y, lx, ly, match, slack, map)) {
+					match[to] = from;
 					return true;
 				}
 			}
