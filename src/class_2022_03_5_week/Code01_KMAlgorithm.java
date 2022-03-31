@@ -7,6 +7,8 @@ package class_2022_03_5_week;
 
 import java.util.Arrays;
 
+// km算法
+// O(N^3)，最大匹配问题，最优的解！
 public class Code01_KMAlgorithm {
 
 	// 暴力解
@@ -39,8 +41,11 @@ public class Code01_KMAlgorithm {
 		int[] match = new int[N];
 		int[] lx = new int[N];
 		int[] ly = new int[N];
+		// dfs过程中，碰过的点！
 		boolean[] x = new boolean[N];
 		boolean[] y = new boolean[N];
+		// 降低的预期！
+		// 公主上，打一个，降低预期的值，只维持最小！
 		int[] slack = new int[N];
 		int invalid = Integer.MAX_VALUE;
 		for (int i = 0; i < N; i++) {
@@ -51,17 +56,25 @@ public class Code01_KMAlgorithm {
 			}
 			ly[i] = 0;
 		}
-		for (int f = 0; f < N; f++) {
+		for (int from = 0; from < N; from++) {
 			for (int i = 0; i < N; i++) {
 				slack[i] = invalid;
 			}
 			Arrays.fill(x, false);
 			Arrays.fill(y, false);
-			while (!dfs(f, x, y, lx, ly, match, slack, graph)) {
+			// dfs() : from王子，能不能不降预期，匹配成功！
+			// 能：dfs返回true！
+			// 不能：dfs返回false！
+			while (!dfs(from, x, y, lx, ly, match, slack, graph)) {
+				// 刚才的dfs，失败了！
+				// 需要拿到，公主的slack里面，预期下降幅度的最小值！
 				int d = invalid;
 				for (int i = 0; i < N; i++) {
-					d = !y[i] ? (Math.min(slack[i], d)) : d;
+					if (!y[i] && slack[i] < d) {
+						d = slack[i];
+					}
 				}
+				// 按照最小预期来调整预期
 				for (int i = 0; i < N; i++) {
 					if (x[i]) {
 						lx[i] = lx[i] - d;
@@ -72,6 +85,7 @@ public class Code01_KMAlgorithm {
 				}
 				Arrays.fill(x, false);
 				Arrays.fill(y, false);
+				// 然后回到while里，再次尝试
 			}
 		}
 		int ans = 0;
@@ -81,19 +95,30 @@ public class Code01_KMAlgorithm {
 		return ans;
 	}
 
+	// from, 当前的王子
+	// x，王子碰没碰过
+	// y, 公主碰没碰过
+	// lx，所有王子的预期
+	// ly, 所有公主的预期
+	// match，所有公主，之前的分配，之前的爷们！
+	// slack，连过，但没允许的公主，最小下降的幅度
+	// map，报价，所有王子对公主的报价
+	// 返回，from号王子，不降预期能不能配成！
 	public static boolean dfs(int from, boolean[] x, boolean[] y, int[] lx, int[] ly, int[] match, int[] slack,
 			int[][] map) {
 		int N = map.length;
 		x[from] = true;
 		for (int to = 0; to < N; to++) {
-			int d = lx[from] + ly[to] - map[from][to];
-			if (y[to] || d != 0) {
-				slack[to] = Math.min(slack[to], d);
-			} else {
-				y[to] = true;
-				if (match[to] == -1 || dfs(match[to], x, y, lx, ly, match, slack, map)) {
-					match[to] = from;
-					return true;
+			if (!y[to]) { // 只有没dfs过的公主，才会去尝试
+				int d = lx[from] + ly[to] - map[from][to];
+				if (d != 0) {// 如果当前的路不符合预期，更新公主的slack值
+					slack[to] = Math.min(slack[to], d);
+				} else { // 如果当前的路符合预期，尝试直接拿下，或者抢夺让之前的安排倒腾去
+					y[to] = true;
+					if (match[to] == -1 || dfs(match[to], x, y, lx, ly, match, slack, map)) {
+						match[to] = from;
+						return true;
+					}
 				}
 			}
 		}
@@ -136,7 +161,6 @@ public class Code01_KMAlgorithm {
 			}
 		}
 		System.out.println("测试结束");
-
 	}
 
 }
