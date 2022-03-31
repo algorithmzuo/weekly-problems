@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
+// 来自Amazon
 // 给定一个数组arr，含有n个数字，可能有正、有负、有0
 // 给定一个正数k
 // 返回所有子序列中，累加和最大的前k个子序列累加和
