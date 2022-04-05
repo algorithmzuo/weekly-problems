@@ -74,18 +74,18 @@ public class Code07_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 		for (int i = l; i < s.length; i++) {
 			r[i] = R > i ? Math.min(r[2 * C - i], R - i) : 1;
 			while (i + r[i] < s.length && i - r[i] > l - 1) {
-				if (s[i + r[i]] == s[i - r[i]])
+				if (s[i + r[i]] == s[i - r[i]]) {
 					r[i]++;
-				else {
+					if (r[i] - 1 >= k) {
+						return s[i + k] == '#' ? (i + k) : (i + k + 1);
+					}
+				} else {
 					break;
 				}
 			}
 			if (i + r[i] > R) {
 				R = i + r[i];
 				C = i;
-			}
-			if (r[i] - 1 >= k) {
-				return s[i + k] == '#' ? (i + k) : (i + k + 1);
 			}
 		}
 		return s.length;
