@@ -1,4 +1,4 @@
-package class_2022_04_1_week;
+package class_2022_04_2_week;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
 // 为了公平(放屁)，老板希望 : 让获得奖金最高的员工，所获得的奖金尽可能少
 // 所以想请你帮他重新排一下队伍，返回奖金最高的员工获得的、尽可能少的奖金数额
 // 1 <= n <= 1000, 1<= 积分 <= 10000;
-public class Code06_MaxMoneyMostMin {
+public class Code02_MaxMoneyMostMin {
 
 	// 暴力方法
 	// 为了验证

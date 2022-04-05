@@ -1,7 +1,7 @@
-package class_2022_04_1_week;
+package class_2022_04_2_week;
 
 // 测试链接 : https://leetcode-cn.com/problems/zui-xiao-tiao-yue-ci-shu/
-public class Code08_MinJump {
+public class Code03_MinJump {
 
 	public int minJump(int[] jump) {
 		int n = jump.length;

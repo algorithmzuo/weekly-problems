@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-// 来自Amazon
-// 给定一个数组arr，含有n个数字，可能有正、有负、有0
+// 给定一个数组arr，含有n个数字，都是非负数
 // 给定一个正数k
-// 返回所有子序列中，累加和最大的前k个子序列累加和
+// 返回所有子序列中，累加和最小的前k个子序列累加和
 // 假设K不大，怎么算最快？
-public class Code10_TopMaxSubsquenceSum {
+public class Code06_TopMinSubsquenceSum {
 
-	public static int[] topMaxSum1(int[] arr, int k) {
+	public static int[] topMinSum1(int[] arr, int k) {
 		ArrayList<Integer> allAns = new ArrayList<>();
 		process(arr, 0, 0, allAns);
 		allAns.sort((a, b) -> a.compareTo(b));
 		int[] ans = new int[k];
-		for (int i = allAns.size() - 1, j = 0; j < k; i--, j++) {
-			ans[j] = allAns.get(i);
+		for (int i = 0; i < k; i++) {
+			ans[i] = allAns.get(i);
 		}
 		return ans;
 	}
@@ -31,23 +30,7 @@ public class Code10_TopMaxSubsquenceSum {
 		}
 	}
 
-	public static int[] topMaxSum2(int[] arr, int k) {
-		int sum = 0;
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] >= 0) {
-				sum += arr[i];
-			} else {
-				arr[i] = -arr[i];
-			}
-		}
-		int[] ans = topMinSum(arr, k);
-		for (int i = 0; i < ans.length; i++) {
-			ans[i] = sum - ans[i];
-		}
-		return ans;
-	}
-
-	public static int[] topMinSum(int[] arr, int k) {
+	public static int[] topMinSum2(int[] arr, int k) {
 		Arrays.sort(arr);
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[1] - b[1]);
 		heap.add(new int[] { 0, arr[0] });
@@ -69,7 +52,7 @@ public class Code10_TopMaxSubsquenceSum {
 	public static int[] randomArray(int len, int value) {
 		int[] arr = new int[len];
 		for (int i = 0; i < len; i++) {
-			arr[i] = (int) (Math.random() * value) + 1;
+			arr[i] = (int) (Math.random() * value);
 		}
 		return arr;
 	}
@@ -97,8 +80,8 @@ public class Code10_TopMaxSubsquenceSum {
 			int len = (int) (Math.random() * n) + 1;
 			int[] arr = randomArray(len, v);
 			int k = (int) (Math.random() * ((1 << len) - 1)) + 1;
-			int[] ans1 = topMaxSum1(arr, k);
-			int[] ans2 = topMaxSum2(arr, k);
+			int[] ans1 = topMinSum1(arr, k);
+			int[] ans2 = topMinSum2(arr, k);
 			if (!equals(ans1, ans2)) {
 				System.out.println("出错了！");
 				System.out.print("arr : ");
