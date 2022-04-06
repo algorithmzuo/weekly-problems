@@ -36,28 +36,23 @@ public class Code01_FourNumbersMinusOne {
 	}
 
 	public static boolean ok(int[] arr, long[] sum, long time, int num) {
-		int left = mostLeft(arr, time);
-		num -= arr.length - left;
-		long rest = left == 0 ? 0 : sum[left - 1];
-		return time * (long) num <= rest;
-	}
-
-	// >= time 最左
-	public static int mostLeft(int[] arr, long time) {
 		int l = 0;
 		int m = 0;
 		int r = arr.length - 1;
-		int ans = arr.length;
+		int left = arr.length;
+		// >= time 最左
 		while (l <= r) {
 			m = (l + r) / 2;
 			if (arr[m] >= time) {
-				ans = m;
+				left = m;
 				r = m - 1;
 			} else {
 				l = m + 1;
 			}
 		}
-		return ans;
+		num -= arr.length - left;
+		long rest = left == 0 ? 0 : sum[left - 1];
+		return time * (long) num <= rest;
 	}
 
 }
