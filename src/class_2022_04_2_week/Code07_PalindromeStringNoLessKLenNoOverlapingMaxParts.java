@@ -1,5 +1,6 @@
 package class_2022_04_2_week;
 
+// 来自optiver
 // 给定一个字符串str，和一个正数k
 // 你可以随意的划分str成多个子串，
 // 目的是找到在某一种划分方案中，有尽可能多的回文子串，长度>=k，并且没有重合
@@ -46,10 +47,11 @@ public class Code07_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 			return 0;
 		}
 		char[] str = manacherString(s);
-		int[] radius = new int[str.length];
+		int[] p = new int[str.length];
 		int ans = 0;
 		int next = 0;
-		while ((next = manacherFind(str, radius, next, k)) != str.length) {
+		while ((next = manacherFind(str, p, next, k)) != -1) {
+			next = str[next] == '#' ? next : (next + 1);
 			ans++;
 		}
 		return ans;
@@ -67,28 +69,23 @@ public class Code07_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 
 	// s[l...]字符串只在这个范围上，且s[l]一定是'#'
 	// 从下标l开始，之前都不算，一旦有某个中心回文半径>k，马上返回右边界
-	// 并且右边界一定要是'#'
-	public static int manacherFind(char[] s, int[] r, int l, int k) {
-		int C = l - 1;
-		int R = l - 1;
+	public static int manacherFind(char[] s, int[] p, int l, int k) {
+		int c = l - 1;
+		int r = l - 1;
+		int n = s.length;
 		for (int i = l; i < s.length; i++) {
-			r[i] = R > i ? Math.min(r[2 * C - i], R - i) : 1;
-			while (i + r[i] < s.length && i - r[i] > l - 1) {
-				if (s[i + r[i]] == s[i - r[i]]) {
-					r[i]++;
-					if (r[i] - 1 >= k) {
-						return s[i + k] == '#' ? (i + k) : (i + k + 1);
-					}
-				} else {
-					break;
+			p[i] = r > i ? Math.min(p[2 * c - i], r - i) : 1;
+			while (i + p[i] < n && i - p[i] > l - 1 && s[i + p[i]] == s[i - p[i]]) {
+				if (++p[i] > k) {
+					return i + k;
 				}
 			}
-			if (i + r[i] > R) {
-				R = i + r[i];
-				C = i;
+			if (i + p[i] > r) {
+				r = i + p[i];
+				c = i;
 			}
 		}
-		return s.length;
+		return -1;
 	}
 
 	// 为了测试
