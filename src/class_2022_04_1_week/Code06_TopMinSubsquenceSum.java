@@ -32,11 +32,18 @@ public class Code06_TopMinSubsquenceSum {
 
 	public static int[] topMinSum2(int[] arr, int k) {
 		Arrays.sort(arr);
+		// (最右的下标，集合的累加和)
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[1] - b[1]);
 		heap.add(new int[] { 0, arr[0] });
 		int[] ans = new int[k];
+		// ans[0] = 0
+		// 0 1 2  k-1
+		// k个！
 		for (int i = 1; i < k; i++) {
 			int[] cur = heap.poll();
+			// (7, 100)
+			// 左 ：8, 100 - arr[7] + arr[8]
+			// 右 ：8， 100 + arr[8]
 			int last = cur[0];
 			int sum = cur[1];
 			ans[i] = sum;

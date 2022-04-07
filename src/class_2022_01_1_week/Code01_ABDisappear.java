@@ -12,9 +12,9 @@ public class Code01_ABDisappear {
 	public static String disappear1(String str) {
 		String ans = str;
 		for (int i = 1; i < str.length(); i++) {
-			// i == 1   0 1 是不是a和b都全，2...
-			// i == 2   1 2 是不是a和b都全，03....
-			// i == 3   2 3 是不是a和b都全，014....
+			// i == 1 0 1 是不是a和b都全，2...
+			// i == 2 1 2 是不是a和b都全，03....
+			// i == 3 2 3 是不是a和b都全，014....
 			// (i-1 i)扣掉！
 			boolean hasA = str.charAt(i - 1) == 'a' || str.charAt(i) == 'a';
 			boolean hasB = str.charAt(i - 1) == 'b' || str.charAt(i) == 'b';
@@ -45,7 +45,7 @@ public class Code01_ABDisappear {
 		return ans;
 	}
 
-	// 最优解，时间复杂度O(N)
+	// 时间复杂度O(N)
 	// 利用栈
 	public static String disappear3(String s) {
 		char[] str = s.toCharArray();
@@ -67,6 +67,23 @@ public class Code01_ABDisappear {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < size; i++) {
 			builder.append(str[stack[i]]);
+		}
+		return builder.toString();
+	}
+
+	// 贪心，时间复杂度O(N)
+	// A的个数如果比B的个数多，那么一定只剩下A
+	// B的个数如果比A的个数多，那么一定只剩下B
+	public static String disappear4(String s) {
+		int count = 0;
+		for (char cha : s.toCharArray()) {
+			count += cha == 'a' ? 1 : -1;
+		}
+		StringBuilder builder = new StringBuilder();
+		char rest = count > 0 ? 'a' : 'b';
+		count = Math.abs(count);
+		for (int i = 0; i < count; i++) {
+			builder.append(rest);
 		}
 		return builder.toString();
 	}
@@ -97,11 +114,13 @@ public class Code01_ABDisappear {
 			String ans1 = disappear1(test);
 			String ans2 = disappear2(test);
 			String ans3 = disappear3(test);
-			if (!ans1.equals(ans2) || !ans1.equals(ans3)) {
+			String ans4 = disappear4(test);
+			if (!ans1.equals(ans2) || !ans1.equals(ans3) || !ans1.equals(ans4)) {
 				System.out.println(test);
 				System.out.println(ans1);
 				System.out.println(ans2);
 				System.out.println(ans3);
+				System.out.println(ans4);
 				System.out.println("出错了!");
 				break;
 			}

@@ -8,6 +8,23 @@ package class_2022_04_1_week;
 // 而且不能跨出红薯地，他可以获得经过的格子上的所有红薯，请问他可以获得最多的红薯个数。
 public class Code04_MaxScoreMoveInBoard {
 
+//	// 目前来到(row, col)的位置
+//	// 只能往不越界的三个方向移动：西南、正南、东南
+//	// 一旦遇到最南格子，停
+//	// 返回这个过程中，最大的收成
+//	public static int f(int[][] board, int row, int col) {
+//		if (col < 0 || col == board[0].length) {
+//			return 0;
+//		}
+//		if (row == board.length - 1) {
+//			return board[row][col];
+//		}
+//		int p1 = f(board, row + 1, col - 1);
+//		int p2 = f(board, row + 1, col);
+//		int p3 = f(board, row + 1, col + 1);
+//		return board[row][col] + Math.max(p1, Math.max(p2, p3));
+//	}
+
 	public static int maxScore(int[][] map) {
 		int ans = 0;
 		for (int col = 0; col < map[0].length; col++) {

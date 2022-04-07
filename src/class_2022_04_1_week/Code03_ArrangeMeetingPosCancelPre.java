@@ -9,6 +9,8 @@ import java.util.Arrays;
 // 给定一个会议数组，返回安排的会议列表
 public class Code03_ArrangeMeetingPosCancelPre {
 
+	// 比较暴力的解
+	// 为了对数器来验证
 	public static ArrayList<int[]> arrange1(int[][] meetings) {
 		int max = 0;
 		for (int[] meeting : meetings) {
@@ -35,21 +37,30 @@ public class Code03_ArrangeMeetingPosCancelPre {
 		return ans;
 	}
 
+	// 最优解
+	// 会议有N个，时间复杂度O(N*logN)
 	public static ArrayList<int[]> arrange2(int[][] meetings) {
 		int n = meetings.length;
+		// n << 1 -> n*2
 		int[] rank = new int[n << 1];
 		for (int i = 0; i < meetings.length; i++) {
-			rank[i] = meetings[i][0];
-			rank[i + n] = meetings[i][1] - 1;
+			rank[i] = meetings[i][0]; // 会议开头点
+			rank[i + n] = meetings[i][1] - 1; // 会议的结束点
 		}
 		Arrays.sort(rank);
+		// n*2
 		SegmentTree st = new SegmentTree(n << 1);
+		// 哪些会议安排了，放入到ans里去！
 		ArrayList<int[]> ans = new ArrayList<>();
+		// 从右往左遍历，意味着，后出现的会议，先看看能不能安排
 		for (int i = meetings.length - 1; i >= 0; i--) {
+			// cur 当前会议
 			int[] cur = meetings[i];
+			// cur[0] = 17万 -> 6
 			int from = rank(rank, cur[0]);
+			// cur[1] = 90 -> 89 -> 2
 			int to = rank(rank, cur[1] - 1);
-			if (st.get(from, to) == 0) {
+			if (st.sum(from, to) == 0) {
 				ans.add(cur);
 			}
 			st.add(from, to, 1);
@@ -121,7 +132,7 @@ public class Code03_ArrangeMeetingPosCancelPre {
 			pushUp(rt);
 		}
 
-		public int get(int L, int R) {
+		public int sum(int L, int R) {
 			return query(L, R, 1, n, 1);
 		}
 
