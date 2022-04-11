@@ -1,4 +1,4 @@
-package class_2022_04_3_week;
+package class_2022_04_4_week;
 
 // 测试链接 : https://leetcode.com/problems/consecutive-numbers-sum/
 public class Code04_ConsecutiveNumbersSum {
