@@ -30,6 +30,8 @@ public class Code04_MinDistanceFromLeftUpToRightDown {
 		return dp[n - 1][m - 1];
 	}
 
+	// 正确的解法
+	// Dijskra
 	public static int bestWalk2(int[][] map) {
 		int n = map.length;
 		int m = map[0].length;
@@ -81,7 +83,7 @@ public class Code04_MinDistanceFromLeftUpToRightDown {
 		int n = 100;
 		int m = 100;
 		int testTime = 10000;
-		System.out.println("功能测试开始");
+		System.out.println("测试开始");
 		for (int i = 0; i < testTime; i++) {
 			int[][] map = randomMatrix(n, m);
 			int ans1 = bestWalk1(map);
@@ -99,18 +101,7 @@ public class Code04_MinDistanceFromLeftUpToRightDown {
 				break;
 			}
 		}
-		System.out.println("功能测试结束");
-
-		n = 1000;
-		m = 1000;
-		int[][] map = randomMatrix(n, m);
-		System.out.println("性能测试开始");
-		System.out.println("数据规模 : " + n + " * " + m);
-		long start = System.currentTimeMillis();
-		bestWalk2(map);
-		long end = System.currentTimeMillis();
-		System.out.println("运行时间(毫秒) : " + (end - start));
-		System.out.println("性能测试结束");
+		System.out.println("测试结束");
 	}
 
 }
