@@ -7,7 +7,7 @@ import java.util.HashMap;
 // 使得这两个区间中，0和1的个数完全相等
 // 这两个区间可以相交，但是不可以完全重叠，即两个区间的左右端点不可以完全一样
 // 现在请你找到两个最长的区问，满足以上要求。
-public class Code03_TowLongestSubarraySame01Number {
+public class Code05_TowLongestSubarraySame01Number {
 
 	public static int longest1(int[] arr) {
 		HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();

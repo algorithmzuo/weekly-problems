@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 // 一个二维矩阵，上面只有 0 和 1，只能上下左右移动
 // 如果移动前后的元素值相同，则耗费 1 ，否则耗费 2。
 // 问从左上到右下的最小耗费
-public class Code04_MinDistanceFromLeftUpToRightDown {
+public class Code02_MinDistanceFromLeftUpToRightDown {
 
 	// 一个错误的贪心
 	// 网上帖子最流行的解答，看似对，其实不行

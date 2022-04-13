@@ -1,4 +1,4 @@
-package class_2022_04_3_week;
+package class_2022_04_2_week;
 
 // 来自阿里
 // x = { a, b, c, d }
@@ -14,7 +14,7 @@ package class_2022_04_3_week;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Code04_PerfectPairNumber {
+public class Code07_PerfectPairNumber {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

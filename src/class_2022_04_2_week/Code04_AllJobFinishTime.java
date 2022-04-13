@@ -13,7 +13,7 @@ import java.util.Queue;
 // 只要能并行的任务都可以并行，但是任何任务只有依赖的任务完成，才能开始
 // 返回一个长度为n的数组ans，表示每个任务完成的时间
 // 输入可以保证没有循环依赖
-public class Code06_AllJobFinishTime {
+public class Code04_AllJobFinishTime {
 
 	public static int[] finishTime(int n, int[] time, int[][] matrix) {
 		ArrayList<ArrayList<Integer>> nexts = new ArrayList<>();
