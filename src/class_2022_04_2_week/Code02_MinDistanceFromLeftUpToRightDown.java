@@ -35,11 +35,16 @@ public class Code02_MinDistanceFromLeftUpToRightDown {
 	public static int bestWalk2(int[][] map) {
 		int n = map.length;
 		int m = map[0].length;
+		// 小根堆：[代价，行，列]
+		// 根据代价，谁代价小，谁放在堆的上面
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+		// poped[i][j] == true 已经弹出过了！不要再处理，直接忽略！
+		// poped[i][j] == false 之间(i,j)没弹出过！要处理
 		boolean[][] poped = new boolean[n][m];
 		heap.add(new int[] { 0, 0, 0 });
 		int ans = 0;
 		while (!heap.isEmpty()) {
+			// 当前弹出了，[代价，行，列]，当前位置
 			int[] cur = heap.poll();
 			int dis = cur[0];
 			int row = cur[1];
@@ -47,6 +52,7 @@ public class Code02_MinDistanceFromLeftUpToRightDown {
 			if (poped[row][col]) {
 				continue;
 			}
+			// 第一次弹出！
 			poped[row][col] = true;
 			if (row == n - 1 && col == m - 1) {
 				ans = dis;
@@ -60,10 +66,22 @@ public class Code02_MinDistanceFromLeftUpToRightDown {
 		return ans;
 	}
 
-	public static void add(int preDistance, int row, int col, int preValue, int n, int m, int[][] map, boolean[][] used,
+	// preDistance ： 之前的距离
+	// int row, int col ： 当前要加入的是什么位置
+	// preValue : 前一个格子是什么值， 
+	// int n, int m ：边界，固定参数
+	// map: 每一个格子的值，都在map里
+	// boolean[][] poped : 当前位置如果是弹出过的位置，要忽略！
+	// PriorityQueue<int[]> heap : 小根堆
+	public static void add(int preDistance,
+			int row, int col, int preValue, int n, int m, 
+			int[][] map, boolean[][] poped,
 			PriorityQueue<int[]> heap) {
-		if (row >= 0 && row < n && col >= 0 && col < m && !used[row][col]) {
-			heap.add(new int[] { preDistance + (map[row][col] == preValue ? 1 : 2), row, col });
+		if (row >= 0 && row < n && col >= 0 && col < m 
+				&& !poped[row][col]) {
+			heap.add(new int[] { 
+					preDistance + (map[row][col] == preValue ? 1 : 2),
+					row, col });
 		}
 	}
 

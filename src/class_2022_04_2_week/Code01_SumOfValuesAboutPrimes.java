@@ -10,7 +10,9 @@ import java.util.HashMap;
 // 返回所有选择数字的方案中，得到的x的价值之和
 public class Code01_SumOfValuesAboutPrimes {
 
-	// 返回num质数列表(去重)
+	// 工具！
+	// 返回num质数因子列表(去重)
+	// 时间复杂度，根号(num)
 	public static ArrayList<Long> primes(long num) {
 		ArrayList<Long> ans = new ArrayList<>();
 		for (long i = 2; i * i <= num && num > 1; i++) {
@@ -41,6 +43,8 @@ public class Code01_SumOfValuesAboutPrimes {
 	}
 
 	public static long sumOfValues2(int[] arr) {
+		// key : 某个质数因子
+		// value : 有多少个数含有这个因子
 		HashMap<Long, Long> cntMap = new HashMap<>();
 		for (int num : arr) {
 			for (long factor : primes(num)) {
@@ -49,6 +53,8 @@ public class Code01_SumOfValuesAboutPrimes {
 		}
 		int n = arr.length;
 		long ans = 0;
+		// count ：含有这个因子的数，有多少个
+		// others : 不含有这个因子的数，有多少个
 		for (long count : cntMap.values()) {
 			long others = n - count;
 			ans += (power(2, count) - 1) * power(2, others);

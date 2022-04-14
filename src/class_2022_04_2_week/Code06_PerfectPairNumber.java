@@ -7,14 +7,14 @@ package class_2022_04_2_week;
 // 如果有: a + e = b + f = c + g = d + h
 // 那么说x和y是一个完美对
 // 题目给定N个小数组，每个小数组长度都是K
-// 返回这N个小数组中，有多少完美对 
+// 返回这N个小数组中，有多少完美对
 // 本题测试链接 : https://www.nowcoder.com/practice/f5a3b5ab02ed4202a8b54dfb76ad035e
 // 提交如下代码，把主类名改成Main
 // 可以直接通过
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Code07_PerfectPairNumber {
+public class Code06_PerfectPairNumber {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -35,6 +35,7 @@ public class Code07_PerfectPairNumber {
 
 	public static long perfectPairs(int[][] matrix) {
 		long ans = 0;
+		// key : 字符串 特征，差值特征 : "_5_-2_6_9"
 		HashMap<String, Integer> counts = new HashMap<>();
 		for (int[] arr : matrix) {
 			StringBuilder self = new StringBuilder();

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // 来自美团
-// 3.36笔试
+// 3.26笔试
 // 给定一个正数n, 表示有0~n-1号任务
 // 给定一个长度为n的数组time，time[i]表示i号任务做完的时间
 // 给定一个二维数组matrix
