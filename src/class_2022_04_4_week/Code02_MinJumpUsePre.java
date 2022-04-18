@@ -1,4 +1,4 @@
-package class_2022_04_3_week;
+package class_2022_04_4_week;
 
 // 为了给刷题的同学一些奖励，力扣团队引入了一个弹簧游戏机
 // 游戏机由 N 个特殊弹簧排成一排，编号为 0 到 N-1
@@ -10,7 +10,7 @@ package class_2022_04_3_week;
 // 为了获得奖励，你需要将小球弹出机器。
 // 请求出最少需要按动多少次弹簧，可以将小球从编号 0 弹簧弹出整个机器，即向右越过编号 N-1 的弹簧。
 // 测试链接 : https://leetcode-cn.com/problems/zui-xiao-tiao-yue-ci-shu/
-public class Code04_MinJump {
+public class Code02_MinJumpUsePre {
 
 	public int minJump(int[] jump) {
 		int n = jump.length;
