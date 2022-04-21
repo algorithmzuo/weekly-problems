@@ -13,6 +13,7 @@ public class Code03_ValidSortedArrayWays {
 	// 动态规划
 	public static long ways1(int[] nums, int k) {
 		int n = nums.length;
+		// dp[i][j] : 一共i个格子，随意填，但是不能降序，j种数可以选
 		long[][] dp = new long[n + 1][k + 1];
 		for (int i = 1; i <= n; i++) {
 			dp[i][1] = 1;

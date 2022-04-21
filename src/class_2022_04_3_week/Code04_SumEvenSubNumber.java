@@ -24,9 +24,15 @@ public class Code04_SumEvenSubNumber {
 			return 0;
 		}
 		int n = arr.length;
+		// even[i][j] : 在前i个数的范围上(0...i-1)，一定选j个数，加起来是偶数的子序列个数
+		// odd[i][j]  : 在前i个数的范围上(0...i-1)，一定选j个数，加起来是奇数的子序列个数
 		int[][] even = new int[n + 1][k + 1];
 		int[][] odd = new int[n + 1][k + 1];
 		for (int i = 0; i <= n; i++) {
+			// even[0][0] = 1;
+			// even[1][0] = 1;
+			// even[2][0] = 1;
+			// even[n][0] = 1;
 			even[i][0] = 1;
 		}
 		for (int i = 1; i <= n; i++) {

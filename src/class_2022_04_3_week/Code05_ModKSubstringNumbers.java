@@ -25,11 +25,16 @@ public class Code05_ModKSubstringNumbers {
 	// 时间复杂度O(N * k)
 	public static int modWays2(String s, int k) {
 		int[] cur = new int[k];
+		// 帮忙迁移
 		int[] next = new int[k];
+		// 0...i 整体余几？
 		int mod = 0;
+		// 答案：统计有多少子串的值%k == 0
 		int ans = 0;
 		for (char cha : s.toCharArray()) {
 			for (int i = 0; i < k; i++) {
+				// i -> 10个
+				// (i * 10) % k 
 				next[(i * 10) % k] += cur[i];
 				cur[i] = 0;
 			}
