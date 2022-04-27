@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 // 求，允许施展一次魔法的情况下，1到n的最短路，如果不能到达，输出-1。
 // n为点数, 每条边用(a,b,v)表示，含义是a到b的这条边，权值为v
 // 点的数量 <= 10^5，边的数量 <= 2 * 10^5，1 <= 边的权值 <= 10^6
-public class Code03_OneEdgeMagicMinPathSum {
+public class Code04_OneEdgeMagicMinPathSum {
 
 	// 为了测试
 	// 相对暴力的解

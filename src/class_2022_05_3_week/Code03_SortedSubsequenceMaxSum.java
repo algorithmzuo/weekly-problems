@@ -9,7 +9,7 @@ import java.util.Arrays;
 // 要求从左到右选出一个子序列，在这个子序列中的人，从左到右身高是不下降的
 // 返回所有符合要求的子序列中，分数最大累加和是多大
 // n <= 10的5次方, 1 <= h[i] <= 10的9次方, 1 <= v[i] <= 10的9次方
-public class Code02_SortedSubsequenceMaxSum {
+public class Code03_SortedSubsequenceMaxSum {
 
 	// 为了测试
 	// 绝对正确的暴力方法

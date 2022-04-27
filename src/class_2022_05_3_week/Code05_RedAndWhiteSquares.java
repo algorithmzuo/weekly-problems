@@ -10,7 +10,7 @@ package class_2022_05_3_week;
 // 给定k次操作，每一次操作用(a, b, c)表示在大立方体的该位置进行染色
 // 返回长度为k的数组，表示每一次操作后，白色方块的连通块数
 // n * m * h <= 10 ^ 5，k <= 10 ^ 5
-public class Code04_RedAndWhiteSquares {
+public class Code05_RedAndWhiteSquares {
 
 	// 暴力方法
 	// 时间复杂度(k * n * m * h);
