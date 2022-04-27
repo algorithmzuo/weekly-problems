@@ -138,6 +138,7 @@ public class Code02_SortedSubsequenceMaxSum {
 		return ans;
 	}
 
+	// 为了测试
 	public static void main(String[] args) {
 		int N = 30;
 		int V = 100;

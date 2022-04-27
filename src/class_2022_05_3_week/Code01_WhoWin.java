@@ -110,6 +110,7 @@ public class Code01_WhoWin {
 		}
 	}
 
+	// 为了测试
 	public static void main(String[] args) {
 		for (int rest = 1; rest <= 500; rest++) {
 			System.out.println("球数为 " + rest + " 时 , 赢的是 " + win2(rest, 0, 0, 0));

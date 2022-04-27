@@ -12,6 +12,7 @@ import java.util.PriorityQueue;
 // 点的数量 <= 10^5，边的数量 <= 2 * 10^5，1 <= 边的权值 <= 10^6
 public class Code03_OneEdgeMagicMinPathSum {
 
+	// 为了测试
 	// 相对暴力的解
 	// 尝试每条有向边，都变一次无向边，然后跑一次dijkstra算法
 	// 那么其中一定有最好的答案
@@ -101,6 +102,7 @@ public class Code03_OneEdgeMagicMinPathSum {
 		return ans == Integer.MAX_VALUE ? -1 : ans;
 	}
 
+	// 为了测试
 	public static int[][] randomRoads(int n, int v) {
 		int m = (int) (Math.random() * (n * (n - 1) / 2)) + 1;
 		int[][] roads = new int[m][3];
@@ -112,6 +114,7 @@ public class Code03_OneEdgeMagicMinPathSum {
 		return roads;
 	}
 
+	// 为了测试
 	public static void main(String[] args) {
 		int N = 20;
 		int V = 30;

@@ -184,6 +184,24 @@ public class Code04_RedAndWhiteSquares {
 			}
 		}
 		System.out.println("测试结束");
+
+		// 立方体达到10^6规模
+		int n = 100;
+		int m = 100;
+		int h = 100;
+		int len = n * m * h;
+		// 操作条数达到10^6规模
+		int[][] ops = new int[len][3];
+		for (int i = 0; i < len; i++) {
+			ops[i][0] = (int) (Math.random() * n);
+			ops[i][1] = (int) (Math.random() * m);
+			ops[i][2] = (int) (Math.random() * h);
+		}
+		long start = System.currentTimeMillis();
+		blocks2(n, m, h, ops);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间(毫秒) : " + (end - start));
+
 	}
 
 }
