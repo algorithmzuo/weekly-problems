@@ -6,7 +6,7 @@ package class_2022_05_3_week;
 // 每个人在自己的回合，一定要拿不超过3个球，不能不拿
 // 最终谁的总球数为偶数，谁赢
 // 请问谁有必胜策略
-public class Code01_WhoWin {
+public class Code01_WhoWin21Balls {
 
 	// 我们补充一下设定，假设一开始的球数量不是21，是任意的正数
 	// 如果最终两个人拿的都是偶数，认为无人获胜，平局
