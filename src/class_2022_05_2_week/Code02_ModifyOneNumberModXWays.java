@@ -1,4 +1,4 @@
-package class_2022_05_3_week;
+package class_2022_05_2_week;
 
 // 来自网易
 // 小红拿到了一个长度为N的数组arr，她准备只进行一次修改

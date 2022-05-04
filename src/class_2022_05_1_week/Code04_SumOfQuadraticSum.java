@@ -1,4 +1,4 @@
-package class_2022_05_2_week;
+package class_2022_05_1_week;
 
 // 来自学员问题，蓝桥杯练习题
 // f(i) : i的所有因子，每个因子都平方之后，累加起来
