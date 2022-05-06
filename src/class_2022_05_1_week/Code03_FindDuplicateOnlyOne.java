@@ -35,11 +35,13 @@ public class Code03_FindDuplicateOnlyOne {
 			slow = arr[slow];
 			fast = arr[arr[fast]];
 		}
+		// slow == fast
 		fast = 0;
 		while (slow != fast) {
 			fast = arr[fast];
 			slow = arr[slow];
 		}
+		// 再相遇！一个结论
 		return slow;
 	}
 

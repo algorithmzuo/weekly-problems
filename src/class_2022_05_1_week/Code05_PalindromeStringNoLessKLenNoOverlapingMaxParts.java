@@ -50,6 +50,14 @@ public class Code05_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 		int[] p = new int[str.length];
 		int ans = 0;
 		int next = 0;
+		// k == 5   回文串长度要 >= 5
+		// next == 0
+		// 0.... 8  第一块！
+		// next -> 9
+		// 9.....17 第二块！
+		// next -> 18
+		// 18....23 第三块
+		// next一直到最后!
 		while ((next = manacherFind(str, p, next, k)) != -1) {
 			next = str[next] == '#' ? next : (next + 1);
 			ans++;
