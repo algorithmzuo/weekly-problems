@@ -62,7 +62,26 @@ public class Code04_SumOfQuadraticSum {
 		return ans;
 	}
 
+	// 实验
+	// 解法来自观察
+	public static void test(int n) {
+		int[] cnt = new int[n + 1];
+		for (int num = 1; num <= n; num++) {
+			for (int j = 1; j <= num; j++) {
+				if (num % j == 0) {
+					cnt[j]++;
+				}
+			}
+		}
+		for (int i = 1; i <= n; i++) {
+			System.out.println("因子 : " + i + ", 个数 : " + cnt[i]);
+		}
+	}
+
 	public static void main(String[] args) {
+
+		test(200);
+
 		System.out.println("测试开始");
 		for (long i = 1; i < 1000; i++) {
 			if (sum1(i) != sum2(i)) {
