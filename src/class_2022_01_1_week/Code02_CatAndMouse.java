@@ -29,8 +29,10 @@ public class Code02_CatAndMouse {
 		// int limit = (n << 1) + 2; 还会出错，但是概率很小，需要多跑几次
 		// int limit = (n << 1) + 3; 就没错了，或者说，概率小到很难重现
 		// 为啥？我屌你为啥！
-		// n * 2 + 2
-		int limit = (n << 1) + 3;
+		// 讲了这节课之后，leetcode又增加了测试用例
+		// 导致 int limit = (n << 1) + 3; 也会出错
+		// 改成如下的+12，可以通过，但是，如果去人为构造错误用例，一定还会出现错误
+		int limit = (n << 1) + 12;
 		int[][][] dp = new int[n][n][limit];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
@@ -40,16 +42,13 @@ public class Code02_CatAndMouse {
 		return process(graph, limit, 2, 1, 1, dp);
 	}
 
-	// dp[][][]  傻缓存！
+	// dp[][][] 傻缓存！
 	// dp[cat][mouse][turn] == -1 这个状态之前没算过！
 	// dp[cat][mouse][turn] == 0 这个状态之前算过！平局！
 	// dp[cat][mouse][turn] == 1 这个状态之前算过！老鼠赢！
 	// dp[cat][mouse][turn] == 2 这个状态之前算过！猫赢！
 	// 固定参数！轮数不要超过limit！如果超过，就算平局！
-	public static int process(int[][] graph, 
-			int limit, 
-			int cat, int mouse, int turn, 
-			int[][][] dp) {
+	public static int process(int[][] graph, int limit, int cat, int mouse, int turn, int[][][] dp) {
 		if (turn == limit) {
 			return 0;
 		}
@@ -112,10 +111,10 @@ public class Code02_CatAndMouse {
 	// 9 : {0, }
 	// 猫此时的位置 -> cat
 	// mouse
-	// turn == 1 老鼠的回合  turn == 0 猫的回合
+	// turn == 1 老鼠的回合 turn == 0 猫的回合
 	// 当第一次出现，在老鼠的回合，猫在5位置 ，老鼠在7位置
-	// path[cat][mouse][1]  = false
-	// 不是第一次出现  path[cat][mouse][1]  = true
+	// path[cat][mouse][1] = false
+	// 不是第一次出现 path[cat][mouse][1] = true
 	public static int win(int[][] graph, int cat, int mouse, int turn, boolean[][][] path) {
 		if (path[cat][mouse][turn]) { // 之前来到过这个状态！平局！
 			return 0;
