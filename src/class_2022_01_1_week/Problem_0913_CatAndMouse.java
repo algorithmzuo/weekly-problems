@@ -12,6 +12,7 @@ import java.util.ArrayList;
 // 依然继续能通过
 // 但是贪心依然是没道理的，人为构造的话总能找出反例来
 // 所以补充了一个拓扑排序的解法
+// 这个方法，没在课上讲，有空我们补充一下
 public class Problem_0913_CatAndMouse {
 
 	public static final int MOUSE_TURN = 0, CAT_TURN = 1;

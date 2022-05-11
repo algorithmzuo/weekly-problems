@@ -40,7 +40,7 @@ public class Code03_SortedSubsequenceMaxSum {
 			int height = rank(rank, h[i]);
 			st.update(height, st.max(height) + v[i]);
 		}
-		return (int) st.max(n);
+		return st.max(n);
 	}
 
 	public static int rank(int[] rank, int num) {
