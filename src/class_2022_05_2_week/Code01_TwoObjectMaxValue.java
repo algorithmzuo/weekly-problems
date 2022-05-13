@@ -41,12 +41,23 @@ public class Code01_TwoObjectMaxValue {
 			arr[i][0] = w[i];
 			arr[i][1] = v[i];
 		}
+		// O(N * logN)
 		Arrays.sort(arr, (a, b) -> (a[0] - b[0]));
+		// 重量从轻到重，依次标号1、2、3、4....
+		// 价值依次被构建成了RMQ结构
+		// O(N * logN)
 		RMQ rmq = new RMQ(arr);
 		int ans = 0;
+		// N * logN
 		for (int i = 0, j = 1; i < n && arr[i][0] <= bag; i++, j++) {
+			// 当前来到0号货物，RMQ结构1号
+			// 当前来到i号货物，RMQ结构i+1号
+			// 查询重量的边界，重量 边界 <= bag - 当前货物的重量
+			// 货物数组中，找到 <= 边界，最右的位置i
+			// RMQ，位置 i + 1
 			int right = right(arr, bag - arr[i][0]) + 1;
 			int rest = 0;
+			// j == i + 1，当前的货物，在RMQ里的下标
 			if (right == j) {
 				rest = rmq.max(1, right - 1);
 			} else if (right < j) {

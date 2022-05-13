@@ -43,8 +43,13 @@ public class Code02_ModifyOneNumberModXWays {
 
 	// 当前数字num
 	// 1~p以内，不能是num的情况下，% x == mod的数字有几个
+	// O(1)
 	public static int cnt(int p, int x, int num, int mod) {
+		// p/x 至少有几个
+		// (p % x) >= mod ? 1 : 0
+		// 在不考虑变出来的数，是不是num的情况下，算一下有几个数，符合要求
 		int ans = (p / x) + ((p % x) >= mod ? 1 : 0) - (mod == 0 ? 1 : 0);
+		// 不能等于num！
 		return ans - ((num <= p && num % x == mod) ? 1 : 0);
 	}
 

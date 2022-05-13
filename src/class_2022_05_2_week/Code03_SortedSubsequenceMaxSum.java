@@ -38,11 +38,15 @@ public class Code03_SortedSubsequenceMaxSum {
 		SegmentTree st = new SegmentTree(n);
 		for (int i = 0; i < n; i++) {
 			int height = rank(rank, h[i]);
+			// 1~height max
 			st.update(height, st.max(height) + v[i]);
 		}
 		return st.max(n);
 	}
 
+	// [150, 152, 160, 175]  160
+	//   1    2    3    4
+	// 3
 	public static int rank(int[] rank, int num) {
 		int l = 0;
 		int r = rank.length - 1;

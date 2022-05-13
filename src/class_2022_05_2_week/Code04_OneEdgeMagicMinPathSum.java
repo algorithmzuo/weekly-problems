@@ -72,6 +72,11 @@ public class Code04_OneEdgeMagicMinPathSum {
 		}
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
 		boolean[][] visited = new boolean[2][n + 1];
+		// a -> 0,a   1,a
+		// boolean[] visted = new boolean[n+1]
+		// visted[i] == true 去过了！从队列里弹出来过了！以后别碰了！
+		// visted[i] == false 没去过！第一次从队列里弹出来！当前要处理！
+		// 0,1,0 -> 之前没有走过魔法路，当前来到1号出发点，代价是0
 		heap.add(new int[] { 0, 1, 0 });
 		int ans = Integer.MAX_VALUE;
 		while (!heap.isEmpty()) {
@@ -87,16 +92,33 @@ public class Code04_OneEdgeMagicMinPathSum {
 				}
 			}
 			for (int[] edge : graph.get(cur[1])) {
+				// 当前来到cur
+				// 之前有没有走过魔法路径：cur[0] == 0 ，没走过！cur[0] = 1, 走过了
+				// 当前来到的点是啥，cur[1]，点编号！
+				// 之前的总代价是啥？cur[2]
+				// cur，往下，能走的，所有的路在哪？
+				// 当前的路，叫edge
+				// 当前的路，是不是魔法路！edge[0] = 0 , 不是魔法路
+				// edge[0] == 1，是魔法路
+				// cur[0] + edge[0] == 0
+				// 路 ：0 5 20
+				// 当前路，不是魔法路，去往的点是5号点，该路权重是20
+				// 路 ：1 7 13
+				// 当前路，是魔法路，去往的点是7号点，该路权重是13
 				if (cur[0] + edge[0] == 0) {
 					if (!visited[0][edge[1]]) {
 						heap.add(new int[] { 0, edge[1], cur[2] + edge[2] });
 					}
 				}
+				// cur[0] + edge[0] == 1
+				// 0         1
+				// 1         0
 				if (cur[0] + edge[0] == 1) {
 					if (!visited[1][edge[1]]) {
 						heap.add(new int[] { 1, edge[1], cur[2] + edge[2] });
 					}
 				}
+				// 1 1 == 2
 			}
 		}
 		return ans == Integer.MAX_VALUE ? -1 : ans;

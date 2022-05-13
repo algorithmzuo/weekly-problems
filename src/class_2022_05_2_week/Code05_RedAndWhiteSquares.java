@@ -66,6 +66,8 @@ public class Code05_RedAndWhiteSquares {
 			int y = ops[i][1];
 			int z = ops[i][2];
 			if (--red[x][y][z] == 0) {
+				// x, y ,z 这个格子，变白，建立自己的小集合
+				// 然后6个方向，集合该合并合并
 				uf.finger(x, y, z);
 			}
 		}
@@ -101,6 +103,8 @@ public class Code05_RedAndWhiteSquares {
 		}
 
 		public void finger(int x, int y, int z) {
+			// x，y，z
+			// 一维数值
 			int i = index(x, y, z);
 			father[i] = i;
 			size[i] = 1;
