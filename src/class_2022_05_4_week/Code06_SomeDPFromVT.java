@@ -73,6 +73,35 @@ public class Code06_SomeDPFromVT {
 		dp[index][restFunny][restOffense] = ans;
 		return ans;
 	}
+	
+	// 严格位置依赖的动态规划
+	public static int minStickers3(int[][] stickers, int funnyGoal, int offenseGoal) {
+		int n = stickers.length;
+		int[][][] dp = new int[n + 1][funnyGoal + 1][offenseGoal + 1];
+		for (int f = 0; f <= funnyGoal; f++) {
+			for (int o = 0; o <= offenseGoal; o++) {
+				if (f != 0 || o != 0) {
+					dp[n][f][o] = Integer.MAX_VALUE;
+				}
+			}
+		}
+		for (int i = n - 1; i >= 0; i--) {
+			for (int f = 0; f <= funnyGoal; f++) {
+				for (int o = 0; o <= offenseGoal; o++) {
+					if (f != 0 || o != 0) {
+						int p1 = dp[i + 1][f][o];
+						int p2 = Integer.MAX_VALUE;
+						int next2 = dp[i + 1][Math.max(0, f - stickers[i][0])][Math.max(0, o - stickers[i][1])];
+						if (next2 != Integer.MAX_VALUE) {
+							p2 = next2 + 1;
+						}
+						dp[i][f][o] = Math.min(p1, p2);
+					}
+				}
+			}
+		}
+		return dp[0][funnyGoal][offenseGoal];
+	}
 
 	// 题目2
 	// 绳子总长度为M
