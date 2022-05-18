@@ -11,7 +11,7 @@ package class_2022_05_3_week;
 // 为了获得奖励，你需要将小球弹出机器。
 // 请求出最少需要按动多少次弹簧，可以将小球从编号 0 弹簧弹出整个机器，即向右越过编号 N-1 的弹簧。
 // 测试链接 : https://leetcode-cn.com/problems/zui-xiao-tiao-yue-ci-shu/
-public class Code01_MinJumpUsePre {
+public class Code04_MinJumpUsePre {
 
 	public int minJump(int[] jump) {
 		int n = jump.length;

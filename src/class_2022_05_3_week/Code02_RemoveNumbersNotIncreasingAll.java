@@ -6,7 +6,7 @@ package class_2022_05_3_week;
 // 你可以删除数字，目的是让arr的最长递增子序列长度小于K
 // 返回至少删除几个数字能达到目的
 // N <= 10^4，K <= 10^2
-public class Code03_RemoveNumbersNotIncreasingAll {
+public class Code02_RemoveNumbersNotIncreasingAll {
 
 	// 暴力方法
 	// 为了验证

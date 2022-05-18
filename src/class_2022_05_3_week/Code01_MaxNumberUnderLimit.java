@@ -8,7 +8,7 @@ import java.util.Arrays;
 // limit，一个数字
 // 返回:
 // 要求比limit小的情况下，能够用arr拼出来的最大数字
-public class Code02_MaxNumberUnderLimit {
+public class Code01_MaxNumberUnderLimit {
 
 	public static int tmp = 0;
 

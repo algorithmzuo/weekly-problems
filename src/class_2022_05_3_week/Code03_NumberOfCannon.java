@@ -7,7 +7,7 @@ import java.util.TreeMap;
 // 大炮打导弹的时候，如果一旦大炮定了某个高度去打，那么这个大炮每次打的高度都必须下降一点
 // 1) 如果只有一个大炮，返回最多能拦截多少导弹
 // 2) 如果所有的导弹都必须拦截，返回最少的大炮数量
-public class Code04_NumberOfCannon {
+public class Code03_NumberOfCannon {
 
 	public static int numOfCannon(int[] arr) {
 		// key : 某个大炮打的结尾数值
