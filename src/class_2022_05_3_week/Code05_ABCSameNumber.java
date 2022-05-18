@@ -129,7 +129,7 @@ public class Code05_ABCSameNumber {
 	public static void main(String[] args) {
 		// 数组长度一定是3的整数倍，且 <= 3*n
 		// 如下代码是验证操作次数一定不大于2次
-		int n = 6;
+		int n = 8;
 		int testTime = 2000;
 		System.out.println("测试开始");
 		for (int i = 0; i < testTime; i++) {
