@@ -6,7 +6,7 @@ package class_2022_05_3_week;
 // 你可以把任何一个连续区间上的数组，全变成0、1、2中的一种
 // 目的是让0、1、2三种数字的个数都是N
 // 返回最小的变化次数
-public class Code04_ABCSameNumber {
+public class Code05_ABCSameNumber {
 
 	// 暴力方法
 	// 为了验证不会超过2次
