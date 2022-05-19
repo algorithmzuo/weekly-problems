@@ -1,5 +1,7 @@
 package class_2022_05_3_week;
 
+import java.util.Arrays;
+
 // 来自学员问题
 // 为了给刷题的同学一些奖励，力扣团队引入了一个弹簧游戏机
 // 游戏机由 N 个特殊弹簧排成一排，编号为 0 到 N-1
@@ -12,7 +14,7 @@ package class_2022_05_3_week;
 // 请求出最少需要按动多少次弹簧，可以将小球从编号 0 弹簧弹出整个机器，即向右越过编号 N-1 的弹簧。
 // 测试链接 : https://leetcode-cn.com/problems/zui-xiao-tiao-yue-ci-shu/
 public class Code04_MinJumpUsePre {
-	
+
 	// 宽度优先遍历
 	// N*logN
 	public int minJump(int[] jump) {
@@ -42,7 +44,7 @@ public class Code04_MinJumpUsePre {
 					it.add(forward, -1);
 				}
 				// cur
-				// 1....cur-1  cur
+				// 1....cur-1 cur
 				while (it.sum(cur - 1) != 0) {
 					int find = find(it, cur - 1);
 					it.add(find, -1);
@@ -106,6 +108,47 @@ public class Code04_MinJumpUsePre {
 			}
 		}
 
+	}
+
+	// 感谢黄汀同学
+	// 弄出了时间复杂度O(N)的过程
+	// 和大厂刷题班，第10节，jump game类似
+	public int minJump2(int[] jump) {
+		int N = jump.length;
+		int ans = N;
+		int next = jump[0];
+		if (next >= N) {
+			return 1;
+		}
+		if (next + jump[next] >= N) {
+			return 2;
+		}
+		// dp[i] : 来到i位置，最少跳几步？
+		int[] dp = new int[N + 1];
+		Arrays.fill(dp, N);
+		// dis[i] : <= i步的情况下，最远能跳到哪？
+		int[] dis = new int[N];
+		// 如果从0开始向前跳，<=1步的情况下，最远当然能到next
+		dis[1] = next;
+		// 如果从0开始向前跳，<=2步的情况下，最远可能比next + jump[next]要远，
+		// 这里先设置，以后可能更新
+		dis[2] = next + jump[next];
+		dp[next + jump[next]] = 2;
+		int step = 1;
+		for (int i = 1; i < N; i++) {
+			if (i > dis[step]) {
+				step++;
+			}
+			dp[i] = Math.min(dp[i], step + 1);
+			next = i + jump[i];
+			if (next >= N) {
+				ans = Math.min(ans, dp[i] + 1);
+			} else if (dp[next] > dp[i] + 1) {
+				dp[next] = dp[i] + 1;
+				dis[dp[next]] = Math.max(dis[dp[next]], next);
+			}
+		}
+		return ans;
 	}
 
 }
