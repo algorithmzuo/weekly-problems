@@ -54,6 +54,39 @@ public class Code02_RemoveNumbersNotIncreasingAll {
 		return max;
 	}
 
+	// arr[0...index-1]上，选择了一些数字，之前的决定！
+	// len长度了！len = 3 ： 1 2 3
+	// arr[index....]是能够决定的，之前的，已经不能再决定了
+	// 返回：让最终保留的数字，凑不足k长度的情况下，至少要删几个！
+	public static int zuo(int[] arr, int index, int len, int k) {
+		if (len == k) {
+			return Integer.MAX_VALUE;
+		}
+		// 凑的(1...len)还不到(1...k)
+		if (index == arr.length) {
+			return 0;
+		}
+		// 没凑到 < k, 有数字!
+		int cur = arr[index];
+		// 可能性1：保留
+		// 可能性2：删除
+		// 1...3 3
+		if (len >= cur || len + 1 < cur) {
+			return zuo(arr, index + 1, len, k);
+		}
+		// 1..3  4
+		// len + 1  == cur
+		// 可能性1：保留
+		int p1 = zuo(arr, index + 1, len + 1, k);
+		// 可能性2：删除
+		int p2 = Integer.MAX_VALUE;
+		int next2 = zuo(arr, index + 1, len, k);
+		if(next2 != Integer.MAX_VALUE) {
+			p2 = 1 + next2;
+		}
+		return Math.min(p1, p2);
+	}
+
 	// 正式方法
 	// 时间复杂度O(N*K)
 	public static int minRemove2(int[] arr, int k) {

@@ -12,7 +12,9 @@ package class_2022_05_3_week;
 // 请求出最少需要按动多少次弹簧，可以将小球从编号 0 弹簧弹出整个机器，即向右越过编号 N-1 的弹簧。
 // 测试链接 : https://leetcode-cn.com/problems/zui-xiao-tiao-yue-ci-shu/
 public class Code04_MinJumpUsePre {
-
+	
+	// 宽度优先遍历
+	// N*logN
 	public int minJump(int[] jump) {
 		int n = jump.length;
 		int[] queue = new int[n];
@@ -20,12 +22,15 @@ public class Code04_MinJumpUsePre {
 		int r = 0;
 		queue[r++] = 0;
 		IndexTree it = new IndexTree(n);
+		// 1...n初始化的时候 每个位置填上1
 		for (int i = 1; i < n; i++) {
 			it.add(i, 1);
 		}
 		int step = 0;
-		while (l != r) {
+		while (l != r) { // 队列里面还有东西
+			// tmp记录了当前层的终止位置！
 			int tmp = r;
+			// 当前层的所有节点，都去遍历!
 			for (; l < tmp; l++) {
 				int cur = queue[l];
 				int forward = cur + jump[cur];
@@ -36,6 +41,8 @@ public class Code04_MinJumpUsePre {
 					queue[r++] = forward;
 					it.add(forward, -1);
 				}
+				// cur
+				// 1....cur-1  cur
 				while (it.sum(cur - 1) != 0) {
 					int find = find(it, cur - 1);
 					it.add(find, -1);

@@ -1,4 +1,4 @@
-package class_2022_05_4_week;
+package class_2022_06_1_week;
 
 // 来自网易
 // 题目出处 : https://leetcode-cn.com/circle/discuss/uOnnUA/
@@ -16,7 +16,7 @@ package class_2022_05_4_week;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Code02_SwapRowOrColMakeDiagonalAllOne {
+public class Code01_SwapRowOrColMakeDiagonalAllOne {
 
 	public static int[][] out = new int[1000][2];
 

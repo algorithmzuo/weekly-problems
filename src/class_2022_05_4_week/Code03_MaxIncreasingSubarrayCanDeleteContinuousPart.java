@@ -7,7 +7,7 @@ import java.util.Arrays;
 // 给定一个数组arr，长度为n，最多可以删除一个连续子数组，
 // 求剩下的数组，严格连续递增子数组的最大长度
 // n <= 10^6
-public class Code01_MaxIncreasingSubarrayCanDeleteContinuousPart {
+public class Code03_MaxIncreasingSubarrayCanDeleteContinuousPart {
 
 	// 暴力方法
 	// 为了验证

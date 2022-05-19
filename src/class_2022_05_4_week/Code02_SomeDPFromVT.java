@@ -4,7 +4,7 @@ package class_2022_05_4_week;
 // 精选了还可以的几道题
 // 这些都是简单难度的动态规划，是面试中最常见的难度
 // 这几个题都有一些非常小的常见技巧可说
-public class Code06_SomeDPFromVT {
+public class Code02_SomeDPFromVT {
 
 	// 题目1
 	// 找到一个最少张数的方案，让FunnyGoal、OffenseGoal，都超过一个值

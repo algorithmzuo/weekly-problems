@@ -4,7 +4,7 @@ package class_2022_05_4_week;
 // m个人分n个月饼，
 // 每个人至少分1个，分第一多的月饼数a1，分第二多的月饼数a2，分第三多的月饼数a3... 
 // 要求a1-a2<=3，a2-a3<=3...有多少种分法?
-public class Code05_SplitWaysNoMore3 {
+public class Code01_SplitWaysNoMore3 {
 
 	public static int ways(int m, int n) {
 		if (m > n) {

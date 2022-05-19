@@ -3,7 +3,7 @@ package class_2022_05_4_week;
 import java.util.TreeMap;
 
 // 测试链接 : https://leetcode.com/problems/number-of-atoms/
-public class Code03_NumberOfAtoms {
+public class Code05_NumberOfAtoms {
 
 	public static String countOfAtoms(String str) {
 		char[] s = str.toCharArray();

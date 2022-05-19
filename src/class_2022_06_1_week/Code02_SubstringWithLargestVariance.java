@@ -1,7 +1,7 @@
-package class_2022_05_4_week;
+package class_2022_06_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/substring-with-largest-variance/
-public class Code04_SubstringWithLargestVariance {
+public class Code02_SubstringWithLargestVariance {
 
 	public static int largestVariance(String s) {
 		if (s == null || s.length() == 0) {
