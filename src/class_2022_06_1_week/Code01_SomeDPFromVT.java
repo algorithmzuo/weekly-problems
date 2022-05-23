@@ -1,10 +1,10 @@
-package class_2022_05_4_week;
+package class_2022_06_1_week;
 
 // 来自弗吉尼亚理工大学(VT)，算法考试卷
 // 精选了还可以的几道题
 // 这些都是简单难度的动态规划，是面试中最常见的难度
 // 这几个题都有一些非常小的常见技巧可说
-public class Code02_SomeDPFromVT {
+public class Code01_SomeDPFromVT {
 
 	// 题目1
 	// 找到一个最少张数的方案，让FunnyGoal、OffenseGoal，都超过一个值

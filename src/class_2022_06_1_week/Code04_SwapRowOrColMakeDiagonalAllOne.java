@@ -16,7 +16,7 @@ package class_2022_06_1_week;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Code01_SwapRowOrColMakeDiagonalAllOne {
+public class Code04_SwapRowOrColMakeDiagonalAllOne {
 
 	public static int[][] out = new int[1000][2];
 
