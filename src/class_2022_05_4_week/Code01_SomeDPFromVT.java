@@ -73,7 +73,7 @@ public class Code01_SomeDPFromVT {
 		dp[index][restFunny][restOffense] = ans;
 		return ans;
 	}
-	
+
 	// 严格位置依赖的动态规划
 	public static int minStickers3(int[][] stickers, int funnyGoal, int offenseGoal) {
 		int n = stickers.length;
@@ -131,6 +131,10 @@ public class Code01_SomeDPFromVT {
 	}
 
 	// 题目3
+	// 每一个序列都是[a,b]的形式，a < b
+	// 序列连接的方式为，前一个序列的b，要等于后一个序列的a
+	// 比如 : [3, 7]、[7, 13]、[13, 26]这三个序列就可以依次连接
+	// 给定若干个序列，求最大连接的数量
 	// 定义尝试过程如下
 	// arr[i] = {4, 9}表示，第i个序列4开始，9结束
 	// pre : 代表选择的上一个序列，的，index是多少
