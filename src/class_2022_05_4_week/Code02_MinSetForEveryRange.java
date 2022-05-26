@@ -3,9 +3,15 @@ package class_2022_05_4_week;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class Code02_MinSetsForEveryRange {
+// 给定区间的范围[xi,yi]，xi<=yi，且都是正整数
+// 找出一个坐标集合set，set中有若干个数字
+// set中的所有数字，一定要在每个给定的区间内，至少一个
+// 求set的最少需要几个数
+// 比如给定区间 : [5, 8] [1, 7] [2, 4] [1, 9]
+// set最小可以是: {2, 6}或者{2, 5}
+public class Code02_MinSetForEveryRange {
 
-	public static int minSets(int[][] ranges) {
+	public static int minSet(int[][] ranges) {
 		int n = ranges.length;
 		// events[i] = {a, b, c}
 		// a == 0, 表示这是一个区间的开始事件，这个区间结束位置是b
