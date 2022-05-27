@@ -76,6 +76,7 @@ public class Code04_ABCSameNumber {
 		}
 	}
 
+	// 只有一种数是少于N/3
 	public static boolean once(int[] arr, int[] cnt, int m) {
 		int lessV = cnt[0] < m ? 0 : (cnt[1] < m ? 1 : 2);
 		int lessT = lessV == 0 ? cnt[0] : (lessV == 1 ? cnt[1] : cnt[2]);
@@ -91,19 +92,33 @@ public class Code04_ABCSameNumber {
 		return false;
 	}
 
-	public static boolean modify(int[] arr, int more, int moreT, int less, int lessT) {
+	// 0 -> 10个
+	// 1 -> 10个
+	// 2 -> 10个
+	// ==========
+	// 0 -> 7个
+	// 2 -> 12个   1 -> 11个
+	// 多的数 2
+	// 少的数 0
+	public static boolean modify(int[] arr,
+			int more, int moreT, 
+			int less, int lessT) {
 		int[] cnt = new int[3];
 		cnt[less] = lessT;
 		cnt[more] = moreT;
+		// 目标
 		int aim = arr.length / 3;
 		int L = 0;
 		int R = 0;
 		while (R < arr.length || cnt[more] <= aim) {
+			// cnt[more] 窗口之外，多的数有几个？
 			if (cnt[more] > aim) {
+				// R++ 窗口右边界，右移
 				cnt[arr[R++]]--;
 			} else if (cnt[more] < aim) {
 				cnt[arr[L++]]++;
-			} else {
+			} else { // 在窗口之外，多的数，够了！
+				// 少的数，和，另一种数other，能不能平均！都是10个！
 				if (cnt[less] + R - L < aim) {
 					cnt[arr[R++]]--;
 				} else if (cnt[less] + R - L > aim) {
@@ -129,6 +144,7 @@ public class Code04_ABCSameNumber {
 	public static void main(String[] args) {
 		// 数组长度一定是3的整数倍，且 <= 3*n
 		// 如下代码是验证操作次数一定不大于2次
+		// 24个，8个
 		int n = 8;
 		int testTime = 2000;
 		System.out.println("测试开始");

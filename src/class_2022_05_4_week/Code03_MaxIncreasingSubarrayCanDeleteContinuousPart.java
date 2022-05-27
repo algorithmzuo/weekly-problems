@@ -5,7 +5,7 @@ import java.util.Arrays;
 // 来自字节
 // 5.6笔试
 // 给定一个数组arr，长度为n，最多可以删除一个连续子数组，
-// 求剩下的数组，严格连续递增子数组的最大长度
+// 求剩下的数组，严格连续递增的子数组最大长度
 // n <= 10^6
 public class Code03_MaxIncreasingSubarrayCanDeleteContinuousPart {
 
@@ -70,10 +70,14 @@ public class Code03_MaxIncreasingSubarrayCanDeleteContinuousPart {
 		int[] dp = new int[n];
 		dp[0] = 1;
 		int ans = 1;
+		// 一个数字也不删！长度！
 		int cur = 1;
 		for (int i = 1; i < n; i++) {
 			int rank = rank(sorted, arr[i]);
+			// (dp[i - 1] + 1)
 			int p1 = arr[i - 1] < arr[i] ? (dp[i - 1] + 1) : 1;
+//			// rank : 就是当前的数字
+//			// 1~rank-1 : 第二个信息的max
 			int p2 = rank > 1 ? (st.max(rank - 1) + 1) : 1;
 			dp[i] = Math.max(p1, p2);
 			ans = Math.max(ans, dp[i]);
@@ -82,6 +86,8 @@ public class Code03_MaxIncreasingSubarrayCanDeleteContinuousPart {
 			} else {
 				cur = 1;
 			}
+			// 我的当前值是rank
+			// 之前有没有还是rank的记录！
 			if (st.get(rank) < cur) {
 				st.update(rank, cur);
 			}
