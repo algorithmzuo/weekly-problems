@@ -1,95 +1,74 @@
 package class_2022_06_2_week;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 // 测试链接 : https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
 public class Code01_MostStonesRemovedWithSameRowOrColumn {
 
 	public static int removeStones(int[][] stones) {
-		int N = stones.length;
-		int row = 0;
-		int col = 0;
-		for (int i = 0; i < N; i++) {
-			row = Math.max(row, stones[i][0]);
-			col = Math.max(col, stones[i][1]);
-		}
-		int[] rowFirst = new int[row + 1];
-		for (int i = 0; i <= row; i++) {
-			rowFirst[i] = -1;
-		}
-		int[] colFirst = new int[col + 1];
-		for (int i = 0; i <= col; i++) {
-			colFirst[i] = -1;
-		}
-		UnionFind uf = new UnionFind();
-		for (int i = 0; i < N; i++) {
-			uf.finger(stones[i][0], stones[i][1]);
-			if (rowFirst[stones[i][0]] == -1) {
-				rowFirst[stones[i][0]] = i;
+		int n = stones.length;
+		HashMap<Integer, Integer> rowPre = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> colPre = new HashMap<Integer, Integer>();
+		UnionFind uf = new UnionFind(n);
+		for (int i = 0; i < n; i++) {
+			int x = stones[i][0];
+			int y = stones[i][1];
+			if (!rowPre.containsKey(x)) {
+				rowPre.put(x, i);
 			} else {
-				int[] pre = stones[rowFirst[stones[i][0]]];
-				uf.union(pre[0], pre[1], stones[i][0], stones[i][1]);
+				uf.union(i, rowPre.get(x));
 			}
-			if (colFirst[stones[i][1]] == -1) {
-				colFirst[stones[i][1]] = i;
+			if (!colPre.containsKey(y)) {
+				colPre.put(y, i);
 			} else {
-				int[] pre = stones[colFirst[stones[i][1]]];
-				uf.union(pre[0], pre[1], stones[i][0], stones[i][1]);
+				uf.union(i, colPre.get(y));
 			}
 		}
-		return N - uf.sets();
+		return n - uf.sets();
 	}
 
 	public static class UnionFind {
-		private HashMap<String, String> parent;
-		private HashMap<String, Integer> size;
-		private ArrayList<String> help;
-		private int sets;
 
-		public UnionFind() {
-			parent = new HashMap<>();
-			size = new HashMap<>();
-			help = new ArrayList<>();
-			sets = 0;
+		public int[] father;
+		public int[] size;
+		public int[] help;
+		public int sets;
+
+		public UnionFind(int n) {
+			father = new int[n];
+			size = new int[n];
+			help = new int[n];
+			for (int i = 0; i < n; i++) {
+				father[i] = i;
+				size[i] = 1;
+			}
+			sets = n;
 		}
 
-		private String find(String cur) {
-			while (!cur.equals(parent.get(cur))) {
-				help.add(cur);
-				cur = parent.get(cur);
+		private int find(int i) {
+			int hi = 0;
+			while (i != father[i]) {
+				help[hi++] = i;
+				i = father[i];
 			}
-			for (String str : help) {
-				parent.put(str, cur);
+			while (hi != 0) {
+				father[help[--hi]] = i;
 			}
-			help.clear();
-			return cur;
+			return i;
 		}
 
-		public void finger(int r, int c) {
-			String key = String.valueOf(r + "_" + c);
-			if (!parent.containsKey(key)) {
-				parent.put(key, key);
-				size.put(key, 1);
-				sets++;
-			}
-		}
-
-		public void union(int r1, int c1, int r2, int c2) {
-			String s1 = String.valueOf(r1 + "_" + c1);
-			String s2 = String.valueOf(r2 + "_" + c2);
-			if (parent.containsKey(s1) && parent.containsKey(s2)) {
-				String f1 = find(s1);
-				String f2 = find(s2);
-				if (!f1.equals(f2)) {
-					int size1 = size.get(f1);
-					int size2 = size.get(f2);
-					String big = size1 >= size2 ? f1 : f2;
-					String small = big == f1 ? f2 : f1;
-					parent.put(small, big);
-					size.put(big, size1 + size2);
-					sets--;
+		public void union(int i, int j) {
+			int fi = find(i);
+			int fj = find(j);
+			if (fi != fj) {
+				if (size[fi] >= size[fj]) {
+					father[fj] = fi;
+					size[fi] += size[fj];
+				} else {
+					father[fi] = fj;
+					size[fj] += size[fi];
 				}
+				sets--;
 			}
 		}
 

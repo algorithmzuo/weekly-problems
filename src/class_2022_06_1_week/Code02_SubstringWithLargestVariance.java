@@ -12,24 +12,25 @@ public class Code02_SubstringWithLargestVariance {
 		for (int i = 0; i < n; i++) {
 			arr[i] = s.charAt(i) - 'a';
 		}
-		// continuous[i][j] : 假设字符串只有i字符和j字符，连续出现的i字符的数量
-		int[][] continuous = new int[26][26];
-		// dp[i][j] : 假设字符串只有i字符和j字符，(i字符数量 - j字符数量)的最大值
 		int[][] dp = new int[26][26];
-		for (int i = 0; i < 26; i++) {
-			for (int j = 0; j < 26; j++) {
-				dp[i][j] = (Integer.MIN_VALUE / 2);
-			}
-		}
+		int[][] continuous = new int[26][26];
+		boolean[][] appear = new boolean[26][26];
 		int ans = 0;
-		for (int j : arr) {
-			for (int i = 0; i < 26; i++) {
-				if (i != j) {
-					dp[i][j] = Math.max(dp[i][j], continuous[i][j]) - 1;
-					continuous[i][j] = 0;
-					++continuous[j][i];
-					++dp[j][i];
-					ans = Math.max(ans, Math.max(dp[i][j], dp[j][i]));
+		for (int i : arr) {
+			for (int j = 0; j < 26; j++) {
+				if (j != i) {
+					++continuous[i][j];
+					if (appear[i][j]) {
+						++dp[i][j];
+					}
+					if (!appear[j][i]) {
+						appear[j][i] = true;
+						dp[j][i] = continuous[j][i] - 1;
+					} else {
+						dp[j][i] = Math.max(dp[j][i], continuous[j][i]) - 1;
+					}
+					continuous[j][i] = 0;
+					ans = Math.max(ans, Math.max(dp[j][i], dp[i][j]));
 				}
 			}
 		}
