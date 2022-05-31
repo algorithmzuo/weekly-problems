@@ -25,7 +25,7 @@ import java.util.TreeMap;
 // 输出："K4N2O14S4"
 // 解释：原子的数量是 {'K': 4, 'N': 2, 'O': 14, 'S': 4}。
 // 测试链接 : https://leetcode.com/problems/number-of-atoms/
-public class Code01_NumberOfAtoms {
+public class Code03_NumberOfAtoms {
 
 	public static String countOfAtoms(String str) {
 		char[] s = str.toCharArray();

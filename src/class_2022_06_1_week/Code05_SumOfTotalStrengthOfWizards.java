@@ -1,7 +1,7 @@
 package class_2022_06_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/sum-of-total-strength-of-wizards/
-public class Code03_SumOfTotalStrengthOfWizards {
+public class Code05_SumOfTotalStrengthOfWizards {
 
 	public static final long mod = 1000000007;
 

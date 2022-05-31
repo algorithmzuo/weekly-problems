@@ -1,7 +1,7 @@
 package class_2022_06_1_week;
 
 // 测试链接 : https://leetcode.com/problems/unique-substrings-in-wraparound-string/
-public class Code04_UniqueSubstringsInWraparoundString {
+public class Code02_UniqueSubstringsInWraparoundString {
 
 	public int findSubstringInWraproundString(String s) {
 		char[] str = s.toCharArray();
