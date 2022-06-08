@@ -20,27 +20,25 @@ public class Code05_SumOfTotalStrengthOfWizards {
 		for (int i = 0; i < n; i++) {
 			while (size > 0 && arr[stack[size - 1]] >= arr[i]) {
 				int m = stack[--size];
-				int r = i - 1;
-				int l = (size > 0 ? stack[size - 1] : -1) + 1;
-				ans += magicSum(arr, sumSum, l, m, r);
+				int l = size > 0 ? stack[size - 1] : -1;
+				ans += magicSum(arr, sumSum, l, m, i);
 				ans %= mod;
 			}
 			stack[size++] = i;
 		}
 		while (size > 0) {
 			int m = stack[--size];
-			int r = n - 1;
-			int l = (size > 0 ? stack[size - 1] : -1) + 1;
-			ans += magicSum(arr, sumSum, l, m, r);
+			int l = size > 0 ? stack[size - 1] : -1;
+			ans += magicSum(arr, sumSum, l, m, n);
 			ans %= mod;
 		}
 		return (int) ans;
 	}
 
-	public static long magicSum(int[] arr, long[] sumSum, int L, int M, int R) {
-		long rightSum = (long) (M - L + 1) * (sumSum[R] - (M - 1 >= 0 ? sumSum[M - 1] : 0) + mod) % mod;
-		long leftSum = (long) (R - M + 1) * ((M - 1 >= 0 ? sumSum[M - 1] : 0) - (L - 2 >= 0 ? sumSum[L - 2] : 0) + mod)% mod;
-		return (long) arr[M] * ((rightSum - leftSum + mod) % mod);
+	public static long magicSum(int[] arr, long[] sumSum, int l, int m, int r) {
+		long left = (long) (m - l) * (sumSum[r - 1] - (m - 1 >= 0 ? sumSum[m - 1] : 0) + mod) % mod;
+		long right = (long) (r - m) * ((m - 1 >= 0 ? sumSum[m - 1] : 0) - (l - 1 >= 0 ? sumSum[l - 1] : 0) + mod) % mod;
+		return (long) arr[m] * ((left - right + mod) % mod);
 	}
 
 }
