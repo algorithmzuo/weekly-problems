@@ -20,9 +20,14 @@ public class Code01_WhereWillTheBallFall {
 		int m = grid[0].length;
 		int[] ans = new int[m];
 		for (int col = 0; col < m; col++) {
+			// (0,0)  (0,1)  (0,2)
 			int i = 0;
 			int j = col;
 			while (i < n) {
+				// (i,j)  左上 -> 右下的格子  grid[i][j] == 1
+				// (i+1, j+1)
+				// (i,j)  右上 -> 左下的格子  grid[i][j] == -1
+				// (i+1, j-1)
 				int jnext = j + grid[i][j];
 				if (jnext < 0 || jnext == m || grid[i][j] != grid[i][jnext]) {
 					ans[col] = -1;

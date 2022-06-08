@@ -1,4 +1,4 @@
-package class_2022_06_2_week;
+package others;
 
 // 来自网易
 // 题目出处 : https://leetcode-cn.com/circle/discuss/uOnnUA/

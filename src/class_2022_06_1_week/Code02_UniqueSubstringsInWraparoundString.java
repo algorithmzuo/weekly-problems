@@ -12,6 +12,7 @@ public class Code02_UniqueSubstringsInWraparoundString {
 		int n = str.length;
 		int ans = 0;
 		int len = 1;
+		// 256 0~255
 		int[] max = new int[256];
 		max[str[0]]++;
 		for (int i = 1; i < n; i++) {

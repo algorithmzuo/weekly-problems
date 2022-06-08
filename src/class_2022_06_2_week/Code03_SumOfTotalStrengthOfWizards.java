@@ -1,4 +1,4 @@
-package class_2022_06_1_week;
+package class_2022_06_2_week;
 
 // 作为国王的统治者，你有一支巫师军队听你指挥。
 // 给你一个下标从 0 开始的整数数组 strength ，
@@ -9,7 +9,7 @@ package class_2022_06_1_week;
 // 请你返回 所有 巫师组的 总 力量之和。由于答案可能很大，请将答案对 109 + 7 取余 后返回。
 // 子数组 是一个数组里 非空 连续子序列。
 // 测试链接 : https://leetcode.cn/problems/sum-of-total-strength-of-wizards/
-public class Code05_SumOfTotalStrengthOfWizards {
+public class Code03_SumOfTotalStrengthOfWizards {
 
 	public static final long mod = 1000000007;
 
