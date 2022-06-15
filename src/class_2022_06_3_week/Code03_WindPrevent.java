@@ -5,7 +5,7 @@ package class_2022_06_3_week;
 // 对于每一行来说，最小高度的树是这一行防风的有效高度。
 // 给定一个正数k，k <= matrix的行数，表示可以取连续的k行，这k行一起防风。
 // 求能防风的最大高度是多少
-public class Code05_WindPrevent {
+public class Code03_WindPrevent {
 
 	public static int bestHeight1(int[][] matrix, int k) {
 		int n = matrix.length;
