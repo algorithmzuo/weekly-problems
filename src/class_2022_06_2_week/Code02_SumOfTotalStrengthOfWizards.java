@@ -29,6 +29,7 @@ public class Code02_SumOfTotalStrengthOfWizards {
 			while (size > 0 && arr[stack[size - 1]] >= arr[i]) {
 				int m = stack[--size];
 				int l = size > 0 ? stack[size - 1] : -1;
+				// l（<当前值，且最近，到不了）        m(当前数，做为最小值)      i(<=当前数，到不了的！)
 				ans += magicSum(arr, sumSum, l, m, i);
 				ans %= mod;
 			}
