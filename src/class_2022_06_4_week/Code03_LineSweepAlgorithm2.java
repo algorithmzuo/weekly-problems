@@ -1,4 +1,4 @@
-package class_2022_06_3_week;
+package class_2022_06_4_week;
 
 // 本题测试链接 : https://www.luogu.com.cn/problem/P5490
 // 提交以下代码，并把主类名改成"Main"
@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code02_LineSweepAlgorithm2 {
+public class Code03_LineSweepAlgorithm2 {
 
 	public static int maxn = 300001;
 	public static long[][] arr = new long[maxn][4];

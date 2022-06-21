@@ -8,7 +8,7 @@ package class_2022_06_4_week;
 // 则最多能选5个动物：1，3，5，9，21
 // 注意本题给的例子是有序的，但是实际给定的动物数组，可能是无序的，
 // 要求从左往右选动物，且不能打乱原始数组
-public class Code03_MaxAnimalNumber {
+public class Code04_MaxAnimalNumber {
 
 	// 普通动态规划
 	// 非常一般的方法

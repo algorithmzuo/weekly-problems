@@ -1,4 +1,4 @@
-package class_2022_06_4_week;
+package class_2022_06_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/selling-pieces-of-wood/
 public class Code05_SellingPiecesOfWood {

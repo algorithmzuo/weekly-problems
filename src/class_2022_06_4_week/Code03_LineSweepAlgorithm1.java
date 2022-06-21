@@ -1,9 +1,9 @@
-package class_2022_06_3_week;
+package class_2022_06_4_week;
 
 import java.util.Arrays;
 
 // 本题测试链接 : https://leetcode.cn/problems/rectangle-area-ii/
-public class Code02_LineSweepAlgorithm1 {
+public class Code03_LineSweepAlgorithm1 {
 
 	public static int rectangleArea(int[][] rectangles) {
 		int n = rectangles.length;
