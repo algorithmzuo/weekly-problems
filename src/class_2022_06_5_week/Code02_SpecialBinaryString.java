@@ -1,4 +1,4 @@
-package class_2022_06_3_week;
+package class_2022_06_5_week;
 
 import java.util.ArrayList;
 

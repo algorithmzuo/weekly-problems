@@ -1,4 +1,4 @@
-package class_2022_06_5_week;
+package class_2022_06_3_week;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -12,7 +12,7 @@ import java.util.Stack;
 // 5) boolean isEmpty(int statckIndex)：返回编号为stackIndex的栈是否为空
 // 6) int stackSize() : 返回一共生成了多少个栈
 // 要求：不管用户调用多少次上面的方法，只使用有限几个数组(常数个)，完成代码实现
-public class Code02_StackNotSplit {
+public class Code05_StackNotSplit {
 
 	public static class Stacks1 {
 

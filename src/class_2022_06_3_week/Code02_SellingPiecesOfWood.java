@@ -1,7 +1,7 @@
 package class_2022_06_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/selling-pieces-of-wood/
-public class Code05_SellingPiecesOfWood {
+public class Code02_SellingPiecesOfWood {
 
 	public static long sellingWood(int m, int n, int[][] prices) {
 		long[][] values = new long[m + 1][n + 1];
