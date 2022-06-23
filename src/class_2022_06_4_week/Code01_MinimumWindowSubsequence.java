@@ -1,11 +1,21 @@
-package class_2022_06_3_week;
+package class_2022_06_4_week;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.TreeSet;
 
+// 给定字符串 S and T，找出 S 中最短的（连续）子串 W ，使得 T 是 W 的 子序列 。
+// 如果 S 中没有窗口可以包含 T 中的所有字符，返回空字符串 ""。
+// 如果有不止一个最短长度的窗口，返回开始位置最靠左的那个。
+// 示例 1：
+// 输入：
+// S = "abcdebdde", T = "bde"
+// 输出："bcde"
+// 解释：
+// "bcde" 是答案，因为它在相同长度的字符串 "bdde" 出现之前。
+// "deb" 不是一个更短的答案，因为在窗口中必须按顺序出现 T 中的元素。
 // 测试链接 : https://leetcode.cn/problems/minimum-window-subsequence/
-public class Code04_MinimumWindowSubsequence {
+public class Code01_MinimumWindowSubsequence {
 
 	public String minWindow1(String s, String t) {
 		char[] str = s.toCharArray();

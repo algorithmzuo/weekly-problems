@@ -1,7 +1,7 @@
-package class_2022_06_5_week;
+package class_2022_06_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/minimize-max-distance-to-gas-station/
-public class Code01_MinimizeMaxDistanceToGasStation {
+public class Code05_MinimizeMaxDistanceToGasStation {
 
 	public static double minmaxGasDist(int[] stations, int K) {
 		double accuracy = 0.0000001D;

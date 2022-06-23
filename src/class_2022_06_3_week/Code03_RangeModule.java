@@ -10,6 +10,12 @@ public class Code03_RangeModule {
 
 	class RangeModule {
 		// 某个区间的开头是key，结尾是value
+		// [3,100)
+		// key 3 value 100
+		// [3,100) 45, 86
+		// [3,17) [17,23) -> [3,23)
+		// 目标：不管怎么调用，一定要保证！
+		// map里表示的区间，能合并就合并，且没有交集
 		TreeMap<Integer, Integer> map;
 
 		public RangeModule() {
@@ -22,6 +28,7 @@ public class Code03_RangeModule {
 			if (right <= left) {
 				return;
 			}
+			// 有效区间！
 			// 当前要加入的区间是[left, right)
 			// 比如 : 当前区间[34, 76)
 			// 第一个if：
@@ -42,6 +49,7 @@ public class Code03_RangeModule {
 			// 即: map.put(start, Math.max(map.get(end), right));
 			// 第三个分支，最后的else：
 			// 说明是前两个if的反面：
+			// [34, 76)
 			// 第一个if的反面: 小于等于34的开头，和小于等于76的开头，不是都不存在
 			// 分成以下几种情况
 			// 1) 小于等于34的开头存在，小于等于76的开头不存在，这是不可能的
@@ -51,6 +59,7 @@ public class Code03_RangeModule {
 			// a) 小于等于34的开头不存在，小于等于76的开头存在
 			// b) 小于等于34的开头存在，小于等于76的开头也存在
 			// 再看第二个if的反面
+			// [34, 76)
 			// 第二个if是，小于等于34的开头存在，并且，结尾延伸到了34以右
 			// 所以第二个if的反面是：
 			// c) 小于等于34的开头不存在
@@ -74,13 +83,28 @@ public class Code03_RangeModule {
 			// 于是处理和情况1)是一样的
 			// 即：map.put(left, Math.max(map.get(end), right));
 			// 这就是接下来三个逻辑分支的处理
+			// [5, 9) ....
+			// [4, 6) [7, 100)
 			Integer start = map.floorKey(left);
 			Integer end = map.floorKey(right);
+			// [34, 76)
+			// 都空
+			// 反面1) <= 34 没有，<= 76开头，有
+			// 反面2) <= 34 有, <= 76开头，没有 ，不可能 X
+			// 反面3) <= 34 有, <= 76开头，有
 			if (start == null && end == null) {
 				map.put(left, right);
 			} else if (start != null && map.get(start) >= left) {
+				// [34, 76)
+				// 2if : <= 34 开头 ，有，且！，结尾在34以右
+				// 反面1 ) <= 34 开头 ，没有
+				// 反面2 ) <= 34 开头 ，有, 结尾没在34以右
 				map.put(start, Math.max(map.get(end), right));
 			} else {
+				// 1) a + c，小于等于34的开头不存在，小于等于76的开头存在
+				// 4) b + d，小于等于34的开头存在，但是结尾没有延伸到34，小于等于76的开头也存在
+				// [1, 2) [5, 6)
+				// [1,2 ) [5, 6)
 				map.put(left, Math.max(map.get(end), right));
 			}
 			// 上面做了合并，但是要注意可能要清理一些多余的区间
@@ -94,23 +118,35 @@ public class Code03_RangeModule {
 			// 之前的区间是[30, 54)、[55, 60)、[62, 65)、[70, 84)
 			// 这种情况，中了分支二，在合并之后，区间为：
 			// [30, 84)、[55, 60)、[62, 65)、[70, 84)
-			// 所以移除掉所有(30,84]的开头区间
+			// 所以移除掉所有(34, 76]的开头区间
 			// 只剩下了[30, 84)
+			// (left, right]
+			// 再比如，当前区间[34, 76)
+			// [70, 108) 来的是[34, 76)
+			// [34, 108) (34, 76]删掉
+			// 再比如，当前区间[34, 76)
+			// [3,17) [73,108) 来的是[34, 76)
+			// [3,17) [34,108) [73,108) (34, 76]删掉
 			Map<Integer, Integer> subMap = map.subMap(left, false, right, true);
 			Set<Integer> set = new HashSet<>(subMap.keySet());
 			map.keySet().removeAll(set);
 		}
 
 		public boolean queryRange(int left, int right) {
+			// [34, 76) 整体被你的结构，有没有包含！
+			// <=34 开头都没！
 			Integer start = map.floorKey(left);
 			if (start == null)
 				return false;
+			// [34, 76) 整体被你的结构，有没有包含！
+			// <=34 开头有！[17，~ 60) [60 ~ 76)
 			return map.get(start) >= right;
 		}
 
 		public void removeRange(int left, int right) {
-			if (right <= left)
+			if (right <= left) {
 				return;
+			}
 			Integer start = map.floorKey(left);
 			Integer end = map.floorKey(right);
 			if (end != null && map.get(end) > right) {
@@ -123,6 +159,27 @@ public class Code03_RangeModule {
 			Set<Integer> set = new HashSet<>(subMap.keySet());
 			map.keySet().removeAll(set);
 		}
+	}
+
+	public static void main(String[] args) {
+		TreeMap<Integer, String> map = new TreeMap<>();
+		map.put(6, "我是6");
+		map.put(3, "我是3");
+		map.put(9, "我是9");
+		map.put(5, "我是9");
+		map.put(4, "我是9");
+		// 3 4 5 6 9
+		// [4~6) -> 4, 5,6
+		
+		
+		
+		Map<Integer, String> subMap = map.subMap(4, true, 6, false);
+		
+		for(int key : subMap.keySet()) {
+			System.out.println(key);
+		}
+		
+		
 	}
 
 }

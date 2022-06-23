@@ -1,11 +1,11 @@
-package class_2022_06_4_week;
+package class_2022_06_5_week;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 // 测试链接 : https://leetcode.cn/problems/employee-free-time/
-public class Code02_EmployeeFreeTime {
+public class Code01_EmployeeFreeTime {
 
 	// 不要提交这个类
 	public static class Interval {
