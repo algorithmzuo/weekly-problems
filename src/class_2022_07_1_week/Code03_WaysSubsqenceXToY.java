@@ -114,14 +114,14 @@ public class Code03_WaysSubsqenceXToY {
 		for (int i = 0; i < testTime; i++) {
 			int n = (int) (Math.random() * max) + 1;
 			int m = (int) (Math.random() * max) + 1;
-			String str = randomLRString(m);
+			String s = randomLRString(m);
 			int x = (int) (Math.random() * (n + 1));
 			int y = (int) (Math.random() * (n + 1));
-			int ans1 = ways1(str, n, x, y);
-			int ans2 = ways2(str, n, x, y);
+			int ans1 = ways1(s, n, x, y);
+			int ans2 = ways2(s, n, x, y);
 			if (ans1 != ans2) {
 				System.out.println("出错了!");
-				System.out.println(str);
+				System.out.println(s);
 				System.out.println(n);
 				System.out.println(x);
 				System.out.println(y);
@@ -137,11 +137,11 @@ public class Code03_WaysSubsqenceXToY {
 		int m = 10000;
 		System.out.println("位置规模 : " + n);
 		System.out.println("字符串规模 : " + m);
-		String str = randomLRString(m);
+		String s = randomLRString(m);
 		int x = (int) (Math.random() * (n + 1));
 		int y = (int) (Math.random() * (n + 1));
 		long start = System.currentTimeMillis();
-		ways2(str, n, x, y);
+		ways2(s, n, x, y);
 		long end = System.currentTimeMillis();
 		System.out.println("运行时间: " + (end - start) + " 毫秒");
 		System.out.println("性能测试结束");
