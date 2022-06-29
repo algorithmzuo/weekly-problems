@@ -20,7 +20,7 @@ import java.util.TreeMap;
 // void removeRange(int left, int right) : 
 // 停止跟踪 半开区间 [left, right) 中当前正在跟踪的每个实数。
 // 测试连接 : https://leetcode.com/problems/range-module/
-public class Code03_RangeModule {
+public class Code03_RangeModule1 {
 
 	class RangeModule {
 		// 某个区间的开头是key，结尾是value
