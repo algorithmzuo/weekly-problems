@@ -11,7 +11,7 @@ import java.util.Stack;
 // 4) int peek(int stackIndex) ：从编号为stackIndex的栈里，返回栈顶但是不弹出
 // 5) boolean isEmpty(int statckIndex)：返回编号为stackIndex的栈是否为空
 // 6) int stackSize() : 返回一共生成了多少个栈
-// 要求：不管用户调用多少次上面的方法，只使用有限几个数组(常数个)，完成代码实现
+// 要求：不管用户调用多少次上面的方法，只使用有限几个动态数组(常数个)，完成代码实现
 public class Code02_StackNotSplit {
 
 	public static class Stacks1 {
@@ -53,7 +53,9 @@ public class Code02_StackNotSplit {
 		public ArrayList<Integer> values;
 		public ArrayList<Integer> lasts;
 		public ArrayList<Integer> frees;
+		// occupySize : 值数组用到哪了？
 		public int occupySize;
+		// freeSize : 垃圾区的大小（最先用！）
 		public int freeSize;
 
 		public Stacks2() {
@@ -62,6 +64,7 @@ public class Code02_StackNotSplit {
 			lasts = new ArrayList<>();
 			frees = new ArrayList<>();
 			occupySize = 0;
+			freeSize = 0;
 		}
 
 		public int stackSize() {
@@ -73,12 +76,15 @@ public class Code02_StackNotSplit {
 		}
 
 		public void push(int num, int stackIndex) {
+			// 老头部出来，因为新头部往前跳，要能找到老头部
 			int headIndex = heads.get(stackIndex);
-			if (freeSize == 0) {
+			if (freeSize == 0) { // 垃圾区没有空闲的位置
+				// value , occupySize, occupySize++
 				heads.set(stackIndex, occupySize++);
 				values.add(num);
 				lasts.add(headIndex);
-			} else {
+			} else { // 垃圾区有空闲空间
+				// 新的数 -> freeIndex
 				int freeIndex = frees.get(--freeSize);
 				heads.set(stackIndex, freeIndex);
 				values.set(freeIndex, num);
@@ -87,10 +93,15 @@ public class Code02_StackNotSplit {
 		}
 
 		public int pop(int stackIndex) {
+			// 当前的头部的位置
 			int headIndex = heads.get(stackIndex);
+			// values -> 当前的头部的位置 -> 要返回的数！
 			int ans = values.get(headIndex);
+			// 当前头要弹出了！接下来的头是谁？
 			int newHeadIndex = lasts.get(headIndex);
 			heads.set(stackIndex, newHeadIndex);
+			// 垃圾区要接受，当前的头部的位置
+			// frees动态数组！
 			if (freeSize >= frees.size()) {
 				frees.add(headIndex);
 				freeSize++;

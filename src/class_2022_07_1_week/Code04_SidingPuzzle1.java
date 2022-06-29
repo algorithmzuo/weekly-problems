@@ -1,10 +1,10 @@
-package class_2022_06_5_week;
+package class_2022_07_1_week;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.com/problems/sliding-puzzle/
-public class Code03_SidingPuzzle1 {
+public class Code04_SidingPuzzle1 {
 
 	public static int b6 = 100000;
 

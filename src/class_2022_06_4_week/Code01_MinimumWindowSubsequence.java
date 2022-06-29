@@ -17,10 +17,93 @@ import java.util.TreeSet;
 // 测试链接 : https://leetcode.cn/problems/minimum-window-subsequence/
 public class Code01_MinimumWindowSubsequence {
 
+//	public static int minLenContainsT1(char[] s, char[] t) {
+//		int n = s.length;
+//		int m = t.length;
+//		
+//		// s = xya...a...
+//		// t = abc
+//		int min = Integer.MAX_VALUE;
+//		for (int i = 0; i < n; i++) {
+//			if(s[i] == t[0]) {
+//				int findEnd = findEnd(s, t, i);
+//				if(findEnd != -1) { // 找到了！s[i...findEnd]答案
+//					min = Math.min(min, findEnd - i + 1);
+//				}
+//			}
+//		}
+//		return min;
+//	}
+//	
+//	// s = a.....?
+//	//     si
+//	// t = abcd
+//	//     0
+//	// 最后的？，s[si...?] 整出来t的整体
+//	// 如果从si出发，就没有t的整体，返回-1
+//	public static int findEnd(char[] s, char[] t, int si) {
+//		
+//	}
+
+	public static void main(String[] args) {
+		String s = "xxaxxbxxcxx";
+		// 0 8
+		String t = "abc";
+		System.out.println(minLen(s, t));
+	}
+
+	public static int minLen(String str, String target) {
+		char[] s = str.toCharArray();
+		char[] t = target.toCharArray();
+		int len = Integer.MAX_VALUE;
+		for (int i = 0; i < s.length; i++) {
+			// 0 > t
+			// 1 > t
+			// 2 > t
+			int end = zuo(s, t, i, 0);
+			if (end != Integer.MAX_VALUE) {
+				int cur = end - i;
+				len = Math.min(len, cur);
+			}
+		}
+		return len;
+	}
+
+	// s[si.....]
+	// t[ti....]
+	// 把t的整体，都配出来，s在哪能尽早结束！的下个位置
+	// s = x x a x x b x x c x a b c
+	// 0 1 2 3 4 5 6 7 8 9 10 11 12
+	// t = a b c
+	// 0 1 2
+	// s[1...] t[0...]
+	// s[4...] t[1...] 8
+	// s[4...] t[0...] 12
+	public static int zuo(char[] s, char[] t, int si, int ti) {
+		if (ti == t.length) { // 配完了！
+			return si;
+		}
+		// ti < t.length;
+		if (si == s.length) {
+			return Integer.MAX_VALUE;
+		}
+		// 都有字符
+		// 可能性1：根本不让s[si]去消化掉t[ti]
+		int p1 = zuo(s, t, si + 1, ti);
+		// 可能性2：让s[si]去消化掉t[ti]
+		int p2 = Integer.MAX_VALUE;
+		if (s[si] == t[ti]) {
+			// si ti
+			p2 = zuo(s, t, si + 1, ti + 1);
+		}
+		return Math.min(p1, p2);
+	}
+
 	public String minWindow1(String s, String t) {
 		char[] str = s.toCharArray();
 		char[] target = t.toCharArray();
 		int n = str.length;
+		// key : 字符! value:有序表！
 		HashMap<Character, TreeSet<Integer>> map = new HashMap<>();
 		for (char cha : target) {
 			map.put(cha, new TreeSet<>());
