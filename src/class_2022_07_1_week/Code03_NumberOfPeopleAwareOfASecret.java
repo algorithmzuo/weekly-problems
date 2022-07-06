@@ -8,7 +8,7 @@ package class_2022_07_1_week;
 // 给你一个整数 n ，请你返回在第 n 天结束时，知道秘密的人数。
 // 由于答案可能会很大，请你将结果对 109 + 7 取余 后返回。
 // 测试链接 : https://leetcode.cn/problems/number-of-people-aware-of-a-secret/
-public class Code04_NumberOfPeopleAwareOfASecret {
+public class Code03_NumberOfPeopleAwareOfASecret {
 
 	public static int peopleAwareOfSecret(int n, int delay, int forget) {
 		long mod = 1000000007;
