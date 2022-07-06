@@ -1,4 +1,4 @@
-package class_2022_07_1_week;
+package class_2022_07_2_week;
 
 import java.util.HashSet;
 

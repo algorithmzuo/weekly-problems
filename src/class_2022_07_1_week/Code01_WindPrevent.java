@@ -34,6 +34,45 @@ public class Code01_WindPrevent {
 		return ans;
 	}
 
+//	public static class WindowManager {
+//
+//		// 建立出m个窗口！
+//		public WindowManager(int m) {
+//
+//		}
+//
+//		public void addRow(int[][] matrix, int row) {
+//
+//		}
+//
+//		public void deleteRow(int[][] matrix, int row) {
+//
+//		}
+//
+//		public int getAllWindowMaxMin() {
+//			return 100;
+//		}
+//
+//	}
+//
+//	public static int bestWindHeight(int[][] matrix, int k) {
+//		int n = matrix.length;
+//		int m = matrix[0].length;
+//		k = Math.min(k, n);
+//		WindowManager windowManager = new WindowManager(m);
+//		for (int i = 0; i < k - 1; i++) {
+//			windowManager.addRow(matrix, i);
+//		}
+//		int ans = 0;
+//		for (int i = k - 1; i < n; i++) {
+//			windowManager.addRow(matrix, i);
+//			int cur = windowManager.getAllWindowMaxMin();
+//			ans = Math.max(ans, cur);
+//			windowManager.deleteRow(matrix, i - k + 1);
+//		}
+//		return ans;
+//	}
+
 	public static int bestHeight2(int[][] matrix, int k) {
 		int n = matrix.length;
 		int m = matrix[0].length;
