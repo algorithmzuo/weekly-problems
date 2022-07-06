@@ -1,7 +1,7 @@
-package class_2022_07_2_week;
+package class_2022_07_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-people-aware-of-a-secret/
-public class Code05_NumberOfPeopleAwareOfASecret {
+public class Code04_NumberOfPeopleAwareOfASecret {
 
 	public static int peopleAwareOfSecret(int n, int delay, int forget) {
 		long mod = 1000000007;

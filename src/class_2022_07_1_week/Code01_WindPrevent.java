@@ -14,7 +14,7 @@ package class_2022_07_1_week;
 // 防风带整体的防风高度为5，是7、5、6中的最小值
 // 给定一个正数k，k <= matrix的行数，表示可以取连续的k行，这k行一起防风。
 // 求防风带整体的防风高度最大值
-public class Code03_WindPrevent {
+public class Code01_WindPrevent {
 
 	public static int bestHeight1(int[][] matrix, int k) {
 		int n = matrix.length;

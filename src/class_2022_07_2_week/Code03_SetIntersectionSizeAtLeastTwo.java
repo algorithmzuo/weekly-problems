@@ -3,7 +3,7 @@ package class_2022_07_2_week;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/set-intersection-size-at-least-two/
-public class Code02_SetIntersectionSizeAtLeastTwo {
+public class Code03_SetIntersectionSizeAtLeastTwo {
 
 	public static int intersectionSizeTwo(int[][] intervals) {
 		Arrays.sort(intervals, (a, b) -> a[1] != b[1] ? (a[1] - b[1]) : (b[0] - a[0]));

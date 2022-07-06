@@ -1,9 +1,9 @@
-package class_2022_07_2_week;
+package class_2022_07_1_week;
 
 import java.util.ArrayList;
 
 // 测试链接 : https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/
-public class Code01_MinimumScoreAfterRemovalsOnATree {
+public class Code02_MinimumScoreAfterRemovalsOnATree {
 
 	public static int cnt;
 

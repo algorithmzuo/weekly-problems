@@ -1,4 +1,4 @@
-package class_2022_07_1_week;
+package class_2022_07_2_week;
 
 // 本题测试链接 : https://www.luogu.com.cn/problem/P5490
 // 提交以下代码，并把主类名改成"Main"

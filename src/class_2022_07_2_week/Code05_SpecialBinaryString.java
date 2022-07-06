@@ -1,9 +1,9 @@
-package class_2022_07_1_week;
+package class_2022_07_2_week;
 
 import java.util.ArrayList;
 
 // 测试链接 : https://leetcode.com/problems/special-binary-string/
-public class Code04_SpecialBinaryString {
+public class Code05_SpecialBinaryString {
 
 	public static String makeLargestSpecial(String s) {
 		ArrayList<String> arr = new ArrayList<>();
