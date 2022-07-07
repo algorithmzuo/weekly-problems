@@ -1,4 +1,4 @@
-package class_2022_07_2_week;
+package class_2022_07_3_week;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;

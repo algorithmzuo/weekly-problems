@@ -24,7 +24,7 @@ import java.util.HashSet;
 // 注意：一定要是字面值不同的子序列！相同字面值的子序列算一种
 // 比如s中，有很多个rr的子序列，但是算一个
 // 数据规模 : s串长度 <= 1000, x,y,n <= 2500
-public class Code03_WaysSubsqenceXToY {
+public class Code04_WaysSubsqenceXToY {
 
 	// 暴力方法
 	// 为了测试

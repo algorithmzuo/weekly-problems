@@ -1,4 +1,4 @@
-package class_2022_07_2_week;
+package class_2022_07_3_week;
 
 // 测试链接 : https://leetcode.com/problems/sliding-puzzle/
 public class Code04_SidingPuzzle2 {
