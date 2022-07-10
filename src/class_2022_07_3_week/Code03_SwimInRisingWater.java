@@ -3,7 +3,7 @@ package class_2022_07_3_week;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
-// 测试链接 : https://leetcode.cn/problems/swim-in-rising-water/
+// Leetcode测试链接 : https://leetcode.cn/problems/swim-in-rising-water/
 public class Code03_SwimInRisingWater {
 
 	// 并查集的解法
