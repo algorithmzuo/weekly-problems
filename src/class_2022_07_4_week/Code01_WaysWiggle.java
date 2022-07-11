@@ -87,66 +87,36 @@ public class Code01_WaysWiggle {
 
 	// 时间复杂度O(N)
 	public static int ways2(int[] arr) {
+		if (arr == null || arr.length < 2) {
+			return 0;
+		}
 		int n = arr.length;
-		if (n == 1) {
-			return 0;
-		}
-		boolean[] upLeft = new boolean[n];
-		boolean[] downLeft = new boolean[n];
-		boolean[] upRight = new boolean[n];
-		boolean[] downRight = new boolean[n];
-		boolean request = true;
-		upLeft[0] = true;
-		for (int i = 1; i < n; i++) {
-			if ((request && arr[i - 1] < arr[i]) || (!request && arr[i - 1] > arr[i])) {
-				upLeft[i] = true;
-			} else {
-				break;
-			}
-			request = !request;
-		}
-		request = false;
-		downLeft[0] = true;
-		for (int i = 1; i < n; i++) {
-			if ((request && arr[i - 1] < arr[i]) || (!request && arr[i - 1] > arr[i])) {
-				downLeft[i] = true;
-			} else {
-				break;
-			}
-			request = !request;
-		}
-		if (upLeft[n - 1] || downLeft[n - 1]) {
-			return 0;
-		}
-		upRight[n - 1] = true;
-		downRight[n - 1] = true;
+		boolean[] up = new boolean[n];
+		boolean[] down = new boolean[n];
+		up[n - 1] = true;
+		down[n - 1] = true;
 		for (int i = n - 2; i >= 0; i--) {
-			if (arr[i] < arr[i + 1] && downRight[i + 1]) {
-				upRight[i] = true;
-			}
-			if (arr[i] > arr[i + 1] && upRight[i + 1]) {
-				downRight[i] = true;
-			}
-			if (!upRight[i] && !downRight[i]) {
-				break;
-			}
+			up[i] = arr[i] < arr[i + 1] && down[i + 1];
+			down[i] = arr[i] > arr[i + 1] && up[i + 1];
 		}
-		int ans = (upRight[1] || downRight[1]) ? 1 : 0;
-		ans += (upLeft[n - 2] || downLeft[n - 2]) ? 1 : 0;
-		for (int deleteIndex = 1; deleteIndex < n - 1; deleteIndex++) {
-			int l = deleteIndex - 1;
-			int r = deleteIndex + 1;
-			if (arr[l] > arr[r] && upRight[r] && ((l % 2 == 1 && upLeft[l]) || (l % 2 == 0 && downLeft[l]))) {
-				ans++;
-			}
-			if (arr[l] < arr[r] && downRight[r] && ((l % 2 == 1 && downLeft[l]) || (l % 2 == 0 && upLeft[l]))) {
-				ans++;
-			}
+		if (up[0] || down[0]) {
+			return 0;
 		}
+		int ans = (up[1] || down[1]) ? 1 : 0;
+		boolean leftUp = true;
+		boolean leftDown = true;
+		boolean tmp;
+		for (int i = 1, l = 0, r = 2; i < n - 1; i++, l++, r++) {
+			ans += (arr[l] > arr[r] && up[r] && leftDown) || (arr[l] < arr[r] && down[r] && leftUp) ? 1 : 0;
+			tmp = leftUp;
+			leftUp = arr[l] > arr[i] && leftDown;
+			leftDown = arr[l] < arr[i] && tmp;
+		}
+		ans += leftUp || leftDown ? 1 : 0;
 		return ans == 0 ? -1 : ans;
 	}
 
-	// 对数器
+	// 为了验证
 	public static int[] randomArray(int len, int maxValue) {
 		int[] ans = new int[len];
 		for (int i = 0; i < len; i++) {
@@ -155,19 +125,11 @@ public class Code01_WaysWiggle {
 		return ans;
 	}
 
-	// 对数器
-	public static void printArray(int[] arr) {
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
-		}
-		System.out.println();
-	}
-
-	// 对数器
+	// 为了验证
 	public static void main(String[] args) {
 		int maxLen = 10;
 		int maxValue = 100;
-		int testTime = 3000;
+		int testTime = 30000;
 		System.out.println("测试开始");
 		for (int i = 0; i < testTime; i++) {
 			int len = (int) (Math.random() * maxLen) + 1;
@@ -175,11 +137,7 @@ public class Code01_WaysWiggle {
 			int ans1 = ways1(arr);
 			int ans2 = ways2(arr);
 			if (ans1 != ans2) {
-				printArray(arr);
-				System.out.println(ans1);
-				System.out.println(ans2);
 				System.out.println("出错了！");
-				break;
 			}
 		}
 		System.out.println("测试结束");
