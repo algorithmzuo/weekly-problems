@@ -2,8 +2,14 @@ package class_2022_07_2_week;
 
 import java.util.Arrays;
 
+// 我们给出了一个（轴对齐的）二维矩形列表 rectangles 。 
+// 对于 rectangle[i] = [x1, y1, x2, y2]，其中（x1，y1）是矩形 i 左下角的坐标
+// (xi1, yi1) 是该矩形 左下角 的坐标， (xi2, yi2) 是该矩形 右上角 的坐标。
+// 计算平面中所有 rectangles 所覆盖的 总面积 。
+// 任何被两个或多个矩形覆盖的区域应只计算 一次 。
+// 返回 总面积 。因为答案可能太大，返回 10^9 + 7 的 模 。
 // 本题测试链接 : https://leetcode.cn/problems/rectangle-area-ii/
-public class Code02_LineSweepAlgorithm1 {
+public class Code05_LineSweepAlgorithm1 {
 
 	public static int rectangleArea(int[][] rectangles) {
 		int n = rectangles.length;

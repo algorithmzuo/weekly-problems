@@ -9,7 +9,7 @@ import java.util.HashMap;
 // 本题来自大厂刷题班17节
 // 但是为了讲述一个最新题目，不得不重提这个题
 // 本题测试链接 : https://leetcode.com/problems/distinct-subsequences-ii/
-public class Code03_DistinctSubseqValue {
+public class Code01_DistinctSubseqValue {
 
 	public static int distinctSubseqII(String s) {
 		if (s == null || s.length() == 0) {

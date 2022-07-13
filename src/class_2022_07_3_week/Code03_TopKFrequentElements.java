@@ -7,7 +7,7 @@ package class_2022_07_3_week;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-public class Code05_TopKFrequentElements {
+public class Code03_TopKFrequentElements {
 
 	public static int[] topKFrequent(int[] nums, int k) {
 		HashMap<Integer, Integer> map = new HashMap<>();
