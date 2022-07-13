@@ -22,10 +22,13 @@ public class Code04_EmployeeFreeTime {
 	}
 
 	// 提交以下的code
+	// 哈希表！
 	public static List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
 		ArrayList<int[]> arr = new ArrayList<>();
 		for (List<Interval> people : schedule) {
 			for (Interval interval : people) {
+				// 0 开始时间点，有个员工要上线
+				// 1 结束时间点，有个员工要下线
 				arr.add(new int[] { interval.start, interval.end, 0 });
 				arr.add(new int[] { interval.end, interval.end, 1 });
 			}
@@ -37,9 +40,12 @@ public class Code04_EmployeeFreeTime {
 		for (int i = 1; i < arr.size(); i++) {
 			int[] cur = arr.get(i);
 			if (cur[2] == 0) {
+				// 开始时间点来到的时候，来看看有没有空闲时间段
+				//  3  7
 				if (set.isEmpty() && arr.get(i - 1)[0] != cur[0]) {
 					ans.add(new Interval(arr.get(i - 1)[0], cur[0]));
 				}
+				// 哈希表填人了，cur[1]
 				set.add(cur[1]);
 			} else {
 				set.remove(cur[0]);

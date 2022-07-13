@@ -17,13 +17,25 @@ public class Code01_DistinctSubseqValue {
 		}
 		int m = 1000000007;
 		char[] str = s.toCharArray();
+		// a -> 0 -> 
+		// b -> 1 -> 
+		// c -> 2 -> 
+		// z -> 25 -> 
+		// count[i] = 0
 		int[] count = new int[26];
+		// { }
 		int all = 1; // 算空集
 		for (char x : str) {
+			// x
+			// 纯新增
+			// add = all - count[x]
+			// all += add
+			// count[x] + add
 			int add = (all - count[x - 'a'] + m) % m;
 			all = (all + add) % m;
 			count[x - 'a'] = (count[x - 'a'] + add) % m;
 		}
+		// {} 去掉！
 		return all - 1;
 	}
 

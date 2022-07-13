@@ -11,15 +11,20 @@ import java.util.Arrays;
 // 本题测试链接 : https://leetcode.cn/problems/rectangle-area-ii/
 public class Code05_LineSweepAlgorithm1 {
 
+	// x y 
 	public static int rectangleArea(int[][] rectangles) {
 		int n = rectangles.length;
 		long[][] arr = new long[n << 1][4];
 		long max = 0;
 		for (int i = 0; i < n; i++) {
+			// x1 y1 左下角点的坐标
+			// x2 y2 右上角点的坐标
+			// 线段树只支持下标从1开始
 			int x1 = rectangles[i][0];
 			int y1 = rectangles[i][1] + 1;
 			int x2 = rectangles[i][2];
 			int y2 = rectangles[i][3];
+			// x1  1     y1 ~ y2
 			arr[i][0] = x1;
 			arr[i][1] = y1;
 			arr[i][2] = y2;
@@ -34,11 +39,16 @@ public class Code05_LineSweepAlgorithm1 {
 	}
 
 	public static int coverArea(long[][] arr, int n, long max) {
+		// 所有的事件，都在arr里
+		// [x, y1, y2, +1/-1]
+		// 早 -> 晚
 		Arrays.sort(arr, 0, n, (a, b) -> a[0] <= b[0] ? -1 : 1);
+		// max y的值，可能的最大值，非常大也支持！
 		DynamicSegmentTree dst = new DynamicSegmentTree(max);
 		long preX = 0;
 		long ans = 0;
 		for (int i = 0; i < n; i++) {
+			// dst.query() : 开点线段树告诉你！y方向真实的长度！
 			ans += dst.query() * (arr[i][0] - preX);
 			ans %= 1000000007;
 			preX = arr[i][0];

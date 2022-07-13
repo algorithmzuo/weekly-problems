@@ -8,8 +8,12 @@ public class Code03_SwimInRisingWater {
 
 	// 并查集的解法
 	public static int swimInWater1(int[][] grid) {
+		// 行号
 		int n = grid.length;
+		// 列号
 		int m = grid[0].length;
+		// [0,0,5]
+		// [0,1,3]....
 		int[][] points = new int[n * m][3];
 		int pi = 0;
 		for (int i = 0; i < n; i++) {
@@ -19,7 +23,11 @@ public class Code03_SwimInRisingWater {
 				points[pi++][2] = grid[i][j];
 			}
 		}
+		// 所有格子小对象，生成好了!
+		// 排序！[a,b,c]  [d,e,f]
 		Arrays.sort(points, (a, b) -> a[2] - b[2]);
+		// 生成并查集！n * m
+		// 初始化的时候，把所有格子独自成一个集合！
 		UnionFind uf = new UnionFind(n, m);
 		int ans = 0;
 		for (int i = 0; i < points.length; i++) {
