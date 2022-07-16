@@ -54,7 +54,7 @@ public class Code02_WaysSubsqenceXToY {
 
 	// 暴力方法
 	// 为了测试
-	// 生成所有不去重的子序列，一个一个验证
+	// 生成所有去重的子序列，一个一个验证
 	public static int ways1(String s, int n, int x, int y) {
 		HashSet<String> set = new HashSet<>();
 		process1(s, 0, new StringBuilder(), set);
