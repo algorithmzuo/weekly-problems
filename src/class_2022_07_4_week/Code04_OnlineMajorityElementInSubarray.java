@@ -23,29 +23,24 @@ public class Code04_OnlineMajorityElementInSubarray {
 
 		class SegmentTree {
 			int n;
-			int[] arr;
 			int[] candidate;
 			int[] hp;
 
-			public SegmentTree(int[] origin) {
-				n = origin.length;
-				arr = new int[n + 1];
-				for (int i = 1; i <= n; i++) {
-					arr[i] = origin[i - 1];
-				}
+			public SegmentTree(int[] arr) {
+				n = arr.length;
 				candidate = new int[(n + 1) << 2];
 				hp = new int[(n + 1) << 2];
-				build(1, n, 1);
+				build(arr, 1, n, 1);
 			}
 
-			private void build(int l, int r, int rt) {
+			private void build(int[] arr, int l, int r, int rt) {
 				if (l == r) {
-					candidate[rt] = arr[l];
+					candidate[rt] = arr[l - 1];
 					hp[rt] = 1;
 				} else {
 					int m = (l + r) >> 1;
-					build(l, m, rt << 1);
-					build(m + 1, r, rt << 1 | 1);
+					build(arr, l, m, rt << 1);
+					build(arr, m + 1, r, rt << 1 | 1);
 					int lc = candidate[rt << 1];
 					int rc = candidate[rt << 1 | 1];
 					int lh = hp[rt << 1];
