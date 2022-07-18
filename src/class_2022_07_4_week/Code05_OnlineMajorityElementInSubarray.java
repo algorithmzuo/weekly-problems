@@ -2,8 +2,10 @@ package class_2022_07_4_week;
 
 import java.util.ArrayList;
 
+// 为了让同学们听懂这个题
+// 才安排的水王问题重讲
 // 测试链接 : https://leetcode.cn/problems/online-majority-element-in-subarray/
-public class Code04_OnlineMajorityElementInSubarray {
+public class Code05_OnlineMajorityElementInSubarray {
 
 	class MajorityChecker {
 
