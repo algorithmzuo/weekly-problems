@@ -1,7 +1,7 @@
 package class_2022_07_3_week;
 
 // 测试链接 : https://leetcode.com/problems/sliding-puzzle/
-public class Code04_SidingPuzzle2 {
+public class Code05_SidingPuzzle2 {
 
 	public static int[] status = { 12345, 12354, 12435, 12453, 12534, 12543, 13245, 13254, 13425, 13452, 13524, 13542,
 			14235, 14253, 14325, 14352, 14523, 14532, 15234, 15243, 15324, 15342, 15423, 15432, 21345, 21354, 21435,

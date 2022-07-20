@@ -3,7 +3,7 @@ package class_2022_07_3_week;
 import java.util.ArrayList;
 
 // 测试链接 : https://leetcode.com/problems/special-binary-string/
-public class Code02_SpecialBinaryString {
+public class Code04_SpecialBinaryString {
 
 	public static String makeLargestSpecial(String s) {
 		ArrayList<String> arr = new ArrayList<>();
