@@ -1,8 +1,13 @@
 package class_2022_07_3_week;
 
 // 来自蔚来汽车
-// 蔚来汽车考试的时候，数据量N才100
-// 其实这个题可以做到时间复杂度O(N)，额外空间复杂度O(1)
+// 给定一个只包含三种字符的字符串：（ ，） 和 *，
+// 写一个函数来检验这个字符串是否为有效字符串。有效字符串具有如下规则：
+// 任何左括号 ( 必须有相应的右括号 )。
+// 任何右括号 ) 必须有相应的左括号 ( 。
+// 左括号 ( 必须在对应的右括号之前 )。
+// * 可以被视为单个右括号 ) ，或单个左括号 ( ，或一个空字符串。
+// 一个空字符串也被视为有效字符串。
 // 测试链接 : https://leetcode.cn/problems/valid-parenthesis-string/
 public class Code02_ValidParenthesisString {
 
@@ -48,23 +53,23 @@ public class Code02_ValidParenthesisString {
 	// 时间复杂度O(N)，额外空间复杂度O(1)
 	public static boolean checkValidString2(String s) {
 		char[] str = s.toCharArray();
-		int up = 0;
-		int down = 0;
+		int max = 0;
+		int min = 0;
 		for (char x : str) {
 			if (x == '(') {
-				up++;
-				down++;
+				max++;
+				min++;
 			} else {
-				if (x == ')' && up == 0) {
+				if (x == ')' && max == 0) {
 					return false;
 				}
-				up += x == ')' ? -1 : 1;
-				if (down > 0) {
-					down--;
+				max += x == ')' ? -1 : 1;
+				if (min > 0) {
+					min--;
 				}
 			}
 		}
-		return down == 0;
+		return min == 0;
 	}
 
 }
