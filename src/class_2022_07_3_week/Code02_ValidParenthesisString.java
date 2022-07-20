@@ -1,6 +1,8 @@
 package class_2022_07_3_week;
 
 // 来自蔚来汽车
+// 蔚来汽车考试的时候，数据量N才100
+// 其实这个题可以做到时间复杂度O(N)，额外空间复杂度O(1)
 // 测试链接 : https://leetcode.cn/problems/valid-parenthesis-string/
 public class Code02_ValidParenthesisString {
 
@@ -41,6 +43,9 @@ public class Code02_ValidParenthesisString {
 		return ans;
 	}
 
+	// 贪心方法
+	// 最优解
+	// 时间复杂度O(N)，额外空间复杂度O(1)
 	public static boolean checkValidString2(String s) {
 		char[] str = s.toCharArray();
 		int down = 0;
