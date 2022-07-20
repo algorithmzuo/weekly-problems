@@ -48,21 +48,20 @@ public class Code02_ValidParenthesisString {
 	// 时间复杂度O(N)，额外空间复杂度O(1)
 	public static boolean checkValidString2(String s) {
 		char[] str = s.toCharArray();
-		int down = 0;
 		int up = 0;
+		int down = 0;
 		for (char x : str) {
 			if (x == '(') {
+				up++;
 				down++;
-				up++;
-			} else if (x == ')') {
-				down = Math.max(down - 1, 0);
-				up--;
 			} else {
-				down = Math.max(down - 1, 0);
-				up++;
-			}
-			if (up < 0) {
-				return false;
+				if (x == ')' && up == 0) {
+					return false;
+				}
+				up += x == ')' ? -1 : 1;
+				if (down > 0) {
+					down--;
+				}
 			}
 		}
 		return down == 0;
