@@ -1,4 +1,4 @@
-package class_2022_07_3_week;
+package class_2022_07_4_week;
 
 // 在一个 2 * 3 的板上（board）有 5 块砖瓦，用数字 1~5 来表示, 
 // 以及一块空缺用 0 来表示。一次 移动 定义为选择 0 与一个相邻的数字（上下左右）进行交换.
@@ -6,7 +6,7 @@ package class_2022_07_3_week;
 // 给出一个谜板的初始状态 board ，
 // 返回最少可以通过多少次移动解开谜板，如果不能解开谜板，则返回 -1 。
 // 测试链接 : https://leetcode.cn/problems/sliding-puzzle/
-public class Code05_SidingPuzzle2 {
+public class Code02_SidingPuzzle2 {
 
 	public static int[] status = { 12345, 12354, 12435, 12453, 12534, 12543, 13245, 13254, 13425, 13452, 13524, 13542,
 			14235, 14253, 14325, 14352, 14523, 14532, 15234, 15243, 15324, 15342, 15423, 15432, 21345, 21354, 21435,

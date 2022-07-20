@@ -14,6 +14,7 @@ public class Code04_SpecialBinaryString {
 
 	public static String makeLargestSpecial(String s) {
 		ArrayList<String> arr = new ArrayList<>();
+		// 主！
 		for (int index = 0; index < s.length();) {
 			Info info = process(s, index + 1);
 			arr.add(info.ans);
@@ -37,9 +38,12 @@ public class Code04_SpecialBinaryString {
 		}
 	}
 
+	// process(i)
 	public static Info process(String s, int index) {
 		ArrayList<String> arr = new ArrayList<>();
-		while (index != s.length() && s.charAt(index) != '0') {
+		// index 不能是 ) -> 0
+		while (s.charAt(index) != '0') {
+			// index ( -> 1
 			Info info = process(s, index + 1);
 			arr.add(info.ans);
 			index = info.end + 1;

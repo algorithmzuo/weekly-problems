@@ -1,4 +1,4 @@
-package class_2022_07_3_week;
+package class_2022_07_4_week;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;
@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 // 给出一个谜板的初始状态 board ，
 // 返回最少可以通过多少次移动解开谜板，如果不能解开谜板，则返回 -1 。
 // 测试链接 : https://leetcode.cn/problems/sliding-puzzle/
-public class Code05_SidingPuzzle1 {
+public class Code02_SidingPuzzle1 {
 
 	public static int b6 = 100000;
 

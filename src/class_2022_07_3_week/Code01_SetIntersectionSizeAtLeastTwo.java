@@ -10,22 +10,46 @@ import java.util.Arrays;
 public class Code01_SetIntersectionSizeAtLeastTwo {
 
 	public static int intersectionSizeTwo(int[][] intervals) {
+		// O(N*logN)
+		// 区间根据，结束位置谁小，谁在前
+		// 结束位置一样的，开头位置谁大，谁在前
 		Arrays.sort(intervals, (a, b) -> a[1] != b[1] ? (a[1] - b[1]) : (b[0] - a[0]));
+		// 区间排好序了
+		// [1,7] [2,8] [1,8] [13,40]
 		int n = intervals.length;
+		// [1,7] pre = 6 pos =7
 		int pos = intervals[0][1];
 		int pre = pos - 1;
 		int ans = 2;
 		for (int i = 1; i < n; i++) {
+			// intervals[i] = {开头，结尾}
+			// 6 7 [<=6, 结尾]
+			//
+			//			if(intervals[i][0] <= pre) {
+			//				continue;
+			//			}
+			// >6 讨论！
 			if (intervals[i][0] > pre) {
-				if (intervals[i][0] > pos) {
+				// 6 7 [开头>6, 结尾]
+				// 1) 6 < 开头 <= 7
+				// 只有7满足了当前的区间，我们要加个数字，结尾
+				// 6 7   结尾
+				//   pre pos
+				// 6 7
+				// 2) 6 < 开头、7 < 开头
+				// 结尾-1  结尾
+				//  pre   pos
+				if (intervals[i][0] > pos) { // 对应的就是情况2)
 					pre = intervals[i][1] - 1;
 					ans += 2;
-				} else {
+				} else { // 对应的就是情况1)
 					pre = pos;
 					ans += 1;
 				}
+				//  不管情况2)还是情况1)都需要这一句
 				pos = intervals[i][1];
 			}
+
 		}
 		return ans;
 	}
