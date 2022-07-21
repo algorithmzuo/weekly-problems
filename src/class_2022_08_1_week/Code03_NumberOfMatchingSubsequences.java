@@ -52,34 +52,33 @@ public class Code03_NumberOfMatchingSubsequences {
 		return ans;
 	}
 
-	public static int[][] wbuckets = new int[26][5001];
-	public static int[][] ibuckets = new int[26][5001];
-	public static int[] l = new int[26];
-	public static int[] r = new int[26];
+	public static int[][] buckets = new int[26][5001];
+	public static int[] lefts = new int[26];
+	public static int[] rights = new int[26];
+	public static int[] forwards = new int[5001];
 
 	public static int numMatchingSubseq2(String s, String[] words) {
-		Arrays.fill(l, 0);
-		Arrays.fill(r, 0);
+		Arrays.fill(lefts, 0);
+		Arrays.fill(rights, 0);
 		for (int i = 0; i < words.length; i++) {
 			int first = words[i].charAt(0) - 'a';
-			wbuckets[first][r[first]] = i;
-			ibuckets[first][r[first]] = 0;
-			r[first]++;
+			buckets[first][rights[first]] = i;
+			rights[first]++;
+			forwards[i] = 0;
 		}
 		int ans = 0;
 		for (int i = 0; i < s.length(); i++) {
 			int cur = s.charAt(i) - 'a';
-			int tmp = r[cur];
-			for (; l[cur] < tmp; l[cur]++) {
-				int wi = wbuckets[cur][l[cur]];
-				int ci = ibuckets[cur][l[cur]] + 1;
-				if (ci == words[wi].length()) {
+			int tmp = rights[cur];
+			for (; lefts[cur] < tmp; lefts[cur]++) {
+				int wi = buckets[cur][lefts[cur]];
+				++forwards[wi];
+				if (forwards[wi] == words[wi].length()) {
 					ans++;
 				} else {
-					int next = words[wi].charAt(ci) - 'a';
-					wbuckets[next][r[next]] = wi;
-					ibuckets[next][r[next]] = ci;
-					r[next]++;
+					int next = words[wi].charAt(forwards[wi]) - 'a';
+					buckets[next][rights[next]] = wi;
+					rights[next]++;
 				}
 			}
 		}
