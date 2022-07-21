@@ -3,6 +3,7 @@ package class_2022_08_1_week;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// 测试链接 : https://leetcode.cn/problems/number-of-matching-subsequences/
 public class Code03_NumberOfMatchingSubsequences {
 
 	public static class Word {
