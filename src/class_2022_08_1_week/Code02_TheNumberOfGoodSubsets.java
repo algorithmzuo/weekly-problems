@@ -31,16 +31,17 @@ public class Code02_TheNumberOfGoodSubsets {
 		for (int i = 2; i <= 30; i++) {
 			int cur = primes[i];
 			if (cur != 0 && counts[i] != 0) {
-				for (int mask = 0; mask < (1 << 10); mask++) {
-					if ((mask & cur) == 0) {
-						status[mask | cur] =  (int) (((long) status[mask | cur]  + ((long) status[mask] * counts[i])) % mod);
+				for (int from = 0; from < (1 << 10); from++) {
+					if ((from & cur) == 0) {
+						int to = from | cur;
+						status[to] =  (int) (((long) status[to]  + ((long) status[from] * counts[i])) % mod);
 					}
 				}
 			}
 		}
 		int ans = 0;
-		for (int mask = 1; mask < (1 << 10); mask++) {
-			ans = (ans + status[mask]) % mod;
+		for (int s = 1; s < (1 << 10); s++) {
+			ans = (ans + status[s]) % mod;
 		}
 		return ans;
 	}
