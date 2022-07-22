@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-matching-subsequences/
-public class Code03_NumberOfMatchingSubsequences {
+public class Code04_NumberOfMatchingSubsequences {
 
 	public static class Word {
 		public char[] s;
