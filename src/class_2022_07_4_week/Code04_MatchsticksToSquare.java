@@ -1,7 +1,7 @@
-package class_2022_08_1_week;
+package class_2022_07_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/matchsticks-to-square/
-public class Code01_MatchsticksToSquare {
+public class Code04_MatchsticksToSquare {
 
 	public static boolean makesquare(int[] matchsticks) {
 		int sum = 0;
