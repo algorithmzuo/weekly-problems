@@ -17,7 +17,7 @@ public class Code05_ShortestImpossibleSequenceOfRolls {
 			if (size == k) {
 				ans++;
 				Arrays.fill(set, false);
-                size = 0;
+				size = 0;
 			}
 		}
 		return ans + 1;
