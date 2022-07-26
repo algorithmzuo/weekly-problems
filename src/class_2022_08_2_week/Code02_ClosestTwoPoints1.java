@@ -2,7 +2,9 @@ package class_2022_08_2_week;
 
 // 测试链接 : https://www.luogu.com.cn/problem/P1429
 // 提交如下代码，把主类名改成Main，可以直接通过
-// 时间复杂度O(N * (logN的平方))
+// T(N) = 2*T(N/2) + O(N*logN)
+// 这个表达式的时间复杂度是O(N*(logN的平方))
+// 复杂度证明 : https://math.stackexchange.com/questions/159720/
 // 网上大部分的帖子，答案都是这个复杂度
 import java.io.BufferedReader;
 import java.io.IOException;

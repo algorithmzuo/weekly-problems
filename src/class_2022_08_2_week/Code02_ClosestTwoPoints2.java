@@ -2,8 +2,11 @@ package class_2022_08_2_week;
 
 // 测试链接 : https://www.luogu.com.cn/problem/P1429
 // 提交如下代码，把主类名改成Main，可以直接通过
-// 时间复杂度O(N * logN)
-// 需要用到归并的技巧，才能做到
+// T(N) = 2*T(N/2) + O(N)
+// 这个表达式我们很熟悉，和归并排序一样的表达式
+// 时间复杂度是O(N*logN)
+// 需要用到归并排序的技巧才能做到
+// 我们课上的独家
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
