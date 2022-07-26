@@ -2,6 +2,8 @@ package class_2022_08_2_week;
 
 // 测试链接 : https://www.luogu.com.cn/problem/P1429
 // 提交如下代码，把主类名改成Main，可以直接通过
+// 时间复杂度O(N * logN)
+// 需要用到归并的技巧，才能做到
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,11 +12,13 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code02_ClosestTwoPoints {
+public class Code02_ClosestTwoPoints2 {
 
 	public static int N = 200001;
 
 	public static Point[] points = new Point[N];
+
+	public static Point[] merge = new Point[N];
 
 	public static Point[] deals = new Point[N];
 
@@ -57,22 +61,46 @@ public class Code02_ClosestTwoPoints {
 			return ans;
 		}
 		if (left == right - 1) {
+			if (points[left].y > points[right].y) {
+				Point tmp = points[left];
+				points[left] = points[right];
+				points[right] = tmp;
+			}
 			return distance(points[left], points[right]);
 		}
 		int mid = (right + left) / 2;
+		double midX = points[mid].x;
 		ans = Math.min(nearest(left, mid), nearest(mid + 1, right));
-		int l = mid;
-		int r = mid + 1;
-		int size = 0;
-		while (l >= left && points[mid].x - points[l].x <= ans) {
-			deals[size++] = points[l--];
+		int p1 = left;
+		int p2 = mid + 1;
+		int mergeSize = left;
+		int dealSize = 0;
+		while (p1 <= mid && p2 <= right) {
+			merge[mergeSize] = points[p1].y <= points[p2].y ? points[p1++] : points[p2++];
+			if (Math.abs(merge[mergeSize].x - midX) <= ans) {
+				deals[dealSize++] = merge[mergeSize];
+			}
+			mergeSize++;
 		}
-		while (r <= right && points[r].x - points[mid].x <= ans) {
-			deals[size++] = points[r++];
+		while (p1 <= mid) {
+			merge[mergeSize] = points[p1++];
+			if (Math.abs(merge[mergeSize].x - midX) <= ans) {
+				deals[dealSize++] = merge[mergeSize];
+			}
+			mergeSize++;
 		}
-		Arrays.sort(deals, 0, size, (a, b) -> a.y <= b.y ? -1 : 1);
-		for (int i = 0; i < size; i++) {
-			for (int j = i + 1; j < size; j++) {
+		while (p2 <= right) {
+			merge[mergeSize] = points[p2++];
+			if (Math.abs(merge[mergeSize].x - midX) <= ans) {
+				deals[dealSize++] = merge[mergeSize];
+			}
+			mergeSize++;
+		}
+		for (int i = left; i <= right; i++) {
+			points[i] = merge[i];
+		}
+		for (int i = 0; i < dealSize; i++) {
+			for (int j = i + 1; j < dealSize; j++) {
 				if (deals[j].y - deals[i].y >= ans) {
 					break;
 				}
