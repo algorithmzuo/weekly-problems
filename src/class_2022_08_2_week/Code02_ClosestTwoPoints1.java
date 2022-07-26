@@ -28,9 +28,6 @@ public class Code02_ClosestTwoPoints1 {
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 		while (in.nextToken() != StreamTokenizer.TT_EOF) {
 			int n = (int) in.nval;
-			if (n == 0) {
-				break;
-			}
 			for (int i = 0; i < n; i++) {
 				in.nextToken();
 				double x = (double) in.nval;
