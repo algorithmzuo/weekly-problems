@@ -1,6 +1,6 @@
 package class_2022_08_2_week;
 
-// 测试链接 : http://acm.hdu.edu.cn/showproblem.php?pid=1007
+// 测试链接 : https://www.luogu.com.cn/problem/P1429
 // 提交如下代码，把主类名改成Main，可以直接通过
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class Code02_ClosestTwoPoints {
 
-	public static int N = 100001;
+	public static int N = 200001;
 
 	public static Point[] points = new Point[N];
 
@@ -29,14 +29,14 @@ public class Code02_ClosestTwoPoints {
 			}
 			for (int i = 0; i < n; i++) {
 				in.nextToken();
-				double a = in.nval;
+				double x = (double) in.nval;
 				in.nextToken();
-				double b = in.nval;
-				points[i] = new Point(a, b);
+				double y = (double) in.nval;
+				points[i] = new Point(x, y);
 			}
 			Arrays.sort(points, 0, n, (a, b) -> a.x <= b.x ? -1 : 1);
-			double ans = nearest(0, n - 1) / 2;
-			out.println(String.format("%.2f", ans));
+			double ans = nearest(0, n - 1);
+			out.println(String.format("%.4f", ans));
 			out.flush();
 		}
 	}
