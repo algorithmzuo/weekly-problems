@@ -5,7 +5,7 @@ package class_2022_07_4_week;
 // 你 不能折断 任何一根火柴棒，但你可以把它们连在一起，而且每根火柴棒必须 使用一次 。
 // 如果你能拼出正方形，则返回 true ，否则返回 false 。
 // 测试链接 : https://leetcode.cn/problems/matchsticks-to-square/
-public class Code03_MatchsticksToSquare {
+public class Code02_MatchsticksToSquare {
 
 	public static boolean makesquare(int[] matchsticks) {
 		int sum = 0;
