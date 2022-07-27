@@ -60,14 +60,6 @@ public class Code02_ClosestTwoPoints2 {
 		if (left == right) {
 			return ans;
 		}
-		if (left == right - 1) {
-			if (points[left].y > points[right].y) {
-				Point tmp = points[left];
-				points[left] = points[right];
-				points[right] = tmp;
-			}
-			return distance(points[left], points[right]);
-		}
 		int mid = (right + left) / 2;
 		double midX = points[mid].x;
 		ans = Math.min(nearest(left, mid), nearest(mid + 1, right));

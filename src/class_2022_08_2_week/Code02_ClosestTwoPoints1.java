@@ -57,9 +57,6 @@ public class Code02_ClosestTwoPoints1 {
 		if (left == right) {
 			return ans;
 		}
-		if (left == right - 1) {
-			return distance(points[left], points[right]);
-		}
 		int mid = (right + left) / 2;
 		ans = Math.min(nearest(left, mid), nearest(mid + 1, right));
 		int l = mid;
