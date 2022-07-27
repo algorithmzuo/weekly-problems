@@ -6,7 +6,7 @@ package class_2022_07_4_week;
 // 给出一个谜板的初始状态 board ，
 // 返回最少可以通过多少次移动解开谜板，如果不能解开谜板，则返回 -1 。
 // 测试链接 : https://leetcode.cn/problems/sliding-puzzle/
-public class Code02_SidingPuzzle2 {
+public class Code04_SidingPuzzle2 {
 
 	public static int[] status = { 12345, 12354, 12435, 12453, 12534, 12543, 13245, 13254, 13425, 13452, 13524, 13542,
 			14235, 14253, 14325, 14352, 14523, 14532, 15234, 15243, 15324, 15342, 15423, 15432, 21345, 21354, 21435,

@@ -11,7 +11,7 @@ import java.util.Arrays;
 // nums 中的 子集 是通过删除 nums 中一些（可能一个都不删除，也可能全部都删除）元素后剩余元素组成的数组。
 // 如果两个子集删除的下标不同，那么它们被视为不同的子集。
 // 测试链接 : https://leetcode.cn/problems/the-number-of-good-subsets/
-public class Code03_TheNumberOfGoodSubsets {
+public class Code02_TheNumberOfGoodSubsets {
 
 	// 2, 3, 5, 6, 7, 10, 11, 13, 14,
 	// 15, 17, 19, 21, 22, 23, 26, 29, 30
