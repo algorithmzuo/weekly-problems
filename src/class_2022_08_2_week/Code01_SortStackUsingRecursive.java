@@ -12,70 +12,66 @@ import java.util.Stack;
 // 2) 简单返回值的递归函数
 public class Code01_SortStackUsingRecursive {
 
-	public static void sort(Stack<Integer> stack) {
-		int deep = size(stack);
+	public static void sortStack(Stack<Integer> stack) {
+		int deep = deep(stack);
 		while (deep > 0) {
-			int max = findMax(stack, deep);
-			int k = findMaxTimes(stack, deep, max);
-			maxDown(stack, deep, max, k);
+			int max = max(stack, deep);
+			int k = times(stack, max, deep);
+			down(stack, deep, max, k);
 			deep -= k;
 		}
 	}
 
-	// 求栈的大小
-	// 但是不改变栈的任何数据状况
-	public static int size(Stack<Integer> stack) {
+	// 返回栈的深度
+	// stack push pop isEmpty
+	public static int deep(Stack<Integer> stack) {
 		if (stack.isEmpty()) {
 			return 0;
 		}
-		int hold = stack.pop();
-		int size = size(stack) + 1;
-		stack.push(hold);
-		return size;
+		int num = stack.pop();
+		int deep = deep(stack) + 1;
+		stack.push(num);
+		return deep;
 	}
 
-	// 从stack顶部出发，只往下找deep层
-	// 返回最大值
-	// 完全不改变stack的任何数据状况
-	public static int findMax(Stack<Integer> stack, int deep) {
+	// 从栈当前的顶部开始，往下数deep层
+	// ) 返回这deep层里的最大值
+	public static int max(Stack<Integer> stack, int deep) {
 		if (deep == 0) {
 			return Integer.MIN_VALUE;
 		}
 		int num = stack.pop();
-		int restMax = findMax(stack, deep - 1);
-		int ans = Math.max(num, restMax);
+		int restMax = max(stack, deep - 1);
+		int max = Math.max(num, restMax);
 		stack.push(num);
-		return ans;
+		return max;
 	}
 
-	// 已知从stack顶部出发，只往下找deep层，最大值是max
-	// 返回这个最大值出现了几次，只找到deep层！再往下不找了！
-	// 完全不改变stack的任何数据状况
-	public static int findMaxTimes(Stack<Integer> stack, int deep, int max) {
+	// 从栈当前的顶部开始，往下数deep层，已知最大值是max了
+	// 返回，max出现了几次，不改变栈的数据状况
+	public static int times(Stack<Integer> stack, int max, int deep) {
 		if (deep == 0) {
 			return 0;
 		}
 		int num = stack.pop();
-		int times = findMaxTimes(stack, deep - 1, max);
-		times += num == max ? 1 : 0;
+		int restTimes = times(stack, max, deep - 1);
+		int times = restTimes + (num == max ? 1 : 0);
 		stack.push(num);
 		return times;
 	}
 
-	// 已知从stack顶部出发，只往下找deep层，最大值是max
-	// 并且这个max出现了k次
-	// 请把这k个max沉底，不是沉到stack整体的底部，而是到deep层
-	// stack改变数据状况，但是只在从顶部到deep层的范围上改变
-	public static void maxDown(Stack<Integer> stack, int deep, int max, int k) {
+	// 从栈当前的顶部开始，往下数deep层，已知最大值是max，出现了k次
+	// 请把这k个最大值沉底，剩下的数据状况不变
+	public static void down(Stack<Integer> stack, int deep, int max, int k) {
 		if (deep == 0) {
 			for (int i = 0; i < k; i++) {
 				stack.push(max);
 			}
 		} else {
-			int cur = stack.pop();
-			maxDown(stack, deep - 1, max, k);
-			if (cur < max) {
-				stack.push(cur);
+			int num = stack.pop();
+			down(stack, deep - 1, max, k);
+			if (num != max) {
+				stack.push(num);
 			}
 		}
 	}
@@ -117,7 +113,7 @@ public class Code01_SortStackUsingRecursive {
 		test.add(4);
 		test.add(2);
 		// 1 5 4 5 3 2 3 1 4 2
-		sort(test);
+		sortStack(test);
 		while (!test.isEmpty()) {
 			System.out.println(test.pop());
 		}
@@ -129,7 +125,7 @@ public class Code01_SortStackUsingRecursive {
 		for (int i = 0; i < testTimes; i++) {
 			int n = (int) (Math.random() * N);
 			Stack<Integer> stack = generateRandomStack(n, V);
-			sort(stack);
+			sortStack(stack);
 			if (!isSorted(stack)) {
 				System.out.println("出错了!");
 				break;

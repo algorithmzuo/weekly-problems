@@ -7,6 +7,36 @@ import java.util.Stack;
 // 要求只有必要加括号的地方才加括号
 public class Code02_ReversePolishNotation {
 
+	// 请保证给定的逆波兰式是正确的！
+	public static int getAns(String rpn) {
+		if (rpn == null || rpn.equals("")) {
+			return 0;
+		}
+		String[] parts = rpn.split(" ");
+		Stack<Integer> stack = new Stack<>();
+		for (String part : parts) {
+			if (part.equals("+") || part.equals("-") || part.equals("*") || part.equals("/")) {
+				int right = stack.pop();
+				int left = stack.pop();
+				int ans = 0;
+				if (part.equals("+")) {
+					ans = left + right;
+				} else if (part.equals("-")) {
+					ans = left - right;
+				} else if (part.equals("*")) {
+					ans = left * right;
+				} else {
+					ans = left / right;
+				}
+				stack.push(ans);
+			} else {
+				stack.push(Integer.valueOf(part));
+			}
+		}
+		// stack 只有一个数，最终的结果
+		return stack.pop();
+	}
+
 	enum Operation {
 		SingleNumber, AddOrMinus, MultiplyOrDivide;
 	}
@@ -50,8 +80,8 @@ public class Code02_ReversePolishNotation {
 	public static void main(String[] args) {
 		// 3*(-5+13)+6/(2-3+2)-4*5*3
 		String rpn = "3 -5 13 + * 6 2 3 - 2 + / + 4 5 3 * * -";
-		String ans = convert(rpn);
-		System.out.println(ans);
+		System.out.println(getAns(rpn));
+		System.out.println(convert(rpn));
 	}
 
 }
