@@ -76,8 +76,11 @@ public class Code03_CutOrPoison {
 		int n = Math.min(cuts.length, limit);
 		for (int i = 0, j = 1; i < n; i++, j++) {
 			hp -= Math.max((long) cuts[i], (long) (limit - j) * (long) posions[i]);
+			if (hp <= 0) {
+				return true;
+			}
 		}
-		return hp <= 0;
+		return false;
 	}
 
 	// 为了测试
