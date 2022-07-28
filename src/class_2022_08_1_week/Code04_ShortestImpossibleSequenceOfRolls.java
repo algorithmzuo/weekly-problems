@@ -3,7 +3,7 @@ package class_2022_08_1_week;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/
-public class Code02_ShortestImpossibleSequenceOfRolls {
+public class Code04_ShortestImpossibleSequenceOfRolls {
 
 	public static int shortestSequence(int[] rolls, int k) {
 		boolean[] set = new boolean[k + 1];
