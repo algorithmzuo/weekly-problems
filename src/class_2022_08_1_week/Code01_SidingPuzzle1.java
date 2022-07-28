@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 // 给出一个谜板的初始状态 board ，
 // 返回最少可以通过多少次移动解开谜板，如果不能解开谜板，则返回 -1 。
 // 测试链接 : https://leetcode.cn/problems/sliding-puzzle/
-public class Code04_SidingPuzzle1 {
+public class Code01_SidingPuzzle1 {
 
 	public static int b6 = 100000;
 

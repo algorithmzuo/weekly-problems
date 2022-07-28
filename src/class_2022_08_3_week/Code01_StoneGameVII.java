@@ -1,4 +1,4 @@
-package class_2022_08_1_week;
+package class_2022_08_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/stone-game-vii/
 public class Code01_StoneGameVII {
