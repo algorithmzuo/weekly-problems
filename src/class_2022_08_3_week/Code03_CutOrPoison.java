@@ -54,7 +54,7 @@ public class Code03_CutOrPoison {
 	}
 
 	// 真正想实现的方法
-	// O(N * logK)
+	// O(N * log(hp))
 	public static int fast2(int[] cuts, int[] poisons, int hp) {
 		int l = 1;
 		int r = hp + 1;
@@ -72,12 +72,10 @@ public class Code03_CutOrPoison {
 		return ans;
 	}
 
-	public static boolean ok(int[] cuts, int[] posions, int hp, int limit) {
+	public static boolean ok(int[] cuts, int[] posions, long hp, int limit) {
 		int n = Math.min(cuts.length, limit);
 		for (int i = 0, j = 1; i < n; i++, j++) {
-			long p1 = cuts[i];
-			long p2 = (limit - j) * posions[i];
-			hp -= Math.max(p1, p2);
+			hp -= Math.max((long) cuts[i], (long) (limit - j) * (long) posions[i]);
 		}
 		return hp <= 0;
 	}
