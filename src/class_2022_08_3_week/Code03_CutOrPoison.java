@@ -97,7 +97,7 @@ public class Code03_CutOrPoison {
 		int cutV = 20;
 		int posionV = 10;
 		int hpV = 200;
-		int testTimes = 3000;
+		int testTimes = 10000;
 		System.out.println("测试开始");
 		for (int i = 0; i < testTimes; i++) {
 			int n = (int) (Math.random() * N) + 1;
