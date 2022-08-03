@@ -11,8 +11,13 @@ import java.util.Arrays;
 // 测试链接 : https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/
 public class Code04_ShortestImpossibleSequenceOfRolls {
 
+	// 所有数字1~k
 	public static int shortestSequence(int[] rolls, int k) {
+		// 1~k上，某个数字是否收集到了！
+		// set[i] == true
+		// set[i] == false
 		boolean[] set = new boolean[k + 1];
+		// 当前这一套，收集了几个数字了？
 		int size = 0;
 		int ans = 0;
 		for (int num : rolls) {

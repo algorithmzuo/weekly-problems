@@ -1,7 +1,7 @@
 package class_2022_08_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/longest-cycle-in-a-graph/
-public class Code04_LongestCycleInGraph2 {
+public class Code01_LongestCycleInGraph2 {
 
 	public int longestCycle(int[] edges) {
 		int n = edges.length;

@@ -100,6 +100,7 @@ public class Code03_OnlineMajorityElementInSubarray {
 
 		class CountQuicker {
 
+			// v : i1 i14 i15
 			ArrayList<ArrayList<Integer>> cnt;
 
 			public CountQuicker(int[] arr) {

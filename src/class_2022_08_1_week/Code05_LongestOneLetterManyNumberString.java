@@ -34,19 +34,26 @@ public class Code05_LongestOneLetterManyNumberString {
 	public static int zuo(String s) {
 		char[] str = s.toCharArray();
 		int n = str.length;
+		// 窗口内有几个小写字母了
 		int letters = 0;
+		// 窗口的右边界
+		// [left, right)
 		int right = 0;
 		int ans = 0;
+		// for枚举了每一个窗口的开始位置，0... 1...... 2.....
 		for (int left = 0; left < n; left++) {
-			while (right < n) {
+			while (right < n) { // right不能越界，一旦越界不用再往右了
 				if (letters == 1 && str[right] >= 'a' && str[right] <= 'z') {
 					break;
 				}
+				// letters == 0 str[right]是数字
 				if (str[right] >= 'a' && str[right] <= 'z') {
 					letters++;
 				}
 				right++;
 			}
+			// [left.....right)
+			// [left.....right-1]
 			if (letters == 1) {
 				ans = Math.max(ans, right - left);
 			}

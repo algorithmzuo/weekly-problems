@@ -1,4 +1,4 @@
-package class_2022_08_2_week;
+package class_2022_08_1_week;
 
 import java.util.Stack;
 
@@ -10,8 +10,8 @@ import java.util.Stack;
 // 就是只用：
 // 1) 栈提供的push、pop、isEmpty三个方法
 // 2) 简单返回值的递归函数
-public class Code01_SortStackUsingRecursive {
-
+public class Code06_SortStackUsingRecursive {
+	
 	public static void sortStack(Stack<Integer> stack) {
 		int deep = deep(stack);
 		while (deep > 0) {
@@ -23,6 +23,7 @@ public class Code01_SortStackUsingRecursive {
 	}
 
 	// 返回栈的深度
+	// 不改变栈的数据状况
 	// stack push pop isEmpty
 	public static int deep(Stack<Integer> stack) {
 		if (stack.isEmpty()) {

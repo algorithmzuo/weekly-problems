@@ -25,10 +25,19 @@ public class Code01_SidingPuzzle1 {
 
 	public static int[][] end = { { 1, 2 }, { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 1, 1 } };
 
+	// [1 0 2] 
+	// [3 4 5]
+	// 102345
 	public static int slidingPuzzle(int[][] m) {
 		HashSet<Integer> set = new HashSet<>();
 		int from = m[0][0] * b6 + m[0][1] * b5 + m[0][2] * b4 + m[1][0] * b3 + m[1][1] * b2 + m[1][2];
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> (a[0] + a[1]) - (b[0] + b[1]));
+		
+		// [ 
+		// 从from出发到达当前状态，已经走了几步，  
+		// 从当前状态到最终状态的估计距离 
+		// 当前状态是什么，用数字代表
+		// ]
 		heap.add(new int[] { 0, distance(from), from });
 		int ans = -1;
 		while (!heap.isEmpty()) {
@@ -55,11 +64,19 @@ public class Code01_SidingPuzzle1 {
 	}
 
 	public static int nexts(int from) {
+		// 301245
+		//  10000
+		// a = 3
 		int a = from / b6;
+		// b = 0
 		int b = (from / b5) % 10;
+		// c = 1
 		int c = (from / b4) % 10;
+		// d = 2
 		int d = (from / b3) % 10;
+		// e = 4
 		int e = (from / b2) % 10;
+		// f = 5
 		int f = from % 10;
 		if (a == 0) {
 			nexts[0] = from + (b - a) * b6 + (a - b) * b5;
@@ -90,6 +107,9 @@ public class Code01_SidingPuzzle1 {
 		}
 	}
 
+	// 当前的数，num
+	// 最终要去的数，123450
+	// 返回num -> 123450 曼哈顿距离！
 	public static int distance(int num) {
 		int ans = end[num / b6][0] + end[num / b6][1];
 		ans += end[(num / b5) % 10][0] + Math.abs(end[(num / b5) % 10][1] - 1);
@@ -99,5 +119,18 @@ public class Code01_SidingPuzzle1 {
 		ans += Math.abs(end[num % 10][0] - 1) + Math.abs(end[num % 10][1] - 2);
 		return ans;
 	}
+	
+	
+	public static void main(String[] args) {
+		int from = 301245;
+		int size = nexts(from);
+		for(int i = 0 ;i < size;i++) {
+			System.out.println(nexts[i]);
+		}
+		int num = 314502;
+		System.out.println(distance(num));
+	}
+	
+	
 
 }

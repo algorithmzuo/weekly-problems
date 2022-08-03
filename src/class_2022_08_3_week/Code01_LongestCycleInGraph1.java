@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 // 用强联通分量
 // 测试链接 : https://leetcode.cn/problems/longest-cycle-in-a-graph/
-public class Code04_LongestCycleInGraph1 {
+public class Code01_LongestCycleInGraph1 {
 
 	public static int longestCycle(int[] edges) {
 		int n = edges.length;
