@@ -1,4 +1,4 @@
-package class_2022_08_3_week;
+package class_2022_08_2_week;
 
 // 来自学员问题
 // 给定怪兽的血量为hp
@@ -16,7 +16,7 @@ package class_2022_08_3_week;
 // 1 <= n <= 10的5次方
 // 1 <= hp <= 10的9次方
 // 1 <= cuts[i]、poisons[i] <= 10的9次方
-public class Code03_CutOrPoison {
+public class Code04_CutOrPoison {
 
 	// 不算好的方法
 	// 为了验证
