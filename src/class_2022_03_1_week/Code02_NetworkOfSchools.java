@@ -12,50 +12,64 @@ package class_2022_03_1_week;
 // 测试链接 : http://poj.org/problem?id=1236
 // 注册一下 -> 页面上点击"submit" -> 语言选择java
 // 然后把如下代码粘贴进去, 把主类名改成"Main", 可以直接通过
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Code02_NetworkOfSchools {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int n = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StreamTokenizer in = new StreamTokenizer(br);
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			int n = (int) in.nval;
 			ArrayList<ArrayList<Integer>> edges = new ArrayList<ArrayList<Integer>>();
 			for (int i = 0; i <= n; i++) {
 				edges.add(new ArrayList<Integer>());
 			}
 			for (int from = 1; from <= n; from++) {
-				int to = 0;
-				while ((to = sc.nextInt()) != 0) {
-					edges.get(from).add(to);
-				}
+				do {
+					in.nextToken();
+					int to = (int) in.nval;
+					if (to == 0) {
+						break;
+					} else {
+						edges.get(from).add(to);
+					}
+				} while (true);
 			}
 			StronglyConnectedComponents scc = new StronglyConnectedComponents(edges);
 			int sccn = scc.getSccn();
-			int[] in = new int[sccn + 1];
-			int[] out = new int[sccn + 1];
+			int[] inDegrees = new int[sccn + 1];
+			int[] outDegrees = new int[sccn + 1];
 			ArrayList<ArrayList<Integer>> dag = scc.getShortGraph();
 			for (int i = 1; i <= sccn; i++) {
 				for (int j : dag.get(i)) {
-					out[i]++;
-					in[j]++;
+					outDegrees[i]++;
+					inDegrees[j]++;
 				}
 			}
 			int zeroIn = 0;
 			int zeroOut = 0;
 			for (int i = 1; i <= sccn; i++) {
-				if (in[i] == 0) {
+				if (inDegrees[i] == 0) {
 					zeroIn++;
 				}
-				if (out[i] == 0) {
+				if (outDegrees[i] == 0) {
 					zeroOut++;
 				}
 			}
-			System.out.println(zeroIn);
-			System.out.println(sccn == 1 ? 0 : Math.max(zeroIn, zeroOut));
+			out.println(zeroIn);
+			out.println(sccn == 1 ? 0 : Math.max(zeroIn, zeroOut));
+			out.flush();
 		}
-		sc.close();
 	}
 
 	public static class StronglyConnectedComponents {

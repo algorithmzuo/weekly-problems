@@ -2,7 +2,7 @@ package class_2022_03_4_week;
 
 // 来自字节内部训练营
 // 某公司游戏平台的夏季特惠开始了，你决定入手一些游戏。现在你一共有X元的预算。
-// 该平台上所有的 n 个游戏均有折扣，标号为 i 的游戏的原价a_i元，现价只要b_i元
+// 平台上所有的 n 个游戏均有折扣，标号为 i 的游戏的原价a_i元，现价只要b_i元
 // 也就是说该游戏可以优惠 a_i - b_i，并且你购买该游戏能获得快乐值为 w_i
 // 由于优惠的存在，你可能做出一些冲动消费导致最终买游戏的总费用超过预算，
 // 只要满足 : 获得的总优惠金额不低于超过预算的总金额
@@ -11,26 +11,38 @@ package class_2022_03_4_week;
 // 测试链接 : https://leetcode-cn.com/problems/tJau2o/
 // 提交以下的code，将主类名字改成"Main"
 // 可以直接通过
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
+
 
 public class Code02_BuyGoodsHaveDiscount {
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int n = sc.nextInt();
-			int money = sc.nextInt();
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StreamTokenizer in = new StreamTokenizer(br);
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			int n = (int) in.nval;
+			in.nextToken();
+			int money = (int) in.nval;
 			int[] costs = new int[n];
 			long[] values = new long[n];
 			int size = 0;
 			long ans = 0;
 			for (int i = 0; i < n; i++) {
 				// 打折前
-				int pre = sc.nextInt();
+				in.nextToken();
+				int pre = (int)in.nval;
 				// 打折后
-				int pos = sc.nextInt();
+				in.nextToken();
+				int pos = (int)in.nval;
 				// 满足度
-				int happy = sc.nextInt();
+				in.nextToken();
+				int happy = (int)in.nval;
 				// 节省的钱(save) = 打折前(pre) - 打折后(pos)
 				int save = pre - pos;
 				// 带来的好处(well) = 节省的钱 - 打折后(pos)
@@ -60,9 +72,9 @@ public class Code02_BuyGoodsHaveDiscount {
 				}
 			}
 			ans += process(costs, values, size, 0, money, dp);
-			System.out.println(ans);
+			out.println(ans);
+			out.flush();
 		}
-		sc.close();
 	}
 
 	public static long process(int[] costs, long[] values, int size, int i, int money, long[][] dp) {

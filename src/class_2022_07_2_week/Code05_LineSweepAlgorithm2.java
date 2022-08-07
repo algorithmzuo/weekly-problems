@@ -3,9 +3,13 @@ package class_2022_07_2_week;
 // 本题测试链接 : https://www.luogu.com.cn/problem/P5490
 // 提交以下代码，并把主类名改成"Main"
 // 可以直接通过
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
@@ -21,30 +25,33 @@ public class Code05_LineSweepAlgorithm2 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StreamTokenizer scanner = new StreamTokenizer(br);
-		scanner.nextToken();
-		int n = (int) scanner.nval;
-		for (int i = 1; i <= n; i++) {
-			scanner.nextToken();
-			int x1 = (int) scanner.nval;
-			scanner.nextToken();
-			int y1 = (int) scanner.nval;
-			scanner.nextToken();
-			int x2 = (int) scanner.nval;
-			scanner.nextToken();
-			int y2 = (int) scanner.nval;
-			orderedY[i] = y1;
-			orderedY[i + n] = y2;
-			arr[i][0] = x1;
-			arr[i][1] = y1;
-			arr[i][2] = y2;
-			arr[i][3] = 1;
-			arr[i + n][0] = x2;
-			arr[i + n][1] = y1;
-			arr[i + n][2] = y2;
-			arr[i + n][3] = -1;
+		StreamTokenizer in = new StreamTokenizer(br);
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			int n = (int) in.nval;
+			for (int i = 1; i <= n; i++) {
+				in.nextToken();
+				int x1 = (int) in.nval;
+				in.nextToken();
+				int y1 = (int) in.nval;
+				in.nextToken();
+				int x2 = (int) in.nval;
+				in.nextToken();
+				int y2 = (int) in.nval;
+				orderedY[i] = y1;
+				orderedY[i + n] = y2;
+				arr[i][0] = x1;
+				arr[i][1] = y1;
+				arr[i][2] = y2;
+				arr[i][3] = 1;
+				arr[i + n][0] = x2;
+				arr[i + n][1] = y1;
+				arr[i + n][2] = y2;
+				arr[i + n][3] = -1;
+			}
+			out.println(coverArea(n << 1));
+			out.flush();
 		}
-		System.out.println(coverArea(n << 1));
 	}
 
 	public static long coverArea(int n) {

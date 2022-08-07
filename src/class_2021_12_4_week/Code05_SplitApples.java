@@ -1,26 +1,35 @@
 package class_2021_12_4_week;
 
-//有m个同样的苹果，认为苹果之间无差别
-//有n个同样的盘子，认为盘子之间也无差别
-//还有，比如5个苹果如果放进3个盘子，
-//那么1、3、1和1、1、3和3、1、1的放置方法，也认为是一种方法
-//如上的设定下，返回有多少种放置方法
-//测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
-//提交以下的code，提交时请把类名改成"Main"
+// 有m个同样的苹果，认为苹果之间无差别
+// 有n个同样的盘子，认为盘子之间也无差别
+// 还有，比如5个苹果如果放进3个盘子，
+// 那么1、3、1和1、1、3和3、1、1的放置方法，也认为是一种方法
+// 如上的设定下，返回有多少种放置方法
+// 测试链接 : https://www.nowcoder.com/practice/bfd8234bb5e84be0b493656e390bdebf
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
+// 提交以下的code，提交时请把类名改成"Main"
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Code05_SplitApples {
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int m = sc.nextInt();
-			int n = sc.nextInt();
-			int ways = ways3(m, n);
-			System.out.println(ways);
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StreamTokenizer in = new StreamTokenizer(br);
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			int m = (int) in.nval;
+			in.nextToken();
+			int n = (int) in.nval;
+			out.println(ways3(m, n));
+			out.flush();
 		}
-		sc.close();
 	}
 
 	// 思路来自于分裂数问题

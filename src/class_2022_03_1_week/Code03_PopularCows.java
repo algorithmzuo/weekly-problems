@@ -10,29 +10,42 @@ package class_2022_03_1_week;
 // 测试链接 : http://poj.org/problem?id=2186
 // 注册一下 -> 页面上点击"submit" -> 语言选择java
 // 然后把如下代码粘贴进去, 把主类名改成"Main", 可以直接通过
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Code03_PopularCows {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int n = sc.nextInt();
-			int m = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StreamTokenizer in = new StreamTokenizer(br);
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			int n = (int) in.nval;
+			in.nextToken();
+			int m = (int) in.nval;
 			ArrayList<ArrayList<Integer>> edges = new ArrayList<ArrayList<Integer>>();
 			for (int i = 0; i <= n; i++) {
 				edges.add(new ArrayList<Integer>());
 			}
 			for (int i = 0; i < m; i++) {
-				int from = sc.nextInt();
-				int to = sc.nextInt();
+				in.nextToken();
+				int from = (int) in.nval;
+				in.nextToken();
+				int to = (int) in.nval;
 				edges.get(from).add(to);
 			}
 			StronglyConnectedComponents connectedComponents = new StronglyConnectedComponents(edges);
 			int sccn = connectedComponents.getSccn();
+			int ans = 0;
 			if (sccn == 1) {
-				System.out.println(n);
+				ans = n;
 			} else {
 				ArrayList<ArrayList<Integer>> dag = connectedComponents.getShortGraph();
 				int zeroOut = 0;
@@ -44,20 +57,19 @@ public class Code03_PopularCows {
 					}
 				}
 				if (zeroOut > 1) {
-					System.out.println(0);
+					ans = 0;
 				} else {
 					int[] scc = connectedComponents.getScc();
-					int ans = 0;
 					for (int i = 1; i <= n; i++) {
 						if (scc[i] == outScc) {
 							ans++;
 						}
 					}
-					System.out.println(ans);
 				}
 			}
+			out.println(ans);
+			out.flush();
 		}
-		sc.close();
 	}
 
 	public static class StronglyConnectedComponents {

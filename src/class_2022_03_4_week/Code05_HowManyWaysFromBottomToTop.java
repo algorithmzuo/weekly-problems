@@ -6,12 +6,18 @@ package class_2022_03_4_week;
 // 这个图中从最初级动物到最顶级捕食者的食物链有几条
 // 线上测试链接 : https://www.luogu.com.cn/problem/P4017
 // 以下代码都提交，提交时把主类名改成"Main"即可
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
 // 注意：洛谷测试平台对java提交非常不友好，空间限制可能会卡住，C++的提交就完全不会
 // 所以提交时如果显示失败，就多提交几次，一定是能成功的
 // 这道题本身就是用到拓扑排序，没什么特别的
 // 但是为了提交能通过，逼迫我在空间上做的优化值得好好说一下，可以推广到其他题目
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
 
 public class Code05_HowManyWaysFromBottomToTop {
 
@@ -22,30 +28,31 @@ public class Code05_HowManyWaysFromBottomToTop {
 	public static int[] queue = new int[5001];
 	public static int mod = 80112002;
 	public static int n = 0;
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			Arrays.fill(in, 0);
-			Arrays.fill(out, false);
-			Arrays.fill(lines, 0);
-			Arrays.fill(headEdge, 0);
-			n = sc.nextInt();
-			int m = sc.nextInt();
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StreamTokenizer pin = new StreamTokenizer(br);
+		PrintWriter pout = new PrintWriter(new OutputStreamWriter(System.out));
+		while (pin.nextToken() != StreamTokenizer.TT_EOF) {
+			n = (int)pin.nval;
+			pin.nextToken();
+			int m = (int)pin.nval;
 			int[] preEdge = new int[m + 1];
 			int[] edgesTo = new int[m + 1];
 			for (int i = 1; i <= m; i++) {
-				int from = sc.nextInt();
-				int to = sc.nextInt();
+				pin.nextToken();
+				int from = (int)pin.nval;
+				pin.nextToken();
+				int to = (int)pin.nval;
 				edgesTo[i] = to;
 				preEdge[i] = headEdge[from];
 				headEdge[from] = i;
 				out[from] = true;
 				in[to]++;
 			}
-			System.out.println(howManyWays(preEdge, edgesTo));
+			pout.println(howManyWays(preEdge, edgesTo));
+			pout.flush();
 		}
-		sc.close();
 	}
 
 	public static int howManyWays(int[] preEdge, int[] edgesTo) {

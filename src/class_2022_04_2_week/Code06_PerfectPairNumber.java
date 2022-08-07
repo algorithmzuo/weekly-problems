@@ -10,27 +10,38 @@ package class_2022_04_2_week;
 // 返回这N个小数组中，有多少完美对
 // 本题测试链接 : https://www.nowcoder.com/practice/f5a3b5ab02ed4202a8b54dfb76ad035e
 // 提交如下代码，把主类名改成Main
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
 // 可以直接通过
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Code06_PerfectPairNumber {
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int n = sc.nextInt();
-			int m = sc.nextInt();
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StreamTokenizer in = new StreamTokenizer(br);
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			int n = (int) in.nval;
+			in.nextToken();
+			int m = (int) in.nval;
 			int[][] matrix = new int[n][m];
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < m; j++) {
-					matrix[i][j] = sc.nextInt();
+					in.nextToken();
+					matrix[i][j] = (int)in.nval;
 				}
 			}
 			long ans = perfectPairs(matrix);
-			System.out.println(ans);
+			out.println(ans);
+			out.flush();
 		}
-		sc.close();
 	}
 
 	public static long perfectPairs(int[][] matrix) {

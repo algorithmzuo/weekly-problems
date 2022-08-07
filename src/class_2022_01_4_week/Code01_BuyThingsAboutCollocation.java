@@ -12,98 +12,45 @@ package class_2022_01_4_week;
 // 主商品和附属商品的层级最多有2层
 // 给定二维数组things、钱数money，返回整体花费不超过money的情况下，最大的收益总和
 // 测试链接 : https://www.nowcoder.com/practice/f9c6f980eeec43ef85be20755ddbeaf4
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
 // 请把如下的代码的主类名改为"Main", 可以直接通过
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Code01_BuyThingsAboutCollocation {
 
-//	// index.....货自由选择！剩余的钱数是rest，
-//	// 返回：在不花超的情况下，返回最大的价值
-//	public static int f(int[] prices, int[] values, int index, int rest) {
-//		if(rest < 0) {
-//			return -1;
-//		}
-//		// rest >= 0
-//		if(index == prices.length) { // 没货了！
-//			return 0;
-//		}
-//		// rest >=0 有货！
-//		// 可能1 ：index.... 自由选择，不要index位置的货！
-//		int p1 = f(prices, values, index + 1, rest);
-//		// 可能性2：index.... 自由选择，要index位置的货！
-//		int p2 = -1;
-//		int next = f(prices, values, index + 1, rest - prices[index]);
-//		if(next != -1) {
-//			p2 = values[index] + next;
-//		}
-//		return Math.max(p1, p2);
-//	}
-//	
-//	//  商品组     主商品，重要度3，价格9          附件！重要度6，价格7
-//	//   0 :    [ [3,9],                      [6,7],                   [4, 3]        ]
-//	//   1 :    [ [4,7] ]  没有附件，只有主商品
-//	//   2 :    [ [5,100] , [2,1]    ]
-//	
-//	public static int p(int[][][] matrix, int index, int rest) {
-//		if(rest < 0) {
-//			return -1;
-//		}
-//		if(index == matrix.length) {
-//			return 0;
-//		}
-//		// 有商品组！也有钱>=0;
-//		int[][] team = matrix[index];
-//		if(team.length == 1) { // 要 、不要
-//			int p1 = p(matrix, index + 1, rest);
-//			int p2 = -1;
-//			int next = p(matrix, index + 1, rest - team[0][1]);
-//			if(next != -1) {
-//				p2 = team[0][0] * team[0][1] + next;
-//			}
-//			return Math.max(p1, p2);
-//		}else if(team.length == 2) { // a b    不要  a   ab
-//			int[] a = team[0];
-//			int[] b = team[1];
-//			int p1 = p(matrix, index + 1, rest);
-//			
-//			int p2 = -1;// 只要a
-//			int next2 = p(matrix, index + 1, rest - a[1]);
-//			if(next2 != -1) {
-//				p2 = a[0] * a[1] + next2;
-//			}
-//			
-//			int p3 = -1;// 要 ab
-//			int next3= p(matrix, index + 1, rest - a[1] - b[1]);
-//			if(next3 != -1) {
-//				p3 = a[0] * a[1] + b[0] * b[1] + next3;
-//			}
-//			return Math.max(p1, Math.max(p2, p3));
-//		}else { // a : b c    不要   a   ab   ac   abc
-//			
-//		}
-//		
-//		
-//		
-//	}
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			int money = sc.nextInt();
-			int size = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StreamTokenizer in = new StreamTokenizer(br);
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			int money = (int) in.nval;
+			in.nextToken();
+			int size = (int) in.nval;
 			ArrayList<ArrayList<int[]>> things = new ArrayList<>();
 			things.add(new ArrayList<>());
 			for (int i = 0; i < size; i++) {
 				ArrayList<int[]> cur = new ArrayList<>();
-				cur.add(new int[] { sc.nextInt(), sc.nextInt(), sc.nextInt() });
+				in.nextToken();
+				int a = (int) in.nval;
+				in.nextToken();
+				int b = (int) in.nval;
+				in.nextToken();
+				int c = (int) in.nval;
+				cur.add(new int[] { a, b, c });
 				things.add(cur);
 			}
 			int n = clean(things, size);
 			int ans = maxScore(things, n, money);
-			System.out.println(ans);
+			out.println(ans);
+			out.flush();
 		}
-		sc.close();
 	}
 
 	public static int clean(ArrayList<ArrayList<int[]>> things, int size) {
