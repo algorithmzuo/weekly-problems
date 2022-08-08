@@ -1,7 +1,7 @@
-package class_2022_08_4_week;
+package class_2022_08_2_week;
 
 // 来自猿辅导
-// 8.7笔试第三道
+// 2022.8.7笔试第三道
 // 给定一个数组arr，和一个正数k
 // 如果arr[i] == 0，表示i这里既可以是左括号也可以是右括号，而且可以涂上1~k每一种颜色
 // 如果arr[i] != 0，表示i这里已经确定是左括号，颜色就是arr[i]的值
@@ -12,7 +12,7 @@ package class_2022_08_4_week;
 // 2 <= arr长度 <= 5000
 // 1 <= k <= 1000
 // 0 <= arr[i] <= k
-public class Code02_ParenthesesDye {
+public class Code01_ParenthesesDye {
 
 	// 暴力方法
 	// 为了验证
