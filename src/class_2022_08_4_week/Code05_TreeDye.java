@@ -39,23 +39,24 @@ public class Code05_TreeDye {
 			Arrays.fill(colors, 1);
 		} else {
 			colors[head] = 1;
-			dye(graph, graph.get(head).get(0), 1, rule1, colors);
+			dfs(graph, graph.get(head).get(0), 1, rule1, colors);
 			for (int i = 1; i < graph.get(head).size(); i++) {
-				dye(graph, graph.get(head).get(i), 1, rule2, colors);
+				dfs(graph, graph.get(head).get(i), 1, rule2, colors);
 			}
 		}
 		return colors;
 	}
 
-	public static void dye(ArrayList<ArrayList<Integer>> graph, int head, int level, int[] rule, int[] colors) {
+	public static void dfs(ArrayList<ArrayList<Integer>> graph, int head, int level, int[] rule, int[] colors) {
 		colors[head] = rule[level % 3];
 		for (int next : graph.get(head)) {
 			if (colors[next] == 0) {
-				dye(graph, next, level + 1, rule, colors);
+				dfs(graph, next, level + 1, rule, colors);
 			}
 		}
 	}
 
+	// 为了测试
 	// 生成无环无向图
 	public static int[][] randomEdges(int n) {
 		int[] order = new int[n];
@@ -95,7 +96,7 @@ public class Code05_TreeDye {
 			if (colors[i] == 0) {
 				return false;
 			}
-			if (graph.get(i).size() == 1) { // i号点是叶节点
+			if (graph.get(i).size() <= 1) { // i号点是叶节点
 				continue;
 			}
 			hasColors[colors[i]] = true;
@@ -118,7 +119,7 @@ public class Code05_TreeDye {
 		int testTimes = 1000;
 		System.out.println("测试开始");
 		for (int i = 0; i < testTimes; i++) {
-			int n = (int) (Math.random() * N) + 2;
+			int n = (int) (Math.random() * N) + 1;
 			int[][] edges = randomEdges(n);
 			int[] ans = dye(n, edges);
 			if (!rightAnswer(n, edges, ans)) {
