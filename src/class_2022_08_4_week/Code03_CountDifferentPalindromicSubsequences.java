@@ -33,7 +33,7 @@ public class Code03_CountDifferentPalindromicSubsequences {
 					int l = Math.min(i + d, right[i]);
 					int r = Math.max(i, left[i + d]);
 					if (l > r) {
-						dp[i][i + d] = dp[i][i + d] = dp[i + 1][i + d - 1] * 2 + 2;
+						dp[i][i + d] = dp[i + 1][i + d - 1] * 2 + 2;
 					} else if (l == r) {
 						dp[i][i + d] = dp[i + 1][i + d - 1] * 2 + 1;
 					} else {
