@@ -27,22 +27,22 @@ public class Code03_CountDifferentPalindromicSubsequences {
 		for (int i = 0; i < n; i++) {
 			dp[i][i] = 1;
 		}
-		for (int d = 1; d < n; d++) {
-			for (int i = 0; i < n - d; i++) {
-				if (s[i] == s[i + d]) {
-					int l = Math.min(i + d, right[i]);
-					int r = Math.max(i, left[i + d]);
+		for (int i = n - 2; i >= 0; i--) {
+			for (int j = i + 1; j < n; j++) {
+				if (s[i] == s[j]) {
+					int l = Math.min(j, right[i]);
+					int r = Math.max(i, left[j]);
 					if (l > r) {
-						dp[i][i + d] = dp[i + 1][i + d - 1] * 2 + 2;
+						dp[i][j] = dp[i + 1][j - 1] * 2 + 2;
 					} else if (l == r) {
-						dp[i][i + d] = dp[i + 1][i + d - 1] * 2 + 1;
+						dp[i][j] = dp[i + 1][j - 1] * 2 + 1;
 					} else {
-						dp[i][i + d] = dp[i + 1][i + d - 1] * 2 - dp[l + 1][r - 1] + mod;
+						dp[i][j] = dp[i + 1][j - 1] * 2 - dp[l + 1][r - 1] + mod;
 					}
 				} else {
-					dp[i][i + d] = dp[i][i + d - 1] + dp[i + 1][i + d] - dp[i + 1][i + d - 1] + mod;
+					dp[i][j] = dp[i][j - 1] + dp[i + 1][j] - dp[i + 1][j - 1] + mod;
 				}
-				dp[i][i + d] %= mod;
+				dp[i][j] %= mod;
 			}
 		}
 		return (int) dp[0][n - 1];
