@@ -2,6 +2,7 @@ package class_2022_08_4_week;
 
 import java.util.Arrays;
 
+// 测试链接 : https://leetcode.cn/problems/longest-ideal-subsequence/
 public class Code04_LongestIdealString {
 
 	// 二维动态规划的解
