@@ -3,7 +3,8 @@ package class_2022_08_2_week;
 // 来自猿辅导
 // 2022.8.7笔试第三道
 // 给定一个数组arr，和一个正数k
-// 如果arr[i] == 0，表示i这里既可以是左括号也可以是右括号，而且可以涂上1~k每一种颜色
+// 如果arr[i] == 0，表示i这里既可以是左括号也可以是右括号，
+// 而且可以涂上1~k每一种颜色
 // 如果arr[i] != 0，表示i这里已经确定是左括号，颜色就是arr[i]的值
 // 那么arr整体就可以变成某个括号字符串，并且每个括号字符都带有颜色
 // 返回在括号字符串合法的前提下，有多少种不同的染色方案
@@ -92,6 +93,37 @@ public class Code01_ParenthesesDye {
 			}
 		}
 		return f(arr, 0, 0, dp);
+	}
+
+	// arr[i....]范围上，去做决定
+	// j : arr[0..i-1]已经做完决定的部分，左括号比右括号，多几个
+	// 返回：
+	// arr[i....]范围上，去做决定，
+	// 已经做完决定的部分，左括号比右括号多j个
+	// 这样的情况下，最终合法的括号结合，多少个！
+	// process(arr, 0, 0)
+	public static int process(int[] arr, int i, int j) {
+		if (i == arr.length) {
+			return j == 0 ? 1 : 0;
+		}
+		if (j < 0) {
+			return 0;
+		}
+		// 这个不写也行
+		// 锦上添花的剪枝条件
+		if (arr.length - i < j) {
+			return 0;
+		}
+		// arr[i] != 0
+		if (arr[i] != 0) {
+			// (
+			return process(arr, i + 1, j + 1);
+		} else {
+			// arr[i] 0 ? ( )
+			int p1 = process(arr, i + 1, j + 1);
+			int p2 = process(arr, i + 1, j - 1);
+			return p1 + p2;
+		}
 	}
 
 	// 在arr[i...]范围上做决定

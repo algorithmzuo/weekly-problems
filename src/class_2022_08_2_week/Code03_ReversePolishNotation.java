@@ -53,6 +53,8 @@ public class Code03_ReversePolishNotation {
 		Stack<String> stack1 = new Stack<>();
 		Stack<Operation> stack2 = new Stack<>();
 		for (String cur : parts) {
+			// cur 当前遇到的字符串
+			// +- */ 单数
 			if (cur.equals("+") || cur.equals("-")) {
 				String b = stack1.pop();
 				String a = stack1.pop();

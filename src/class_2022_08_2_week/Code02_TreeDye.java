@@ -14,19 +14,27 @@ import java.util.Arrays;
 // 1 <= 节点数量 <= 10的5次方
 public class Code02_TreeDye {
 
+	// 1 2 3 1 2 3 1 2 3
 	public static int[] rule1 = { 1, 2, 3 };
 
+	// 1 3 2 1 3 2 1 3 2
 	public static int[] rule2 = { 1, 3, 2 };
 
 	public static int[] dye(int n, int[][] edges) {
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+		// 0 : { 2, 1 }
+		// 1 : { 0 }
+		// 2 : { 0 }
 		for (int i = 0; i < n; i++) {
 			graph.add(new ArrayList<>());
 		}
 		for (int[] edge : edges) {
+			// 0 -> 2
+			// 1 -> 0
 			graph.get(edge[0]).add(edge[1]);
 			graph.get(edge[1]).add(edge[0]);
 		}
+		// 选一个头节点！
 		int head = -1;
 		for (int i = 0; i < n; i++) {
 			if (graph.get(i).size() >= 2) {
@@ -34,10 +42,14 @@ public class Code02_TreeDye {
 				break;
 			}
 		}
+		// graph
+		// head
 		int[] colors = new int[n];
-		if (head == -1) {
+		if (head == -1) { // 两个点，互相连一下
+			// 把colors，所有位置，都设置成1
 			Arrays.fill(colors, 1);
 		} else {
+			// dfs 染色了！
 			colors[head] = 1;
 			dfs(graph, graph.get(head).get(0), 1, rule1, colors);
 			for (int i = 1; i < graph.get(head).size(); i++) {
@@ -47,7 +59,18 @@ public class Code02_TreeDye {
 		return colors;
 	}
 
-	public static void dfs(ArrayList<ArrayList<Integer>> graph, int head, int level, int[] rule, int[] colors) {
+	// 整个图结构，都在graph
+	// 当前来到的节点，是head号节点
+	// head号节点，在level层
+	// 染色的规则，rule {1,2,3...} {1,3,2...}
+	// 做的事情：以head为头的整颗树，每个节点，都染上颜色
+	// 填入到colors数组里去
+	public static void dfs(
+			ArrayList<ArrayList<Integer>> graph,
+			int head,
+			int level,
+			int[] rule, int[] colors) {
+
 		colors[head] = rule[level % 3];
 		for (int next : graph.get(head)) {
 			if (colors[next] == 0) {
@@ -115,6 +138,12 @@ public class Code02_TreeDye {
 	}
 
 	public static void main(String[] args) {
+//		int n = 7;
+//		int[][] edges = randomEdges(n);
+//		for (int[] edge : edges) {
+//			System.out.println(edge[0] + " , " + edge[1]);
+//		}
+
 		int N = 100;
 		int testTimes = 1000;
 		System.out.println("测试开始");
