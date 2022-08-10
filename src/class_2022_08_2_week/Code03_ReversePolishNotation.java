@@ -5,7 +5,7 @@ import java.util.Stack;
 // 给定一个逆波兰式
 // 转化成正确的中序表达式
 // 要求只有必要加括号的地方才加括号
-public class Code02_ReversePolishNotation {
+public class Code03_ReversePolishNotation {
 
 	// 请保证给定的逆波兰式是正确的！
 	public static int getAns(String rpn) {

@@ -1,4 +1,4 @@
-package class_2022_08_4_week;
+package class_2022_08_2_week;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 // 要求 : 非叶节点的相邻点一定要至少有两种和自己不同颜色的点
 // 返回一种达标的染色方案，也就是一个数组，表示每个节点的染色状况
 // 1 <= 节点数量 <= 10的5次方
-public class Code05_TreeDye {
+public class Code02_TreeDye {
 
 	public static int[] rule1 = { 1, 2, 3 };
 

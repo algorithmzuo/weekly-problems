@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code03_ClosestTwoPoints1 {
+public class Code04_ClosestTwoPoints1 {
 
 	public static int N = 200001;
 
