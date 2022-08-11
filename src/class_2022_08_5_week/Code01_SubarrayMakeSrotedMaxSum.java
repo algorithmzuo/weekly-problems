@@ -59,22 +59,22 @@ public class Code01_SubarrayMakeSrotedMaxSum {
 			int curVal = arr[i];
 			int curIdx = i;
 			while (curVal > 0 && size > 0) {
-				int left = stack[size - 1];
-				int leftValue = arr[left];
-				if (leftValue >= curVal) {
+				int leftIdx = stack[size - 1];
+				int leftVal = arr[leftIdx];
+				if (leftVal >= curVal) {
 					size--;
 				} else {
-					int idxDiff = curIdx - left;
-					int valDiff = curVal - leftValue;
+					int idxDiff = curIdx - leftIdx;
+					int valDiff = curVal - leftVal;
 					if (valDiff >= idxDiff) {
-						dp[i] += sum(curVal, idxDiff) + dp[left];
+						dp[i] += sum(curVal, idxDiff) + dp[leftIdx];
 						curVal = 0;
 						curIdx = 0;
 						break;
 					} else {
 						dp[i] += sum(curVal, idxDiff);
 						curVal -= idxDiff;
-						curIdx = left;
+						curIdx = leftIdx;
 						size--;
 					}
 				}
@@ -106,7 +106,7 @@ public class Code01_SubarrayMakeSrotedMaxSum {
 		int N = 100;
 		int V = 100;
 		int testTimes = 50000;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < testTimes; i++) {
 			int n = (int) (Math.random() * N) + 1;
 			int[] arr = randomArray(n, V);
@@ -122,7 +122,7 @@ public class Code01_SubarrayMakeSrotedMaxSum {
 				break;
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
 
 		System.out.println("性能测试开始");
 		int n = 1000000;
