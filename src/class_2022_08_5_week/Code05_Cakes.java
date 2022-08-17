@@ -1,5 +1,10 @@
 package class_2022_08_5_week;
 
+// 有a块草莓蛋糕，有b块芝士蛋糕，两人轮流拿蛋糕
+// 每次不管是谁只能选择在草莓蛋糕和芝士蛋糕中拿一种
+// 拿的数量在1~m之间随意
+// 谁先拿完最后的蛋糕谁赢
+// 返回先手赢还是后手赢
 public class Code05_Cakes {
 
 	// 草莓蛋糕a块
@@ -77,25 +82,32 @@ public class Code05_Cakes {
 	}
 
 	public static void main(String[] args) {
-		int V = 22;
+		int V = 23;
 		System.out.println("测试开始");
+		int cnt = 0;
+		int all = (V + 1) * (V + 1) * (V + 1);
 		for (int a = 0; a <= V; a++) {
 			for (int b = 0; b <= V; b++) {
 				for (int m = 0; m <= V; m++) {
 					String ans1 = whoWin1(a, b, m);
 					String ans2 = whoWin2(a, b, m);
 					if (!ans1.equals(ans2)) {
+						System.out.println("出错了！");
 						System.out.println("a : " + a);
 						System.out.println("b : " + b);
 						System.out.println("m : " + m);
 						System.out.println("ans1 : " + ans1);
 						System.out.println("ans2 : " + ans2);
+						break;
+					}
+					cnt++;
+					if (cnt % 1000 == 0) {
+						System.out.println("已经测了" + cnt + "组(共" + all + "组)");
 					}
 				}
 			}
 		}
 		System.out.println("测试结束");
-
 	}
 
 }
