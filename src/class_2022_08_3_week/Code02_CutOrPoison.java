@@ -56,7 +56,9 @@ public class Code02_CutOrPoison {
 	// 真正想实现的方法
 	// O(N * log(hp))
 	public static int fast2(int[] cuts, int[] poisons, int hp) {
+		// 怪兽可能的最快死亡回合
 		int l = 1;
+		// 怪兽可能的最晚死亡回合
 		int r = hp + 1;
 		int m = 0;
 		int ans = Integer.MAX_VALUE;
