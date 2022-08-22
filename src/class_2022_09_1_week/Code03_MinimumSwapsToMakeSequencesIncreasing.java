@@ -1,9 +1,9 @@
-package class_2022_08_4_week;
+package class_2022_09_1_week;
 
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/minimum-swaps-to-make-sequences-increasing/
-public class Code01_MinimumSwapsToMakeSequencesIncreasing {
+public class Code03_MinimumSwapsToMakeSequencesIncreasing {
 
 	public static int minSwap1(int[] nums1, int[] nums2) {
 		int[][] dp = new int[2][nums1.length];

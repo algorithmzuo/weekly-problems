@@ -1,9 +1,9 @@
-package class_2022_08_4_week;
+package class_2022_09_1_week;
 
 import java.util.HashMap;
 
 // 测试链接 : https://leetcode.cn/problems/count-different-palindromic-subsequences/
-public class Code03_CountDifferentPalindromicSubsequences {
+public class Code04_CountDifferentPalindromicSubsequences {
 
 	// 支持任意字符集
 	// 时间复杂度O(N^2)

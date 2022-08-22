@@ -1,9 +1,9 @@
-package class_2022_08_4_week;
+package class_2022_09_1_week;
 
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/longest-ideal-subsequence/
-public class Code04_LongestIdealString {
+public class Code01_LongestIdealString {
 
 	// 二维动态规划的解
 	// N为字符串长度，E为字符集大小，K为差值要求
