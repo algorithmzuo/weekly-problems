@@ -25,7 +25,6 @@ package class_2022_08_4_week;
 // 最后是3个定位装置到信标的曼哈顿记录。
 // 输出最小字典序的信标位置。
 // 1 <= 所有数据值 <= 50000
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;

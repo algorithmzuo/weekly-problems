@@ -17,7 +17,6 @@ package class_2022_08_4_week;
 // D居民和E居民之间，假设有一条路
 // 那么D居民可以接上A、B、C，4个人可以用一辆车，去往E的话，就再耗费1的汽油
 // 求所有居民去办公室的路上，最少耗费多少汽油
-
 import java.util.ArrayList;
 
 public class Code05_TravelMinFuel {

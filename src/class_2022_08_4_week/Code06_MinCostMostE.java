@@ -10,7 +10,6 @@ package class_2022_08_4_week;
 // 输入一个只有r、e、d三种字符的字符串
 // 长度 <= 2 * 10^5
 // 输出最小修改次数
-
 public class Code06_MinCostMostE {
 
 	public static int minCost(String str) {

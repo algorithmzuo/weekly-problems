@@ -15,7 +15,6 @@ package class_2022_08_4_week;
 // 接下来一行m个整数，分别为B1 B2…Bm
 // 对于所有数据，1 ≤ n,m ≤ 2000， |Ai|,|Bi| ≤ 10000
 // 输出一行一个整数，表示最少花费时间，来使得两个数列相同。
-
 public class Code02_ChangeToSame {
 
 	public static int minCost(int[] A, int[] B) {
