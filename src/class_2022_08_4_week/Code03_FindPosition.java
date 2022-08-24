@@ -1,10 +1,5 @@
 package class_2022_08_4_week;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-
 // 来自美团
 // 8.20笔试
 // 题目1
@@ -19,7 +14,6 @@ import java.util.Queue;
 // 输出最大期望分值，精确到小数点后2位
 // 数据 1m<=n<=50000
 // 简单题, 课上提一下解法即可
-//
 // 题目2
 // 小团在地图上放了3个定位装置，想依赖他们进行定位！
 // 地图是一个n*n的棋盘，
@@ -31,6 +25,12 @@ import java.util.Queue;
 // 最后是3个定位装置到信标的曼哈顿记录。
 // 输出最小字典序的信标位置。
 // 1 <= 所有数据值 <= 50000
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Code03_FindPosition {
 
 	public static int[] find(int n, int[] a, int[] b, int[] c, int ad, int bd, int cd) {

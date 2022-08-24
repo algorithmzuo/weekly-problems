@@ -1,11 +1,12 @@
-package class_2022_08_5_week;
+package class_2022_08_4_week;
 
+// 来自学员面试
 // 有a块草莓蛋糕，有b块芝士蛋糕，两人轮流拿蛋糕
 // 每次不管是谁只能选择在草莓蛋糕和芝士蛋糕中拿一种
 // 拿的数量在1~m之间随意
 // 谁先拿完最后的蛋糕谁赢
 // 返回先手赢还是后手赢
-public class Code05_Cakes {
+public class Code07_Cakes {
 
 	// 草莓蛋糕a块
 	// 巧克力蛋糕b块
