@@ -8,12 +8,14 @@ package class_2022_08_4_week;
 // 第9天，价格是30
 // 那么第3天和第9天的指标X = 10 + 30 - (9 - 3) = 34
 // 返回arr中最大的指标X
+// 时间复杂度O(N)
 public class Code01_MaxXFromStock {
 
 	public static int maxX(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return -1;
 		}
+		// 0 + arr[0]
 		int preBest = arr[0];
 		int ans = 0;
 		for (int i = 1; i < arr.length; i++) {

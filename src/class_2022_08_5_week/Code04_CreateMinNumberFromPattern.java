@@ -1,7 +1,7 @@
 package class_2022_08_5_week;
 
 // 测试链接 : https://leetcode.cn/problems/construct-smallest-number-from-di-string/
-public class Code03_CreateMinNumberFromPattern {
+public class Code04_CreateMinNumberFromPattern {
 
 	public static String smallestNumber(String pattern) {
 		return String.valueOf(create(pattern.toCharArray(), 0, 0, 0));

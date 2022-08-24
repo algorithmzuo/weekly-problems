@@ -1,7 +1,7 @@
 package class_2022_08_5_week;
 
 // 测试链接 : https://leetcode.cn/problems/count-special-integers/
-public class Code04_CountSpecialIntegers {
+public class Code05_CountSpecialIntegers {
 
 	public static int[] offset = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
 

@@ -32,7 +32,10 @@ import java.util.Queue;
 
 public class Code03_FindPosition {
 
-	public static int[] find(int n, int[] a, int[] b, int[] c, int ad, int bd, int cd) {
+	public static int[] find(int n, 
+			int[] a, int[] b, int[] c,
+			int ad, int bd, int cd) {
+		
 		int[] x1 = null;
 		int r1 = Integer.MAX_VALUE;
 		int[] x2 = null;
@@ -63,16 +66,25 @@ public class Code03_FindPosition {
 			x3 = b;
 			r3 = bd;
 		}
+		// x1 r1     x2 r2 x3 r3
 		int[] cur = { x1[0] - r1, x1[1] };
 		Queue<int[]> queue = new LinkedList<>();
 		HashSet<String> visited = new HashSet<>();
 		ArrayList<int[]> ans = new ArrayList<>();
 		queue.add(cur);
 		visited.add(cur[0] + "_" + cur[1]);
+		
 		while (!queue.isEmpty()) {
+			// cur x1为圆心，r1为半径的圆周上
 			cur = queue.poll();
-			if (cur[0] >= 1 && cur[0] <= n && cur[1] >= 1 && cur[1] <= n && distance(cur[0], cur[1], x2) == r2
-					&& distance(cur[0], cur[1], x3) == r3) {
+			if (
+					cur[0] >= 1 && cur[0] <= n 
+					&& 
+					cur[1] >= 1 && cur[1] <= n 
+					&& 
+					distance(cur[0], cur[1], x2) == r2
+					&& 
+					distance(cur[0], cur[1], x3) == r3) {
 				ans.add(cur);
 			}
 			if (ans.size() == 2) {
@@ -87,7 +99,8 @@ public class Code03_FindPosition {
 			add(cur[0] + 1, cur[1], x1, r1, queue, visited);
 			add(cur[0] + 1, cur[1] + 1, x1, r1, queue, visited);
 		}
-		if (ans.size() == 1 || ans.get(0)[0] < ans.get(1)[0]
+		if (ans.size() == 1 
+				|| ans.get(0)[0] < ans.get(1)[0]
 				|| (ans.get(0)[0] == ans.get(1)[0] && ans.get(0)[1] < ans.get(1)[1])) {
 			return ans.get(0);
 		} else {
@@ -95,7 +108,9 @@ public class Code03_FindPosition {
 		}
 	}
 
-	public static void add(int x, int y, int[] c, int r, Queue<int[]> queue, HashSet<String> visited) {
+	public static void add(int x, int y, 
+			int[] c, int r, 
+			Queue<int[]> queue, HashSet<String> visited) {
 		String key = x + "_" + y;
 		if (distance(x, y, c) == r && !visited.contains(key)) {
 			queue.add(new int[] { x, y });

@@ -10,14 +10,14 @@ package class_2022_08_4_week;
 // 54321，能拼出的最大回文数是 : 5
 // 最终的结果以字符串形式返回
 // str的长度为N，1 <= N <= 100000
+// 测试链接 : https://leetcode.cn/problems/largest-palindromic-number/
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.PriorityQueue;
 
 public class Code04_MaxPalindromeNumber {
 
-	public static String max(String s) {
+	public static String largestPalindromic(String s) {
 		if (s == null || s.equals("")) {
 			return "";
 		}
@@ -28,8 +28,8 @@ public class Code04_MaxPalindromeNumber {
 			map.put(number, map.getOrDefault(number, 0) + 1);
 		}
 		PriorityQueue<Record> heap = new PriorityQueue<>(new RecordComparator());
-		for (Entry<Integer, Integer> entry : map.entrySet()) {
-			heap.add(new Record(entry.getKey(), entry.getValue()));
+		for (int key : map.keySet()) {
+			heap.add(new Record(key, map.get(key)));
 		}
 		Record top = heap.poll();
 		if (top.times == 1) {
@@ -43,7 +43,7 @@ public class Code04_MaxPalindromeNumber {
 			if (top.times > 0) {
 				heap.add(top);
 			}
-			while (heap.peek().times > 1) {
+			while (!heap.isEmpty() && heap.peek().times > 1) {
 				top = heap.poll();
 				left.append(top.number);
 				top.times -= 2;
@@ -88,11 +88,6 @@ public class Code04_MaxPalindromeNumber {
 			return o2.number - o1.number;
 		}
 
-	}
-
-	public static void main(String[] args) {
-		String s = "39878009";
-		System.out.println(max(s));
 	}
 
 }

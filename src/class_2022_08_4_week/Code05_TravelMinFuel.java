@@ -36,14 +36,27 @@ public class Code05_TravelMinFuel {
 		// 建图完毕
 		// 根据题目描述，办公室一定是0号点
 		// 所有员工一定是往0号点汇聚
+
+		// a 号，dfn[a] == 0 没遍历过！
+		// dfn[a] != 0 遍历过！
 		int[] dfn = new int[n + 1];
+		// a为头的树，一共有10个节点
+		// size[a] = 0
+		// size[a] = 10
 		int[] size = new int[n + 1];
+		// 所有居民要汇总吗？
+		// a为头的树，所有的居民是要向a来汇聚
+		// cost[a] : 所有的居民要向a来汇聚，总油量的耗费
 		int[] cost = new int[n + 1];
 		cnt = 0;
 		dfs(graph, 0, dfn, size, cost);
 		return cost[0];
 	}
 
+	// 图 ： graph
+	// 当前的头，原来的编号，不是dfn序号！ : cur
+	// 从cur开始，请遍历
+	// 遍历完成后，请把dfn[cur]填好！size[cur]填好！cost[cur]填好
 	public static void dfs(ArrayList<ArrayList<Integer>> graph, int cur, int[] dfn, int[] size, int[] cost) {
 		dfn[cur] = ++cnt;
 		size[cur] = 1;

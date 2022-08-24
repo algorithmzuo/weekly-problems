@@ -11,7 +11,7 @@ package class_2022_08_5_week;
 // 求arr所有子数组的变序最大和中，最大的那个并返回
 // 1 <= arr长度 <= 10^6
 // 0 <= arr[i] <= 10^6
-public class Code01_SubarrayMakeSrotedMaxSum {
+public class Code02_SubarrayMakeSrotedMaxSum {
 
 	// 时间复杂度O(N * V)的方法
 	// 为了验证

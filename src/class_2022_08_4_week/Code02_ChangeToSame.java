@@ -17,6 +17,34 @@ package class_2022_08_4_week;
 // 输出一行一个整数，表示最少花费时间，来使得两个数列相同。
 public class Code02_ChangeToSame {
 
+	// A B
+	// zuo(A,B,0,0)
+	// A[ai.....] 对应 B[bi.....]
+	// 请变一样
+	// 返回最小代价
+	public static int zuo(int[] A, int[] B, int ai, int bi) {
+		if (ai == A.length && bi == B.length) {
+			return 0;
+		}
+		if (ai != A.length && bi == B.length) {
+			return A[ai] + zuo(A, B, ai + 1, bi);
+		}
+		if (ai == A.length && bi != B.length) {
+			return B[bi] + zuo(A, B, ai, bi + 1);
+		}
+		// A[ai] 有数 B[bi] 有数
+		// 可能性1 ： 删掉A[ai]
+		int p1 = A[ai] + zuo(A, B, ai + 1, bi);
+		// 可能性2 ： 删掉B[bi]
+		int p2 = B[bi] + zuo(A, B, ai, bi + 1);
+		// 可能性3 ： 同时删掉
+		// int p3 = A[ai] + B[bi] + zuo(A, B, ai + 1, bi + 1);
+		// 可能性4 ： 变！A[ai] -> B[bi] B[bi] -> A[ai]
+		int p4 = Math.abs(A[ai] - B[bi]) + zuo(A, B, ai + 1, bi + 1);
+		// 可能性5 ： A[ai] == B[bi]
+		return Math.min(p1, Math.min(p2, p4));
+	}
+
 	public static int minCost(int[] A, int[] B) {
 		int n = A.length;
 		int m = B.length;
