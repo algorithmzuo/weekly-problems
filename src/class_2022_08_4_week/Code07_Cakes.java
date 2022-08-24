@@ -6,6 +6,7 @@ package class_2022_08_4_week;
 // 拿的数量在1~m之间随意
 // 谁先拿完最后的蛋糕谁赢
 // 返回先手赢还是后手赢
+
 public class Code07_Cakes {
 
 	// 草莓蛋糕a块

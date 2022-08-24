@@ -1,10 +1,5 @@
 package class_2022_08_4_week;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map.Entry;
-import java.util.PriorityQueue;
-
 // 来自微软
 // 给定一个字符串s，只含有0~9这些字符
 // 你可以使用来自s中的数字，目的是拼出一个最大的回文数
@@ -15,6 +10,12 @@ import java.util.PriorityQueue;
 // 54321，能拼出的最大回文数是 : 5
 // 最终的结果以字符串形式返回
 // str的长度为N，1 <= N <= 100000
+
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.PriorityQueue;
+
 public class Code04_MaxPalindromeNumber {
 
 	public static String max(String s) {
