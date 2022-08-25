@@ -42,23 +42,23 @@ public class Code01_MostSeats {
 			arr[row] = status;
 		}
 		for (int i = 0; i < n; i++) {
-			Arrays.fill(dp[i], -1);
+			Arrays.fill(dp[i], -2);
 		}
 		int ans = f(arr, 0, 0, m);
-		return ans == Integer.MIN_VALUE ? 0 : ans;
+		return ans == -1 ? 0 : ans;
 	}
 
 	public static int f(int[] arr, int row, int pre, int m) {
 		if (row == arr.length) {
 			return 0;
 		}
-		if (dp[row][pre] != -1) {
+		if (dp[row][pre] != -2) {
 			return dp[row][pre];
 		}
 		int cur = arr[row];
 		int ans = 0;
 		if ((cur & pre) != 0) {
-			ans = Integer.MIN_VALUE;
+			ans = -1;
 		} else {
 			ans = g(arr, row, m - 1, pre, cur, m);
 		}
@@ -71,13 +71,13 @@ public class Code01_MostSeats {
 			return f(arr, row + 1, seats, m);
 		} else {
 			int p1 = g(arr, row, col - 1, pre, seats, m);
-			int p2 = Integer.MIN_VALUE;
+			int p2 = -1;
 			if ((pre & (1 << col)) == 0 && (seats & (1 << col)) == 0
 					&& (col == m - 1 || (seats & (1 << (col + 1))) == 0)
 					&& (col == 0 || (seats & (1 << (col - 1))) == 0)) {
 				int next2 = g(arr, row, col - 1, pre, seats | (1 << col), m);
-				if (next2 != Integer.MIN_VALUE) {
-					p2 = 1 + g(arr, row, col - 1, pre, seats | (1 << col), m);
+				if (next2 != -1) {
+					p2 = 1 + next2;
 				}
 			}
 			return Math.max(p1, p2);
