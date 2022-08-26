@@ -94,13 +94,13 @@ public class Code02_ChangeToSame {
 		}
 		int ans = 0;
 		if (indexA == A.length && indexB != B.length) {
-			ans = B[indexB] + change(A, B, indexA, indexB + 1);
+			ans = B[indexB] + change(A, B, indexA, indexB + 1, dp);
 		} else if (indexA != A.length && indexB == B.length) {
-			ans = A[indexA] + change(A, B, indexA + 1, indexB);
+			ans = A[indexA] + change(A, B, indexA + 1, indexB, dp);
 		} else {
-			int p1 = A[indexA] + change(A, B, indexA + 1, indexB);
-			int p2 = B[indexB] + change(A, B, indexA, indexB + 1);
-			int p45 = Math.abs(A[indexA] - B[indexB]) + change(A, B, indexA + 1, indexB + 1);
+			int p1 = A[indexA] + change(A, B, indexA + 1, indexB, dp);
+			int p2 = B[indexB] + change(A, B, indexA, indexB + 1, dp);
+			int p45 = Math.abs(A[indexA] - B[indexB]) + change(A, B, indexA + 1, indexB + 1, dp);
 			ans = Math.min(Math.min(p1, p2), p45);
 		}
 		dp[indexA][indexB] = ans;
