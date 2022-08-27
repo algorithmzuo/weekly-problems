@@ -275,7 +275,7 @@ public class Code03_RobotAndClothes {
 		int P = 20;
 		int R = 10;
 		int testTimes = 5000;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < testTimes; i++) {
 			int n = (int) (Math.random() * N) + 1;
 			int b = (int) (Math.random() * B) + 1;
@@ -292,7 +292,23 @@ public class Code03_RobotAndClothes {
 				break;
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
+
+		System.out.println("性能测试开始");
+		int n = 10000;
+		int b = 100000;
+		int[] powers = randomArray(n, b);
+		int[] rates = randomArray(n, b);
+		System.out.println("衣服规模 : " + n);
+		System.out.println("电量规模 : " + b);
+		System.out.println("机器人启动费用取值规模 : " + b);
+		System.out.println("机器人工作速度取值规模 : " + b);
+		long start = System.currentTimeMillis();
+		fast3(n, b, powers, rates);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间 : " + (end - start) + " 毫秒");
+		System.out.println("性能测试结束");
+
 	}
 
 }
