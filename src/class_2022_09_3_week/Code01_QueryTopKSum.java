@@ -13,18 +13,27 @@ public class Code01_QueryTopKSum {
 	public static class SegmentTree {
 
 		private int n;
-
 		private int k;
-
 		private int[][] max;
+		private int[][] query;
 
 		public SegmentTree(int[] arr, int K) {
 			n = arr.length;
 			k = K;
 			max = new int[(n + 1) << 2][k];
+			query = new int[(n + 1) << 2][k];
 			for (int i = 0; i < n; i++) {
 				update(i, arr[i]);
 			}
+		}
+
+		public int topKSum(int l, int r) {
+			collect(l + 1, r + 1, 1, n, 1);
+			int sum = 0;
+			for (int num : query[1]) {
+				sum += num;
+			}
+			return sum;
 		}
 
 		private void update(int i, int v) {
@@ -58,34 +67,25 @@ public class Code01_QueryTopKSum {
 			}
 		}
 
-		public int topKSum(int l, int r) {
-			int[] top = collect(l + 1, r + 1, 1, n, 1);
-			int sum = 0;
-			for (int num : top) {
-				sum += num;
-			}
-			return sum;
-		}
-
-		private int[] collect(int L, int R, int l, int r, int rt) {
-			int[] ans = new int[k];
+		private void collect(int L, int R, int l, int r, int rt) {
 			if (L <= l && r <= R) {
 				for (int i = 0; i < k; i++) {
-					ans[i] = max[rt][i];
+					query[rt][i] = max[rt][i];
 				}
-				return ans;
+			} else {
+				int mid = (l + r) >> 1;
+				boolean leftUpdate = false;
+				boolean rightUpdate = false;
+				if (L <= mid) {
+					leftUpdate = true;
+					collect(L, R, l, mid, rt << 1);
+				}
+				if (R > mid) {
+					rightUpdate = true;
+					collect(L, R, mid + 1, r, rt << 1 | 1);
+				}
+				merge(query[rt], leftUpdate ? query[rt << 1] : null, rightUpdate ? query[rt << 1 | 1] : null);
 			}
-			int mid = (l + r) >> 1;
-			int[] leftTop = null;
-			int[] rightTop = null;
-			if (L <= mid) {
-				leftTop = collect(L, R, l, mid, rt << 1);
-			}
-			if (R > mid) {
-				rightTop = collect(L, R, mid + 1, r, rt << 1 | 1);
-			}
-			merge(ans, leftTop, rightTop);
-			return ans;
 		}
 
 	}
@@ -161,19 +161,6 @@ public class Code01_QueryTopKSum {
 		int n = 100000;
 		int k = 10;
 		int[] arr = randomArray(n, n);
-
-		System.out.println("数据规模 : " + n);
-		System.out.println("数值规模 : " + n);
-		System.out.println("k规模 : " + k);
-
-		long start, end, init, run;
-		start = System.currentTimeMillis();
-		SegmentTree st = new SegmentTree(arr, k);
-		end = System.currentTimeMillis();
-		init = end - start;
-		System.out.println("初始化运行时间 : " + init + " 毫秒");
-
-		System.out.println("开始随机生成 " + n + " 条查询");
 		int[][] queries = new int[n][2];
 		for (int i = 0; i < n; i++) {
 			int a = (int) (Math.random() * n);
@@ -181,15 +168,21 @@ public class Code01_QueryTopKSum {
 			queries[i][0] = Math.min(a, b);
 			queries[i][1] = Math.max(a, b);
 		}
-		System.out.println("开始执行 " + n + " 条查询");
+		System.out.println("数据规模 : " + n);
+		System.out.println("数值规模 : " + n);
+		System.out.println("查询规模 : " + n);
+		System.out.println("k规模 : " + k);
+		long start, end1, end2;
 		start = System.currentTimeMillis();
+		SegmentTree st = new SegmentTree(arr, k);
+		end1 = System.currentTimeMillis();
 		for (int i = 0; i < n; i++) {
 			st.topKSum(queries[i][0], queries[i][1]);
 		}
-		end = System.currentTimeMillis();
-		run = end - start;
-		System.out.println("执行查询运行时间 : " + run + " 毫秒");
-		System.out.println("总共运行时间 : " + (init + run) + " 毫秒");
+		end2 = System.currentTimeMillis();
+		System.out.println("初始化运行时间 : " + (end1 - start) + " 毫秒");
+		System.out.println("执行查询运行时间 : " + (end2 - end1) + " 毫秒");
+		System.out.println("总共运行时间 : " + (end2 - start) + " 毫秒");
 		System.out.println("性能测试结束");
 	}
 
