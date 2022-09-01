@@ -60,6 +60,7 @@ public class Code01_Cakes {
 		if (m >= Math.max(a, b)) { // nim博弈
 			return a != b ? "先手" : "后手";
 		}
+		// m < max(a,b)
 		if (a == b) {
 			// 蛋糕一样多
 			// 先手必输，因为先手不管拿什么，拿多少

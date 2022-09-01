@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Code03_MinAddToMatch {
+public class Code02_MinAddToMatch {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -55,16 +55,25 @@ public class Code03_MinAddToMatch {
 		// 比如s[l...r] = ([][]
 		// 先搞定[][]，需要添加0个，然后搞定(，需要添加1个
 		// 整体变成([][])搞定
+		// l....r -> l l+1....r ?
 		int p1 = 1 + process(s, l + 1, r, dp);
 		// 可能性2，先搞定l...r-1，然后搞定r
 		// 和可能性1同理
+		// l...r -> ? l...r-1 r
 		int p2 = 1 + process(s, l, r - 1, dp);
+		// l( ...r) l+1..r-1
+		// l[    r] l+1..r-1
 		// 可能性3，s[l]和s[r]天然匹配，需要搞定的就是l+1..r-1
 		// 比如([[)，搞定中间的[[，就是最优解了
 		int p3 = Integer.MAX_VALUE;
 		if ((s[l] == '(' && s[r] == ')') || (s[l] == '[' && s[r] == ']')) {
 			p3 = process(s, l + 1, r - 1, dp);
 		}
+		
+		// l......r
+		// l..l   l+1..r
+		// l..l+1 l+2..r
+		// l...l+2 l+3..r
 		// 可能性后续：可能，最优解并不是l....r整体变成最大的嵌套
 		// 而是，并列关系！
 		// l....split 先变成合法
