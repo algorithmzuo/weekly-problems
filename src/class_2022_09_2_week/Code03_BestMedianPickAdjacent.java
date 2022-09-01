@@ -142,7 +142,7 @@ public class Code03_BestMedianPickAdjacent {
 		}
 		System.out.println("功能测试结束");
 
-		System.out.println("功能测试开始");
+		System.out.println("性能测试开始");
 		int n = 100000;
 		int v = 50000000;
 		System.out.println("数组长度 : " + n);
@@ -152,9 +152,8 @@ public class Code03_BestMedianPickAdjacent {
 		bestMedian2(arr);
 		long end = System.currentTimeMillis();
 		System.out.println("运行时间 : " + (end - start) + "毫秒");
+		System.out.println("性能测试结束");
 
-		int[] arrs = { 5, 3, 6, 2, 9, 7 };
-		System.out.println(bestMedian2(arrs));
 	}
 
 }
