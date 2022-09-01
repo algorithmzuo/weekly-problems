@@ -1,9 +1,9 @@
-package class_2022_09_4_week;
+package class_2022_09_1_week;
 
 // 如果一个正整数每一个数位都是 互不相同 的，我们称它是 特殊整数 。
 // 给你一个正整数 n ，请你返回区间 [1, n] 之间特殊整数的数目。
 // 测试链接 : https://leetcode.cn/problems/count-special-integers/
-public class Code05_CountSpecialIntegers {
+public class Code02_CountSpecialIntegers {
 
 	public static int[] offset = { 0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000 };
 

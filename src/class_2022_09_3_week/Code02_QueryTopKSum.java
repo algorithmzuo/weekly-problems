@@ -8,7 +8,7 @@ package class_2022_09_3_week;
 // 1 <= x <= 10^8
 import java.util.PriorityQueue;
 
-public class Code01_QueryTopKSum {
+public class Code02_QueryTopKSum {
 
 	public static class SegmentTree {
 

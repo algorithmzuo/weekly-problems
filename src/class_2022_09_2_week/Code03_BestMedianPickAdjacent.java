@@ -1,7 +1,9 @@
-package class_2022_09_3_week;
+package class_2022_09_2_week;
 
 import java.util.Arrays;
 
+// 来自京东
+// 实习岗位笔试题
 // 给定一个数组arr，长度为n
 // 相邻的两个数里面至少要有一个被选出来，组成子序列
 // 求选出来的数字构成的所有可能的子序列中，最大中位数是多少
@@ -10,7 +12,7 @@ import java.util.Arrays;
 // [1, 2, 3, 4, 5]的上中位数是3
 // 2 <=  n <= 10^5
 // 1 <= arr[i] <= 10^9
-public class Code02_BestMedianPickAdjacent {
+public class Code03_BestMedianPickAdjacent {
 
 	// 启发函数
 	// 如果数组中的值只有1和-1，
