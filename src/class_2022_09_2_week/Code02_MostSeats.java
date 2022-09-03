@@ -26,7 +26,7 @@ import java.util.Arrays;
 // 0 0 X 0 X 0
 // 0 1 0 X 0 1
 // X 0 X 0 X 0
-public class Code01_MostSeats {
+public class Code02_MostSeats {
 
 	public static int[][] dp = new int[20][1 << 20];
 

@@ -9,7 +9,7 @@ import java.util.HashMap;
 // 返回s中达标子串的最大长度
 // 1 <= s的长度 <= 10^5
 // 字符种类都是英文小写
-public class Code03_EvenTimesMaxSubstring {
+public class Code04_EvenTimesMaxSubstring {
 
 	// 为了测试
 	// 暴力方法

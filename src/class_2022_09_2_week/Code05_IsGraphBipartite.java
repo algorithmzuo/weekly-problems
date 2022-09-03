@@ -7,7 +7,7 @@ package class_2022_09_2_week;
 // 讨厌的人不能一起开会
 // 返回所有人能不能分成两组开会
 // 测试链接 : https://leetcode.cn/problems/is-graph-bipartite/
-public class Code04_IsGraphBipartite {
+public class Code05_IsGraphBipartite {
 
 	public boolean isBipartite(int[][] graph) {
 		int n = graph.length;
