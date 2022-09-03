@@ -1,4 +1,4 @@
-package class_2022_09_3_week;
+package class_2022_09_1_week;
 
 // 给你一个长度为n的数组，并询问q次
 // 每次询问区间[l,r]之间是否存在小于等于k个数的和大于等于x

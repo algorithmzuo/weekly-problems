@@ -12,7 +12,7 @@ import java.util.Arrays;
 // [1, 2, 3, 4, 5]的上中位数是3
 // 2 <=  n <= 10^5
 // 1 <= arr[i] <= 10^9
-public class Code03_BestMedianPickAdjacent {
+public class Code02_BestMedianPickAdjacent {
 
 	// 启发函数
 	// 如果数组中的值只有1和-1，

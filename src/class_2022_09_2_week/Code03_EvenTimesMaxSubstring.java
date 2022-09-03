@@ -2,13 +2,14 @@ package class_2022_09_2_week;
 
 import java.util.HashMap;
 
+// 来自微软
 // 给定一个字符串s，其中都是英文小写字母
 // 如果s中的子串含有的每种字符都是偶数个
 // 那么这样的子串就是达标子串，子串要求是连续串
 // 返回s中达标子串的最大长度
 // 1 <= s的长度 <= 10^5
 // 字符种类都是英文小写
-public class Code02_EvenTimesMaxSubstring {
+public class Code03_EvenTimesMaxSubstring {
 
 	// 为了测试
 	// 暴力方法
