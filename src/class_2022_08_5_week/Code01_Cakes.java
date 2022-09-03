@@ -43,7 +43,7 @@ public class Code01_Cakes {
 		}
 		for (int pick = 1; pick <= Math.min(b, m); pick++) {
 			if (whoWin1(a, b - pick, m).equals("后手")) {
-				return "先手";
+				ans = "先手";
 			}
 			if (ans.equals("先手")) {
 				break;
@@ -85,10 +85,8 @@ public class Code01_Cakes {
 	}
 
 	public static void main(String[] args) {
-		int V = 23;
+		int V = 100;
 		System.out.println("测试开始");
-		int cnt = 0;
-		int all = (V + 1) * (V + 1) * (V + 1);
 		for (int a = 0; a <= V; a++) {
 			for (int b = 0; b <= V; b++) {
 				for (int m = 0; m <= V; m++) {
@@ -102,10 +100,6 @@ public class Code01_Cakes {
 						System.out.println("ans1 : " + ans1);
 						System.out.println("ans2 : " + ans2);
 						break;
-					}
-					cnt++;
-					if (cnt % 1000 == 0) {
-						System.out.println("已经测了" + cnt + "组(共" + all + "组)");
 					}
 				}
 			}
