@@ -20,7 +20,7 @@ import java.util.Arrays;
 // 第三行为n个正整数b1, b2,...... bn，其中bi表示题库B中第i个题目的难度值
 // 第四行为n个正整数c1, c2,...... cn，其中ci表示题库C中第i个题目的难度值
 // 1 ≤ n ≤ 20000, 1 ≤ ai, bi, ci ≤ 10^9。
-public class Code02_ExaminationPaperWays {
+public class Code03_ExaminationPaperWays {
 
 	// 暴力方法
 	// 时间复杂度O(N^3)

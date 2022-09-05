@@ -7,7 +7,7 @@ package class_2022_09_1_week;
 // 返回n次修改机会的情况下连通的0最长能是多少？
 // 1 <= arr长度 <= 10^6
 // 0 <= 修改机会 <= 10^6
-public class Code04_RunThroughZero2 {
+public class Code05_RunThroughZero2 {
 
 	// 时间复杂度O(N^3)的方法
 	// 为了验证

@@ -1,4 +1,4 @@
-package class_2022_09_3_week;
+package class_2022_09_1_week;
 
 import java.util.Arrays;
 
@@ -21,7 +21,7 @@ import java.util.Arrays;
 // 1 <= m <= 30000
 // 0 <= ai, bi <= 10^9
 // 输出描述 输出一个整数，表示小美合理完成任务能得到的最大收益
-public class Code01_MoveCityGetMoney {
+public class Code04_MoveCityGetMoney {
 
 	// 暴力方法
 	// 时间复杂度O(N^2)
