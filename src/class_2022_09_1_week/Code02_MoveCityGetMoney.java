@@ -21,7 +21,7 @@ import java.util.Arrays;
 // 1 <= m <= 30000
 // 0 <= ai, bi <= 10^9
 // 输出描述 输出一个整数，表示小美合理完成任务能得到的最大收益
-public class Code04_MoveCityGetMoney {
+public class Code02_MoveCityGetMoney {
 
 	// 暴力方法
 	// 时间复杂度O(N^2)

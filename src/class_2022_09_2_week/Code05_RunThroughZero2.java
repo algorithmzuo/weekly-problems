@@ -1,4 +1,4 @@
-package class_2022_09_1_week;
+package class_2022_09_2_week;
 
 // 来自学员问题
 // 有一个数组包含0、1、2三种值，

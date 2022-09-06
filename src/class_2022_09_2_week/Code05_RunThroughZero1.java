@@ -1,4 +1,4 @@
-package class_2022_09_1_week;
+package class_2022_09_2_week;
 
 // 来自学员问题
 // 本文件仅为贪心的验证文件

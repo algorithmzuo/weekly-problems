@@ -1,4 +1,4 @@
-package class_2022_09_2_week;
+package class_2022_09_1_week;
 
 // 来自微软面试
 // 给定一个长度为n的二维数组graph，代表一张图
