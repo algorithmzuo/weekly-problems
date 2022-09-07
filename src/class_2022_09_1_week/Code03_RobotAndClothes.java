@@ -187,31 +187,15 @@ public class Code03_RobotAndClothes {
 	public static class SegmentTree {
 		private int n;
 		private int[] min;
-		private int[] change;
-		private boolean[] update;
 
 		public SegmentTree(int size) {
 			n = size + 1;
 			min = new int[n << 2];
-			change = new int[n << 2];
-			update = new boolean[n << 2];
-			update(1, size, Integer.MAX_VALUE, 1, size, 1);
+			Arrays.fill(min, Integer.MAX_VALUE);
 		}
 
 		private void pushUp(int rt) {
 			min[rt] = Math.min(min[rt << 1], min[rt << 1 | 1]);
-		}
-
-		private void pushDown(int rt, int ln, int rn) {
-			if (update[rt]) {
-				update[rt << 1] = true;
-				update[rt << 1 | 1] = true;
-				change[rt << 1] = change[rt];
-				change[rt << 1 | 1] = change[rt];
-				min[rt << 1] = change[rt];
-				min[rt << 1 | 1] = change[rt];
-				update[rt] = false;
-			}
 		}
 
 		public void update(int i, int v) {
@@ -220,13 +204,10 @@ public class Code03_RobotAndClothes {
 
 		private void update(int L, int R, int C, int l, int r, int rt) {
 			if (L <= l && r <= R) {
-				update[rt] = true;
-				change[rt] = C;
 				min[rt] = C;
 				return;
 			}
 			int mid = (l + r) >> 1;
-			pushDown(rt, mid - l + 1, r - mid);
 			if (L <= mid) {
 				update(L, R, C, l, mid, rt << 1);
 			}
@@ -245,7 +226,6 @@ public class Code03_RobotAndClothes {
 				return min[rt];
 			}
 			int mid = (l + r) >> 1;
-			pushDown(rt, mid - l + 1, r - mid);
 			int left = Integer.MAX_VALUE;
 			int right = Integer.MAX_VALUE;
 			if (L <= mid) {

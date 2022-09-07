@@ -2,6 +2,14 @@ package class_2022_09_1_week;
 
 import java.util.Arrays;
 
+// 给你一个由小写字母组成的字符串 s ，和一个整数 k
+// 如果满足下述条件，则可以将字符串 t 视作是 理想字符串 ：
+// t 是字符串 s 的一个子序列。
+// t 中每两个 相邻 字母在字母表中位次的绝对差值小于或等于 k 。
+// 返回 最长 理想字符串的长度。
+// 字符串的子序列同样是一个字符串，并且子序列还满足：
+// 可以经由其他字符串删除某些字符（也可以不删除）但不改变剩余字符的顺序得到。
+// 注意：字母表顺序不会循环。例如，'a' 和 'z' 在字母表中位次的绝对差值是 25 ，而不是 1 。
 // 测试链接 : https://leetcode.cn/problems/longest-ideal-subsequence/
 public class Code01_LongestIdealString {
 
@@ -108,16 +116,6 @@ public class Code01_LongestIdealString {
 			max[rt] = Math.max(max[rt << 1], max[rt << 1 | 1]);
 		}
 
-		private void pushDown(int rt, int ln, int rn) {
-			if (update[rt] != -1) {
-				update[rt << 1] = update[rt];
-				max[rt << 1] = update[rt];
-				update[rt << 1 | 1] = update[rt];
-				max[rt << 1 | 1] = update[rt];
-				update[rt] = -1;
-			}
-		}
-
 		private void update(int L, int R, int C, int l, int r, int rt) {
 			if (L <= l && r <= R) {
 				max[rt] = C;
@@ -125,7 +123,6 @@ public class Code01_LongestIdealString {
 				return;
 			}
 			int mid = (l + r) >> 1;
-			pushDown(rt, mid - l + 1, r - mid);
 			if (L <= mid) {
 				update(L, R, C, l, mid, rt << 1);
 			}
@@ -140,7 +137,6 @@ public class Code01_LongestIdealString {
 				return max[rt];
 			}
 			int mid = (l + r) >> 1;
-			pushDown(rt, mid - l + 1, r - mid);
 			int ans = 0;
 			if (L <= mid) {
 				ans = Math.max(ans, max(L, R, l, mid, rt << 1));
