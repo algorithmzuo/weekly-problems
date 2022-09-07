@@ -26,6 +26,9 @@ import java.util.Arrays;
 // powers长度 == rates长度 == n <= 1000
 // 1 <= b <= 10^5
 // 1 <= powers[i]、rates[i] <= 10^5
+// 0号 : 10^5 * 10^3 -> 10^8
+// log 10^8 * N^2  -> 27 * 10^6 -> 10^7
+// 优化之后 : (log10^8) -> 27 * 1000 * 10
 public class Code03_RobotAndClothes {
 
 	// 通过不了的简单动态规划方法
@@ -107,6 +110,10 @@ public class Code03_RobotAndClothes {
 		return ans;
 	}
 
+	// 给定所有机器人的启动电量 powers[]
+	// 给定所有机器人的收一件衣服的时间 rates[]
+	// 一定要在time时间内，收完所有衣服！
+	// 返回 : 至少需要的电量!
 	public static int minPower2(int[] powers, int[] rates, int time) {
 		int[] dp = new int[powers.length];
 		Arrays.fill(dp, -1);
@@ -117,6 +124,7 @@ public class Code03_RobotAndClothes {
 	// 在time时间内一定要收完
 	// 返回最小电量
 	// 如果怎么都收不完，返回系统最大值
+	// N^2
 	public static int process2(int[] powers, int[] rates, int i, int time, int[] dp) {
 		int n = powers.length;
 		if (i == n) {
@@ -125,13 +133,15 @@ public class Code03_RobotAndClothes {
 		if (dp[i] != -1) {
 			return dp[i];
 		}
+		// i.....
+		// 收当前i位置这一件衣服的时间
 		int usedTime = rates[i];
 		int nextMinPower = Integer.MAX_VALUE;
-		// 这个枚举其实还可以用线段树优化一下
-		// 不过对于大思路来说已经无关紧要了
 		for (int j = i; j < n && usedTime <= time; j++) {
-			// i....j由当前的i号机器负责
-			// j+1...由后面机器负责
+			// i...i i+1....
+			// i......i+1 i+2...
+			// i...........i+2 i+3...
+			// i....j j+1....
 			nextMinPower = Math.min(nextMinPower, process2(powers, rates, j + 1, time, dp));
 			usedTime += rates[i];
 		}
@@ -168,6 +178,8 @@ public class Code03_RobotAndClothes {
 	public static int minPower3(int[] powers, int[] rates, int time) {
 		int n = powers.length;
 		int[] dp = new int[n + 1];
+		//      dp[n-1]  dp[n]
+		//         n-1     n
 		SegmentTree st = new SegmentTree(n + 1);
 		st.update(n, 0);
 		for (int i = n - 1; i >= 0; i--) {
@@ -175,6 +187,7 @@ public class Code03_RobotAndClothes {
 				dp[i] = Integer.MAX_VALUE;
 			} else {
 				int j = Math.min(i + (time / rates[i]) - 1, n - 1);
+				// for.... logN 
 				int next = st.min(i + 1, j + 1);
 				int ans = next == Integer.MAX_VALUE ? next : (powers[i] + next);
 				dp[i] = ans;

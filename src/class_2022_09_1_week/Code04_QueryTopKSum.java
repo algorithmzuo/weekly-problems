@@ -11,10 +11,13 @@ import java.util.PriorityQueue;
 
 public class Code04_QueryTopKSum {
 
+	
 	public static class SegmentTree {
 
 		private int n;
 		private int k;
+		// private int[] max;
+		// private int[][] max = new int[][10];
 		private int[][] max;
 		private int[][] query;
 
@@ -56,6 +59,9 @@ public class Code04_QueryTopKSum {
 			merge(max[rt], max[rt << 1], max[rt << 1 | 1]);
 		}
 
+		// father 要前k名
+		// left k名
+		// right k名
 		private void merge(int[] father, int[] left, int[] right) {
 			for (int i = 0, p1 = 0, p2 = 0; i < k; i++) {
 				if (left == null || p1 == k) {

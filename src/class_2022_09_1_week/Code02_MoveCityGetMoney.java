@@ -3,7 +3,7 @@ package class_2022_09_1_week;
 import java.util.Arrays;
 
 // 来自美团
-// 有n个城市，城市从1到n进行编号。小美最初住在k号城市中
+// 有n个城市，城市从0到n-1进行编号。小美最初住在k号城市中
 // 在接下来的m天里，小美每天会收到一个任务
 // 她可以选择完成当天的任务或者放弃该任务
 // 第i天的任务需要在ci号城市完成，如果她选择完成这个任务
@@ -36,6 +36,13 @@ public class Code02_MoveCityGetMoney {
 		return process1(k, 0, m, c, a, b, dp);
 	}
 
+	// cur : 小美当前在哪！
+	// i : 当前面临的是任务编号！
+	// m : 一共有多少任务，固定
+	// c[i] : 第i号任务要在哪个城里完成
+	// a[i] : 恰好在！收益
+	// b[i] : 赶过去！收益
+	// 返回 : i....... 小美获得的最大收益
 	public static int process1(int cur, int i, int m, int[] c, int[] a, int[] b, int[][] dp) {
 		if (i == m) {
 			return 0;
@@ -64,6 +71,7 @@ public class Code02_MoveCityGetMoney {
 		st.update(k, 0);
 		int ans = 0;
 		for (int i = 0; i < m; i++) {
+			// c[i]
 			int curAns = Math.max(Math.max(st.max(0, c[i] - 1), st.max(c[i] + 1, n - 1)) + b[i],
 					st.max(c[i], c[i]) + a[i]);
 			ans = Math.max(ans, curAns);
@@ -181,7 +189,7 @@ public class Code02_MoveCityGetMoney {
 		long start = System.currentTimeMillis();
 		maxPorfit2(n, m, k, c, a, b);
 		long end = System.currentTimeMillis();
-		System.out.println("运行时间 : " + (end -start) + "毫秒");
+		System.out.println("运行时间 : " + (end - start) + "毫秒");
 		System.out.println("性能测试结束");
 
 	}

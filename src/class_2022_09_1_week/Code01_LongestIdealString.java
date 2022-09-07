@@ -1,7 +1,5 @@
 package class_2022_09_1_week;
 
-import java.util.Arrays;
-
 // 给你一个由小写字母组成的字符串 s ，和一个整数 k
 // 如果满足下述条件，则可以将字符串 t 视作是 理想字符串 ：
 // t 是字符串 s 的一个子序列。
@@ -9,7 +7,8 @@ import java.util.Arrays;
 // 返回 最长 理想字符串的长度。
 // 字符串的子序列同样是一个字符串，并且子序列还满足：
 // 可以经由其他字符串删除某些字符（也可以不删除）但不改变剩余字符的顺序得到。
-// 注意：字母表顺序不会循环。例如，'a' 和 'z' 在字母表中位次的绝对差值是 25 ，而不是 1 。
+// 注意：字母表顺序不会循环
+// 例如，'a' 和 'z' 在字母表中位次的绝对差值是 25，而不是 1 。
 // 测试链接 : https://leetcode.cn/problems/longest-ideal-subsequence/
 public class Code01_LongestIdealString {
 
@@ -81,10 +80,20 @@ public class Code01_LongestIdealString {
 	// 时间复杂度O(N * logE)
 	// 空间复杂度O(E)
 	public static int longestIdealString3(String s, int k) {
+		//   0     0        0
+		// 1(a)  2(b) ... 26(z)
 		SegmentTree st = new SegmentTree(26);
 		int c, pre, ans = 0;
 		for (int i = 0; i < s.length(); i++) {
+			// i  s.charAt(i) 
+			//       a    1
+			//       b    2
+			//       z    26
 			c = s.charAt(i) - 'a' + 1;
+			//    2     k = 3
+			// 1 2 3 4 5 6 7
+			//  l = Math.max(c - k, 1)
+			//  r = Math.min(c + k, 26)
 			pre = st.max(Math.max(c - k, 1), Math.min(c + k, 26));
 			ans = Math.max(ans, 1 + pre);
 			st.update(c, 1 + pre);
@@ -95,13 +104,10 @@ public class Code01_LongestIdealString {
 	public static class SegmentTree {
 		private int n;
 		private int[] max;
-		private int[] update;
 
 		public SegmentTree(int maxSize) {
 			n = maxSize + 1;
 			max = new int[n << 2];
-			update = new int[n << 2];
-			Arrays.fill(update, -1);
 		}
 
 		public void update(int index, int c) {
@@ -119,7 +125,6 @@ public class Code01_LongestIdealString {
 		private void update(int L, int R, int C, int l, int r, int rt) {
 			if (L <= l && r <= R) {
 				max[rt] = C;
-				update[rt] = C;
 				return;
 			}
 			int mid = (l + r) >> 1;
