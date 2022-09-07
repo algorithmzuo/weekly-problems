@@ -148,7 +148,7 @@ public class Code02_MoveCityGetMoney {
 		int M = 100;
 		int V = 10000;
 		int testTimes = 5000;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < testTimes; i++) {
 			int n = (int) (Math.random() * N) + 1;
 			int m = (int) (Math.random() * M) + 1;
@@ -165,7 +165,25 @@ public class Code02_MoveCityGetMoney {
 				break;
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
+
+		System.out.println("性能测试开始");
+		int n = 100000;
+		int m = 100000;
+		int v = 1000000;
+		int k = (int) (Math.random() * n);
+		int[] c = randomArray(m, n);
+		int[] a = randomArray(m, v);
+		int[] b = randomArray(m, v);
+		System.out.println("城市数量 : " + n);
+		System.out.println("任务天数 : " + m);
+		System.out.println("收益数值规模 : " + v);
+		long start = System.currentTimeMillis();
+		maxPorfit2(n, m, k, c, a, b);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间 : " + (end -start) + "毫秒");
+		System.out.println("性能测试结束");
+
 	}
 
 }
