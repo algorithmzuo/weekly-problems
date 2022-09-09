@@ -1,4 +1,4 @@
-package class_2022_09_2_week;
+package class_2022_09_4_week;
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ import java.util.Arrays;
 // 0 0 X 0 X 0
 // 0 1 0 X 0 1
 // X 0 X 0 X 0
-public class Code02_MostSeats {
+public class Code03_MostSeats {
 
 	public static int[][] dp = new int[20][1 << 20];
 

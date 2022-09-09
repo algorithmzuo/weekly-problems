@@ -1,7 +1,7 @@
 package class_2022_09_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/stone-game-vii/
-public class Code04_StoneGameVII {
+public class Code05_StoneGameVII {
 
 	// 暴力尝试版本，提交的时候请把名字改成stoneGameVII
 	// 会超时但是思路是对的，如果想通过就把这个暴力递归改成下面的动态规划
