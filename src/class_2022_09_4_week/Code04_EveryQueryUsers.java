@@ -1,4 +1,4 @@
-package class_2022_09_3_week;
+package class_2022_09_4_week;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,7 +17,7 @@ import java.util.HashSet;
 // 1 <= M <= 10^2
 // 1 <= Q <= 10^4
 // 所有查询所列出的所有实验编号数量(也就是二维数组B，行*列的规模) <= 10^5
-public class Code05_EveryQueryUsers {
+public class Code04_EveryQueryUsers {
 
 	// 暴力方法
 	// 为了验证

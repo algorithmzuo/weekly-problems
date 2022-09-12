@@ -1,4 +1,4 @@
-package class_2022_10_1_week;
+package class_2022_09_3_week;
 
 // 来自360
 // 有n个黑白棋子，它们的一面是黑色，一面是白色

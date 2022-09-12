@@ -1,4 +1,4 @@
-package class_2022_10_1_week;
+package class_2022_09_3_week;
 
 // 来自美团
 // 某天，小美在玩一款游戏，游戏开始时，有n台机器，

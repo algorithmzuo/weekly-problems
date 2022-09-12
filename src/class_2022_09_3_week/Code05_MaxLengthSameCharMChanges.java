@@ -10,7 +10,7 @@ package class_2022_09_3_week;
 // 返回在最多修改m次的情况下，全是一种字符的最长子串是多长
 // 1 <= N, M <= 10^5
 // 所有字符都是小写
-public class Code04_MaxLengthSameCharMChanges {
+public class Code05_MaxLengthSameCharMChanges {
 
 	// 暴力方法
 	// 为了测试
