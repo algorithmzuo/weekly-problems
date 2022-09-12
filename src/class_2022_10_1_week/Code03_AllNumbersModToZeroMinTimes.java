@@ -13,14 +13,14 @@ package class_2022_10_1_week;
 // 第一行两个正整数n和m，表示数字个数和取模数值。
 // 第二行为n个正整数a1, a2,...... an，其中ai表示第i台机器初始的能量水平。
 // 1 ≤ n ≤ 30000，2 ≤ m ≤ 30000, 0 ≤ ai < m。
-public class Code03_ModToZero {
+public class Code03_AllNumbersModToZeroMinTimes {
 
-	public static int times(int n, int m, int[] arr) {
+	public static int[] times(int n, int m, int[] arr) {
 		int[] map = new int[m];
 		bfs(m, map);
-		int ans = 0;
-		for (int num : arr) {
-			ans += map[num];
+		int[] ans = new int[n];
+		for (int i = 0; i < n; i++) {
+			ans[i] = map[arr[i]];
 		}
 		return ans;
 	}
