@@ -144,8 +144,8 @@ public class Code01_BlackWhiteChess {
 		System.out.println("功能测试结束");
 
 		System.out.println("性能测试开始");
-		long n = 2000000000000000000L;
-		int ops = 50000;
+		long n = 1000000000000000000L;
+		int ops = 100000;
 		System.out.println("数组范围 : " + n);
 		System.out.println("查询次数 : " + ops);
 		DynamicSegmentTree dst = new DynamicSegmentTree(n);
