@@ -1,7 +1,15 @@
-package class_2022_10_1_week;
+package class_2022_09_2_week;
 
-// 自己处理取mod，因为非重点
-public class Code01_NLengthMValueLIS3 {
+// 来自微众银行
+// 给定一个数字n，代表数组的长度
+// 给定一个数字m，代表数组每个位置都可以在1~m之间选择数字
+// 所有长度为n的数组中，最长递增子序列长度为3的数组，叫做达标数组
+// 返回达标数组的数量
+// 1 <= n <= 500
+// 1 <= m <= 10
+// 结果对998244353取模
+// 实现的时候没有取模的逻辑，因为非重点
+public class Code05_NLengthMValueLIS3 {
 
 	// 暴力方法
 	// 为了验证
