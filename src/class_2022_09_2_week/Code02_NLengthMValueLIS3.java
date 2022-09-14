@@ -9,7 +9,7 @@ package class_2022_09_2_week;
 // 1 <= m <= 10
 // 结果对998244353取模
 // 实现的时候没有取模的逻辑，因为非重点
-public class Code05_NLengthMValueLIS3 {
+public class Code02_NLengthMValueLIS3 {
 
 	// 暴力方法
 	// 为了验证

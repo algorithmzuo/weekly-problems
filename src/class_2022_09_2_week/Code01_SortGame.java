@@ -18,7 +18,7 @@ import java.util.TreeSet;
 // 返回数组ans，表示最终的排列
 // 1 <= n, m <= 2 * 10^5
 // - 10^9 <= arr[i] <= + 10^9
-public class Code04_SortGame {
+public class Code01_SortGame {
 
 	// 暴力方法
 	// 为了验证
