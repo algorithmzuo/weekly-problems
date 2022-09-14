@@ -48,16 +48,16 @@ public class Code01_SortGame {
 		int n = arr.length;
 		int m = op.length;
 		int[] stack = new int[m];
-		int l = 0;
 		int r = 0;
 		for (int i = 0; i < m; i++) {
-			while (l != r && op[stack[r - 1]][0] <= op[i][0]) {
+			while (r != 0 && op[stack[r - 1]][0] <= op[i][0]) {
 				r--;
 			}
 			stack[r++] = i;
 		}
 		int[] ans = new int[n];
 		int ansi = n - 1;
+		int l = 0;
 		for (; ansi >= op[stack[l]][0]; ansi--) {
 			ans[ansi] = arr[ansi];
 		}
@@ -66,6 +66,7 @@ public class Code01_SortGame {
 			sorted.add(new Number(arr[i], i));
 		}
 		while (l != r) {
+			// 当前处理的指令
 			int[] cur = op[stack[l++]];
 			if (l != r) {
 				int[] next = op[stack[l]];
@@ -151,6 +152,21 @@ public class Code01_SortGame {
 
 	// 为了测试
 	public static void main(String[] args) {
+
+//		int[] arr = { 3, 3, 7, 7, 7 };
+//
+//		TreeSet<Number> set = new TreeSet<>(new NumberComparator());
+//
+//		for (int i = 0; i < arr.length; i++) {
+//			set.add(new Number(arr[i], i));
+//		}
+//		
+////		System.out.println(set.size());
+//		
+//		while(!set.isEmpty()) {
+//			System.out.println(set.pollLast().value);
+//		}
+
 		int N = 100;
 		int M = 100;
 		int V = 200;

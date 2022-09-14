@@ -7,6 +7,7 @@ package class_2022_09_2_week;
 // 返回达标数组的数量
 // 1 <= n <= 500
 // 1 <= m <= 10
+// 500 * 10 * 10 * 10
 // 结果对998244353取模
 // 实现的时候没有取模的逻辑，因为非重点
 public class Code02_NLengthMValueLIS3 {
@@ -54,6 +55,30 @@ public class Code02_NLengthMValueLIS3 {
 			max = Math.max(max, l + 1);
 		}
 		return max;
+	}
+
+	// i : 当前来到的下标
+	// f、s、t : ends数组中放置的数字！
+	// ? == 0，没放！
+	// n : 一共的长度！
+	// m : 每一位，都可以在1~m中随意选择数字
+	// 返回值：i..... 有几个合法的数组！
+	public static int zuo(int i, int f, int s, int t, int n, int m) {
+		if (i == n) {
+			return f != 0 && s != 0 && t != 0 ? 1 : 0;
+		}
+		// i < n
+		int ans = 0;
+		for (int cur = 1; cur <= m; cur++) {
+			if (f == 0 || f >= cur) {
+				ans += zuo(i + 1, cur, s, t, n, m);
+			} else if (s == 0 || s >= cur) {
+				ans += zuo(i + 1, f, cur, t, n, m);
+			} else if (t == 0 || t >= cur) {
+				ans += zuo(i + 1, f, s, cur, n, m);
+			}
+		}
+		return ans;
 	}
 
 	// 正式方法
