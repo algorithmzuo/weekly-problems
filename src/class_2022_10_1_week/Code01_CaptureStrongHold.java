@@ -1,4 +1,4 @@
-package class_2022_09_4_week;
+package class_2022_10_1_week;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import java.util.List;
 // 请返回勇者夺回所有据点需要消耗的最少资源数量。
 // 输入保证初始所有据点都是连通的，且不存在重边和自环
 // 测试链接 : https://leetcode.cn/problems/s5kipK/
-public class Code02_CaptureStrongHold {
+public class Code01_CaptureStrongHold {
 
 	public static long minimumCost(int[] cost, int[][] roads) {
 		int n = cost.length;

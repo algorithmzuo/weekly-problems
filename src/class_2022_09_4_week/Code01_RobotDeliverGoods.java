@@ -16,7 +16,7 @@ package class_2022_09_4_week;
 // from[i]表示i号货物所在的楼层
 // to[i]表示i号货物要去往的楼层
 // 返回最快的时间
-public class Code05_RobotDeliverGoods {
+public class Code01_RobotDeliverGoods {
 
 	// 暴力方法
 	// 全排序代码

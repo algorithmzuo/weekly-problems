@@ -24,7 +24,7 @@ import java.io.StreamTokenizer;
 import java.util.Arrays;
 import java.io.IOException;
 
-public class Code01_MaxPrimePairs {
+public class Code03_MaxPrimePairs {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
