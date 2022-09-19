@@ -9,7 +9,7 @@ package class_2022_10_2_week;
 // 给你一个整数数组 stones ，其中 stones[i] 表示 从左边开始 的第 i 个石头的值，
 // 如果爱丽丝和鲍勃都 发挥出最佳水平 ，请返回他们 得分的差值 。
 // 测试链接 : https://leetcode.cn/problems/stone-game-vii/
-public class Code04_StoneGameVII {
+public class Code02_StoneGameVII {
 
 	// 暴力尝试版本，提交的时候请把名字改成stoneGameVII
 	// 会超时但是思路是对的，如果想通过就把这个暴力递归改成下面的动态规划
