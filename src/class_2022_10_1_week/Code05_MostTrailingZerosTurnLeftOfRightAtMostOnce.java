@@ -7,6 +7,7 @@ package class_2022_10_1_week;
 // 把沿途的数字乘起来，希望得到的最终数字中，结尾的0最多
 // 走的过程中，向左走或者向右走的拐点，最多只能有一个
 // 返回结尾最多的0，能是多少
+// 1 <= 行、列 <= 400
 public class Code05_MostTrailingZerosTurnLeftOfRightAtMostOnce {
 
 }
