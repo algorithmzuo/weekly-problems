@@ -1,4 +1,4 @@
-package class_2022_10_2_week;
+package class_2022_10_3_week;
 
 import java.util.HashMap;
 
@@ -8,7 +8,7 @@ import java.util.HashMap;
 // 如果有某个 i , 满足 ai != bi ，则两个序列 a1, a2, ... 和 b1, b2, ... 不同。
 // 注意：结果可能很大，你需要对 109 + 7 取模 。
 // 测试链接 : https://leetcode.cn/problems/count-different-palindromic-subsequences/
-public class Code03_CountDifferentPalindromicSubsequences {
+public class Code04_CountDifferentPalindromicSubsequences {
 
 	// 支持任意字符集
 	// 时间复杂度O(N^2)

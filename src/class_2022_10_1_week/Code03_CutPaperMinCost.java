@@ -24,7 +24,6 @@ public class Code03_CutPaperMinCost {
 			}
 		}
 		int p1 = next1 == Integer.MAX_VALUE ? Integer.MAX_VALUE : (m * m + next1);
-
 		int next2 = Integer.MAX_VALUE;
 		for (int left = 1; left < m; left++) {
 			for (int leftPick = 1; leftPick < k; leftPick++) {
