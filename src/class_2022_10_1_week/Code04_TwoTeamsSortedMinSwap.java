@@ -14,6 +14,8 @@ import java.util.HashMap;
 // n <= 1000
 public class Code04_TwoTeamsSortedMinSwap {
 
+	// 这个题写对数器太麻烦了
+	// 所以这就是正式解
 	public static int minSwaps(int[] arr) {
 		int n = arr.length;
 		HashMap<Integer, Integer> map = new HashMap<>();
