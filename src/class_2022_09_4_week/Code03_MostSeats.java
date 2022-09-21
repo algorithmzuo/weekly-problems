@@ -27,7 +27,7 @@ import java.util.Arrays;
 // 0 1 0 X 0 1
 // X 0 X 0 X 0
 // 数据范围 : 1 <= 矩阵的行、列 <= 20
-public class Code02_MostSeats {
+public class Code03_MostSeats {
 
 	// 为了测试，普通方法
 	// 普通的状态压缩动态规划
