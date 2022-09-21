@@ -19,7 +19,7 @@ import java.util.HashMap;
 // 第一行一个正整数n，表示宝藏数量。
 // 第二行为n个正整数p1, p2,...... pn，其中pi表示第 i 个宝藏在序号为pi的房间。
 // 第三行为n个正整数w1, w2,...... wn，其中wi表示第i个宝藏的价值为wi。
-// 1 ≤ n ≤ 40000, 1 ≤ pi ＜2^30, 1 ≤ wi ≤ 10^6。
+// 1 <= n <= 40000, 1 <= pi < 2^30, 1 <= wi <= 10^6。
 public class Code02_EntryRoomGetMoney {
 
 	// 为了测试

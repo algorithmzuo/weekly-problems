@@ -1,7 +1,7 @@
 package class_2022_10_2_week;
 
 // 测试链接 : https://leetcode.cn/problems/maximum-width-ramp/
-public class Code02_MaximumWidthRamp {
+public class Code04_MaximumWidthRamp {
 
 	public static int maxWidthRamp(int[] arr) {
 		int n = arr.length;

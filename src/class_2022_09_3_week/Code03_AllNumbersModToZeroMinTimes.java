@@ -12,7 +12,7 @@ package class_2022_09_3_week;
 //（机器自动释放能量不计入小美的操作次数）。
 // 第一行两个正整数n和m，表示数字个数和取模数值。
 // 第二行为n个正整数a1, a2,...... an，其中ai表示第i台机器初始的能量水平。
-// 1 ≤ n ≤ 30000，2 ≤ m ≤ 30000, 0 ≤ ai < m。
+// 1 <= n <= 30000，2 <= m <= 30000, 0 <= ai < m。
 public class Code03_AllNumbersModToZeroMinTimes {
 
 	public static int[] times(int n, int m, int[] arr) {
