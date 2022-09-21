@@ -26,8 +26,8 @@ public class Code03_AllNumbersModToZeroMinTimes {
 			if (num < m) {
 				minTimes = map[num];
 			} else {
-				for (int j = 0; j <= 9; j++) {
-					int mod = (int) (((long) num + (long) Math.pow(10, j)) % m);
+				for (long add = 1; add <= 1000000000; add *= 10) {
+					int mod = (int) (((long) num + add) % m);
 					minTimes = Math.min(minTimes, map[mod] + 1);
 				}
 			}
@@ -50,7 +50,7 @@ public class Code03_AllNumbersModToZeroMinTimes {
 			// 当前弹出的余数是cur
 			int cur = queue[l++];
 			// 能加的数字，从1枚举到10^9
-			for (int add = 1; add <= 1000000000; add *= 10) {
+			for (long add = 1; add <= 1000000000; add *= 10) {
 				// 比如，m == 7
 				// 当前余数是cur，cur变成余数0，至少要a次
 				// 我们想知道 : (哪个余数b + add) % m == cur
@@ -70,7 +70,7 @@ public class Code03_AllNumbersModToZeroMinTimes {
 				// 也就是说，b = cur - (add % m)，
 				// 如果不小于0，那就是这个b，是我们要找的余数
 				// 如果小于0，那就是b+m，是我们要找的余数
-				int from = cur - (add % m);
+				int from = cur - (int)(add % m);
 				if (from < 0) {
 					from += m;
 				}
