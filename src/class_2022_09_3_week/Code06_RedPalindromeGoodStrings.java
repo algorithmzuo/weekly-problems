@@ -1,16 +1,16 @@
-package class_2022_10_2_week;
+package class_2022_09_3_week;
 
 // 来自阿里
 // 小红定义一个仅有r、e、d三种字符的字符串中
 // 如果仅有一个长度不小于2的回文子串，那么这个字符串定义为"好串"
 // 给定一个正整数n，输出长度为n的好串有多少个
-// 结果对10^9 + 7取模， 1 <= n <=10^9
+// 结果对10^9 + 7取模， 1 <= n <= 10^9
 // 示例：
 // n = 1, 输出0
 // n = 2, 输出3
 // n = 3, 输出18
 // https://www.mashibing.com/question/detail/37485
-public class Code02_RedPalindromeGoodStrings {
+public class Code06_RedPalindromeGoodStrings {
 
 	// 暴力方法
 	// 为了观察规律

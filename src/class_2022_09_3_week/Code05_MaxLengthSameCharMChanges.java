@@ -5,7 +5,8 @@ package class_2022_09_3_week;
 // 给定一个只由0、1组成的数组arr，长度为N
 // arr[i] == 0表示str中i位置的字符不许修改
 // arr[i] == 1表示str中i位置的字符允许修改
-// 给定一个正数m，表示在任意允许修改的位置，可以把该位置的字符变成a~z中的任何一个
+// 给定一个正数m，表示在任意允许修改的位置
+// 可以把该位置的字符变成a~z中的任何一个
 // 可以修改m次
 // 返回在最多修改m次的情况下，全是一种字符的最长子串是多长
 // 1 <= N, M <= 10^5
@@ -50,26 +51,38 @@ public class Code05_MaxLengthSameCharMChanges {
 		char[] s = str.toCharArray();
 		int n = s.length;
 		int ans = 0;
-		for (char c = 'a'; c <= 'z'; c++) {
+		for (char aim = 'a'; aim <= 'z'; aim++) {
+			// 右边界
+			// [l..r)
 			int r = 0;
+			// 用了几次修改了
+			// change == m 用完的时候
 			int change = 0;
-			for (int i = 0; i < n; i++) {
+			for (int l = 0; l < n; l++) {
+				// l......r ->
 				while (r < n) {
-					if (s[r] == c) {
+					if (s[r] == aim) {
 						r++;
 						continue;
 					}
+					// s[r] != aim
 					if (arr[r] == 0 || change == m) {
 						break;
 					}
+					// s[r] != aim && arr[r] == 1 && change < m
 					change++;
 					r++;
 				}
-				ans = Math.max(ans, r - i);
-				if (s[i] != c && arr[i] == 1) {
+				// l....r-1 r
+				// X l+1
+				ans = Math.max(ans, r - l);
+				if (s[l] != aim && arr[l] == 1) {
 					change--;
 				}
-				r = Math.max(r, i + 1);
+				// r r
+				// l l
+				// X
+				r = Math.max(r, l + 1);
 			}
 		}
 		return ans;

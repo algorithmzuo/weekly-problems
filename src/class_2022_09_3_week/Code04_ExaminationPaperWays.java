@@ -46,12 +46,13 @@ public class Code04_ExaminationPaperWays {
 	}
 
 	// 正式方法
-	// 时间复杂度O(N)
+	// 时间复杂度O(N * logN)
 	public static int ways2(int[] a, int[] b, int[] c) {
 		int n = a.length;
 		Arrays.sort(a);
 		Arrays.sort(b);
 		Arrays.sort(c);
+		// B里面的记录
 		int[] help = new int[n];
 		for (int i = 0, l = -1, r = 0; i < n; i++) {
 			while (l + 1 < n && c[l + 1] <= b[i]) {

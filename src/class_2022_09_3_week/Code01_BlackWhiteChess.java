@@ -42,6 +42,10 @@ public class Code01_BlackWhiteChess {
 
 	// 正式结构的实现
 	// 动态开点线段树
+	// 1 ~ 10^18 -> node
+	// l ~ r -> node
+	// l ~ r -> sum(黑子的数量)
+	// l ~ r -> 当前有没有翻转的动作需要往下传
 	public static class Node {
 		public long sum;
 		public boolean change;
@@ -53,8 +57,18 @@ public class Code01_BlackWhiteChess {
 			change = false;
 		}
 	}
+	
+	
+	// n = 10^18
+	// DynamicSegmentTree dst = new DynamicSegmentTree(n);
+	// int[] c1 = {4, 4000万}  dst.reverse(c1[0], c1[1]) -> dst.blacks
+	// int[] c2 ...
+	// ...
 
+	// c1 [l, r] 翻转， 数量 1~n
+	// c2 [l, r] 翻转， 数量 1~n
 	public static class DynamicSegmentTree {
+		// 1 ~ n
 		public Node root;
 		public long size;
 
@@ -67,6 +81,10 @@ public class Code01_BlackWhiteChess {
 			return root.sum;
 		}
 
+		// l++ r++
+		// 0, 7  -> 1,8
+		// 4, 19 -> 5, 20
+		// 19, 4 -> 不操作
 		public void reverse(long l, long r) {
 			if (l <= r) {
 				l++;
@@ -75,6 +93,8 @@ public class Code01_BlackWhiteChess {
 			}
 		}
 
+		// l...r 线段树范围  s...e 任务范围
+		// Node cur
 		private void reverse(Node cur, long l, long r, long s, long e) {
 			if (s <= l && r <= e) {
 				cur.change = !cur.change;
