@@ -10,7 +10,7 @@ import java.util.HashMap;
 // 现在小A拥有一个长度为n的数组，她想知道内部有多少个区间是被某个数支配的
 // 2 <= k <= n <= 100000
 // 1 <= 数组的值 <= n
-public class Code01_RangeNumberHasDominateNumber {
+public class Code01_RangesHasDominateNumber {
 
 	// 暴力方法
 	// 为了验证
