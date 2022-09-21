@@ -6,6 +6,6 @@ package class_2022_09_4_week;
 // 那么该位置的行和列整体都会变成1，不管之前是什么状态
 // 返回让所有值全变成1，最少的操作次数
 // n <= 10
-public class Code05_SetAllOneMinTimes {
+public class Code03_SetAllOneMinTimes {
 
 }

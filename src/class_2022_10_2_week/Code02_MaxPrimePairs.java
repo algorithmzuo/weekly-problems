@@ -1,4 +1,4 @@
-package class_2022_09_4_week;
+package class_2022_10_2_week;
 
 // 来自华为
 // 若两个正整数的和为素数，则这两个正整数称之为"素数伴侣"
@@ -24,7 +24,7 @@ import java.io.StreamTokenizer;
 import java.util.Arrays;
 import java.io.IOException;
 
-public class Code03_MaxPrimePairs {
+public class Code02_MaxPrimePairs {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
