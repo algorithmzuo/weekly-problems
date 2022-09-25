@@ -130,7 +130,7 @@ public class Code05_SoldierFindEnemy {
 		char[][] map = new char[n][m];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				map[i][j] = Math.random() < 0.666 ? 'O' : 'X';
+				map[i][j] = Math.random() < 0.5 ? 'O' : 'X';
 			}
 		}
 		int si = (int) (Math.random() * n);
@@ -146,17 +146,23 @@ public class Code05_SoldierFindEnemy {
 	}
 
 	public static void main(String[] args) {
-		int n = 4;
+		int n = 3;
 		int m = 4;
-		char[][] map = randomMap(n, m);
-		for (char[] row : map) {
-			for (char cha : row) {
-				System.out.print(cha + " ");
+		int v = 10;
+		System.out.println("测试开始");
+		for (int i = 0; i < 2000; i++) {
+			char[][] map = randomMap(n, m);
+			int a = (int) (Math.random() * v) + 1;
+			int b = (int) (Math.random() * v) + 1;
+			int ans1 = minCost1(map, a, b);
+			int ans2 = minCost2(map, a, b);
+			if (ans1 != ans2) {
+				System.out.println("出错了");
+				System.out.println(ans1);
+				System.out.println(ans2);
 			}
-			System.out.println();
 		}
-		System.out.println(minCost1(map, 2, 1));
-		System.out.println(minCost2(map, 2, 1));
+		System.out.println("测试结束");
 	}
 
 }
