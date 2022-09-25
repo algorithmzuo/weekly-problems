@@ -1,5 +1,7 @@
 package class_2022_10_2_week;
 
+import java.util.PriorityQueue;
+
 // 来自华为
 // 给定一个N*M的二维矩阵，只由字符'O'、'X'、'S'、'E'组成
 // 'O'表示这个地方是可通行的平地
@@ -16,5 +18,145 @@ package class_2022_10_2_week;
 // 1 <= a,b <= 100000
 // 只会有一个士兵、一个敌人
 public class Code05_SoldierFindEnemy {
+
+	// 暴力dfs
+	// 为了验证
+	public static int minCost1(char[][] map, int a, int b) {
+		int n = map.length;
+		int m = map[0].length;
+		int si = 0;
+		int sj = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (map[i][j] == 'S') {
+					si = i;
+					sj = j;
+				}
+			}
+		}
+		boolean[][][] visited = new boolean[n][m][4];
+		int p1 = f(map, si, sj, 0, a, b, visited);
+		int p2 = f(map, si, sj, 1, a, b, visited);
+		int p3 = f(map, si, sj, 2, a, b, visited);
+		int p4 = f(map, si, sj, 3, a, b, visited);
+		int ans = Math.min(Math.min(p1, p2), Math.min(p3, p4));
+		return ans == Integer.MAX_VALUE ? -1 : (ans - a);
+	}
+
+	public static int f(char[][] map, int si, int sj, int d, int a, int b, boolean[][][] visited) {
+		if (si < 0 || si == map.length || sj < 0 || sj == map[0].length || map[si][sj] == 'X' || visited[si][sj][d]) {
+			return Integer.MAX_VALUE;
+		}
+		if (map[si][sj] == 'E') {
+			return a;
+		}
+		visited[si][sj][d] = true;
+		int p0 = f(map, si - 1, sj, 0, a, b, visited);
+		int p1 = f(map, si + 1, sj, 1, a, b, visited);
+		int p2 = f(map, si, sj - 1, 2, a, b, visited);
+		int p3 = f(map, si, sj + 1, 3, a, b, visited);
+		if (d != 0 && p0 != Integer.MAX_VALUE) {
+			p0 += b;
+		}
+		if (d != 1 && p1 != Integer.MAX_VALUE) {
+			p1 += b;
+		}
+		if (d != 2 && p2 != Integer.MAX_VALUE) {
+			p2 += b;
+		}
+		if (d != 3 && p3 != Integer.MAX_VALUE) {
+			p3 += b;
+		}
+		int ans = Math.min(Math.min(p0, p1), Math.min(p2, p3));
+		ans = ans == Integer.MAX_VALUE ? ans : (ans + a);
+		visited[si][sj][d] = false;
+		return ans;
+	}
+
+	// 正式方法
+	// Dijkstra算法
+	public static int minCost2(char[][] map, int a, int b) {
+		int n = map.length;
+		int m = map[0].length;
+		int si = 0;
+		int sj = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (map[i][j] == 'S') {
+					si = i;
+					sj = j;
+				}
+			}
+		}
+		PriorityQueue<int[]> heap = new PriorityQueue<>((x, y) -> x[3] - y[3]);
+		heap.add(new int[] { si, sj, 0, 0 });
+		heap.add(new int[] { si, sj, 1, 0 });
+		heap.add(new int[] { si, sj, 2, 0 });
+		heap.add(new int[] { si, sj, 3, 0 });
+		boolean[][][] visited = new boolean[n][m][4];
+		int ans = -1;
+		while (!heap.isEmpty()) {
+			int[] cur = heap.poll();
+			if (visited[cur[0]][cur[1]][cur[2]]) {
+				continue;
+			}
+			if (map[cur[0]][cur[1]] == 'E') {
+				ans = cur[3];
+				break;
+			}
+			visited[cur[0]][cur[1]][cur[2]] = true;
+			add(cur[0] - 1, cur[1], 0, cur[2], cur[3], a, b, map, visited, heap);
+			add(cur[0] + 1, cur[1], 1, cur[2], cur[3], a, b, map, visited, heap);
+			add(cur[0], cur[1] - 1, 2, cur[2], cur[3], a, b, map, visited, heap);
+			add(cur[0], cur[1] + 1, 3, cur[2], cur[3], a, b, map, visited, heap);
+		}
+		return ans;
+	}
+
+	public static void add(int i, int j, int d, int preD, int preC, int a, int b, char[][] map, boolean[][][] visited,
+			PriorityQueue<int[]> heap) {
+		if (i < 0 || i == map.length || j < 0 || j == map[0].length || map[i][j] == 'X' || visited[i][j][d]) {
+			return;
+		}
+		int cost = preC + a;
+		if (d != preD) {
+			cost += b;
+		}
+		heap.add(new int[] { i, j, d, cost });
+	}
+
+	// 为了测试
+	public static char[][] randomMap(int n, int m) {
+		char[][] map = new char[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				map[i][j] = Math.random() < 0.666 ? 'O' : 'X';
+			}
+		}
+		int si = (int) (Math.random() * n);
+		int sj = (int) (Math.random() * m);
+		map[si][sj] = 'S';
+		int ei, ej;
+		do {
+			ei = (int) (Math.random() * n);
+			ej = (int) (Math.random() * m);
+		} while (ei == si && ej == sj);
+		map[ei][ej] = 'E';
+		return map;
+	}
+
+	public static void main(String[] args) {
+		int n = 4;
+		int m = 4;
+		char[][] map = randomMap(n, m);
+		for (char[] row : map) {
+			for (char cha : row) {
+				System.out.print(cha + " ");
+			}
+			System.out.println();
+		}
+		System.out.println(minCost1(map, 2, 1));
+		System.out.println(minCost2(map, 2, 1));
+	}
 
 }
