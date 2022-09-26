@@ -208,7 +208,7 @@ public class Code03_MostSeats {
 
 		int n = 20;
 		int[][] map = new int[n][n];
-		System.out.println("二维数组规模 : " + n + " * " + n);
+		System.out.println("最大规模 : " + n + " * " + n);
 		long start = System.currentTimeMillis();
 		mostSeats2(map);
 		long end = System.currentTimeMillis();

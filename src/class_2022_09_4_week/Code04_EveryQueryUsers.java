@@ -118,6 +118,7 @@ public class Code04_EveryQueryUsers {
 			}
 		}
 		System.out.println("功能测试结束");
+
 		System.out.println("性能测试开始");
 		int n = 100000;
 		int m = 100;

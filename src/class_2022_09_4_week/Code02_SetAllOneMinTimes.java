@@ -123,7 +123,7 @@ public class Code02_SetAllOneMinTimes {
 	public static void main(String[] args) {
 		int N = 3;
 		int testTimes = 5000;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < testTimes; i++) {
 			int n = (int) (Math.random() * N) + 1;
 			int m = (int) (Math.random() * N) + 1;
@@ -135,12 +135,12 @@ public class Code02_SetAllOneMinTimes {
 				System.out.println("出错了！");
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
 		int[][] matrix = randomMatrix(9, 9, 0.9);
 		long start = System.currentTimeMillis();
 		setOneMinTimes2(matrix);
 		long end = System.currentTimeMillis();
-		System.out.println("最极限的数据下, 运行时间 : " + (end - start) + "毫秒");
+		System.out.println("最极限的数据下的运行时间 : " + (end - start) + "毫秒");
 	}
 
 }
