@@ -149,7 +149,7 @@ public class Code05_SoldierFindEnemy {
 		int n = 3;
 		int m = 4;
 		int v = 10;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < 2000; i++) {
 			char[][] map = randomMap(n, m);
 			int a = (int) (Math.random() * v) + 1;
@@ -162,7 +162,24 @@ public class Code05_SoldierFindEnemy {
 				System.out.println(ans2);
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
+
+		System.out.println("性能测试开始");
+		n = 1000;
+		m = 1000;
+		v = 100000;
+		int a = (int) (Math.random() * v) + 1;
+		int b = (int) (Math.random() * v) + 1;
+		char[][] map = randomMap(n, m);
+		System.out.println("数据规模 : " + n + " * " + m);
+		System.out.println("通行代价 : " + a);
+		System.out.println("转向代价 : " + b);
+		long start = System.currentTimeMillis();
+		minCost2(map, a, b);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间 : " + (end - start) + "毫秒");
+		System.out.println("功能测试结束");
+
 	}
 
 }
