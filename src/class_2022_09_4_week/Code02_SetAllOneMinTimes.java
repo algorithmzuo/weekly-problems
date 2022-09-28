@@ -81,10 +81,10 @@ public class Code02_SetAllOneMinTimes {
 				}
 			}
 		}
-		return process(arr, n, m, 0, 0, 0, 0, dp);
+		return process2(arr, n, m, 0, 0, 0, 0, dp);
 	}
 
-	public static int process(int[] arr, int n, int m, int row, int col, int r, int c, int[][][][] dp) {
+	public static int process2(int[] arr, int n, int m, int row, int col, int r, int c, int[][][][] dp) {
 		if (r == n) {
 			for (int i = 0; i < n; i++) {
 				if ((row & (1 << i)) == 0 && (arr[i] | col) != (1 << m) - 1) {
@@ -94,14 +94,67 @@ public class Code02_SetAllOneMinTimes {
 			return 0;
 		}
 		if (c == m) {
-			return process(arr, n, m, row, col, r + 1, 0, dp);
+			return process2(arr, n, m, row, col, r + 1, 0, dp);
 		}
 		if (dp[row][col][r][c] != -1) {
 			return dp[row][col][r][c];
 		}
-		int p1 = process(arr, n, m, row, col, r, c + 1, dp);
+		int p1 = process2(arr, n, m, row, col, r, c + 1, dp);
 		int p2 = Integer.MAX_VALUE;
-		int next2 = process(arr, n, m, row | (1 << r), col | (1 << c), r, c + 1, dp);
+		int next2 = process2(arr, n, m, row | (1 << r), col | (1 << c), r, c + 1, dp);
+		if (next2 != Integer.MAX_VALUE) {
+			p2 = 1 + next2;
+		}
+		int ans = Math.min(p1, p2);
+		dp[row][col][r][c] = ans;
+		return ans;
+	}
+
+	// 正式方法 + 贪心
+	public static int setOneMinTimes3(int[][] matrix) {
+		int n = matrix.length;
+		int m = matrix[0].length;
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			int status = 0;
+			for (int j = 0; j < m; j++) {
+				if (matrix[i][j] == 1) {
+					status |= 1 << j;
+				}
+			}
+			arr[i] = status;
+		}
+		int[][][][] dp = new int[1 << n][1 << m][n][m];
+		for (int a = 0; a < (1 << n); a++) {
+			for (int b = 0; b < (1 << m); b++) {
+				for (int c = 0; c < n; c++) {
+					for (int d = 0; d < m; d++) {
+						dp[a][b][c][d] = -1;
+					}
+				}
+			}
+		}
+		return process3(arr, n, m, 0, 0, 0, 0, dp);
+	}
+
+	public static int process3(int[] arr, int n, int m, int row, int col, int r, int c, int[][][][] dp) {
+		if (r == n) {
+			for (int i = 0; i < n; i++) {
+				if ((row & (1 << i)) == 0 && (arr[i] | col) != (1 << m) - 1) {
+					return Integer.MAX_VALUE;
+				}
+			}
+			return 0;
+		}
+		if (c == m) {
+			return process3(arr, n, m, row, col, r + 1, 0, dp);
+		}
+		if (dp[row][col][r][c] != -1) {
+			return dp[row][col][r][c];
+		}
+		int p1 = process3(arr, n, m, row, col, r, c + 1, dp);
+		int p2 = Integer.MAX_VALUE;
+		int next2 = process3(arr, n, m, row | (1 << r), col | (1 << c), r + 1, 0, dp);
 		if (next2 != Integer.MAX_VALUE) {
 			p2 = 1 + next2;
 		}
@@ -131,7 +184,8 @@ public class Code02_SetAllOneMinTimes {
 			int[][] matrix = randomMatrix(n, m, p0);
 			int ans1 = setOneMinTimes1(matrix);
 			int ans2 = setOneMinTimes2(matrix);
-			if (ans1 != ans2) {
+			int ans3 = setOneMinTimes3(matrix);
+			if (ans1 != ans2 || ans1 != ans3) {
 				System.out.println("出错了！");
 			}
 		}
