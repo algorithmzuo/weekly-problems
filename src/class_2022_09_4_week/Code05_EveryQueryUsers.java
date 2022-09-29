@@ -47,15 +47,23 @@ public class Code05_EveryQueryUsers {
 
 	// 正式方法
 	public static int[] record2(int n, int m, int q, int[][] A, int[][] B) {
+		// n 一共有多少人
+		// 任何一个实验，需要几个整数，能表示所有人谁出现谁没出现？
 		int parts = (n + 31) / 32;
+		// m    0 ~ m -1
+		// [i]  [.........]
 		int[][] bitMap = new int[m][parts];
 		for (int i = 0; i < n; i++) {
+			// i 人的编号 : a b c
 			for (int exp : A[i]) {
 				bitMap[exp][i / 32] |= 1 << (i % 32);
 			}
 		}
 		int[] ans = new int[q];
 		for (int i = 0; i < q; i++) {
+			// i号查询 ： a、c、e，一共有多少去重的人
+			// a[0] | c[0] | e[0] -> 几个1
+			// a[1] | c[1] | e[1] -> 几个1
 			int all = 0;
 			for (int j = 0; j < parts; j++) {
 				int status = 0;
@@ -137,7 +145,6 @@ public class Code05_EveryQueryUsers {
 		long end = System.currentTimeMillis();
 		System.out.println("运行时间 : " + (end - start) + " 毫秒");
 		System.out.println("性能测试结束");
-
 	}
 
 }

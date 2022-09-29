@@ -8,6 +8,62 @@ package class_2022_09_4_week;
 // 1 < n < 10，没错！原题就是说n < 10, 不会到10！最多到9！
 public class Code02_SetAllOneMinTimes {
 
+//	public static int minTimes(int[][] matrix) {
+//		int n = matrix.length;
+//		int m = matrix[0].length;
+//		int[] arr = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			int status = 0;
+//			for (int j = 0; j < m; j++) {
+//				// 0列 1列 2列 3列
+//				// 1 0 1 1
+//				// 1101
+//				if (matrix[i][j] == 1) {
+//					status |= 1 << m;
+//				}
+//			}
+//			arr[i] = status;
+//		}
+//
+//	}
+//
+//	// arr替代了原来的二维数组！
+//	// n行，m列，固定
+//	// 目前来到i行、j列
+//	// rowStatus : 之前哪些行点过鼠标
+//	// colStatus : 之前哪些列点过鼠标
+//	// i 行变化 ： 9  * 9 * 2^9 * 2^9 * 9 = 191,102,976
+//	public static int zuo(int[] arr, int n, int m, int i, int j, int clickRows, int clickCols) {
+//		if (i == n) {
+//			for (int row = 0; row < n; row++) {
+//				if ((clickRows & (1 << row)) != 0) {
+//					continue;
+//				}
+//				// row行，没点过鼠标
+//				int merge = arr[row] | clickCols;
+//				int full = (1 << m) - 1;
+//				if (merge != full) {
+//					return Integer.MAX_VALUE;// 表示无效
+//				}
+//			}
+//			return 0;
+//		}
+//		if (j == m) {
+//			return zuo(arr, n, m, i + 1, 0, clickRows, clickCols);
+//		}
+//		// i,j 正常的行、正常的列
+//		// 当前就是不点鼠标
+//		int p1 = zuo(arr, n, m, i, j + 1, clickRows, clickCols);
+//		// 当前就是点鼠标
+//		int p2 = Integer.MAX_VALUE;
+//		int next = zuo(arr, n, m, i, j + 1,
+//				clickRows | (1 << i), clickCols | (1 << j));
+//		if(next != Integer.MAX_VALUE) {
+//			p2 = 1 + next;
+//		}
+//		return Math.min(p1, p2);
+//	}
+
 	// 暴力方法
 	// 为了验证
 	public static int setOneMinTimes1(int[][] matrix) {
@@ -15,6 +71,11 @@ public class Code02_SetAllOneMinTimes {
 		int m = matrix[0].length;
 		int limit = 1 << (n * m);
 		int ans = Integer.MAX_VALUE;
+		// 0000000000000
+		// 0000000000001
+		// 0000000000010
+		// 0000000000011
+		// 0000000000100
 		for (int status = 0; status < limit; status++) {
 			if (ok(status, matrix, n, m)) {
 				ans = Math.min(ans, hammingWeight(status));
@@ -190,6 +251,7 @@ public class Code02_SetAllOneMinTimes {
 			}
 		}
 		System.out.println("功能测试结束");
+
 		int[][] matrix = randomMatrix(9, 9, 0.9);
 		long start = System.currentTimeMillis();
 		setOneMinTimes2(matrix);

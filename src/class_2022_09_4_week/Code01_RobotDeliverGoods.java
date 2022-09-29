@@ -1,5 +1,6 @@
 package class_2022_09_4_week;
 
+// 来自学员问题
 // 智能机器人要坐专用电梯把货物送到指定地点
 // 整栋楼只有一部电梯，并且由于容量限制智能机器人只能放下一件货物
 // 给定K个货物，每个货物都有所在楼层(from)和目的楼层(to)
@@ -17,6 +18,43 @@ package class_2022_09_4_week;
 // to[i]表示i号货物要去往的楼层
 // 返回最快的时间
 public class Code01_RobotDeliverGoods {
+	// 0 1 2
+	// from = {3, 6, 2}
+	// to = {7, 9, 1}
+	// from[i] : 第i件货，在哪个楼层拿货，固定
+	// to[i] : 第i件货，去哪个楼层送货，固定
+	// k : 一共有几件货，固定
+	// status : 00110110
+	// last : 在送过的货里，最后送的是第几号货物
+	// 返回值: 送完的货，由status代表，
+	// 而且last是送完的货里的最后一件，后续所有没送过的货都送完，
+	// 最后回到第一层，返回最小耗时
+	// k = 7
+	// status = 01111111
+	// 0000000000001
+	// 0000010000000 -1
+	// 0000001111111
+	public static int zuo(int status, int last, int k, int[] from, int[] to) {
+		if (status == (1 << k) - 1) { // 所有货送完了，回到1层去了
+			return to[last] - 1;
+		} else { // 不是所有货都送完！
+			int ans = Integer.MAX_VALUE;
+			for (int cur = 0; cur < k; cur++) {
+				// status : 0010110
+				//            1   
+				if ( (status & (1 << cur)) == 0) { // 当前cur号的货物，可以去尝试
+					// to[last]  
+					//    cur号的货，to[last] -> from[cur] 
+					int come = Math.abs(to[last] - from[cur]);
+					int delive = Math.abs(to[cur] - from[cur]);
+					int next = zuo(status | (1 << cur), cur, k, from, to);
+					int curAns = come + delive + next;
+					ans = Math.min(ans, curAns);
+				}
+			}
+			return ans;
+		}
+	}
 
 	// 暴力方法
 	// 全排序代码
@@ -66,6 +104,8 @@ public class Code01_RobotDeliverGoods {
 		return f(0, 0, k, from, to, dp);
 	}
 
+	// 2^16 = 65536 * 16 = 1048576
+	// 1048576 * 16 = 16777216
 	public static int f(int status, int i, int k, int[] from, int[] to, int[][] dp) {
 		if (dp[status][i] != -1) {
 			return dp[status][i];

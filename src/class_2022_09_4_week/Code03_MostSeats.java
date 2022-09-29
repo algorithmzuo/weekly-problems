@@ -29,6 +29,79 @@ import java.util.Arrays;
 // 数据范围 : 1 <= 矩阵的行、列 <= 20
 public class Code03_MostSeats {
 
+//	public static int maxPeople(int[][] matrix) {
+//		int n = matrix.length;
+//		int m = matrix[0].length;
+//		for (int i = 0; i < n; i++) {
+//			for (int j = 0; j < m; j++) {
+//				if (matrix[i][j] == 1) {
+//					if (i > 0 && matrix[i - 1][j] == 1) {
+//						return -1;
+//					}
+//					if (i < n - 1 && matrix[i + 1][j] == 1) {
+//						return -1;
+//					}
+//					if (j > 0 && matrix[i][j - 1] == 1) {
+//						return -1;
+//					}
+//					if (j < m - 1 && matrix[i][j + 1] == 1) {
+//						return -1;
+//					}
+//				}
+//			}
+//		}
+//		int[] arr = new int[n];
+//		for (int i = 0; i < n; i++) {
+//			int status = 0;
+//			for (int j = 0; j < m; j++) {
+//				if (matrix[i][j] == 1) {
+//					status |= 1 << j;
+//				}
+//
+//				arr[i] = status;
+//			}
+//		}
+//		return zuo(arr, n, m, 0, 0, 0);
+//
+//	}
+//
+//	public static int zuo(int[] arr, int n, int m, int i, int j, int status) {
+//		if (i == n) {
+//			return 0;
+//		}
+//		if (j == m) {
+//			return zuo(arr, n, m, i + 1, 0, status);
+//		}
+//		// 怎么判断已经无效了
+//		if ((arr[i] & status) != 0) {
+//			return -1;
+//		}
+//		// (i,j)
+//		int left = status(status, j - 1, m);
+//		int up = status(status, j, m);
+//		int right = status(arr[i], j + 1, m);
+//		int cur = status(arr[i], j, m);
+//		// 当前位置不安排新人了
+//		int p1 = -1;
+//		if (cur == 0) { // 原始的该位置无人
+//			int nextStatus = status ^ (up << j);
+//			p1 = zuo(arr, n, m, i, j + 1, nextStatus);
+//		} else {  // 原始的该位置有人
+//			int nextStatus = (status | (1 << j));
+//			p1 = zuo(arr, n, m, i, j + 1, nextStatus);
+//		}
+//		// 当前位置安排新人
+//		int p2 = -1;
+//		if(left == 0 && up == 0 && right == 0 && cur == 0) {
+//			int nextStatus = (status | (1 << j));
+//			int next = zuo(arr, n, m, i, j + 1, nextStatus);
+//			if(next != -1) {
+//				p2 = 1 + next;
+//			}
+//		}
+//		return Math.max(p1, p2);
+//	}
+
 	// 为了测试，普通方法
 	// 普通的状态压缩动态规划
 	// 每一行用dfs的方法
@@ -130,6 +203,7 @@ public class Code03_MostSeats {
 		return ans == -1 ? 0 : ans;
 	}
 
+	// 20 * 20 * 2^20 -> 4 * 10^8
 	public static int process2(int[] arr, int n, int m, int i, int j, int status, int[][][] dp) {
 		if (j == m) {
 			return process2(arr, n, m, i + 1, 0, status, dp);
