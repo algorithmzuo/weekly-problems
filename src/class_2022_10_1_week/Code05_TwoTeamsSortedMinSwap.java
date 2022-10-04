@@ -12,7 +12,7 @@ import java.util.HashMap;
 // [1,2,3,-1,-2,-3,-4,4]
 // 最少交换次数为10
 // n <= 1000
-public class Code04_TwoTeamsSortedMinSwap {
+public class Code05_TwoTeamsSortedMinSwap {
 
 	// 这个题写对数器太麻烦了
 	// 所以这就是正式解

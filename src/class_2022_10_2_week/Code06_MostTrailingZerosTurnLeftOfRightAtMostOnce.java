@@ -1,4 +1,4 @@
-package class_2022_10_1_week;
+package class_2022_10_2_week;
 
 // 来自学员问题
 // 给定一个二维数组matrix
@@ -8,7 +8,7 @@ package class_2022_10_1_week;
 // 走的过程中，向左走或者向右走的拐点，最多只能有一个
 // 返回结尾最多的0，能是多少
 // 1 <= 行、列 <= 400
-public class Code05_MostTrailingZerosTurnLeftOfRightAtMostOnce {
+public class Code06_MostTrailingZerosTurnLeftOfRightAtMostOnce {
 
 	public static int mostTrailingZeros(int[][] matrix) {
 		int n = matrix.length;

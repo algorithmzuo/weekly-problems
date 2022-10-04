@@ -18,7 +18,7 @@ import java.util.List;
 // 请返回勇者夺回所有据点需要消耗的最少资源数量。
 // 输入保证初始所有据点都是连通的，且不存在重边和自环
 // 测试链接 : https://leetcode.cn/problems/s5kipK/
-public class Code01_CaptureStrongHold {
+public class Code02_CaptureStrongHold {
 
 	public static long minimumCost(int[] cost, int[][] roads) {
 		int n = cost.length;
@@ -27,21 +27,19 @@ public class Code01_CaptureStrongHold {
 		}
 		int m = roads.length;
 		DoubleConnectedComponents dc = new DoubleConnectedComponents(n, m, roads);
-		List<List<Integer>> dcc = dc.getDcc();
-		boolean[] cut = dc.getCuts();
 		long ans = 0;
-		if (dcc.size() == 1) {
+		if (dc.dcc.size() == 1) {
 			ans = Integer.MAX_VALUE;
 			for (int num : cost) {
 				ans = Math.min(ans, num);
 			}
 		} else {
 			ArrayList<Integer> arr = new ArrayList<>();
-			for (List<Integer> set : dcc) {
+			for (List<Integer> set : dc.dcc) {
 				int cutCnt = 0;
 				int curCost = Integer.MAX_VALUE;
 				for (int nodes : set) {
-					if (cut[nodes]) {
+					if (dc.cut[nodes]) {
 						cutCnt++;
 					} else {
 						curCost = Math.min(curCost, cost[nodes]);
@@ -129,7 +127,6 @@ public class Code01_CaptureStrongHold {
 					int y = to[i];
 					if (dfn[y] == 0) {
 						tarjan(y);
-						low[x] = Math.min(low[x], low[y]);
 						if (low[y] >= dfn[x]) {
 							flag++;
 							if (x != root || flag > 1) {
@@ -143,20 +140,15 @@ public class Code01_CaptureStrongHold {
 							curAns.add(x);
 							dcc.add(curAns);
 						}
+						// 为什么要这么写？
+						low[x] = Math.min(low[x], low[y]);
 					} else {
+						// 为什么要这么写？
 						low[x] = Math.min(low[x], dfn[y]);
 					}
 				}
 			}
 
-		}
-
-		public List<List<Integer>> getDcc() {
-			return dcc;
-		}
-
-		public boolean[] getCuts() {
-			return cut;
 		}
 
 	}

@@ -11,7 +11,7 @@ import java.util.Arrays;
 // 不能有相邻商品价格相等的情况
 // A[i]为展柜中第i个位置商品的价格，B[i]为各个新商品的价格
 // 求能够满足A中商品价格严格递增的最小操作次数，若无法满足则返回-1
-public class Code03_MakeASortedMinSwaps {
+public class Code04_MakeASortedMinSwaps {
 
 	// 可以用B里的数字，替换A里的数字，想让A严格递增
 	// 返回至少换几个数字
