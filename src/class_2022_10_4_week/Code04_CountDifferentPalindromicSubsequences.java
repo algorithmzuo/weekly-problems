@@ -1,4 +1,4 @@
-package class_2022_10_3_week;
+package class_2022_10_4_week;
 
 import java.util.HashMap;
 

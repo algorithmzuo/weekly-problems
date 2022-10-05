@@ -140,10 +140,8 @@ public class Code02_CaptureStrongHold {
 							curAns.add(x);
 							dcc.add(curAns);
 						}
-						// 为什么要这么写？
 						low[x] = Math.min(low[x], low[y]);
 					} else {
-						// 为什么要这么写？
 						low[x] = Math.min(low[x], dfn[y]);
 					}
 				}
