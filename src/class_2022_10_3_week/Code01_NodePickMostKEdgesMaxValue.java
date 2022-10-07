@@ -3,6 +3,13 @@ package class_2022_10_3_week;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// 来自Lucid Air
+// 给定一个无向图，保证所有节点连成一棵树，没有环
+// 给定一个正数n为节点数，所以节点编号为0~n-1，那么就一定有n-1条边
+// 每条边形式为{a, b, w}，意思是a和b之间的无向边，权值为w
+// 要求：给定一个正数k，表示在挑选之后，每个点相连的边，数量不能超过k
+// 你可以随意挑选边留下，剩下的边删掉，但是要满足上面的要求
+// 返回不违反要求的情况下，你挑选边所能达到的最大权值累加和
 public class Code01_NodePickMostKEdgesMaxValue {
 
 	// 暴力方法
