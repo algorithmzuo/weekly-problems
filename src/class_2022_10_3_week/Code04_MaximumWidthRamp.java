@@ -1,4 +1,4 @@
-package class_2022_10_2_week;
+package class_2022_10_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/maximum-width-ramp/
 public class Code04_MaximumWidthRamp {

@@ -26,14 +26,16 @@ public class Code02_CaptureStrongHold {
 			return cost[0];
 		}
 		int m = roads.length;
-		DoubleConnectedComponents dc = new DoubleConnectedComponents(n, m, roads);
+		DoubleConnectedComponents dc 
+		= new DoubleConnectedComponents(n, m, roads);
 		long ans = 0;
+		// dcc {a,b,c} {c,d,e} 
 		if (dc.dcc.size() == 1) {
 			ans = Integer.MAX_VALUE;
 			for (int num : cost) {
 				ans = Math.min(ans, num);
 			}
-		} else {
+		} else { // 不只一个点双连通分量
 			ArrayList<Integer> arr = new ArrayList<>();
 			for (List<Integer> set : dc.dcc) {
 				int cutCnt = 0;
@@ -108,6 +110,7 @@ public class Code02_CaptureStrongHold {
 
 		private void creatDcc(int n) {
 			for (int i = 0; i < n; i++) {
+				// 0 1 2 3 n-1
 				if (dfn[i] == 0) {
 					root = i;
 					tarjan(i);
@@ -123,16 +126,22 @@ public class Code02_CaptureStrongHold {
 				dcc.add(new ArrayList<>());
 				dcc.get(dcc.size() - 1).add(x);
 			} else {
+				// 当前来到的节点是x
+				// x {a,b,c}
 				for (int i = head[x]; i >= 0; i = next[i]) {
+					// y是下级节点
 					int y = to[i];
-					if (dfn[y] == 0) {
+					if (dfn[y] == 0) { // y点没遍历过！
 						tarjan(y);
-						if (low[y] >= dfn[x]) {
+						if (low[y] >= dfn[x]) { // 正在扎口袋
 							flag++;
 							if (x != root || flag > 1) {
 								cut[x] = true;
 							}
 							List<Integer> curAns = new ArrayList<>();
+							// 从栈里一次弹出节点
+							// 弹到y停！
+							// 弹出的节点都加入集合，x也加入，x不弹出
 							for (int z = stack[--top]; z != y; z = stack[--top]) {
 								curAns.add(z);
 							}
@@ -141,7 +150,7 @@ public class Code02_CaptureStrongHold {
 							dcc.add(curAns);
 						}
 						low[x] = Math.min(low[x], low[y]);
-					} else {
+					} else { // y点已经遍历过了！
 						low[x] = Math.min(low[x], dfn[y]);
 					}
 				}

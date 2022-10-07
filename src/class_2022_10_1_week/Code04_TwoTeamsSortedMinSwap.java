@@ -12,7 +12,11 @@ import java.util.HashMap;
 // [1,2,3,-1,-2,-3,-4,4]
 // 最少交换次数为10
 // n <= 1000
-public class Code05_TwoTeamsSortedMinSwap {
+public class Code04_TwoTeamsSortedMinSwap {
+	
+	// [3,-3,1,-4,2,-2,-1,4]
+	//    -3   -4   -2 -1   -> -1 -2 -3 -4
+	//  3    1    2       4 ->  1  2  3  4
 
 	// 这个题写对数器太麻烦了
 	// 所以这就是正式解
@@ -39,7 +43,9 @@ public class Code05_TwoTeamsSortedMinSwap {
 	// 可以改二维动态规划！
 	// 因为it的状态，只由topA和topB决定
 	// 所以it的状态不用作为可变参数！
-	public static int f(int topA, int topB, IndexTree it, int to, HashMap<Integer, Integer> map) {
+	public static int f(int topA, int topB, 
+			IndexTree it, int end,
+			HashMap<Integer, Integer> map) {
 		if (topA == 0 && topB == 0) {
 			return 0;
 		}
@@ -48,17 +54,17 @@ public class Code05_TwoTeamsSortedMinSwap {
 		int index, cost, next;
 		if (topA != 0) {
 			index = map.get(topA);
-			cost = it.sum(index, to) - 1;
+			cost = it.sum(index, end) - 1;
 			it.add(index, -1);
-			next = f(topA - 1, topB, it, to, map);
+			next = f(topA - 1, topB, it, end, map);
 			it.add(index, 1);
 			p1 = cost + next;
 		}
 		if (topB != 0) {
 			index = map.get(-topB);
-			cost = it.sum(index, to) - 1;
+			cost = it.sum(index, end) - 1;
 			it.add(index, -1);
-			next = f(topA, topB - 1, it, to, map);
+			next = f(topA, topB - 1, it, end, map);
 			it.add(index, 1);
 			p2 = cost + next;
 		}

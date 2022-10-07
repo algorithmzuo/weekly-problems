@@ -38,14 +38,20 @@ public class Code01_CriticalConnectionsInANetwork {
 		return ans;
 	}
 
-	public static void tarjan(int cur, int father, ArrayList<ArrayList<Integer>> graph, List<List<Integer>> ans) {
+	// tarjan  dfs过程
+	// 点的编号是cur，dfn X low X
+	public static void tarjan(int cur, int father,
+			ArrayList<ArrayList<Integer>> graph,
+			List<List<Integer>> ans) {
+		// 第一次来到cur
+		// 分配dfn、low序号
 		dfn[cur] = low[cur] = ++dfnCnt;
 		for (Integer next : graph.get(cur)) {
 			if (next != father) {
-				if (dfn[next] == 0) {
+				if (dfn[next] == 0) { // 下级的节点没跑过，就去跑
 					tarjan(next, cur, graph, ans);
 					low[cur] = Math.min(low[cur], low[next]);
-				} else {
+				} else { // 下级的节点跑过了，直接更新low
 					low[cur] = Math.min(low[cur], dfn[next]);
 				}
 			}
