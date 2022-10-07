@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 public class Code01_NodePickMostKEdgesMaxValue {
 
+	// 暴力方法
+	// 为了验证
 	public static int maxSum1(int n, int k, int[][] edges) {
 		return process(edges, 0, new boolean[edges.length], n, k);
 	}
@@ -35,9 +37,11 @@ public class Code01_NodePickMostKEdgesMaxValue {
 		}
 	}
 
-	public static boolean[] visited = new boolean[100001];
-
+	// 最优解
+	// 时间复杂度O(N * logN)
 	public static int[][] dp = new int[100001][2];
+
+	public static int[] help = new int[100001];
 
 	public static int maxSum2(int n, int k, int[][] edges) {
 		ArrayList<ArrayList<int[]>> graph = new ArrayList<>();
@@ -54,24 +58,26 @@ public class Code01_NodePickMostKEdgesMaxValue {
 		for (int i = 0; i < n; i++) {
 			dp[i][0] = -1;
 			dp[i][1] = -1;
-			visited[i] = false;
 		}
-		dfs(0, k, graph);
+		dfs(0, -1, k, graph);
 		return dp[0][0];
 	}
 
-	public static void dfs(int cur, int k, ArrayList<ArrayList<int[]>> graph) {
-		visited[cur] = true;
+	public static void dfs(int cur, int father, int k, ArrayList<ArrayList<int[]>> graph) {
 		ArrayList<int[]> edges = graph.get(cur);
+		for (int i = 0; i < edges.size(); i++) {
+			int next = edges.get(i)[0];
+			if (next != father) {
+				dfs(next, cur, k, graph);
+			}
+		}
 		int ans0 = 0;
 		int ans1 = 0;
-		int[] help = new int[edges.size()];
 		int m = 0;
 		for (int i = 0; i < edges.size(); i++) {
 			int next = edges.get(i)[0];
 			int weight = edges.get(i)[1];
-			if (!visited[next]) {
-				dfs(next, k, graph);
+			if (next != father) {
 				ans0 += dp[next][0];
 				ans1 += dp[next][0];
 				if (dp[next][0] < dp[next][1] + weight) {
@@ -119,6 +125,7 @@ public class Code01_NodePickMostKEdgesMaxValue {
 		arr[j] = tmp;
 	}
 
+	// 为了测试
 	public static void main(String[] args) {
 		int N = 16;
 		int V = 50;
