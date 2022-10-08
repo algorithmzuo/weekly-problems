@@ -11,7 +11,7 @@ import java.util.Arrays;
 // 注意：是每个点的连接数量，都不超过k！不是总连接数量不能超过k！
 // 你可以随意挑选边留下，剩下的边删掉，但是要满足上面的要求
 // 返回不违反要求的情况下，你挑选边所能达到的最大权值累加和
-public class Code01_NodePickMostKEdgesMaxValue {
+public class Code01_EveryNodePickMostkEdgesMaxValue {
 
 	// 暴力方法
 	// 为了验证
