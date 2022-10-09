@@ -8,7 +8,9 @@ package class_2022_10_3_week;
 // 数值 <= 10^9
 public class Code02_AddToSorted {
 
+	// 方法1
 	// 暴力方法
+	// 为了验证
 	public static int minOp1(int[] arr) {
 		int max = 0;
 		for (int num : arr) {
@@ -53,8 +55,10 @@ public class Code02_AddToSorted {
 		}
 	}
 
+	// 方法2
 	// 最优解的思路
 	// 但依然不能通过考试数据量
+	// 为了验证
 	public static int minOp2(int[] arr) {
 		if (arr.length < 2) {
 			return 0;
@@ -84,7 +88,8 @@ public class Code02_AddToSorted {
 		return ans;
 	}
 
-	// 最优解 + 线段树
+	// 方法3
+	// 最优解 + 动态开点线段树
 	// 时间复杂度O(N*logN)
 	public static int minOp3(int[] arr) {
 		int n = arr.length;
@@ -164,6 +169,102 @@ public class Code02_AddToSorted {
 		}
 	}
 
+	// 方法4
+	// 最优解 + 固定数组的动态开点线段树(多次运行更省空间)
+	// 时间复杂度O(N*logN)
+	public static final int MAXN = 300000;
+	public static int[] min = new int[MAXN];
+	public static final int MAXM = 8000000;
+	public static int[] sum = new int[MAXM];
+	public static boolean[] set = new boolean[MAXM];
+	public static int[] left = new int[MAXM];
+	public static int[] right = new int[MAXM];
+	public static int[] lchild = new int[MAXM];
+	public static int[] rchild = new int[MAXM];
+
+	static {
+		for (int i = 0; i < MAXM; i++) {
+			lchild[i] = -1;
+			rchild[i] = -1;
+		}
+	}
+
+	public static int cnt = 0;
+
+	public static void set(int s, int e, int i) {
+		int l = left[i];
+		int r = right[i];
+		if (s <= l && r <= e) {
+			set[i] = true;
+			sum[i] = (r - l + 1);
+		} else {
+			int mid = (l + r) >> 1;
+			down(i, l, mid, mid + 1, r, mid - l + 1, r - mid);
+			if (s <= mid) {
+				set(s, e, lchild[i]);
+			}
+			if (e > mid) {
+				set(s, e, rchild[i]);
+			}
+			sum[i] = sum[lchild[i]] + sum[rchild[i]];
+		}
+	}
+
+	public static void down(int i, int l1, int r1, int l2, int r2, int ln, int rn) {
+		if (lchild[i] == -1) {
+			sum[cnt] = 0;
+			set[cnt] = false;
+			left[cnt] = l1;
+			right[cnt] = r1;
+			lchild[i] = cnt++;
+		}
+		if (rchild[i] == -1) {
+			sum[cnt] = 0;
+			set[cnt] = false;
+			left[cnt] = l2;
+			right[cnt] = r2;
+			rchild[i] = cnt++;
+		}
+		if (set[i]) {
+			set[lchild[i]] = true;
+			set[rchild[i]] = true;
+			sum[lchild[i]] = ln;
+			sum[rchild[i]] = rn;
+			set[i] = false;
+		}
+	}
+
+	public static int sum() {
+		return sum[0];
+	}
+
+	public static int minOp4(int[] arr) {
+		int n = arr.length;
+		min[n - 1] = arr[n - 1];
+		for (int i = n - 2; i >= 0; i--) {
+			min[i] = Math.min(min[i + 1], arr[i]);
+		}
+		int max = 0;
+		for (int num : arr) {
+			max = Math.max(max, num);
+		}
+		for (int i = 0; i < cnt; i++) {
+			lchild[i] = -1;
+			rchild[i] = -1;
+		}
+		cnt = 0;
+		sum[cnt] = 0;
+		set[cnt] = false;
+		left[cnt] = 0;
+		right[cnt++] = max;
+		for (int i = 0; i < n - 1; i++) {
+			if (arr[i] > min[i + 1]) {
+				set(min[i + 1], arr[i] - 1, 0);
+			}
+		}
+		return sum();
+	}
+
 	// 为了测试
 	public static int[] randomArray(int n, int v) {
 		int[] ans = new int[n];
@@ -185,22 +286,29 @@ public class Code02_AddToSorted {
 			int ans1 = minOp1(arr);
 			int ans2 = minOp2(arr);
 			int ans3 = minOp3(arr);
-			if (ans1 != ans2 || ans1 != ans3) {
+			int ans4 = minOp4(arr);
+			if (ans1 != ans2 || ans1 != ans3 || ans1 != ans4) {
 				System.out.println("出错了!");
 			}
 		}
 		System.out.println("功能测试结束");
 
 		System.out.println("性能测试开始");
-		int n = 300000;
-		int v = 1000000000;
-		int[] arr = randomArray(n, v);
-		System.out.println("数组长度 : " + n);
-		System.out.println("数值范围 : " + v);
-		long start = System.currentTimeMillis();
-		minOp3(arr);
-		long end = System.currentTimeMillis();
-		System.out.println("运行时间 : " + (end - start) + " 毫秒");
+		N = 300000;
+		V = 1000000000;
+		testTime = 5;
+		System.out.println("数组长度 : " + N);
+		System.out.println("数值范围 : " + V);
+		System.out.println("测试次数 : " + testTime);
+		long runTime = 0;
+		for (int i = 0; i < testTime; i++) {
+			int[] arr = randomArray(N, V);
+			long start = System.currentTimeMillis();
+			minOp4(arr);
+			long end = System.currentTimeMillis();
+			runTime += end - start;
+		}
+		System.out.println(testTime + "次测试总运行时间 : " + runTime + " 毫秒");
 		System.out.println("性能测试结束");
 	}
 
