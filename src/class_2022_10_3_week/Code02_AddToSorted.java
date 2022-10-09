@@ -296,7 +296,7 @@ public class Code02_AddToSorted {
 		System.out.println("性能测试开始");
 		N = 300000;
 		V = 1000000000;
-		testTime = 5;
+		testTime = 10;
 		System.out.println("数组长度 : " + N);
 		System.out.println("数值范围 : " + V);
 		System.out.println("测试次数 : " + testTime);
