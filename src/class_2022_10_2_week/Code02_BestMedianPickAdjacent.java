@@ -13,7 +13,7 @@ import java.util.Arrays;
 // 2 <=  n <= 10^5
 // 1 <= arr[i] <= 10^9
 // 我写的帖子解答 : https://www.mashibing.com/question/detail/34771
-public class Code03_BestMedianPickAdjacent {
+public class Code02_BestMedianPickAdjacent {
 
 	// 启发函数
 	// 如果数组中的值只有1和-1，

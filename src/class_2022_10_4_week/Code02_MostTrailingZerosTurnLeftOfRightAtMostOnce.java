@@ -1,4 +1,4 @@
-package class_2022_10_2_week;
+package class_2022_10_4_week;
 
 // 来自学员问题
 // 给定一个二维数组matrix
