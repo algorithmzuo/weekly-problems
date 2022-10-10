@@ -22,7 +22,7 @@ import java.io.StreamTokenizer;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-public class Code03_FindMinPath {
+public class Code03_FindMazeMinPath {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
