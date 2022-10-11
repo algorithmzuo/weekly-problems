@@ -117,18 +117,6 @@ public class Code03_RemoveSubstringRestPalindrome {
 		return String.valueOf(str);
 	}
 
-	public static boolean check2(String str, int l, int r) {
-		while (l <= r) {
-			if (str.charAt(l) != str.charAt(r)) {
-				return false;
-			} else {
-				l++;
-				r--;
-			}
-		}
-		return true;
-	}
-
 	// 为了测试
 	public static void main(String[] args) {
 		int N = 50;
@@ -168,7 +156,6 @@ public class Code03_RemoveSubstringRestPalindrome {
 		System.out.println("方法2(正式方法)答案 : " + ans2);
 		System.out.println("方法2(正式方法)运行时间 : " + (end - start) + " 毫秒");
 		System.out.println("性能测试结束");
-
 	}
 
 }
