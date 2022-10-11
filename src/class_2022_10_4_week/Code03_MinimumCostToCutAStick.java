@@ -1,9 +1,9 @@
-package class_2022_10_3_week;
+package class_2022_10_4_week;
 
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/
-public class Code04_MinimumCostToCutAStick {
+public class Code03_MinimumCostToCutAStick {
 
 	public static int minCost(int n, int[] cuts) {
 		int m = cuts.length;

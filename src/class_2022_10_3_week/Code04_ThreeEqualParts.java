@@ -1,7 +1,7 @@
 package class_2022_10_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/three-equal-parts/
-public class Code03_ThreeEqualParts {
+public class Code04_ThreeEqualParts {
 
 	public static int[] threeEqualParts(int[] arr) {
 		// 计算arr中1的数量
