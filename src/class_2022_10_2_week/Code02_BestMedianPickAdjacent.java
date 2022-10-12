@@ -85,7 +85,7 @@ public class Code02_BestMedianPickAdjacent {
 		int[][] dp = new int[n + 1][2];
 		while (l <= r) {
 			m = (l + r) / 2;
-			if (ok(arr, help, dp, sort[m], n)) {
+			if (maxSum(arr, help, dp, sort[m], n) > 0) {
 				ans = sort[m];
 				l = m + 1;
 			} else {
@@ -99,7 +99,7 @@ public class Code02_BestMedianPickAdjacent {
 	// 如果任意相邻的两数，至少选一个，来生成序列
 	// 所有这样的序列中，
 	// 到底有没有一个序列，其中>= median的数字，能达到一半以上
-	public static boolean ok(int[] arr, int[] help, int[][] dp, int median, int n) {
+	public static int maxSum(int[] arr, int[] help, int[][] dp, int median, int n) {
 		for (int i = 0; i < n; i++) {
 			help[i] = arr[i] >= median ? 1 : -1;
 		}
@@ -107,7 +107,7 @@ public class Code02_BestMedianPickAdjacent {
 			dp[i][0] = help[i] + dp[i + 1][1];
 			dp[i][1] = Math.max(help[i] + dp[i + 1][1], dp[i + 1][0]);
 		}
-		return dp[0][1] > 0;
+		return dp[0][1];
 	}
 
 	// 为了测试
@@ -121,6 +121,14 @@ public class Code02_BestMedianPickAdjacent {
 
 	// 为了测试
 	public static void main(String[] args) {
+//		int[] test = { 5, 3, 6, 2, 9, 7 };
+//		int[] sort = { 2, 3, 5, 6, 7, 9 };
+//		int len = test.length;
+//		int[] help = new int[len];
+//		int[][] dp = new int[len + 1][2];
+//		System.out.println(maxSum(test, help, dp, 5, len));
+//		System.out.println(maxSum(test, help, dp, 7, len));
+//		System.out.println(maxSum(test, help, dp, 6, len));
 		int N = 20;
 		int V = 1000;
 		int testTimes = 5000;
