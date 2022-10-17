@@ -47,8 +47,23 @@ public class Code03_FindMazeMinPath {
 		}
 	}
 
+	// n : n行
+	// m : m列
+	// map : 
+	// 0 1 1 1
+	// 0 0 0 1
+	// 1 1 0 1
+	// 0 0 0 0 
+	// list = [0,0] , [1,0], [1,1]...[3,3]
+	// [3,3] -> [0,0]
 	public static ArrayList<int[]> dijkstra(int n, int m, int[][] map) {
+		// (a,b) -> (c,d)
+		// last[c][d][0] = a
+		// last[c][d][1] = b
+		// 从哪到的当前(c,d)
 		int[][][] last = new int[n][m][2];
+		// int[] arr = {c,d,w}
+		//              0 1 距离
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
 		boolean[][] visited = new boolean[n][m];
 		heap.add(new int[] { 0, 0, 0 });
@@ -64,6 +79,7 @@ public class Code03_FindMazeMinPath {
 			if (visited[x][y]) {
 				continue;
 			}
+			// (x,y)这个点
 			visited[x][y] = true;
 			add(x, y, x - 1, y, w, n, m, map, visited, heap, last);
 			add(x, y, x + 1, y, w, n, m, map, visited, heap, last);
@@ -82,10 +98,27 @@ public class Code03_FindMazeMinPath {
 		ans.add(new int[] { 0, 0 });
 		return ans;
 	}
-
-	public static void add(int x, int y, int i, int j, int w, int n, int m, int[][] map, boolean[][] visited,
-			PriorityQueue<int[]> heap, int[][][] last) {
-		if (i >= 0 && i < n && j >= 0 && j < m && map[i][j] == 0 && !visited[i][j]) {
+	// 当前是从(x,y) -> (i,j)
+	// 左上角 -> (x,y) , 距离是w
+	// 左上角 -> (x,y) -> (i,j) w+1
+	// 行一共有n行，0~n-1有效
+	// 列一共有m行，0~m-1有效
+	// map[i][j] == 1，不能走！是障碍！
+	// map[i][j] == 0，能走！是路！
+	// 把记录加入到堆里，所以得有heap
+	// last[i][j][0] = x
+	// last[i][j][1] = y
+	public static void add(int x, int y,
+			int i, int j, int w,
+			int n, int m, 
+			int[][] map, 
+			boolean[][] visited,
+			PriorityQueue<int[]> heap,
+			int[][][] last) {
+		if (i >= 0 && i < n 
+				&& j >= 0 && j < m
+				&& map[i][j] == 0 
+				&& !visited[i][j]) {
 			heap.add(new int[] { i, j, w + 1 });
 			last[i][j][0] = x;
 			last[i][j][1] = y;

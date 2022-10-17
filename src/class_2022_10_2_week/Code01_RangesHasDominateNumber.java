@@ -45,13 +45,32 @@ public class Code01_RangesHasDominateNumber {
 	// 时间复杂度O(N)
 	public static int dominates2(int[] arr, int k) {
 		int n = arr.length;
+		// 总数量
 		int all = n * (n + 1) / 2;
+		// 不被支配的区间数量
 		int except = 0;
+		// 次数表
+		// 0 : 0
+		// 1 : 0
+		// 2 : 0
 		int[] cnt = new int[n + 1];
+		// l ... r
+		// 窗口用这个形式[l,r)
+		// l...r-1 r(x)
+		// l == 0 r == 0 [l,r) 一个数也没有
+		// l == 0 r == 1 [0..0]
 		for (int l = 0, r = 0; l < n; l++) {
+			// [r] 即将要进来的
+			// cnt[arr[r]] + 1 < k
 			while (r < n && cnt[arr[r]] + 1 < k) {
+				// cnt[arr[r]]++;
+				// r++
 				cnt[arr[r++]]++;
 			}
+			// l..l
+			// l..l+1
+			// l..l+2
+			// l..r-1
 			except += r - l;
 			cnt[arr[l]]--;
 		}

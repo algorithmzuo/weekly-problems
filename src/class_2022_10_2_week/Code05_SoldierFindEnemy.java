@@ -24,21 +24,21 @@ public class Code05_SoldierFindEnemy {
 	public static int minCost1(char[][] map, int a, int b) {
 		int n = map.length;
 		int m = map[0].length;
-		int si = 0;
-		int sj = 0;
+		int startX = 0;
+		int startY = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (map[i][j] == 'S') {
-					si = i;
-					sj = j;
+					startX = i;
+					startY = j;
 				}
 			}
 		}
 		boolean[][][] visited = new boolean[n][m][4];
-		int p1 = f(map, si, sj, 0, a, b, visited);
-		int p2 = f(map, si, sj, 1, a, b, visited);
-		int p3 = f(map, si, sj, 2, a, b, visited);
-		int p4 = f(map, si, sj, 3, a, b, visited);
+		int p1 = f(map, startX, startY, 0, a, b, visited);
+		int p2 = f(map, startX, startY, 1, a, b, visited);
+		int p3 = f(map, startX, startY, 2, a, b, visited);
+		int p4 = f(map, startX, startY, 3, a, b, visited);
 		int ans = Math.min(Math.min(p1, p2), Math.min(p3, p4));
 		return ans == Integer.MAX_VALUE ? -1 : (ans - a);
 	}
@@ -78,25 +78,31 @@ public class Code05_SoldierFindEnemy {
 	public static int minCost2(char[][] map, int a, int b) {
 		int n = map.length;
 		int m = map[0].length;
-		int si = 0;
-		int sj = 0;
+		int startX = 0;
+		int startY = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (map[i][j] == 'S') {
-					si = i;
-					sj = j;
+					startX = i;
+					startY = j;
 				}
 			}
 		}
 		PriorityQueue<int[]> heap = new PriorityQueue<>((x, y) -> x[3] - y[3]);
-		heap.add(new int[] { si, sj, 0, 0 });
-		heap.add(new int[] { si, sj, 1, 0 });
-		heap.add(new int[] { si, sj, 2, 0 });
-		heap.add(new int[] { si, sj, 3, 0 });
+		// (startX, startY)
+		heap.add(new int[] { startX, startY, 0, 0 });
+		heap.add(new int[] { startX, startY, 1, 0 });
+		heap.add(new int[] { startX, startY, 2, 0 });
+		heap.add(new int[] { startX, startY, 3, 0 });
+		// (i,j,朝向)
 		boolean[][][] visited = new boolean[n][m][4];
 		int ans = -1;
 		while (!heap.isEmpty()) {
 			int[] cur = heap.poll();
+//			int x = cur[0];
+//			int y = cur[1];
+//			int 朝向 = cur[2];
+//			int 代价 = cur[3];
 			if (visited[cur[0]][cur[1]][cur[2]]) {
 				continue;
 			}
@@ -113,9 +119,20 @@ public class Code05_SoldierFindEnemy {
 		return ans;
 	}
 
-	public static void add(int i, int j, int d, int preD, int preC, int a, int b, char[][] map, boolean[][][] visited,
+	// 从(x,y, preD) -> (i,j,d)
+	// 走格子的代价a
+	// 转向的代价是b
+	// preC + a
+	public static void add(
+			int i, int j, int d,
+			int preD, int preC,
+			int a, int b,
+			char[][] map, boolean[][][] visited,
 			PriorityQueue<int[]> heap) {
-		if (i < 0 || i == map.length || j < 0 || j == map[0].length || map[i][j] == 'X' || visited[i][j][d]) {
+		if (i < 0 || i == map.length
+				|| j < 0 || j == map[0].length
+				|| map[i][j] == 'X' 
+				|| visited[i][j][d]) {
 			return;
 		}
 		int cost = preC + a;

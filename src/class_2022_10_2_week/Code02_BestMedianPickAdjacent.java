@@ -5,8 +5,8 @@ import java.util.Arrays;
 // 来自京东
 // 实习岗位笔试题
 // 给定一个数组arr，长度为n
-// 相邻的两个数里面至少要有一个被选出来，组成子序列
-// 求选出来的数字构成的所有可能的子序列中，最大中位数是多少
+// 任意相邻的两个数里面至少要有一个被选出来，组成子序列，才是合法的！
+// 求所有可能的合法子序列中，最大中位数是多少
 // 中位数的定义为上中位数
 // [1, 2, 3, 4]的上中位数是2
 // [1, 2, 3, 4, 5]的上中位数是3
@@ -14,6 +14,33 @@ import java.util.Arrays;
 // 1 <= arr[i] <= 10^9
 // 我写的帖子解答 : https://www.mashibing.com/question/detail/34771
 public class Code02_BestMedianPickAdjacent {
+
+	public static int validSubMaxSum(int[] arr) {
+		return zuo(arr, 0, 1);
+	}
+
+	// 当前来到i位置
+	// 如果arr[i-1]位置的数选了，pre == 1
+	// 如果arr[i-1]位置的数没选，pre == 0
+	// arr[i....]最大合法子序列的累加和是多少
+	public static int zuo(int[] arr, int i, int pre) {
+		if (i == arr.length) {
+			return 0;
+		}
+		// 还有数！
+		// 可能性1 : 不要i位置的数
+		int p1 = Integer.MIN_VALUE;
+		if (pre == 1) {
+			p1 = zuo(arr, i + 1, 0);
+		}
+		// 可能性2 : 要i位置的数
+		int p2 = Integer.MIN_VALUE;
+		int next2 = zuo(arr, i + 1, 1);
+		if (next2 != Integer.MIN_VALUE) {
+			p2 = arr[i] + next2;
+		}
+		return Math.max(p1, p2);
+	}
 
 	// 启发函数
 	// 如果数组中的值只有1和-1，
@@ -77,6 +104,10 @@ public class Code02_BestMedianPickAdjacent {
 			sort[i] = arr[i];
 		}
 		Arrays.sort(sort);
+//		int[] arr  = { 5, 3, 6, 2, 9, 7 };
+//		int[] sort = { 2, 3, 5, 6, 7, 9 };
+//                     0  1  2  3  4  5
+//                     l              r
 		int l = 0;
 		int r = n - 1;
 		int m = 0;
@@ -121,6 +152,22 @@ public class Code02_BestMedianPickAdjacent {
 
 	// 为了测试
 	public static void main(String[] args) {
+		// 2标杆！
+		//    test =   1, 1, 1, 1, 1, 1 -> 6
+		// 3标杆！
+		//    test =   1, 1, 1,-1, 1, 1 -> 5
+		// 5标杆！
+		//    test =   1,-1, 1,-1, 1, 1 -> 4
+		// 6标杆！
+		//    test =  -1,-1, 1,-1, 1, 1 -> 2
+		// 7标杆！
+		//    test =  -1,-1,-1,-1, 1, 1 -> 0
+		
+		
+		
+//		// 5 6 9 -> 6
+//		// 5 3 6 2 9 7 -> 2 3 5 6 7 9 -> 5
+//		// 3 2 7 -> 2 3 7 -> 3
 //		int[] test = { 5, 3, 6, 2, 9, 7 };
 //		int[] sort = { 2, 3, 5, 6, 7, 9 };
 //		int len = test.length;

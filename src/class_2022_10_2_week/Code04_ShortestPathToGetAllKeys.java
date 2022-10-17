@@ -2,6 +2,7 @@ package class_2022_10_2_week;
 
 import java.util.PriorityQueue;
 
+// 来自Airbnb、Uber
 // 给定一个二维网格 grid ，其中：
 // '.' 代表一个空房间
 // '#' 代表一堵
@@ -19,6 +20,11 @@ import java.util.PriorityQueue;
 // 测试链接：https://leetcode.cn/problems/shortest-path-to-get-all-keys
 public class Code04_ShortestPathToGetAllKeys {
 
+	// "@....#"
+	// "..b..B"
+	// 
+	// @ . . . . #
+	// . . B . . B
 	public int shortestPathAllKeys(String[] grid) {
 		int n = grid.length;
 		char[][] map = new char[n][];
@@ -59,6 +65,7 @@ public class Code04_ShortestPathToGetAllKeys {
 		// 堆根据距离的从小到大组织，距离小根堆
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[3] - b[3]);
 		boolean[][][] visited = new boolean[n][m][1 << keys];
+		// startX, startY, 000000
 		heap.add(new int[] { startX, startY, 0, 0 });
 		while (!heap.isEmpty()) {
 			int[] cur = heap.poll();
@@ -81,16 +88,37 @@ public class Code04_ShortestPathToGetAllKeys {
 		return -1;
 	}
 
-	public static void add(int x, int y, int s, int w, int n, int m, char[][] map, boolean[][][] visited,
+	// 当前是由(a,b,s) -> (x,y,状态？)
+	// w ，从最开始到达(a,b,s)这个点的距离 -> w+1
+	// n,m 固定参数，防止越界
+	// map 地图
+	// visited 访问过的点，不要再加入到堆里去！
+	// heap, 堆！
+	public static void add(
+			int x, int y, int s,
+			int w, int n, int m,
+			char[][] map, boolean[][][] visited,
 			PriorityQueue<int[]> heap) {
 		if (x < 0 || x == n || y < 0 || y == m || map[x][y] == '#') {
 			return;
 		}
-		if (map[x][y] >= 'A' && map[x][y] <= 'Z') {
+		if (map[x][y] >= 'A' && map[x][y] <= 'Z') { // 锁！
+			// B  ->  00000010
+			//            dcba
+			// x,y,状 = x,y,s
+			// s == 00001000
+			//          dcba
+			// A    s & (1 << 0) != 0
+			// B    s & (1 << 1) != 0
+			// D    s & (1 << 3) != 0
+			// 
 			if (!visited[x][y][s] && (s & (1 << (map[x][y] - 'A'))) != 0) {
 				heap.add(new int[] { x, y, s, w + 1 });
 			}
-		} else {
+		} else { // 不是锁！
+			// 要么是钥匙 a b c 
+			// 要么是空房间 .
+			// 要么是初始位置 @
 			if (map[x][y] >= 'a' && map[x][y] <= 'z') {
 				s |= 1 << (map[x][y] - 'a');
 			}
