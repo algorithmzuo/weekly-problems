@@ -5,7 +5,7 @@ package class_2022_10_3_week;
 // 那么该删除叫做有效的删除
 // 返回有多少种有效删除
 // 字符串长度 <= 3000
-public class Code03_RemoveSubstringRestPalindrome {
+public class Code05_RemoveSubstringRestPalindrome {
 
 	// 暴力方法
 	// 时间复杂度O(N^3)

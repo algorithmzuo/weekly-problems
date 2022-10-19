@@ -6,7 +6,7 @@ package class_2022_10_3_week;
 // 使得这个数组变成一个非降数组
 // n <= 3 * 10^5
 // 0<= 数值 <= 10^9
-public class Code02_AddToSorted {
+public class Code03_AddToSorted {
 
 	// 方法1
 	// 暴力方法
