@@ -5,7 +5,7 @@ package class_2022_10_3_week;
 // 让这个数组中所有的x都变成x+1，问你最少的操作次数
 // 使得这个数组变成一个非降数组
 // n <= 3 * 10^5
-// 数值 <= 10^9
+// 0<= 数值 <= 10^9
 public class Code02_AddToSorted {
 
 	// 方法1
@@ -93,20 +93,16 @@ public class Code02_AddToSorted {
 	// 时间复杂度O(N*logN)
 	public static int minOp3(int[] arr) {
 		int n = arr.length;
-		int[] min = new int[n];
-		min[n - 1] = arr[n - 1];
-		for (int i = n - 2; i >= 0; i--) {
-			min[i] = Math.min(min[i + 1], arr[i]);
-		}
-		int max = 0;
+		int m = 0;
 		for (int num : arr) {
-			max = Math.max(max, num);
+			m = Math.max(m, num);
 		}
-		DynamicSegmentTree dst = new DynamicSegmentTree(max);
-		for (int i = 0; i < n - 1; i++) {
-			if (arr[i] > min[i + 1]) {
-				dst.set(min[i + 1], arr[i] - 1);
+		DynamicSegmentTree dst = new DynamicSegmentTree(m);
+		for (int i = 0, max = -1; i < n; i++) {
+			if (max > arr[i]) {
+				dst.set(arr[i], max - 1);
 			}
+			max = Math.max(max, arr[i]);
 		}
 		return dst.sum();
 	}
@@ -172,8 +168,6 @@ public class Code02_AddToSorted {
 	// 方法4
 	// 最优解 + 固定数组的动态开点线段树(多次运行更省空间)
 	// 时间复杂度O(N*logN)
-	public static final int MAXN = 300000;
-	public static int[] min = new int[MAXN];
 	public static final int MAXM = 8000000;
 	public static int[] sum = new int[MAXM];
 	public static boolean[] set = new boolean[MAXM];
@@ -240,13 +234,9 @@ public class Code02_AddToSorted {
 
 	public static int minOp4(int[] arr) {
 		int n = arr.length;
-		min[n - 1] = arr[n - 1];
-		for (int i = n - 2; i >= 0; i--) {
-			min[i] = Math.min(min[i + 1], arr[i]);
-		}
-		int max = 0;
+		int m = 0;
 		for (int num : arr) {
-			max = Math.max(max, num);
+			m = Math.max(m, num);
 		}
 		for (int i = 0; i < cnt; i++) {
 			lchild[i] = -1;
@@ -256,11 +246,12 @@ public class Code02_AddToSorted {
 		sum[cnt] = 0;
 		set[cnt] = false;
 		left[cnt] = 0;
-		right[cnt++] = max;
-		for (int i = 0; i < n - 1; i++) {
-			if (arr[i] > min[i + 1]) {
-				set(min[i + 1], arr[i] - 1, 0);
+		right[cnt++] = m;
+		for (int i = 0, max = -1; i < n; i++) {
+			if (max > arr[i]) {
+				set(arr[i], max - 1, 0);
 			}
+			max = Math.max(max, arr[i]);
 		}
 		return sum();
 	}
