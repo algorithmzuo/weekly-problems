@@ -98,7 +98,7 @@ public class Code02_AddToSorted {
 			m = Math.max(m, num);
 		}
 		DynamicSegmentTree dst = new DynamicSegmentTree(m);
-		for (int i = 0, max = -1; i < n; i++) {
+		for (int i = 1, max = arr[0]; i < n; i++) {
 			if (max > arr[i]) {
 				dst.set(arr[i], max - 1);
 			}
@@ -168,6 +168,30 @@ public class Code02_AddToSorted {
 	// 方法4
 	// 最优解 + 固定数组的动态开点线段树(多次运行更省空间)
 	// 时间复杂度O(N*logN)
+	public static int minOp4(int[] arr) {
+		int n = arr.length;
+		int m = 0;
+		for (int num : arr) {
+			m = Math.max(m, num);
+		}
+		for (int i = 0; i < cnt; i++) {
+			lchild[i] = -1;
+			rchild[i] = -1;
+		}
+		cnt = 0;
+		sum[cnt] = 0;
+		set[cnt] = false;
+		left[cnt] = 0;
+		right[cnt++] = m;
+		for (int i = 1, max = arr[0]; i < n; i++) {
+			if (max > arr[i]) {
+				set(arr[i], max - 1, 0);
+			}
+			max = Math.max(max, arr[i]);
+		}
+		return sum();
+	}
+
 	public static final int MAXM = 8000000;
 	public static int[] sum = new int[MAXM];
 	public static boolean[] set = new boolean[MAXM];
@@ -230,30 +254,6 @@ public class Code02_AddToSorted {
 
 	public static int sum() {
 		return sum[0];
-	}
-
-	public static int minOp4(int[] arr) {
-		int n = arr.length;
-		int m = 0;
-		for (int num : arr) {
-			m = Math.max(m, num);
-		}
-		for (int i = 0; i < cnt; i++) {
-			lchild[i] = -1;
-			rchild[i] = -1;
-		}
-		cnt = 0;
-		sum[cnt] = 0;
-		set[cnt] = false;
-		left[cnt] = 0;
-		right[cnt++] = m;
-		for (int i = 0, max = -1; i < n; i++) {
-			if (max > arr[i]) {
-				set(arr[i], max - 1, 0);
-			}
-			max = Math.max(max, arr[i]);
-		}
-		return sum();
 	}
 
 	// 为了测试
