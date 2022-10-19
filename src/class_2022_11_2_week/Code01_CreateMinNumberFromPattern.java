@@ -1,4 +1,4 @@
-package class_2022_11_1_week;
+package class_2022_11_2_week;
 
 // 给你下标从 0 开始、长度为 n 的字符串 pattern ，
 // 它包含两种字符，'I' 表示 上升 ，'D' 表示 下降 。
