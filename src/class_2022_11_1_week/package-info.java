@@ -1,1 +1,0 @@
-package class_2022_11_1_week;

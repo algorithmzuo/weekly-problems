@@ -42,6 +42,9 @@ public class Code02_ThreeEqualParts {
 		int start2 = -1;
 		int start3 = -1;
 		int cnt = 0;
+		// 1个数21个
+		// part = 7
+		// 1    8    
 		for (int i = 0; i < n; i++) {
 			if (arr[i] == 1) {
 				cnt++;

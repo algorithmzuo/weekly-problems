@@ -5,7 +5,7 @@ package class_2022_10_3_week;
 // 让这个数组中所有的x都变成x+1，问你最少的操作次数
 // 使得这个数组变成一个非降数组
 // n <= 3 * 10^5
-// 0<= 数值 <= 10^9
+// 0 <= 数值 <= 10^9
 public class Code03_AddToSorted {
 
 	// 方法1
@@ -97,8 +97,12 @@ public class Code03_AddToSorted {
 		for (int num : arr) {
 			m = Math.max(m, num);
 		}
+		// 0 ~ 1000000000
 		DynamicSegmentTree dst = new DynamicSegmentTree(m);
 		for (int i = 1, max = arr[0]; i < n; i++) {
+			// max左边最大值
+			// 10    4
+			// 4...9
 			if (max > arr[i]) {
 				dst.set(arr[i], max - 1);
 			}
@@ -114,6 +118,7 @@ public class Code03_AddToSorted {
 		public Node right;
 	}
 
+	// 动态增加
 	public static class DynamicSegmentTree {
 		public Node root;
 		public int size;
@@ -192,6 +197,7 @@ public class Code03_AddToSorted {
 		return sum();
 	}
 
+	// 空间固定！
 	public static final int MAXM = 8000000;
 	public static int[] sum = new int[MAXM];
 	public static boolean[] set = new boolean[MAXM];

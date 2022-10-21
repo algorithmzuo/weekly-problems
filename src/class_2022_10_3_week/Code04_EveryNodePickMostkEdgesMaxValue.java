@@ -13,6 +13,64 @@ import java.util.Arrays;
 // 返回不违反要求的情况下，你挑选边所能达到的最大权值累加和
 public class Code04_EveryNodePickMostkEdgesMaxValue {
 
+//	public static class Edge {
+//		public int to;
+//		public int weight;
+//
+//		public Edge(int t, int w) {
+//			to = t;
+//			weight = w;
+//		}
+//	}
+//
+//	public static int bestSum(int n, int[][] edges, int k) {
+//		ArrayList<ArrayList<Edge>> graph = new ArrayList<>();
+//		for (int i = 0; i < n; i++) {
+//			graph.add(new ArrayList<>());
+//		}
+//		for (int[] edge : edges) {
+//			int a = edge[0];
+//			int b = edge[1];
+//			int w = edge[2];
+//			graph.get(a).add(new Edge(b, w));
+//			graph.get(b).add(new Edge(a, w));
+//		}
+//		Info info = process(graph, 0, -1);
+//		return info.no;
+//	}
+//
+//	public static class Info {
+//		public int no;
+//		public int yes;
+//
+//		public Info(int a, int b) {
+//			no = a;
+//			yes = b;
+//		}
+//	}
+//
+//	public static Info process(ArrayList<ArrayList<Edge>> graph, int cur, int father) {
+//		ArrayList<Info> childsInfo = new ArrayList<>();
+//		for (Edge edge : graph.get(cur)) {
+//			if (edge.to != father) {
+//				childsInfo.add(process(graph, edge.to, cur));
+//			}
+//		}
+//		// 孩子所有的信息，都在childsInfo
+//		// 整合了！
+//		// 父亲不跟当前节点相连
+//		int no = 0;
+//		// 先把所有后代不连的加起来
+//		// 挑选k个加成最大的
+//		// 加成：连的边 + yes - no 
+//		int yes = 0;
+//		// 先把所有后代不连的加起来
+//		// 挑选k-1个加成最大的
+//		// 加成：连的边 + yes - no 
+//
+//		return new Info(no, yes);
+//	}
+
 	// 暴力方法
 	// 为了验证
 	public static int maxSum1(int n, int k, int[][] edges) {

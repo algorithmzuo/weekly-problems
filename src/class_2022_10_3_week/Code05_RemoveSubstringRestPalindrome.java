@@ -4,9 +4,9 @@ package class_2022_10_3_week;
 // 如果删掉连续一段子串，剩下的字符串拼接起来是回文串
 // 那么该删除叫做有效的删除
 // 返回有多少种有效删除
+// 注意 : 不能全删除，删成空串不允许
 // 字符串长度 <= 3000
 public class Code05_RemoveSubstringRestPalindrome {
-
 	// 暴力方法
 	// 时间复杂度O(N^3)
 	// 为了验证而写，不是正式方法
@@ -40,9 +40,11 @@ public class Code05_RemoveSubstringRestPalindrome {
 		if (str.length() == 1) {
 			return 0;
 		}
+		// O(N)
 		int[] pArr = manacher(str);
 		char[] s = str.toCharArray();
 		int n = s.length;
+		// 左右逆序对应的最大长度
 		int range = 0;
 		for (int l = 0, r = n - 1; l <= r && s[l] == s[r]; l++, r--) {
 			range++;
