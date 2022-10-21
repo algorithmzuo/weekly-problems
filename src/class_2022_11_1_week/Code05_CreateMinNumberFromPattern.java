@@ -1,4 +1,4 @@
-package class_2022_11_2_week;
+package class_2022_11_1_week;
 
 // 给你下标从 0 开始、长度为 n 的字符串 pattern ，
 // 它包含两种字符，'I' 表示 上升 ，'D' 表示 下降 。
@@ -8,7 +8,7 @@ package class_2022_11_2_week;
 // 如果 pattern[i] == 'D' ，那么 num[i] > num[i + 1] 。
 // 请你返回满足上述条件字典序 最小 的字符串 num。
 // 测试链接 : https://leetcode.cn/problems/construct-smallest-number-from-di-string/
-public class Code01_CreateMinNumberFromPattern {
+public class Code05_CreateMinNumberFromPattern {
 
 	public static String smallestNumber(String pattern) {
 		return String.valueOf(create(pattern.toCharArray(), 0, 0, 0));
