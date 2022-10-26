@@ -1,4 +1,4 @@
-package class_2022_11_1_week;
+package class_2022_10_4_week;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 // 2) int sell(String item, int num)
 // 卖出叫item的商品，个数num个，价格从低到高，返回卖出总价
 // 如果商品很多，每种商品的数量可能很多，该怎么设计这个结构
-public class Code01_StoreManager {
+public class Code06_StoreManager {
 
 	public static class StoreManager {
 		private HashMap<String, Store> map;

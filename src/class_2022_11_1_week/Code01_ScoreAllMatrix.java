@@ -14,7 +14,7 @@ package class_2022_11_1_week;
 // 这个矩阵就有2个得分点
 // 给定正数N，正数M，求所有可能的情况里，所有的得分点总和
 // 1 <= N、M <= 10^9
-public class Code02_ScoreAllMatrix {
+public class Code01_ScoreAllMatrix {
 
 	public static int score1(int n, int m) {
 		if (n < 2 || m < 2) {
