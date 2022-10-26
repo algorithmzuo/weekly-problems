@@ -13,43 +13,43 @@ public class Code02_MostTrailingZerosTurnLeftOfRightAtMostOnce {
 	public static int mostTrailingZeros(int[][] matrix) {
 		int n = matrix.length;
 		int m = matrix[0].length;
-		int[][] cur2 = new int[n][m];
-		int[][] cur5 = new int[n][m];
+		int[][] f2 = new int[n][m];
+		int[][] f5 = new int[n][m];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				cur2[i][j] = factors(matrix[i][j], 2);
-				cur5[i][j] = factors(matrix[i][j], 5);
+				f2[i][j] = factors(matrix[i][j], 2);
+				f5[i][j] = factors(matrix[i][j], 5);
 			}
 		}
-		int[][] left2 = new int[n][m];
-		int[][] left5 = new int[n][m];
-		int[][] up2 = new int[n][m];
-		int[][] up5 = new int[n][m];
+		int[][] leftF2 = new int[n][m];
+		int[][] leftF5 = new int[n][m];
+		int[][] upF2 = new int[n][m];
+		int[][] upF5 = new int[n][m];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				left2[i][j] = cur2[i][j] + (j > 0 ? left2[i][j - 1] : 0);
-				left5[i][j] = cur5[i][j] + (j > 0 ? left5[i][j - 1] : 0);
-				up2[i][j] = cur2[i][j] + (i > 0 ? up2[i - 1][j] : 0);
-				up5[i][j] = cur5[i][j] + (i > 0 ? up5[i - 1][j] : 0);
+				leftF2[i][j] = f2[i][j] + (j > 0 ? leftF2[i][j - 1] : 0);
+				leftF5[i][j] = f5[i][j] + (j > 0 ? leftF5[i][j - 1] : 0);
+				upF2[i][j] = f2[i][j] + (i > 0 ? upF2[i - 1][j] : 0);
+				upF5[i][j] = f5[i][j] + (i > 0 ? upF5[i - 1][j] : 0);
 			}
 		}
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				int l2 = j == 0 ? 0 : left2[i][j - 1];
-				int l5 = j == 0 ? 0 : left5[i][j - 1];
-				int r2 = left2[i][m - 1] - left2[i][j];
-				int r5 = left5[i][m - 1] - left5[i][j];
-				int u2 = i == 0 ? 0 : up2[i - 1][j];
-				int u5 = i == 0 ? 0 : up5[i - 1][j];
-				int d2 = up2[n - 1][j] - up2[i][j];
-				int d5 = up5[n - 1][j] - up5[i][j];
-				int p1 = Math.min(l2 + u2 + cur2[i][j], l5 + u5 + cur5[i][j]);
-				int p2 = Math.min(l2 + r2 + cur2[i][j], l5 + r5 + cur5[i][j]);
-				int p3 = Math.min(l2 + d2 + cur2[i][j], l5 + d5 + cur5[i][j]);
-				int p4 = Math.min(u2 + r2 + cur2[i][j], u5 + r5 + cur5[i][j]);
-				int p5 = Math.min(u2 + d2 + cur2[i][j], u5 + d5 + cur5[i][j]);
-				int p6 = Math.min(r2 + d2 + cur2[i][j], r5 + d5 + cur5[i][j]);
+				int l2 = j == 0 ? 0 : leftF2[i][j - 1];
+				int l5 = j == 0 ? 0 : leftF5[i][j - 1];
+				int r2 = leftF2[i][m - 1] - leftF2[i][j];
+				int r5 = leftF5[i][m - 1] - leftF5[i][j];
+				int u2 = i == 0 ? 0 : upF2[i - 1][j];
+				int u5 = i == 0 ? 0 : upF5[i - 1][j];
+				int d2 = upF2[n - 1][j] - upF2[i][j];
+				int d5 = upF5[n - 1][j] - upF5[i][j];
+				int p1 = Math.min(l2 + u2 + f2[i][j], l5 + u5 + f5[i][j]);
+				int p2 = Math.min(l2 + r2 + f2[i][j], l5 + r5 + f5[i][j]);
+				int p3 = Math.min(l2 + d2 + f2[i][j], l5 + d5 + f5[i][j]);
+				int p4 = Math.min(u2 + r2 + f2[i][j], u5 + r5 + f5[i][j]);
+				int p5 = Math.min(u2 + d2 + f2[i][j], u5 + d5 + f5[i][j]);
+				int p6 = Math.min(r2 + d2 + f2[i][j], r5 + d5 + f5[i][j]);
 				ans = Math.max(ans, Math.max(Math.max(p1, p2), Math.max(Math.max(p3, p4), Math.max(p5, p6))));
 			}
 		}
