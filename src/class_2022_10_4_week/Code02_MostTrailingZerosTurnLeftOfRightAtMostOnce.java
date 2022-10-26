@@ -5,7 +5,7 @@ package class_2022_10_4_week;
 // 每个格子都是正数，每个格子都和上、下、左、右相邻
 // 你可以从任何一个格子出发，走向相邻的格子
 // 把沿途的数字乘起来，希望得到的最终数字中，结尾的0最多
-// 走的过程中，向左走或者向右走的拐点，最多只能有一个
+// 走的过程中，向左走或者向右走的拐点，最多只能有一次
 // 返回结尾最多的0，能是多少
 // 1 <= 行、列 <= 400
 public class Code02_MostTrailingZerosTurnLeftOfRightAtMostOnce {
@@ -13,7 +13,9 @@ public class Code02_MostTrailingZerosTurnLeftOfRightAtMostOnce {
 	public static int mostTrailingZeros(int[][] matrix) {
 		int n = matrix.length;
 		int m = matrix[0].length;
+		// f2[i][j] : matrix[i][j]自己有几个2的因子
 		int[][] f2 = new int[n][m];
+		// f5[i][j] : matrix[i][j]自己有几个5的因子
 		int[][] f5 = new int[n][m];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
@@ -36,6 +38,7 @@ public class Code02_MostTrailingZerosTurnLeftOfRightAtMostOnce {
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
+				// 来到(i,j)
 				int l2 = j == 0 ? 0 : leftF2[i][j - 1];
 				int l5 = j == 0 ? 0 : leftF5[i][j - 1];
 				int r2 = leftF2[i][m - 1] - leftF2[i][j];

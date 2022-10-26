@@ -12,6 +12,22 @@ import java.util.Arrays;
 // 测试链接 : https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/
 public class Code03_MinimumCostToCutAStick {
 
+//	public static int zuo(int[] cuts, int n) {
+//		return f(cuts, 0, cuts.length - 1);
+//	}
+//
+//	// cuts : 3 9 13 19 21 
+//	//        0 1  2  3  4
+//	// 0,1       3,4 
+//	// cuts[l....r]
+//	// 0...4 都切完！最小花费是多少
+//	// 1) 第一刀切在cuts[0]  3
+//	// 2) 第一刀切在cuts[1]  9
+//	// 3) 第一刀切在cuts[2]  9
+//	public static int f(int[] cuts, int l, int r) {
+//
+//	}
+
 	public static int minCost(int n, int[] cuts) {
 		int m = cuts.length;
 		Arrays.sort(cuts);
@@ -42,6 +58,7 @@ public class Code03_MinimumCostToCutAStick {
 		}
 		int ans = Integer.MAX_VALUE;
 		for (int k = l; k <= r; k++) {
+			//    左  |   右
 			ans = Math.min(ans, process(arr, l, k - 1, dp) + process(arr, k + 1, r, dp));
 		}
 		ans += arr[r + 1] - arr[l - 1];

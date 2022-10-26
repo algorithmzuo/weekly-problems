@@ -1,4 +1,4 @@
-package class_2022_11_2_week;
+package class_2022_10_4_week;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -15,7 +15,7 @@ import java.util.LinkedList;
 // 1 <= arr长度 <= 3 * 10^5
 // -10^9 <= arr中的数值 <= 10^9
 // 0 <= k <= 3 * 10^5
-public class Code02_RemoveMostKContinuousSameLongest {
+public class Code07_RemoveMostKContinuousSameLongest {
 
 	// 暴力方法
 	// 为了测试

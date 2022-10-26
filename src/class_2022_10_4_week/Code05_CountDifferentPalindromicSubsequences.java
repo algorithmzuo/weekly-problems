@@ -6,7 +6,7 @@ import java.util.HashMap;
 // 通过从 s 中删除 0 个或多个字符来获得子序列
 // 如果一个字符序列与它反转后的字符序列一致，那么它是 回文字符序列
 // 如果有某个 i , 满足 ai != bi ，则两个序列 a1, a2, ... 和 b1, b2, ... 不同
-// 注意：结果可能很大，你需要对 109 + 7 取模
+// 注意：结果可能很大，你需要对 10^9 + 7 取模
 // 测试链接 : https://leetcode.cn/problems/count-different-palindromic-subsequences/
 public class Code05_CountDifferentPalindromicSubsequences {
 
@@ -37,11 +37,11 @@ public class Code05_CountDifferentPalindromicSubsequences {
 				if (s[i] == s[j]) {
 					int l = Math.min(j, right[i]);
 					int r = Math.max(i, left[j]);
-					if (l > r) {
+					if (l > r) { // 内部不再有l和r位置的字符了！
 						dp[i][j] = dp[i + 1][j - 1] * 2 + 2;
-					} else if (l == r) {
+					} else if (l == r) { // 内部仅有一个！
 						dp[i][j] = dp[i + 1][j - 1] * 2 + 1;
-					} else {
+					} else { // 内部有>=2个
 						dp[i][j] = dp[i + 1][j - 1] * 2 - dp[l + 1][r - 1] + mod;
 					}
 				} else {
