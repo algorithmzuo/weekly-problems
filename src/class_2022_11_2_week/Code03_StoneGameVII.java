@@ -69,22 +69,4 @@ public class Code03_StoneGameVII {
 		return Math.abs(dpf[0][N - 1] - dps[0][N - 1]);
 	}
 
-	// 极致优化的版本
-	public static int[] dp = new int[1000];
-
-	public int stoneGameVII(int[] stones) {
-		int n = stones.length;
-		boolean unfair = n % 2 == 0;
-		for (int i = 0; i < n; i++) {
-			dp[i] = unfair ? stones[i] : 0;
-		}
-		for (int s = 1; s < n; s++) {
-			for (int i = 0; i < n - s; i++) {
-				dp[i] = unfair ? Math.max(dp[i + 1], dp[i]) : Math.min(dp[i + 1] + stones[i], dp[i] + stones[i + s]);
-			}
-			unfair = !unfair;
-		}
-		return dp[0];
-	}
-
 }
