@@ -3,7 +3,7 @@ package class_2022_11_2_week;
 import java.util.ArrayList;
 
 // 测试链接 : https://leetcode.cn/problems/prefix-and-suffix-search/
-public class Code02_PrefixAndSuffixSearch {
+public class Code04_PrefixAndSuffixSearch {
 
 	// 提交以下这个类
 	class WordFilter {
