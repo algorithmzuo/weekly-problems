@@ -93,9 +93,9 @@ public class Code02_AbsToArrayFinalLength {
 
 	// 为了测试
 	public static void main(String[] args) {
-		int N = 10;
-		int V = 10;
-		int testTime = 5000;
+		int N = 15;
+		int V = 50;
+		int testTime = 8000;
 		System.out.println("功能测试开始");
 		for (int i = 0; i < testTime; i++) {
 			int n = (int) (Math.random() * N) + 1;
