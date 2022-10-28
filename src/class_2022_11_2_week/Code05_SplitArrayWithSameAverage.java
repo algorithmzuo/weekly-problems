@@ -3,7 +3,7 @@ package class_2022_11_2_week;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/split-array-with-same-average/
-public class Problem_0805_SplitArrayWithSameAverage {
+public class Code05_SplitArrayWithSameAverage {
 
 	public static int n;
 	public static int s;
