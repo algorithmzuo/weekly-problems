@@ -18,7 +18,7 @@ public class Code02_MostTrailingZerosTurnLeftOfRightAtMostOnce {
 		// f5[i][j] : matrix[i][j]自己有几个5的因子
 		int[][] f5 = new int[n][m];
 		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
+			for (int j = 0; j < m; j++) {
 				f2[i][j] = factors(matrix[i][j], 2);
 				f5[i][j] = factors(matrix[i][j], 5);
 			}
@@ -28,7 +28,7 @@ public class Code02_MostTrailingZerosTurnLeftOfRightAtMostOnce {
 		int[][] upF2 = new int[n][m];
 		int[][] upF5 = new int[n][m];
 		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
+			for (int j = 0; j < m; j++) {
 				leftF2[i][j] = f2[i][j] + (j > 0 ? leftF2[i][j - 1] : 0);
 				leftF5[i][j] = f5[i][j] + (j > 0 ? leftF5[i][j - 1] : 0);
 				upF2[i][j] = f2[i][j] + (i > 0 ? upF2[i - 1][j] : 0);
