@@ -53,7 +53,7 @@ public class Code01_DessertPriceClosedTarget {
 
 	// 方法2，用数组排序+二分的方法
 
-	public static int[] collect = new int[60000];
+	public static int[] collect = new int[14348907];
 
 	public static int size = 0;
 
@@ -126,30 +126,50 @@ public class Code01_DessertPriceClosedTarget {
 		return ans;
 	}
 
+	// 为了验证
+	public static int[] randomArray(int n, int v) {
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = (int) (Math.random() * v) + 1;
+		}
+		return arr;
+	}
+
+	// 为了验证
 	public static void main(String[] args) {
-		int[] base1 = { 1, 7 };
-		int[] topping1 = { 3, 4 };
-		int target1 = 10;
-		System.out.println(closedTarget1(base1, topping1, target1));
-		System.out.println(closedTarget2(base1, topping1, target1));
+		int N = 8;
+		int V = 10000;
+		int testTime = 5000;
+		System.out.println("功能测试开始");
+		for (int i = 0; i < testTime; i++) {
+			int n = (int) (Math.random() * N) + 1;
+			int m = (int) (Math.random() * N) + 1;
+			int[] base = randomArray(n, V);
+			int[] topping = randomArray(m, V);
+			int target = (int) (Math.random() * V) + 1;
+			int ans1 = closedTarget1(base, topping, target);
+			int ans2 = closedTarget2(base, topping, target);
+			if (ans1 != ans2) {
+				System.out.println("出错了!");
+			}
+		}
+		System.out.println("功能测试结束");
 
-		int[] base2 = { 2, 3 };
-		int[] topping2 = { 4, 5, 100 };
-		int target2 = 18;
-		System.out.println(closedTarget1(base2, topping2, target2));
-		System.out.println(closedTarget2(base2, topping2, target2));
+		System.out.println("性能测试开始");
+		int n = 15;
+		int m = 15;
+		int[] base = randomArray(n, V);
+		int[] topping = randomArray(m, V);
+		int target = (int) (Math.random() * V) + 1;
+		System.out.println("base数组长度 : " + n);
+		System.out.println("topping数组长度 : " + m);
+		System.out.println("数值范围 : " + V);
+		long start = System.currentTimeMillis();
+		closedTarget2(base, topping, target);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间 : " + (end - start) + " 毫秒");
+		System.out.println("性能测试结束");
 
-		int[] base3 = { 3, 10 };
-		int[] topping3 = { 2, 5 };
-		int target3 = 9;
-		System.out.println(closedTarget1(base3, topping3, target3));
-		System.out.println(closedTarget2(base3, topping3, target3));
-
-		int[] base4 = { 10 };
-		int[] topping4 = { 1 };
-		int target4 = 1;
-		System.out.println(closedTarget1(base4, topping4, target4));
-		System.out.println(closedTarget2(base4, topping4, target4));
 	}
 
 }
