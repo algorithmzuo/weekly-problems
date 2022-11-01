@@ -23,7 +23,7 @@ import java.util.Arrays;
 // 比如上面的例子，最后返回[184, 171, 171, 174, 219]
 // 1 <= N <= 10^5
 // 1 <= a[i]、b[i] <= 10^9
-public class Code01_PickBestToGetInValue {
+public class Code05_PickBestToGetInValue {
 
 	// 暴力方法
 	// 时间复杂度O(N^2)
@@ -70,8 +70,7 @@ public class Code01_PickBestToGetInValue {
 		for (int i = 0; i < n; i++) {
 			long curS = ST[i][0];
 			long curT = ST[i][1];
-			while (l != r
-					&& tailRatio(ST, deque, l, r) >= postBetter(ST[deque[r - 1]][0], ST[deque[r - 1]][1], curS, curT)) {
+			while (l != r && tail(ST, deque, l, r) >= better(ST[deque[r - 1]][0], ST[deque[r - 1]][1], curS, curT)) {
 				r--;
 			}
 			deque[r++] = i;
@@ -91,7 +90,7 @@ public class Code01_PickBestToGetInValue {
 			int i = arr[k][0];
 			int ai = arr[k][1];
 			int bi = arr[k][2];
-			while (headRatio(ST, deque, l, r) <= ai) {
+			while (head(ST, deque, l, r) <= ai) {
 				l++;
 			}
 			long Sj = ST[deque[l]][0];
@@ -103,22 +102,24 @@ public class Code01_PickBestToGetInValue {
 		return ans;
 	}
 
-	public static int tailRatio(long[][] ST, int[] deque, int l, int r) {
+	public static int tail(long[][] ST, int[] deque, int l, int r) {
 		if (r - l == 1) {
 			return 1;
 		}
-		return postBetter(ST[deque[r - 2]][0], ST[deque[r - 2]][1], ST[deque[r - 1]][0], ST[deque[r - 1]][1]);
+		return better(ST[deque[r - 2]][0], ST[deque[r - 2]][1], ST[deque[r - 1]][0], ST[deque[r - 1]][1]);
 	}
 
-	public static int headRatio(long[][] ST, int[] deque, int l, int r) {
+	public static int head(long[][] ST, int[] deque, int l, int r) {
 		if (r - l == 1) {
 			return Integer.MAX_VALUE;
 		}
-		return postBetter(ST[deque[l]][0], ST[deque[l]][1], ST[deque[l + 1]][0], ST[deque[l + 1]][1]);
+		return better(ST[deque[l]][0], ST[deque[l]][1], ST[deque[l + 1]][0], ST[deque[l + 1]][1]);
 	}
 
 	// 入参时候s1>=s2，这是一定的
-	public static int postBetter(long s1, long t1, long s2, long t2) {
+	// 返回当ai大到什么值的时候，(s2+t2/ai) <= (s1+t1/ai)
+	// 即 : ai大到什么值的时候，后者更好
+	public static int better(long s1, long t1, long s2, long t2) {
 		if (s1 == s2) {
 			return t1 <= t2 ? Integer.MAX_VALUE : 1;
 		}

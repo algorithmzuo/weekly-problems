@@ -1,4 +1,4 @@
-package class_2022_11_1_week;
+package class_2022_11_3_week;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.HashSet;
 // 请问最终arr长度是多少
 // 1 <= arr的长度 <= 10^5
 // 0 <= arr的数值 <= 10^5
-public class Code02_AbsToArrayFinalLength {
+public class Code01_AbsToArrayFinalLength {
 
 	// 暴力方法
 	// 为了验证
