@@ -158,7 +158,7 @@ public class Code05_PickBestToGetInValue {
 		int A = 100;
 		int B = 50000;
 		int testTime = 50000;
-		System.out.println("测试开始");
+		System.out.println("功能测试开始");
 		for (int i = 0; i < testTime; i++) {
 			int n = (int) (Math.random() * N) + 1;
 			int[] a = randomArray(n, A);
@@ -169,7 +169,20 @@ public class Code05_PickBestToGetInValue {
 				System.out.println("出错了!");
 			}
 		}
-		System.out.println("测试结束");
+		System.out.println("功能测试结束");
+
+		System.out.println("性能测试开始");
+		int n = 100000;
+		int v = 1000000000;
+		int[] a = randomArray(n, v);
+		int[] b = randomArray(n, v);
+		System.out.println("数组长度 : " + n);
+		System.out.println("数值范围 : " + v);
+		long start = System.currentTimeMillis();
+		inValues2(a, b);
+		long end = System.currentTimeMillis();
+		System.out.println("运行时间 : " + (end - start) + " 毫秒");
+		System.out.println("性能测试结束");
 	}
 
 }
