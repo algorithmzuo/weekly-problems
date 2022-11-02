@@ -59,7 +59,7 @@ public class Code06_CountSpecialIntegers {
 				cnt++;
 			}
 		}
-		int ans = cnt * small(rest - 1, 10 - len + rest - 1);
+		int ans = cnt * small(rest - 1, 9 - (len - rest));
 		if ((status & (1 << cur)) == 0) {
 			ans += process(num, len, rest - 1, status | (1 << cur));
 		}
