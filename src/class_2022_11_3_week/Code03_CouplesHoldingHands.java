@@ -1,4 +1,4 @@
-package class_2022_11_2_week;
+package class_2022_11_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/couples-holding-hands/
 public class Code03_CouplesHoldingHands {
