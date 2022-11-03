@@ -19,20 +19,32 @@ public class Code01_DessertPriceClosedTarget {
 
 	// 方法1，用有序表的方法
 	public static int closedTarget1(int[] base, int[] topping, int target) {
+		// 辅料所能产生的所有价格！
+		// 0 5 15 23
 		TreeSet<Integer> set = new TreeSet<>();
+		// 暴力展开！收集所有能产生的价格！放入辅料表里去！
 		process1(topping, 0, 0, set);
 		int ans = Integer.MAX_VALUE;
 		for (int num : base) {
+			// 枚举每一种主料的价格！
+			// 最终能搭配出来的最接近的价格
 			int cur = num;
-			if (num < target) {
+			// 20   100
+			// 110  100
+			if (num < target) { // cur < 要求
+				// 60  100
+				// 40
 				int rest = target - num;
+				// <= rest 最接近的！
 				Integer floor = set.floor(rest);
+				// >= rest 最接近的！
 				Integer ceiling = set.ceiling(rest);
 				if (floor == null || ceiling == null) {
 					cur += floor == null ? ceiling : floor;
 				} else {
 					cur += rest - floor <= ceiling - rest ? floor : ceiling;
 				}
+				// cur会选择floor,或ceiling，谁加上最接近target选谁！
 			}
 			if (Math.abs(cur - target) < Math.abs(ans - target)
 					|| (Math.abs(cur - target) == Math.abs(ans - target) && cur < ans)) {
@@ -42,6 +54,9 @@ public class Code01_DessertPriceClosedTarget {
 		return ans;
 	}
 
+	// 暴力展开！收集所有能产生的价格！放入辅料表里去！
+	// topping[index....] 
+	// topping[0...index-1]  sum
 	public static void process1(int[] topping, int index, int sum, TreeSet<Integer> set) {
 		if (index == topping.length) {
 			set.add(sum);

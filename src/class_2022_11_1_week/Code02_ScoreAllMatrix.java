@@ -56,11 +56,20 @@ public class Code02_ScoreAllMatrix {
 		if (n < 2 || m < 2) {
 			return 0;
 		}
+		// n <= 10^9
+		// m <= 10^9
+		// 取mod
+		// (n * m - m - n + 1) -> O(1)
+		// 2^(n * m - 3) ???
+		// 真实的笔试场景下：
+		// 算2^(k)次方的
+		// 体系学习班，章节27，学习快速幂
+		// 本代码，不处理mod
 		return (n * m - m - n + 1) * (1 << (n * m - 3));
 	}
 
 	public static void main(String[] args) {
-		int n = 5;
+		int n = 3;
 		int m = 4;
 		System.out.println(score1(n, m));
 		System.out.println(score2(n, m));
