@@ -54,22 +54,21 @@ public class Code05_PickBestToGetInValue {
 	// 剩下的一切都是围绕这个
 	public static long[] inValues2(int[] a, int[] b) {
 		int n = a.length;
-		long[][] ST = new long[n][2];
+		long[][] st = new long[n][2];
 		for (int i = 0; i < n; i++) {
-			ST[i][0] = 2L * a[i];
-			ST[i][1] = (long) a[i] * a[i] + b[i];
+			st[i][0] = 2L * a[i];
+			st[i][1] = (long) a[i] * a[i] + b[i];
 		}
 		// 只需要根据S值从大到小排序即可
 		// 下面的比较器定义稍复杂，因为java里排序会严格检查传递性
 		// 所以策略参考了S和T，其实只需要根据S值从大到小排序即可
-		Arrays.sort(ST, (x, y) -> x[0] != y[0] ? (x[0] > y[0] ? -1 : 1) : (x[1] <= y[1] ? -1 : 1));
+		Arrays.sort(st, (x, y) -> x[0] != y[0] ? (x[0] > y[0] ? -1 : 1) : (x[1] <= y[1] ? -1 : 1));
 		int[] deque = new int[n];
-		int l = 0;
 		int r = 0;
 		for (int i = 0; i < n; i++) {
-			long curS = ST[i][0];
-			long curT = ST[i][1];
-			while (l != r && tail(ST, deque, l, r) >= better(ST[deque[r - 1]][0], ST[deque[r - 1]][1], curS, curT)) {
+			long s = st[i][0];
+			long t = st[i][1];
+			while (r > 0 && tail(st, deque, r) >= better(st[deque[r - 1]][0], st[deque[r - 1]][1], s, t)) {
 				r--;
 			}
 			deque[r++] = i;
@@ -80,39 +79,34 @@ public class Code05_PickBestToGetInValue {
 			arr[i][1] = a[i];
 			arr[i][2] = b[i];
 		}
-		// 只需要根据a值从小到大排序即可
-		// 下面的比较器定义稍复杂，因为java里排序会严格检查传递性
-		// 所以策略参考了a和位置i，其实只需要根据a值从小到大排序即可
-		Arrays.sort(arr, (x, y) -> x[1] != y[1] ? (x[1] < y[1] ? -1 : 1) : (x[0] - y[0]));
+		// 只需要根据a值从大到小排序即可
+		// 下面的比较器定义稍复杂，排序策略参考了a和位置i，原因是:
+		// 因为java的系统排序会检查传递性
+		// 所以只用a排序会导致java内部认为这个排序是无效的
+		// 其实只需要根据a值从大到小排序即可
+		Arrays.sort(arr, (x, y) -> x[1] != y[1] ? (x[1] < y[1] ? 1 : -1) : (x[0] - y[0]));
 		long[] ans = new long[n];
 		for (int k = 0; k < n; k++) {
 			int i = arr[k][0];
 			int ai = arr[k][1];
 			int bi = arr[k][2];
-			while (head(ST, deque, l, r) <= ai) {
-				l++;
+			while (tail(st, deque, r) > ai) {
+				r--;
 			}
-			long Sj = ST[deque[l]][0];
-			long Tj = ST[deque[l]][1];
+			long sj = st[deque[r - 1]][0];
+			long tj = st[deque[r - 1]][1];
 			// a[i] * ( a[i] + b[i]/a[i] + S(j) + T(j)/a[i])
-			long curAns = Sj * ai + Tj + (long) ai * ai + bi;
+			long curAns = sj * ai + tj + (long) ai * ai + bi;
 			ans[i] = curAns;
 		}
 		return ans;
 	}
 
-	public static int tail(long[][] ST, int[] deque, int l, int r) {
-		if (r - l == 1) {
+	public static int tail(long[][] st, int[] deque, int r) {
+		if (r == 1) {
 			return 1;
 		}
-		return better(ST[deque[r - 2]][0], ST[deque[r - 2]][1], ST[deque[r - 1]][0], ST[deque[r - 1]][1]);
-	}
-
-	public static int head(long[][] ST, int[] deque, int l, int r) {
-		if (r - l == 1) {
-			return Integer.MAX_VALUE;
-		}
-		return better(ST[deque[l]][0], ST[deque[l]][1], ST[deque[l + 1]][0], ST[deque[l + 1]][1]);
+		return better(st[deque[r - 2]][0], st[deque[r - 2]][1], st[deque[r - 1]][0], st[deque[r - 1]][1]);
 	}
 
 	// 入参时候s1>=s2，这是一定的
