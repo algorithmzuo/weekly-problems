@@ -34,7 +34,7 @@ public class Code04_LastStoneWeightII {
 				dp[i][rest] = Math.max(p1, p2);
 			}
 		}
-		return Math.abs(sum - dp[0][half] - dp[0][half]);
+		return sum - dp[0][half] - dp[0][half];
 	}
 
 }

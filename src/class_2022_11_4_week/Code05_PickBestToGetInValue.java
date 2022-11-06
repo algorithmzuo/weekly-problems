@@ -63,15 +63,15 @@ public class Code05_PickBestToGetInValue {
 		// 下面的比较器定义稍复杂，因为java里排序会严格检查传递性
 		// 所以策略参考了S和T，其实只需要根据S值从大到小排序即可
 		Arrays.sort(st, (x, y) -> x[0] != y[0] ? (x[0] > y[0] ? -1 : 1) : (x[1] <= y[1] ? -1 : 1));
-		int[] deque = new int[n];
+		int[] stack = new int[n];
 		int r = 0;
 		for (int i = 0; i < n; i++) {
 			long s = st[i][0];
 			long t = st[i][1];
-			while (r > 0 && tail(st, deque, r) >= better(st[deque[r - 1]][0], st[deque[r - 1]][1], s, t)) {
+			while (r > 0 && tail(st, stack, r) >= better(st[stack[r - 1]][0], st[stack[r - 1]][1], s, t)) {
 				r--;
 			}
-			deque[r++] = i;
+			stack[r++] = i;
 		}
 		int[][] arr = new int[n][3];
 		for (int i = 0; i < n; i++) {
@@ -90,11 +90,11 @@ public class Code05_PickBestToGetInValue {
 			int i = arr[k][0];
 			int ai = arr[k][1];
 			int bi = arr[k][2];
-			while (tail(st, deque, r) > ai) {
+			while (tail(st, stack, r) > ai) {
 				r--;
 			}
-			long sj = st[deque[r - 1]][0];
-			long tj = st[deque[r - 1]][1];
+			long sj = st[stack[r - 1]][0];
+			long tj = st[stack[r - 1]][1];
 			// a[i] * ( a[i] + b[i]/a[i] + S(j) + T(j)/a[i])
 			long curAns = sj * ai + tj + (long) ai * ai + bi;
 			ans[i] = curAns;
