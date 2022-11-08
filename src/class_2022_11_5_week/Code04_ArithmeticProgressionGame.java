@@ -171,7 +171,7 @@ public class Code04_ArithmeticProgressionGame {
 				} else {
 					int add = (info[l].rsplit + info[r].lsplit) / 2;
 					if (connect) {
-						add = Math.min(add, (info[l].rsplit - 1) / 2 + (info[r].lsplit - 1) / 2 + 1);
+						add = (info[l].rsplit - 1) / 2 + (info[r].lsplit - 1) / 2 + 1;
 					}
 					info[f].stable += add;
 				}
