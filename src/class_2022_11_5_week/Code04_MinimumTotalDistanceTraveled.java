@@ -16,7 +16,7 @@ import java.util.List;
 // [0, 1, 2, 3, 4]或者[1, 2, 3, 4, 0]都叫有序
 // 返回变成任何一种有序的情况都可以，最少的数字搬动次数
 // 测试链接 : https://leetcode.cn/problems/minimum-total-distance-traveled/
-public class Code03_MinimumTotalDistanceTraveled {
+public class Code04_MinimumTotalDistanceTraveled {
 
 	public static long minimumTotalDistance1(List<Integer> robot, int[][] factory) {
 		int n = robot.size();
