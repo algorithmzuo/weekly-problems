@@ -1,4 +1,4 @@
-package class_2022_11_5_week;
+package class_2022_12_1_week;
 
 // 来自蓝桥杯练习题
 // 洛谷原题
