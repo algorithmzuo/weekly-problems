@@ -75,7 +75,7 @@ public class Code01_FinishOrdersEndTimes {
 		for (int i = 0; i < orders.length; i++) {
 			int start = orders[i][0];
 			int type = orders[i][1];
-			// 当前车辆在start时刻下单，所有唤醒时间比time早的流水线全能考虑
+			// 当前订单在start时刻下单，所有唤醒时间比time早的流水线全可以考虑
 			while (!wakeUps.isEmpty() && wakeUps.peek().time <= start) {
 				toUse.add(wakeUps.poll());
 			}
