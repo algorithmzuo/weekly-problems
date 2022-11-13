@@ -5,12 +5,13 @@ package class_2022_05_1_week;
 // 你可以随意的划分str成多个子串，
 // 目的是找到在某一种划分方案中，有尽可能多的回文子串，长度>=k，并且没有重合
 // 返回有几个回文子串
+// 测试链接 : https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/
 public class Code05_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 
 	// 暴力尝试
 	// 为了测试
 	// 可以改成动态规划，但不是最优解
-	public static int max1(String s, int k) {
+	public static int maxPalindromes1(String s, int k) {
 		if (s == null || s.length() == 0) {
 			return 0;
 		}
@@ -42,7 +43,7 @@ public class Code05_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 
 	// 最优解
 	// 时间复杂度O(N)
-	public static int max2(String s, int k) {
+	public static int maxPalindromes2(String s, int k) {
 		if (s == null || s.length() == 0) {
 			return 0;
 		}
@@ -50,9 +51,9 @@ public class Code05_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 		int[] p = new int[str.length];
 		int ans = 0;
 		int next = 0;
-		// k == 5   回文串长度要 >= 5
+		// k == 5 回文串长度要 >= 5
 		// next == 0
-		// 0.... 8  第一块！
+		// 0.... 8 第一块！
 		// next -> 9
 		// 9.....17 第二块！
 		// next -> 18
@@ -114,8 +115,8 @@ public class Code05_PalindromeStringNoLessKLenNoOverlapingMaxParts {
 		for (int i = 0; i < testTime; i++) {
 			String str = randomString(n, r);
 			int k = (int) (Math.random() * str.length()) + 1;
-			int ans1 = max1(str, k);
-			int ans2 = max2(str, k);
+			int ans1 = maxPalindromes1(str, k);
+			int ans2 = maxPalindromes2(str, k);
 			if (ans1 != ans2) {
 				System.out.println(str);
 				System.out.println(k);
