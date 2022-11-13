@@ -121,8 +121,8 @@ public class Code01_FinishOrdersEndTimes {
 		// 醒来时间一样，编号小的在前
 		// 为什么要考虑编号，看上面的注释
 		// 如果可以使用的流水线不存在
-		// 那要使用最早唤醒的那个流水线来使用
-		// 但是如果最早唤醒的那个流水线不只一个，要选编号小的
+		// 那要使用最早唤醒的那个流水线来执行当前订单
+		// 但是如果最早唤醒的那个流水线不只一个，还是要选编号小的
 		@Override
 		public int compare(Line o1, Line o2) {
 			if (o1.time != o2.time) {
