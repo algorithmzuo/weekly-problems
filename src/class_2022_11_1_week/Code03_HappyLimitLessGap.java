@@ -41,11 +41,11 @@ public class Code03_HappyLimitLessGap {
 	// 二分答案
 	public static int lessGap2(int[] a, int[] b, long k) {
 		int n = a.length;
-		//  a : 20  30 17
-		//  b :  5  10 36
-		//       0   1  2
-		// [ 20, 5]  [30, 10]  [17, 36]
-		//  0         1         2
+		// a : 20 30 17
+		// b : 5 10 36
+		// 0 1 2
+		// [ 20, 5] [30, 10] [17, 36]
+		// 0 1 2
 		int[][] f = new int[n][2];
 		int min = b[0];
 		int max = b[0];
@@ -57,16 +57,16 @@ public class Code03_HappyLimitLessGap {
 		}
 		// 排序和大流程，没关系
 		// 是子函数，maxHappy函数，需要用到，排了序
-		// 根据财富排序，少 ->  多
+		// 根据财富排序，少 -> 多
 		Arrays.sort(f, (x, y) -> x[1] - y[1]);
-		// 隔阂值的范围 l ~  r
+		// 隔阂值的范围 l ~ r
 		int l = 0;
 		int r = max - min;
 		int m = 0;
 		int ans = -1;
 		while (l <= r) {
 			// 0.........50
-			//     25
+			// 25
 			m = (l + r) / 2;
 			if (maxHappy(f, m) >= k) {
 				ans = m;
@@ -93,6 +93,29 @@ public class Code03_HappyLimitLessGap {
 		return ans;
 	}
 
+	// 正式方法
+	// 排序 + 窗口
+	public static int lessGap3(int[] a, int[] b, long k) {
+		int n = a.length;
+		int[][] f = new int[n][2];
+		for (int i = 0; i < n; i++) {
+			f[i][0] = a[i];
+			f[i][1] = b[i];
+		}
+		Arrays.sort(f, (x, y) -> x[1] - y[1]);
+		int ans = Integer.MAX_VALUE;
+		for (int l = 0, r = 0, happy = 0; l < n; l++) {
+			while (r < n && happy < k) {
+				happy += f[r++][0];
+			}
+			if (happy >= k) {
+				ans = Math.min(ans, f[r - 1][1] - f[l][1]);
+			}
+			happy -= f[l][0];
+		}
+		return ans == Integer.MAX_VALUE ? -1 : ans;
+	}
+
 	// 为了验证
 	public static int[] randomArray(int n, int v) {
 		int[] arr = new int[n];
@@ -115,7 +138,8 @@ public class Code03_HappyLimitLessGap {
 			int k = (int) (Math.random() * n * V) + 1;
 			int ans1 = lessGap1(a, b, k);
 			int ans2 = lessGap2(a, b, k);
-			if (ans1 != ans2) {
+			int ans3 = lessGap3(a, b, k);
+			if (ans1 != ans2 || ans1 != ans3) {
 				System.out.println("出错了!");
 			}
 		}
