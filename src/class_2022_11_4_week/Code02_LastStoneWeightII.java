@@ -14,7 +14,7 @@ package class_2022_11_4_week;
 // 返回此石头 最小的可能重量
 // 如果没有石头剩下，就返回 0
 // 测试链接 : https://leetcode.cn/problems/last-stone-weight-ii/
-public class Code04_LastStoneWeightII {
+public class Code02_LastStoneWeightII {
 
 	public int lastStoneWeightII(int[] arr) {
 		int n = arr.length;

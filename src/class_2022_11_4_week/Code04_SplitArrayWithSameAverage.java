@@ -1,4 +1,4 @@
-package class_2022_11_3_week;
+package class_2022_11_4_week;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
 // 如果可以完成则返回true ， 否则返回 false  。
 // 注意：对于数组 arr ,  average(arr) 是 arr 的所有元素的和除以 arr 长度。
 // 测试链接 : https://leetcode.cn/problems/split-array-with-same-average/
-public class Code05_SplitArrayWithSameAverage {
+public class Code04_SplitArrayWithSameAverage {
 
 	public static int n;
 	public static int s;

@@ -1,4 +1,4 @@
-package class_2022_11_4_week;
+package class_2022_11_3_week;
 
 import java.util.HashSet;
 import java.util.TreeSet;
@@ -33,7 +33,7 @@ import java.util.TreeSet;
 // X   X             X
 // b.hello()，座位5、座位6，都是离最近人的距离最远的(3)
 // 这种情况，根据描述，分配座位编号最小的座位，返回5
-public class Code02_FarAwaySuggestion {
+public class Code05_FarAwaySuggestion {
 
 	// 正式方法
 	// 只需要理解有序表、比较器就可以理解这个类的实现
