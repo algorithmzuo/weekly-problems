@@ -33,11 +33,10 @@ import java.util.TreeSet;
 // X   X             X
 // b.hello()，座位5、座位6，都是离最近人的距离最远的(3)
 // 这种情况，根据描述，分配座位编号最小的座位，返回5
+// 测试连接 : https://leetcode.cn/problems/exam-room/
 public class Code05_FarAwaySuggestion {
 
-	// 正式方法
-	// 只需要理解有序表、比较器就可以理解这个类的实现
-	public static class Bank {
+	class ExamRoom {
 
 		// 空闲座位的类
 		// 比如，一共8个空间
@@ -95,7 +94,7 @@ public class Code05_FarAwaySuggestion {
 		// 那些座位已经使用了，都在这个哈希表里
 		public HashSet<Integer> used;
 
-		public Bank(int n) {
+		public ExamRoom(int n) {
 			right = n - 1;
 			// far越远，越早使用
 			// far一样，start越小，越早使用
@@ -108,7 +107,7 @@ public class Code05_FarAwaySuggestion {
 			add(0, right, Integer.MAX_VALUE);
 		}
 
-		public int hello() {
+		public int seat() {
 			if (used.size() == right + 1) {
 				return -1;
 			}
@@ -180,7 +179,7 @@ public class Code05_FarAwaySuggestion {
 			return space;
 		}
 
-		public void goodbye(int x) {
+		public void leave(int x) {
 			if (used.contains(x)) {
 				used.remove(x);
 				FreeSpace m = new FreeSpace(x, x, 1);
@@ -221,81 +220,6 @@ public class Code05_FarAwaySuggestion {
 			heads.remove(space);
 		}
 
-	}
-
-	// 暴力结构
-	// 为了验证才写的
-	public static class Right {
-
-		public boolean[] seats;
-
-		public Right(int n) {
-			seats = new boolean[n];
-		}
-
-		public int hello() {
-			int ans = -1;
-			int distance = 0;
-			for (int i = 0; i < seats.length; i++) {
-				if (seats[i]) {
-					continue;
-				}
-				int left = Integer.MAX_VALUE;
-				for (int j = i - 1; j >= 0; j--) {
-					if (seats[j]) {
-						left = i - j;
-						break;
-					}
-				}
-				int right = Integer.MAX_VALUE;
-				for (int j = i + 1; j < seats.length; j++) {
-					if (seats[j]) {
-						right = j - i;
-						break;
-					}
-				}
-				int cur = Math.min(left, right);
-				if (distance < cur) {
-					distance = cur;
-					ans = i;
-				}
-			}
-			if (ans != -1) {
-				seats[ans] = true;
-			}
-			return ans;
-		}
-
-		public void goodbye(int x) {
-			seats[x] = false;
-		}
-
-	}
-
-	public static void main(String[] args) {
-		int N = 50;
-		int testTimes = 1000;
-		int innerTest = 1000;
-		System.out.println("测试开始");
-		for (int i = 0; i < testTimes; i++) {
-			int n = (int) (Math.random() * N) + 1;
-			Bank bank = new Bank(n);
-			Right right = new Right(n);
-			for (int j = 0; j < innerTest; j++) {
-				if (Math.random() < 0.5) {
-					int ans1 = bank.hello();
-					int ans2 = right.hello();
-					if (ans1 != ans2) {
-						System.out.println("出错了!");
-					}
-				} else {
-					int x = (int) (Math.random() * n);
-					bank.goodbye(x);
-					right.goodbye(x);
-				}
-			}
-		}
-		System.out.println("测试结束");
 	}
 
 }

@@ -43,16 +43,34 @@ public class Code01_ComplementaryPairsInStringArray {
 		return odd < 2;
 	}
 
+	// 正式方法
+	// O(N*M)，N字符串长，M字符串平均长度
+	// 时间复杂度O(N) + O(M)，一共有多少个字符串N，一共有多少字符M
 	public static int num2(String[] strs) {
+		// key : 某一种状态(int类型，状态)
+		// z..d c b a
+		// 3 2 1 0
+		// 1 0 1 1
+		// value : 这样状态的字符串，有几个
 		HashMap<Integer, Integer> status = new HashMap<>();
 		int ans = 0;
 		for (String str : strs) {
+			// 当前str这个字符串
+			// 它自己的状态，加工好
+			// d c b a
+			// 0 0 0 1
 			int cur = 0;
 			for (int i = 0; i < str.length(); i++) {
 				cur ^= 1 << (str.charAt(i) - 'a');
 			}
+			// 一点点都不捣乱，cur，map有几个状态也是cur的字符串
 			ans += status.getOrDefault(cur, 0);
 			for (int i = 0; i < 26; i++) {
+				// 每一位捣乱一下
+				// a
+				// b
+				// c
+				// z
 				ans += status.getOrDefault(cur ^ (1 << i), 0);
 			}
 			status.put(cur, status.getOrDefault(cur, 0) + 1);
