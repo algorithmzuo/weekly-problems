@@ -44,28 +44,17 @@ public class Code02_NthDigit {
 		if (rest == 0) {
 			return (path / help2[nth]) % 10;
 		} else {
-			int curNumber = 0;
+			int cur = 0;
 			int minus = 0;
-			if (rest == offset) {
-				for (int i = 1; i <= 9; i++) {
-					long under = (long) i * bits * rest;
-					if (under >= nth) {
-						curNumber = i;
-						break;
-					}
-					minus = (int) under;
+			for (int i = rest == offset ? 1 : 0, j = 1; i <= 9; i++, j++) {
+				long under = (long) j * bits * rest;
+				if (under >= nth) {
+					cur = i;
+					break;
 				}
-			} else {
-				for (int i = 0; i <= 9; i++) {
-					long under = (long) (i + 1) * bits * rest;
-					if (under >= nth) {
-						curNumber = i;
-						break;
-					}
-					minus = (int) under;
-				}
+				minus = (int) under;
 			}
-			return number(curNumber * (offset / rest) + path, rest / 10, bits, offset, nth - minus);
+			return number(cur * (offset / rest) + path, rest / 10, bits, offset, nth - minus);
 		}
 	}
 
