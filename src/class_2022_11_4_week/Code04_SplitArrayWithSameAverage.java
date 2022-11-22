@@ -5,8 +5,8 @@ import java.util.Arrays;
 // 给定你一个整数数组 nums
 // 我们要将 nums 数组中的每个元素移动到 A 数组 或者 B 数组中
 // 使得 A 数组和 B 数组不为空，并且 average(A) == average(B)
-// 如果可以完成则返回true ， 否则返回 false  。
-// 注意：对于数组 arr ,  average(arr) 是 arr 的所有元素的和除以 arr 长度。
+// 如果可以完成则返回true，否则返回false。
+// 注意：对于数组 arr,  average(arr) 是 arr 的所有元素的和除以 arr 长度。
 // 测试链接 : https://leetcode.cn/problems/split-array-with-same-average/
 public class Code04_SplitArrayWithSameAverage {
 
@@ -40,7 +40,7 @@ public class Code04_SplitArrayWithSameAverage {
 		collectSum(rarr, false);
 		Arrays.sort(rsum, 0, r);
 		for (int i = 0; i < l; i++) {
-			if (contains(-lsum[i])) {
+			if (contains(lsum[i])) {
 				return true;
 			}
 		}
@@ -54,10 +54,10 @@ public class Code04_SplitArrayWithSameAverage {
 	public static void process(int[] arr, int index, int sum, int num, boolean isLeft) {
 		if (index == arr.length) {
 			if (isLeft && num > 0) {
-				lsum[l++] = n * sum - s * num;
+				lsum[l++] = s * num - n * sum;
 			}
 			if (!isLeft && num != arr.length) {
-				rsum[r++] = n * sum - s * num;
+				rsum[r++] = -s * num + n * sum;
 			}
 		} else {
 			process(arr, index + 1, sum, num, isLeft);
