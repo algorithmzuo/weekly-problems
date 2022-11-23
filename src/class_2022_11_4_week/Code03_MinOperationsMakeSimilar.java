@@ -1,4 +1,4 @@
-package class_2022_11_5_week;
+package class_2022_11_4_week;
 
 import java.util.Arrays;
 
@@ -10,7 +10,7 @@ import java.util.Arrays;
 // 请你返回将 nums 变得与 target 相似的最少操作次数。
 // 测试数据保证 nums 一定能变得与 target 相似。
 // 测试链接 : https://leetcode.cn/problems/minimum-number-of-operations-to-make-arrays-similar/
-public class Code01_MinOperationsMakeSimilar {
+public class Code03_MinOperationsMakeSimilar {
 
 	public static long makeSimilar(int[] nums, int[] target) {
 		int n = nums.length;
