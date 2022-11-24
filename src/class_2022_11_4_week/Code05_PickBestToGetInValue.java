@@ -5,6 +5,8 @@ import java.util.Arrays;
 // 来自第四届全国大学生算法设计与编程挑战赛（秋季赛）
 // 给定两个长度为N的数组，a[]和b[]
 // 也就是对于每个位置i来说，有a[i]和b[i]两个属性
+//    i a[i] b[i]
+//    j a[j] b[j]
 // 现在想为了i，选一个最好的j位置，搭配能得到最小的如下值: 
 // (a[i] + a[j]) ^ 2 + b[i] + b[j]
 // 我们把这个最小的值，定义为i的最in值
@@ -54,6 +56,8 @@ public class Code05_PickBestToGetInValue {
 	// 剩下的一切都是围绕这个
 	public static long[] inValues2(int[] a, int[] b) {
 		int n = a.length;
+		// i a[i] b[i]
+		// i s[i] t[i]
 		long[][] st = new long[n][2];
 		for (int i = 0; i < n; i++) {
 			st[i][0] = 2L * a[i];
@@ -66,9 +70,14 @@ public class Code05_PickBestToGetInValue {
 		int[] stack = new int[n];
 		int r = 0;
 		for (int i = 0; i < n; i++) {
+			// s 大 -> 小
+			
 			long s = st[i][0];
 			long t = st[i][1];
-			while (r > 0 && tail(st, stack, r) >= better(st[stack[r - 1]][0], st[stack[r - 1]][1], s, t)) {
+			while (r > 0 
+					&& tail(st, stack, r) >= // 栈顶，和栈顶再下一个 ai大到什么程度，栈顶更好!
+					// 当前记录，当ai大到什么程度，比栈顶好
+					better(st[stack[r - 1]][0], st[stack[r - 1]][1], s, t)) {
 				r--;
 			}
 			stack[r++] = i;

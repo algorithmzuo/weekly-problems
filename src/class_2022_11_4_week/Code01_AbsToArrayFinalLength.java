@@ -46,6 +46,7 @@ public class Code01_AbsToArrayFinalLength {
 	// 时间复杂O(N)
 	public static int finalLen2(int[] arr) {
 		int max = 0;
+		// 任意一个非0的值
 		int gcd = 0;
 		for (int num : arr) {
 			max = Math.max(max, num);
@@ -53,9 +54,10 @@ public class Code01_AbsToArrayFinalLength {
 				gcd = num;
 			}
 		}
-		if (gcd == 0) {
+		if (gcd == 0) { // 数组中都是0
 			return arr.length;
 		}
+		// 不都是0
 		HashMap<Integer, Integer> counts = new HashMap<>();
 		for (int num : arr) {
 			if (num != 0) {
@@ -63,14 +65,21 @@ public class Code01_AbsToArrayFinalLength {
 			}
 			counts.put(num, counts.getOrDefault(num, 0) + 1);
 		}
+
+		// max / gcd
 		int ans = max / gcd;
 		ans += counts.getOrDefault(0, 0);
+
 		boolean add = false;
+		// 每个数，出现的次数
 		for (int key : counts.keySet()) {
 			if (key != 0) {
 				ans += counts.get(key) - 1;
 			}
-			if (counts.get(key) > 1 && !counts.containsKey(0) && !add) {
+			// 3个5， 0
+			// 5 5 2个 0 +1
+			// 7 7 7 3个
+			if (!add && counts.get(key) > 1 && !counts.containsKey(0)) {
 				ans++;
 				add = true;
 			}
@@ -78,6 +87,7 @@ public class Code01_AbsToArrayFinalLength {
 		return ans;
 	}
 
+	// O(1)
 	public static int gcd(int m, int n) {
 		return n == 0 ? m : gcd(n, m % n);
 	}
