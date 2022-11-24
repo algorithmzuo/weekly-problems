@@ -1,9 +1,9 @@
-package class_2022_12_1_week;
+package class_2022_11_5_week;
 
 import java.util.ArrayList;
 
 // 测试链接 : https://leetcode.cn/problems/sum-of-distances-in-tree/
-public class Code03_SumOfDistancesInTree {
+public class Code04_SumOfDistancesInTree {
 
 	public int[] sumOfDistancesInTree(int n, int[][] edges) {
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();

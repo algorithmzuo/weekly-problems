@@ -1,9 +1,9 @@
-package class_2022_12_2_week;
+package class_2022_12_1_week;
 
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/sum-of-subsequence-widths/
-public class Code01_SumOfSubSequenceWidths {
+public class Code03_SumOfSubSequenceWidths {
 
 	public static int sumSubseqWidths(int[] nums) {
 		Arrays.sort(nums);

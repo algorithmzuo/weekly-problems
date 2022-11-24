@@ -1,4 +1,4 @@
-package class_2022_12_2_week;
+package class_2022_11_5_week;
 
 // 测试链接 : https://leetcode.cn/problems/nth-digit/
 public class Code02_NthDigit {

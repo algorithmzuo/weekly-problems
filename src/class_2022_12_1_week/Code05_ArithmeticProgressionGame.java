@@ -1,6 +1,6 @@
 package class_2022_12_1_week;
 
-// 来自蓝桥杯练习题
+// 蓝桥杯练习题
 // 洛谷原题
 // 等差数列的概念人人都知道
 // 给定一个原始数组arr，长度为N
@@ -25,7 +25,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code04_ArithmeticProgressionGame {
+public class Code05_ArithmeticProgressionGame {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
