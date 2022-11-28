@@ -1,63 +1,62 @@
 package class_2022_12_2_week;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.cn/problems/race-car/
 public class Code02_RaceCar {
 
-	public static class Point {
-		public int position;
-		public int speed;
-		public int distance;
-
-		public Point(int p, int s, int d) {
-			position = p;
-			speed = s;
-			distance = d;
-		}
-	}
-
+	// Dijkstra算法
 	public static int racecar1(int target) {
-		int max = target * 2;
-		PriorityQueue<Point> heap = new PriorityQueue<>((a, b) -> a.distance - b.distance);
-		HashMap<Integer, HashSet<Integer>> used = new HashMap<>();
-		heap.add(new Point(0, 1, 0));
+		int maxp = 0;
+		int maxs = 1;
+		while (maxp <= target) {
+			maxp += 1 << (maxs - 1);
+			maxs++;
+		}
+		// 0 : 几倍速
+		// 1 : 花费了几步
+		// 2 : 当前位置
+		PriorityQueue<int[]> heap = new PriorityQueue<>(
+				(a, b) -> a[1] != b[1] ? (a[1] - b[1]) : (Math.abs(target - a[2]) - Math.abs(target - b[2])));
+		boolean[][] positive = new boolean[maxs + 1][maxp + 1];
+		boolean[][] negative = new boolean[maxs + 1][maxp + 1];
+		heap.add(new int[] { 1, 0, 0 });
 		while (!heap.isEmpty()) {
-			Point cur = heap.poll();
-			if (cur.position == target) {
-				return cur.distance;
+			int[] cur = heap.poll();
+			int speed = cur[0];
+			int cost = cur[1];
+			int position = cur[2];
+			if (position == target) {
+				return cost;
 			}
-			if (isUsed(cur.position, cur.speed, used)) {
-				continue;
+			if (speed > 0) {
+				if (positive[speed][position]) {
+					continue;
+				}
+				positive[speed][position] = true;
+				add(speed + 1, cost + 1, position + (1 << (speed - 1)), maxp, heap, positive);
+				add(-1, cost + 1, position, maxp, heap, negative);
+			} else {
+				speed = -speed;
+				if (negative[speed][position]) {
+					continue;
+				}
+				negative[speed][position] = true;
+				add(-speed - 1, cost + 1, position - (1 << (speed - 1)), maxp, heap, negative);
+				add(1, cost + 1, position, maxp, heap, positive);
 			}
-			addToSet(cur.position, cur.speed, used);
-			addToQueue(cur.position + cur.speed, cur.speed * 2, cur.distance + 1, max, heap, used);
-			addToQueue(cur.position, cur.speed > 0 ? -1 : 1, cur.distance + 1, max, heap, used);
 		}
 		return -1;
 	}
 
-	public static void addToSet(int position, int speed, HashMap<Integer, HashSet<Integer>> used) {
-		if (!used.containsKey(position)) {
-			used.put(position, new HashSet<>());
-		}
-		used.get(position).add(speed);
-	}
-
-	public static boolean isUsed(int position, int speed, HashMap<Integer, HashSet<Integer>> used) {
-		HashSet<Integer> set = used.getOrDefault(position, null);
-		return set != null ? set.contains(speed) : false;
-	}
-
-	public static void addToQueue(int position, int speed, int distance, int max, PriorityQueue<Point> heap,
-			HashMap<Integer, HashSet<Integer>> used) {
-		if (position >= 0 && position <= max && !isUsed(position, speed, used)) {
-			heap.add(new Point(position, speed, distance));
+	public static void add(int speed, int cost, int position, int limit, PriorityQueue<int[]> heap,
+			boolean[][] visited) {
+		if (position >= 0 && position <= limit && !visited[Math.abs(speed)][position]) {
+			heap.add(new int[] { speed, cost, position });
 		}
 	}
 
+	// 动态规划 + 数学
 	public static int racecar2(int target) {
 		int[] dp = new int[target + 1];
 		return process(target, dp);
