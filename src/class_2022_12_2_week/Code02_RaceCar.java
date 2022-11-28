@@ -16,8 +16,7 @@ public class Code02_RaceCar {
 		// 0 : 几倍速
 		// 1 : 花费了几步
 		// 2 : 当前位置
-		PriorityQueue<int[]> heap = new PriorityQueue<>(
-				(a, b) -> a[1] != b[1] ? (a[1] - b[1]) : (Math.abs(target - a[2]) - Math.abs(target - b[2])));
+		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[1] - b[1]);
 		boolean[][] positive = new boolean[maxs + 1][maxp + 1];
 		boolean[][] negative = new boolean[maxs + 1][maxp + 1];
 		heap.add(new int[] { 1, 0, 0 });
