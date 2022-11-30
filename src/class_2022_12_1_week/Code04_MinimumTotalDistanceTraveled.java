@@ -1,4 +1,4 @@
-package class_2022_11_5_week;
+package class_2022_12_1_week;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 // 0 <= limitj <= robot.length
 // 测试数据保证所有机器人都可以被维修
 // 测试链接 : https://leetcode.cn/problems/minimum-total-distance-traveled/
-public class Code05_MinimumTotalDistanceTraveled {
+public class Code04_MinimumTotalDistanceTraveled {
 
 	public static long minimumTotalDistance1(List<Integer> robot, int[][] factory) {
 		int n = robot.size();

@@ -25,10 +25,15 @@ import java.util.PriorityQueue;
 // 1 <= nums <= 10^5
 // 1 <= 时间数值 <= 10^5
 public class Code01_FinishOrdersEndTimes {
-
+	// jobTimes : [ 5 2 7 1 ]
+	//              0 1 2 3
+	// orders : [100, 0]    [200, 1]
+	//              0          1
+	// nums = 7
+	//     0  1  2 ... 6
 	// 暴力方法
 	// 为了测试
-	public static int[][] times1(int nums, int[] componets, int[][] orders) {
+	public static int[][] times1(int nums, int[] jobTimes, int[][] orders) {
 		int[] lines = new int[nums];
 		int n = orders.length;
 		int[][] ans = new int[n][2];
@@ -44,7 +49,7 @@ public class Code01_FinishOrdersEndTimes {
 			}
 			if (usei != -1) {
 				ans[i][0] = usei;
-				ans[i][1] = start + componets[type];
+				ans[i][1] = start + jobTimes[type];
 			} else {
 				int early = Integer.MAX_VALUE;
 				for (int j = 0; j < nums; j++) {
@@ -54,7 +59,7 @@ public class Code01_FinishOrdersEndTimes {
 					}
 				}
 				ans[i][0] = usei;
-				ans[i][1] = early + componets[type];
+				ans[i][1] = early + jobTimes[type];
 			}
 			lines[usei] = ans[i][1];
 		}
@@ -66,18 +71,20 @@ public class Code01_FinishOrdersEndTimes {
 	// M是订单数量，N是流水线数量
 	public static int[][] times2(int nums, int[] componets, int[][] orders) {
 		int n = orders.length;
-		PriorityQueue<Line> wakeUps = new PriorityQueue<>(new WakeUpComparator());
-		PriorityQueue<Line> toUse = new PriorityQueue<>(new IndexComparator());
+		// 睡眠堆
+		PriorityQueue<Line> sleepLines = new PriorityQueue<>(new WakeUpComparator());
+		// 可用堆
+		PriorityQueue<Line> canUseLines = new PriorityQueue<>(new IndexComparator());
 		for (int i = 0; i < nums; i++) {
-			toUse.add(new Line(0, i));
+			canUseLines.add(new Line(0, i));
 		}
 		int[][] ans = new int[n][2];
 		for (int i = 0; i < orders.length; i++) {
-			int start = orders[i][0];
-			int type = orders[i][1];
+			int startTime = orders[i][0];
+			int jobType = orders[i][1];
 			// 当前订单在start时刻下单，所有唤醒时间比time早的流水线全可以考虑
-			while (!wakeUps.isEmpty() && wakeUps.peek().time <= start) {
-				toUse.add(wakeUps.poll());
+			while (!sleepLines.isEmpty() && sleepLines.peek().time <= startTime) {
+				canUseLines.add(sleepLines.poll());
 			}
 			// 如果可以使用的流水线不存在
 			// 比如，2条流水线
@@ -86,20 +93,20 @@ public class Code01_FinishOrdersEndTimes {
 			// 轮到第3个订单，3时刻开始，用时100万
 			// 会发现可用流水线已经没有了，此时需要等到流水线A在100万+1时刻醒来，做当前订单
 			Line use = null;
-			if (toUse.isEmpty()) {
+			if (canUseLines.isEmpty()) {
 				// 如果当前时刻，可以使用的流水线不存在，需要等到可以唤醒的最早那个
 				// 如果可以唤醒的最早流水线，不只一个
 				// 选编号小的，看比较器的注释
-				use = wakeUps.poll();
-				ans[i][1] = use.time + componets[type];
+				use = sleepLines.poll();
+				ans[i][1] = use.time + componets[jobType];
 			} else {
 				// 如果当前时刻，可以使用的流水线存在，需要使用编号最小的
-				use = toUse.poll();
-				ans[i][1] = start + componets[type];
+				use = canUseLines.poll();
+				ans[i][1] = startTime + componets[jobType];
 			}
 			ans[i][0] = use.index;
 			use.time = ans[i][1];
-			wakeUps.add(use);
+			sleepLines.add(use);
 		}
 		return ans;
 	}
