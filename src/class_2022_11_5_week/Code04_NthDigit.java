@@ -5,9 +5,9 @@ package class_2022_11_5_week;
 // 中找出并返回第 n 位上的数字。
 // 测试链接 : https://leetcode.cn/problems/nth-digit/
 // 1 <= n <= 2^31 - 1
-public class Code02_NthDigit {
+public class Code04_NthDigit {
 
-	public static long[] help1 = {
+	public static final long[] under = {
 			0L,
 			9L,
 			189L,
@@ -20,7 +20,7 @@ public class Code02_NthDigit {
 			8888888889L,
 			98888888889L };
 
-	public static int[] help2 = {
+	public static final int[] help = {
 			0,
 			1,
 			10,
@@ -34,31 +34,31 @@ public class Code02_NthDigit {
 			1000000000 };
 
 	public static int findNthDigit(int n) {
-		int bits = 0;
-		for (int i = 1; i < help1.length; i++) {
-			if (help1[i] >= n) {
-				bits = i;
+		int len = 0;
+		for (int i = 1; i < under.length; i++) {
+			if (under[i] >= n) {
+				len = i;
 				break;
 			}
 		}
-		return number(0, help2[bits], bits, help2[bits], (int) (n - help1[bits - 1]));
+		return number(0, len, help[len], help[len], (int) (n - under[len - 1]));
 	}
 
-	public static int number(int path, int rest, int bits, int offset, int nth) {
-		if (rest == 0) {
-			return (path / help2[nth]) % 10;
+	public static int number(int path, int len, int offset, int all, int nth) {
+		if (offset == 0) {
+			return (path / help[nth]) % 10;
 		} else {
 			int cur = 0;
 			int minus = 0;
-			for (int i = rest == offset ? 1 : 0, j = 1; i <= 9; i++, j++) {
-				long under = (long) j * bits * rest;
+			for (int i = offset == all ? 1 : 0, j = 1; i <= 9; i++, j++) {
+				long under = (long) j * len * offset;
 				if (under >= nth) {
 					cur = i;
 					break;
 				}
 				minus = (int) under;
 			}
-			return number(cur * (offset / rest) + path, rest / 10, bits, offset, nth - minus);
+			return number(cur * (all / offset) + path, len, offset / 10, all, nth - minus);
 		}
 	}
 

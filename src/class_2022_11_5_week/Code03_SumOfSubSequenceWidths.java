@@ -9,7 +9,7 @@ import java.util.Arrays;
 // 但不改变剩下元素的顺序得到的数组
 // 例如，[3,6,2,7] 就是数组 [0,3,1,6,2,2,7] 的一个子序列。
 // 测试链接 : https://leetcode.cn/problems/sum-of-subsequence-widths/
-public class Code04_SumOfSubSequenceWidths {
+public class Code03_SumOfSubSequenceWidths {
 
 	public static int sumSubseqWidths(int[] nums) {
 		Arrays.sort(nums);

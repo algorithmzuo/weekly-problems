@@ -11,7 +11,7 @@ package class_2022_11_5_week;
 // 请你实现这个将字符串进行指定行数变换的函数
 // string convert(string s, int numRows)
 // 测试链接 : https://leetcode.cn/problems/zigzag-conversion/
-public class Code03_ZigZagConversion {
+public class Code02_ZigZagConversion {
 
 	public static String convert(String s, int m) {
 		int n = s.length();
