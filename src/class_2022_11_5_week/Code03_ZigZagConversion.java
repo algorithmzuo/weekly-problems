@@ -1,4 +1,4 @@
-package class_2022_12_1_week;
+package class_2022_11_5_week;
 
 // 将一个给定字符串 s 根据给定的行数 numRows
 // 以从上往下、从左到右进行 Z 字形排列
@@ -11,7 +11,7 @@ package class_2022_12_1_week;
 // 请你实现这个将字符串进行指定行数变换的函数
 // string convert(string s, int numRows)
 // 测试链接 : https://leetcode.cn/problems/zigzag-conversion/
-public class Code02_ZigZagConversion {
+public class Code03_ZigZagConversion {
 
 	public static String convert(String s, int m) {
 		int n = s.length();

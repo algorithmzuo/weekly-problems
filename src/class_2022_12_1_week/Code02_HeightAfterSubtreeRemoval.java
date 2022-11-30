@@ -1,4 +1,4 @@
-package class_2022_11_5_week;
+package class_2022_12_1_week;
 
 // 给你一棵 二叉树 的根节点 root ，树中有 n 个节点
 // 每个节点都可以被分配一个从 1 到 n 且互不相同的值
@@ -11,7 +11,7 @@ package class_2022_11_5_week;
 // 查询之间是独立的，所以在每个查询执行后，树会回到其 初始 状态。
 // 树的高度是从根到树中某个节点的 最长简单路径中的边数 。
 // 测试链接 : https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries/
-public class Code03_HeightAfterSubtreeRemoval {
+public class Code02_HeightAfterSubtreeRemoval {
 
 	// 提交时不用提交这个类
 	public static class TreeNode {
