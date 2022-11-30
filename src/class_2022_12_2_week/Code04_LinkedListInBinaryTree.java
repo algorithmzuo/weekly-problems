@@ -1,5 +1,8 @@
 package class_2022_12_2_week;
 
+// 最优解是KMP算法来解
+// 官方题解都没有写的最优解
+// 如果二叉树节点数是N，链表节点数M，时间复杂度为O(M+N)
 // 测试链接 : https://leetcode.cn/problems/linked-list-in-binary-tree/
 public class Code04_LinkedListInBinaryTree {
 
@@ -18,6 +21,7 @@ public class Code04_LinkedListInBinaryTree {
 
 	// 最优解
 	// 官方题解都没有写的最优解
+	// KMP算法来解
 	// 如果二叉树节点数是N，链表节点数M，时间复杂度为O(M+N)
 	// 提交如下的所有方法，可以直接通过
 	public static boolean isSubPath(ListNode head, TreeNode root) {
