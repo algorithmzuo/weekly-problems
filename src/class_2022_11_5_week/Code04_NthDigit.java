@@ -59,12 +59,8 @@ public class Code04_NthDigit {
 		if (offset == 0) {
 			return (path / help[nth]) % 10;
 		} else {
-			int cur = offset == all ? 1 : 0;
-			int j = nth / (len * offset);
-			if (nth % (len * offset) == 0) {
-				j--;
-			}
-			cur += j;
+			int j = (nth - 1) / (len * offset);
+			int cur = (offset == all ? 1 : 0) + j;
 			return number(cur * (all / offset) + path, len, offset / 10, all, nth - j * len * offset);
 		}
 	}
