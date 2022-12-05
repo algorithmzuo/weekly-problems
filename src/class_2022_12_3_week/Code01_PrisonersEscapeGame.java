@@ -67,6 +67,7 @@ public class Code01_PrisonersEscapeGame {
 	}
 
 	// 公式计算得到的概率
+	// 请确保tryTimes大于等于people的一半
 	public static double escape2(int people, int tryTimes) {
 		BigDecimal kill = new BigDecimal("0");
 		for (int maxCircle = tryTimes + 1; maxCircle <= people; maxCircle++) {
@@ -101,6 +102,7 @@ public class Code01_PrisonersEscapeGame {
 	}
 
 	// 公式化简之后的最终简洁版
+	// 请确保tryTimes大于等于people的一半
 	public static double escape3(int people, int tryTimes) {
 		double a = 0;
 		for (int r = tryTimes + 1; r <= people; r++) {
@@ -111,7 +113,7 @@ public class Code01_PrisonersEscapeGame {
 
 	public static void main(String[] args) {
 		int people = 100;
-		// 请注意设置变量时请保证tryTimes不要小于people的一半
+		// 请确保tryTimes大于等于people的一半
 		int tryTimes = 50;
 		int testTimes = 100000;
 		System.out.println("参与游戏的人数 : " + people);
