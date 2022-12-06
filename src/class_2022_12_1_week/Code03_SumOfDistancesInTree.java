@@ -11,6 +11,10 @@ import java.util.ArrayList;
 // 测试链接 : https://leetcode.cn/problems/sum-of-distances-in-tree/
 public class Code03_SumOfDistancesInTree {
 
+	public int N = 30001;
+	public int[] size = new int[N];
+	public int[] distance = new int[N];
+
 	public int[] sumOfDistancesInTree(int n, int[][] edges) {
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
@@ -20,47 +24,29 @@ public class Code03_SumOfDistancesInTree {
 			graph.get(edge[0]).add(edge[1]);
 			graph.get(edge[1]).add(edge[0]);
 		}
-		int[] size = new int[n];
-		int[] distance = new int[n];
-		collect(0, -1, graph, size, distance);
+		collect(0, -1, graph);
 		int[] ans = new int[n];
-		setAns(0, -1, graph, size, distance, ans);
+		setAns(0, -1, 0, graph, ans);
 		return ans;
 	}
 
-	public void collect(int cur, int father, ArrayList<ArrayList<Integer>> graph, int[] size, int[] distance) {
+	public void collect(int cur, int father, ArrayList<ArrayList<Integer>> graph) {
 		size[cur] = 1;
 		distance[cur] = 0;
 		for (int next : graph.get(cur)) {
 			if (next != father) {
-				collect(next, cur, graph, size, distance);
+				collect(next, cur, graph);
 				distance[cur] += distance[next] + size[next];
 				size[cur] += size[next];
 			}
 		}
 	}
 
-	public void setAns(int cur, int father, ArrayList<ArrayList<Integer>> graph, int[] size, int[] distance,
-			int[] ans) {
-		ans[cur] = distance[cur];
+	public void setAns(int cur, int father, int upDistance, ArrayList<ArrayList<Integer>> graph, int[] ans) {
+		ans[cur] = upDistance + distance[cur];
 		for (int next : graph.get(cur)) {
 			if (next != father) {
-				int saveCurDistance = distance[cur];
-				int saveNextDistance = distance[next];
-				int saveCurSize = size[cur];
-				int saveNextSize = size[next];
-
-				distance[cur] -= distance[next] + size[next];
-				size[cur] -= size[next];
-				distance[next] += distance[cur] + size[cur];
-				size[next] += size[cur];
-
-				setAns(next, cur, graph, size, distance, ans);
-
-				distance[cur] = saveCurDistance;
-				distance[next] = saveNextDistance;
-				size[cur] = saveCurSize;
-				size[next] = saveNextSize;
+				setAns(next, cur, ans[cur] + size[0] - distance[next] - (size[next] << 1), graph, ans);
 			}
 		}
 	}
