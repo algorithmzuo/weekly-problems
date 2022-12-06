@@ -1,8 +1,8 @@
 package class_2022_12_3_week;
 
-// Floyd算法解析
+// Floyd算法应用
 // 测试链接 : https://leetcode.cn/problems/shortest-path-visiting-all-nodes/
-public class Code02_ShortestPathVisitingAllNodes {
+public class Code03_ShortestPathVisitingAllNodes {
 
 	public static int shortestPathLength(int[][] graph) {
 		int n = graph.length;
@@ -41,9 +41,10 @@ public class Code02_ShortestPathVisitingAllNodes {
 		}
 		// O(N^3)的过程
 		// 枚举每个跳板
-		for (int from = 0; from < n; from++) {
-			for (int to = 0; to < n; to++) {
-				for (int jump = 0; jump < n; jump++) {
+		// 注意! 跳板要最先枚举，然后是from和to
+		for (int jump = 0; jump < n; jump++) {
+			for (int from = 0; from < n; from++) {
+				for (int to = 0; to < n; to++) {
 					if (distance[from][jump] != Integer.MAX_VALUE && distance[jump][to] != Integer.MAX_VALUE
 							&& distance[from][to] > distance[from][jump] + distance[jump][to]) {
 						distance[from][to] = distance[from][jump] + distance[jump][to];
@@ -72,6 +73,18 @@ public class Code02_ShortestPathVisitingAllNodes {
 		}
 		dp[status][cur] = ans;
 		return ans;
+	}
+
+	public static void main(String[] args) {
+		// 0 -> 2 -> 3 -> 1
+		int[][] graph = { { 2 }, // 0
+				{}, // 1
+				{ 3 }, // 2
+				{ 1 }, // 3
+		};
+		int[][] distance = floyd(4, graph);
+		System.out.println(distance[0][1]);
+
 	}
 
 }
