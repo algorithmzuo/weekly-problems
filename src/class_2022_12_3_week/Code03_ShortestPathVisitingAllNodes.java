@@ -75,16 +75,4 @@ public class Code03_ShortestPathVisitingAllNodes {
 		return ans;
 	}
 
-	public static void main(String[] args) {
-		// 0 -> 2 -> 3 -> 1
-		int[][] graph = { { 2 }, // 0
-				{}, // 1
-				{ 3 }, // 2
-				{ 1 }, // 3
-		};
-		int[][] distance = floyd(4, graph);
-		System.out.println(distance[0][1]);
-
-	}
-
 }
