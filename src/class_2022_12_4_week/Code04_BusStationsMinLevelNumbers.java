@@ -18,7 +18,7 @@ public class Code04_BusStationsMinLevelNumbers {
 	public static final int maxn = 100001;
 	// 停靠车站
 	public static int[] stops = new int[maxn];
-	// 范围的id编号
+	// 一段线段树范围的id编号
 	public static int[] id = new int[maxn << 2];
 	// 是否为单点
 	public static boolean[] single = new boolean[maxn << 3];
@@ -32,7 +32,7 @@ public class Code04_BusStationsMinLevelNumbers {
 	public static int[] next = new int[maxn << 3];
 	// 拓扑排序用
 	public static int[] queue = new int[maxn << 3];
-	// n为车站个数、nth为范围的编号计数、eth为边的计数
+	// n为车站个数、nth为线段树上范围的编号计数、eth为边的计数
 	public static int n, nth, eth;
 
 	public static void main(String[] args) throws IOException {
@@ -61,7 +61,7 @@ public class Code04_BusStationsMinLevelNumbers {
 				for (int j = 0; j < k; j++) {
 					vLinkN(curVirtual, stops[j], 1, n, 1);
 				}
-				// 不停靠的连续车站范围向虚点连边
+				// 不停靠的连续车站向虚点连边
 				for (int j = 1; j < k; j++) {
 					if (stops[j] > stops[j - 1] + 1) {
 						nLinkV(stops[j - 1] + 1, stops[j] - 1, curVirtual, 1, n, 1);
