@@ -23,7 +23,7 @@ public class Code02_HeightAfterSubtreeRemoval {
 	// 提交如下方法
 	public static final int MAXN = 100010;
 	public static int[] dfn = new int[MAXN];
-	public static int[] height = new int[MAXN];
+	public static int[] deep = new int[MAXN];
 	public static int[] size = new int[MAXN];
 	public static int[] maxl = new int[MAXN];
 	public static int[] maxr = new int[MAXN];
@@ -31,17 +31,26 @@ public class Code02_HeightAfterSubtreeRemoval {
 
 	public static int[] treeQueries(TreeNode root, int[] queries) {
 		n = 0;
+		// 每个val，编号
+		// 每个val，深度
+		// 每个val的子树，大小
 		dfs(root, 0);
 		for (int i = 1; i <= n; i++) {
-			maxl[i] = Math.max(maxl[i - 1], height[i]);
+			maxl[i] = Math.max(maxl[i - 1], deep[i]);
 		}
 		maxr[n + 1] = 0;
 		for (int i = n; i >= 1; i--) {
-			maxr[i] = Math.max(maxr[i + 1], height[i]);
+			maxr[i] = Math.max(maxr[i + 1], deep[i]);
 		}
 		int m = queries.length;
 		int[] ans = new int[m];
 		for (int i = 0; i < m; i++) {
+			// queries[i] -> a
+			// a -> 编号x
+			// a -> 子树大小
+			// x ... 子树大小这么多范围 删掉
+			//    1~4  5 6 7
+			//      a(3)
 			int leftMax = maxl[dfn[queries[i]] - 1];
 			int rightMax = maxr[dfn[queries[i]] + size[dfn[queries[i]]]];
 			ans[i] = Math.max(leftMax, rightMax);
@@ -49,10 +58,11 @@ public class Code02_HeightAfterSubtreeRemoval {
 		return ans;
 	}
 
+	// n = 0 1 2 3 4 5 6 7
 	public static void dfs(TreeNode head, int h) {
 		int i = ++n;
 		dfn[head.val] = i;
-		height[i] = h;
+		deep[i] = h;
 		size[i] = 1;
 		if (head.left != null) {
 			dfs(head.left, h + 1);

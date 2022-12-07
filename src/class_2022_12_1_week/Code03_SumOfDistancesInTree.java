@@ -15,6 +15,12 @@ public class Code03_SumOfDistancesInTree {
 	public int[] size = new int[N];
 	public int[] distance = new int[N];
 
+	// edges : {3,1}、{1,2}、{3,0}
+
+	// 0 : {3}
+	// 2 : {1}
+	// 3 : {1,0}
+	// 1 : {3,2}
 	public int[] sumOfDistancesInTree(int n, int[][] edges) {
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
@@ -30,9 +36,14 @@ public class Code03_SumOfDistancesInTree {
 		return ans;
 	}
 
+	// cur : 当前节点号
+	// father : 当前节点的父节点
+	// graph : 图
 	public void collect(int cur, int father, ArrayList<ArrayList<Integer>> graph) {
 		size[cur] = 1;
 		distance[cur] = 0;
+		// 当前节点 7
+		// graph 7 -> {4, 8 , 13}
 		for (int next : graph.get(cur)) {
 			if (next != father) {
 				collect(next, cur, graph);
@@ -42,11 +53,16 @@ public class Code03_SumOfDistancesInTree {
 		}
 	}
 
+	// cur -> 当前节点！
+	// father -> 当前节点的父
+	// upDistance -> 父亲扔给cur的第二部分距离！
+	// graph -> 图
+	// int[] ans 答案填写进ans
 	public void setAns(int cur, int father, int upDistance, ArrayList<ArrayList<Integer>> graph, int[] ans) {
-		ans[cur] = upDistance + distance[cur];
+		ans[cur] = distance[cur] + upDistance;
 		for (int next : graph.get(cur)) {
 			if (next != father) {
-				setAns(next, cur, ans[cur] + size[0] - distance[next] - (size[next] << 1), graph, ans);
+				setAns(next, cur, ans[cur] - distance[next] + size[0] - (size[next] << 1), graph, ans);
 			}
 		}
 	}

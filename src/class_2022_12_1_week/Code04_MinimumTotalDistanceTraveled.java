@@ -73,6 +73,7 @@ public class Code04_MinimumTotalDistanceTraveled {
 		long[][] dp = new long[n][m];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
+				// ans = dp[i][j - 1] -> 0...i -> 0...j-1
 				long ans = j - 1 >= 0 ? dp[i][j - 1] : Long.MAX_VALUE;
 				long distance = 0;
 				for (int l = i, num = 1; l >= 0 && num <= factory[j][1]; l--, num++) {
@@ -98,12 +99,15 @@ public class Code04_MinimumTotalDistanceTraveled {
 		long[][] deque = new long[n + 1][2];
 		int l = 0;
 		int r = 0;
+		// 最外的for循环一定是枚举工厂
 		for (int j = 0; j < m; j++) {
 			long add = 0;
 			long limit = factory[j][1];
 			l = 0;
 			r = 1;
+			// deque[l][0] : 加入时的下标，用来判断过期
 			deque[l][0] = -1;
+			// deque[l][1] : 加入时的指标，窗口选出最小指标 去加上当前add！
 			deque[l][1] = 0;
 			for (int i = 0; i < n; i++) {
 				long p1 = j - 1 >= 0 ? dp[i][j - 1] : Long.MAX_VALUE;
