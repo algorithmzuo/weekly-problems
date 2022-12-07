@@ -49,8 +49,6 @@ public class Code02_HeightAfterSubtreeRemoval {
 			// a -> 编号x
 			// a -> 子树大小
 			// x ... 子树大小这么多范围 删掉
-			//    1~4  5 6 7
-			//      a(3)
 			int leftMax = maxl[dfn[queries[i]] - 1];
 			int rightMax = maxr[dfn[queries[i]] + size[dfn[queries[i]]]];
 			ans[i] = Math.max(leftMax, rightMax);
