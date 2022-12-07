@@ -32,8 +32,8 @@ public class Code04_BusStationsMinLevelNumbers {
 	public static int[] next = new int[maxn << 3];
 	// 拓扑排序用
 	public static int[] queue = new int[maxn << 3];
-	// n为车站个数、nth为范围的编号计数、eth为边的计数、ans为最后答案
-	public static int n, nth, eth, ans;
+	// n为车站个数、nth为范围的编号计数、eth为边的计数
+	public static int n, nth, eth;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -45,7 +45,6 @@ public class Code04_BusStationsMinLevelNumbers {
 			int m = (int) in.nval;
 			nth = 0;
 			eth = 0;
-			ans = 0;
 			Arrays.fill(single, 0, (n << 2) + m + 1, false);
 			Arrays.fill(inDegree, 0, (n << 2) + m + 1, 0);
 			Arrays.fill(deep, 0, (n << 2) + m + 1, 0);
@@ -69,8 +68,7 @@ public class Code04_BusStationsMinLevelNumbers {
 					}
 				}
 			}
-			topoSort();
-			out.println(ans);
+			out.println(topoSort());
 			out.flush();
 		}
 
@@ -123,7 +121,7 @@ public class Code04_BusStationsMinLevelNumbers {
 		head[fid] = eth;
 	}
 
-	public static void topoSort() {
+	public static int topoSort() {
 		int l = 0;
 		int r = 0;
 		for (int i = 1; i <= nth; i++) {
@@ -134,6 +132,7 @@ public class Code04_BusStationsMinLevelNumbers {
 				}
 			}
 		}
+		int ans = 0;
 		while (l < r) {
 			int cur = queue[l++];
 			ans = Math.max(ans, deep[cur]);
@@ -145,6 +144,7 @@ public class Code04_BusStationsMinLevelNumbers {
 				}
 			}
 		}
+		return ans;
 	}
 
 }
