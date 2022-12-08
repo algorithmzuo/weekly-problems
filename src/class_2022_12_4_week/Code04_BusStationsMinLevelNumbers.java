@@ -20,11 +20,11 @@ public class Code04_BusStationsMinLevelNumbers {
 	public static int[] stops = new int[maxn];
 	// 一段线段树范围的id编号
 	public static int[] id = new int[maxn << 2];
-	// 是否为单点
+	// id点是否为单点
 	public static boolean[] single = new boolean[maxn << 3];
-	// 点的入度
+	// id点的入度
 	public static int[] inDegree = new int[maxn << 3];
-	// 拓扑排序统计最大深度
+	// id点拓扑排序统计的最大深度
 	public static int[] deep = new int[maxn << 3];
 	// 链式前向星建图用
 	public static int[] head = new int[maxn << 3];
@@ -59,12 +59,12 @@ public class Code04_BusStationsMinLevelNumbers {
 				int curVirtual = ++nth;
 				// 虚点向停靠车站连边
 				for (int j = 0; j < k; j++) {
-					vLinkN(curVirtual, stops[j], 1, n, 1);
+					vLinkSingle(curVirtual, stops[j], 1, n, 1);
 				}
 				// 不停靠的连续车站向虚点连边
 				for (int j = 1; j < k; j++) {
 					if (stops[j] > stops[j - 1] + 1) {
-						nLinkV(stops[j - 1] + 1, stops[j] - 1, curVirtual, 1, n, 1);
+						rangeLinkV(stops[j - 1] + 1, stops[j] - 1, curVirtual, 1, n, 1);
 					}
 				}
 			}
@@ -87,29 +87,29 @@ public class Code04_BusStationsMinLevelNumbers {
 		}
 	}
 
-	public static void nLinkV(int L, int R, int vid, int l, int r, int rt) {
+	public static void rangeLinkV(int L, int R, int vid, int l, int r, int rt) {
 		if (L <= l && r <= R) {
 			addEdge(id[rt], vid);
 		} else {
 			int m = (l + r) / 2;
 			if (L <= m) {
-				nLinkV(L, R, vid, l, m, rt << 1);
+				rangeLinkV(L, R, vid, l, m, rt << 1);
 			}
 			if (R > m) {
-				nLinkV(L, R, vid, m + 1, r, rt << 1 | 1);
+				rangeLinkV(L, R, vid, m + 1, r, rt << 1 | 1);
 			}
 		}
 	}
 
-	public static void vLinkN(int vid, int single, int l, int r, int rt) {
+	public static void vLinkSingle(int vid, int single, int l, int r, int rt) {
 		if (l == r) {
 			addEdge(vid, id[rt]);
 		} else {
 			int m = (l + r) / 2;
 			if (single <= m) {
-				vLinkN(vid, single, l, m, rt << 1);
+				vLinkSingle(vid, single, l, m, rt << 1);
 			} else {
-				vLinkN(vid, single, m + 1, r, rt << 1 | 1);
+				vLinkSingle(vid, single, m + 1, r, rt << 1 | 1);
 			}
 		}
 	}
@@ -134,11 +134,11 @@ public class Code04_BusStationsMinLevelNumbers {
 		}
 		int ans = 0;
 		while (l < r) {
-			int cur = queue[l++];
-			ans = Math.max(ans, deep[cur]);
-			for (int ei = head[cur]; ei != 0; ei = next[ei]) {
-				int child = to[ei];
-				deep[child] = Math.max(deep[child], deep[cur] + (single[child] ? 1 : 0));
+			int curNode = queue[l++];
+			ans = Math.max(ans, deep[curNode]);
+			for (int edgeIndex = head[curNode]; edgeIndex != 0; edgeIndex = next[edgeIndex]) {
+				int child = to[edgeIndex];
+				deep[child] = Math.max(deep[child], deep[curNode] + (single[child] ? 1 : 0));
 				if (--inDegree[child] == 0) {
 					queue[r++] = child;
 				}
