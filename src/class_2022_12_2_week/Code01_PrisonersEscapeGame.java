@@ -1,4 +1,4 @@
-package class_2022_12_3_week;
+package class_2022_12_2_week;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,9 +1,9 @@
-package class_2022_12_2_week;
+package class_2022_12_3_week;
 
 import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.cn/problems/race-car/
-public class Code02_RaceCar {
+public class Code04_RaceCar {
 
 	// Dijkstra算法
 	public static int racecar1(int target) {

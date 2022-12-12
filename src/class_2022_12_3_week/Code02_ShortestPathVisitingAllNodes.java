@@ -2,7 +2,7 @@ package class_2022_12_3_week;
 
 // Floyd算法应用
 // 测试链接 : https://leetcode.cn/problems/shortest-path-visiting-all-nodes/
-public class Code03_ShortestPathVisitingAllNodes {
+public class Code02_ShortestPathVisitingAllNodes {
 
 	public static int shortestPathLength(int[][] graph) {
 		int n = graph.length;
