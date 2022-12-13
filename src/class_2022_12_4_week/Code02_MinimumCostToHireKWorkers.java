@@ -23,20 +23,20 @@ public class Code02_MinimumCostToHireKWorkers {
 			employees[i] = new Employee(wage[i], quality[i]);
 		}
 		Arrays.sort(employees, (a, b) -> a.loserDegree <= b.loserDegree ? -1 : 1);
-		PriorityQueue<Integer> qualityHeap = new PriorityQueue<Integer>((a, b) -> b - a);
+		PriorityQueue<Integer> minTops = new PriorityQueue<Integer>((a, b) -> b - a);
 		double ans = Double.MAX_VALUE;
 		for (int i = 0, qualitySum = 0; i < n; i++) {
 			int curQuality = employees[i].quality;
-			if (qualityHeap.size() < k) {
+			if (minTops.size() < k) {
 				qualitySum += curQuality;
-				qualityHeap.add(curQuality);
-				if (qualityHeap.size() == k) {
+				minTops.add(curQuality);
+				if (minTops.size() == k) {
 					ans = Math.min(ans, qualitySum * employees[i].loserDegree);
 				}
 			} else {
-				if (qualityHeap.peek() > curQuality) {
-					qualitySum += curQuality - qualityHeap.poll();
-					qualityHeap.add(curQuality);
+				if (minTops.peek() > curQuality) {
+					qualitySum += curQuality - minTops.poll();
+					minTops.add(curQuality);
 				}
 				ans = Math.min(ans, qualitySum * employees[i].loserDegree);
 			}
