@@ -50,6 +50,9 @@ public class Code02_OrderlyQueue {
 		}
 	}
 
+	// 如果字符串长度N，
+	// DC3算法搞定字符串所有后缀串字典序排名的时间复杂度O(N)
+	// 体系学习班有讲，有兴趣的同学可以看看
 	public static class DC3 {
 
 		public int[] sa;
