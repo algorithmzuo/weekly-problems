@@ -3,7 +3,7 @@ package class_2023_01_1_week;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/orderly-queue/
-public class Code02_OrderlyQueue {
+public class Code03_OrderlyQueue {
 
 	public static String orderlyQueue(String s, int k) {
 		if (k > 1) {

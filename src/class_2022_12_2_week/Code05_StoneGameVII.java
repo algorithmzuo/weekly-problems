@@ -1,5 +1,7 @@
 package class_2022_12_2_week;
 
+import java.util.Arrays;
+
 // 石子游戏中，爱丽丝和鲍勃轮流进行自己的回合，爱丽丝先开始 。
 // 有 n 块石子排成一排。
 // 每个玩家的回合中，可以从行中 移除 最左边的石头或最右边的石头，
@@ -11,7 +13,6 @@ package class_2022_12_2_week;
 // 测试链接 : https://leetcode.cn/problems/stone-game-vii/
 public class Code05_StoneGameVII {
 
-	// 暴力尝试版本，提交的时候请把名字改成stoneGameVII
 	// 会超时但是思路是对的，如果想通过就把这个暴力递归改成下面的动态规划
 	// 改法课上都讲了
 	public static int stoneGameVII1(int[] stones) {
@@ -46,7 +47,7 @@ public class Code05_StoneGameVII {
 		return (against1 - get1) > (against2 - get2) ? get1 : get2;
 	}
 
-	// 动态规划版，提交的时候请把名字改成stoneGameVII
+	// 动态规划版
 	public static int stoneGameVII2(int[] stones) {
 		int N = stones.length;
 		int[] presum = new int[N + 1];
@@ -67,6 +68,26 @@ public class Code05_StoneGameVII {
 			}
 		}
 		return Math.abs(dpf[0][N - 1] - dps[0][N - 1]);
+	}
+
+	// 另一种尝试 + static动态规划表 + 空间压缩 + 尽量优化
+	public static int[] dp = new int[1000];
+
+	public int stoneGameVII3(int[] s) {
+		int n = s.length;
+		Arrays.fill(dp, 0, n, 0);
+		if (n % 2 == 0) {
+			for (int i = 0; i < n; i++) {
+				dp[i] = s[i];
+			}
+		}
+		boolean alicePick = n % 2 == 0;
+		for (int len = 2; len <= n; len++, alicePick = !alicePick) {
+			for (int i = 0, j = len - 1; j < n; i++, j++) {
+				dp[i] = alicePick ? Math.max(dp[i], dp[i + 1]) : Math.min(dp[i] + s[j], s[i] + dp[i + 1]);
+			}
+		}
+		return dp[0];
 	}
 
 }
