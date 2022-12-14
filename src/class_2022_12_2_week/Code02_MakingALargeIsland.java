@@ -25,6 +25,8 @@ public class Code02_MakingALargeIsland {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (grid[i][j] > 1) {
+					// grid[i][j] = 4
+					// sizes[4]++
 					ans = Math.max(ans, ++sizes[grid[i][j]]);
 				}
 			}
