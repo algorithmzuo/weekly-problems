@@ -68,6 +68,7 @@ public class Code01_PrisonersEscapeGame {
 
 	// 公式计算得到的概率
 	// 请确保tryTimes大于等于people的一半
+	// 生还的方法数 : C(r,100) * (r-1)! * (100-r)!，r从51~100
 	public static double escape2(int people, int tryTimes) {
 		BigDecimal kill = new BigDecimal("0");
 		for (int maxCircle = tryTimes + 1; maxCircle <= people; maxCircle++) {

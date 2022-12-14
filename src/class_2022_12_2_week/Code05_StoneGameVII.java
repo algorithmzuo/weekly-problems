@@ -71,6 +71,8 @@ public class Code05_StoneGameVII {
 	}
 
 	// 另一种尝试 + static动态规划表 + 空间压缩 + 尽量优化
+	// dp[len][i] : 从i出发，当长度为len的情况下，Alice能比Bob多多少分？
+	// 要注意结算时机！这是这种尝试的核心！
 	public static int[] dp = new int[1000];
 
 	public int stoneGameVII3(int[] s) {
