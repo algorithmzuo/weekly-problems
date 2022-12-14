@@ -1,7 +1,5 @@
 package class_2022_12_2_week;
 
-import java.util.ArrayList;
-
 // 来自亚马逊、谷歌、微软、Facebook、Bloomberg
 // 给你一个大小为 n x n 二进制矩阵 grid 。最多 只能将一格 0 变成 1 。
 // 返回执行此操作后，grid 中最大的岛屿面积是多少？
@@ -12,17 +10,20 @@ public class Code02_MakingALargeIsland {
 	public static int largestIsland(int[][] grid) {
 		int n = grid.length;
 		int m = grid[0].length;
-		ArrayList<Integer> sizes = new ArrayList<>();
-		sizes.add(0);
-		sizes.add(0);
 		int id = 2;
-		int ans = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (grid[i][j] == 1) {
-					int curSize = infect(grid, i, j, id, n, m);
-					ans = Math.max(ans, curSize);
-					sizes.add(id++, curSize);
+					infect(grid, i, j, id++, n, m);
+				}
+			}
+		}
+		int[] sizes = new int[id];
+		int ans = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (grid[i][j] > 1) {
+					ans = Math.max(ans, ++sizes[grid[i][j]]);
 				}
 			}
 		}
@@ -34,18 +35,18 @@ public class Code02_MakingALargeIsland {
 					int down = i + 1 < n ? grid[i + 1][j] : 0;
 					int left = j - 1 >= 0 ? grid[i][j - 1] : 0;
 					int right = j + 1 < m ? grid[i][j + 1] : 0;
-					int merge = 1 + sizes.get(up);
+					int merge = 1 + sizes[up];
 					visited[up] = true;
 					if (!visited[down]) {
-						merge += sizes.get(down);
+						merge += sizes[down];
 						visited[down] = true;
 					}
 					if (!visited[left]) {
-						merge += sizes.get(left);
+						merge += sizes[left];
 						visited[left] = true;
 					}
 					if (!visited[right]) {
-						merge += sizes.get(right);
+						merge += sizes[right];
 						visited[right] = true;
 					}
 					ans = Math.max(ans, merge);
@@ -59,17 +60,15 @@ public class Code02_MakingALargeIsland {
 		return ans;
 	}
 
-	public static int infect(int[][] grid, int i, int j, int v, int n, int m) {
+	public static void infect(int[][] grid, int i, int j, int v, int n, int m) {
 		if (i < 0 || i == n || j < 0 || j == m || grid[i][j] != 1) {
-			return 0;
+			return;
 		}
-		int ans = 1;
 		grid[i][j] = v;
-		ans += infect(grid, i - 1, j, v, n, m);
-		ans += infect(grid, i + 1, j, v, n, m);
-		ans += infect(grid, i, j - 1, v, n, m);
-		ans += infect(grid, i, j + 1, v, n, m);
-		return ans;
+		infect(grid, i - 1, j, v, n, m);
+		infect(grid, i + 1, j, v, n, m);
+		infect(grid, i, j - 1, v, n, m);
+		infect(grid, i, j + 1, v, n, m);
 	}
 
 }
