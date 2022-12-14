@@ -18,6 +18,8 @@ public class Code02_MakingALargeIsland {
 				}
 			}
 		}
+		//     ? ? ?
+		// 0 1 2 3 4 9
 		int[] sizes = new int[id];
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
@@ -60,10 +62,15 @@ public class Code02_MakingALargeIsland {
 		return ans;
 	}
 
+	// grid
+	// (i,j) == 1 -> v 
+	// (i,j) != 1 -> return什么也不做！
+	// (i,j) 越界，return什么也不做！
 	public static void infect(int[][] grid, int i, int j, int v, int n, int m) {
 		if (i < 0 || i == n || j < 0 || j == m || grid[i][j] != 1) {
 			return;
 		}
+		// (i,j) 不越界，(i,j) == 1
 		grid[i][j] = v;
 		infect(grid, i - 1, j, v, n, m);
 		infect(grid, i + 1, j, v, n, m);

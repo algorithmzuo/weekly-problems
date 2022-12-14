@@ -15,6 +15,8 @@ import java.util.HashMap;
 public class Code03_CountUniqueCharactersOfAllSubstrings {
 
 	public static int uniqueLetterString(String s) {
+		// key : 某一种字符
+		// value : 出现这种字符依次的位置
 		HashMap<Character, ArrayList<Integer>> indies = new HashMap<>();
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);

@@ -11,7 +11,7 @@ import java.util.Arrays;
 // 给你一个整数数组 stones ，其中 stones[i] 表示 从左边开始 的第 i 个石头的值，
 // 如果爱丽丝和鲍勃都 发挥出最佳水平 ，请返回他们 得分的差值 。
 // 测试链接 : https://leetcode.cn/problems/stone-game-vii/
-public class Code05_StoneGameVII {
+public class Code04_StoneGameVII {
 
 	// 会超时但是思路是对的，如果想通过就把这个暴力递归改成下面的动态规划
 	// 改法课上都讲了
@@ -20,27 +20,36 @@ public class Code05_StoneGameVII {
 		for (int num : stones) {
 			sum += num;
 		}
-		int f = f(stones, sum, 0, stones.length - 1);
-		int s = s(stones, sum, 0, stones.length - 1);
-		return Math.abs(f - s);
+		int alice = f(stones, sum, 0, stones.length - 1);
+		int bob = s(stones, sum, 0, stones.length - 1);
+		return Math.abs(alice - bob);
 	}
 
+	// 先手
 	public static int f(int[] stones, int sum, int L, int R) {
-		if (L == R) {
+		if (L == R) { // 只能一块儿了！
 			return 0;
 		}
-		int get1 = sum - stones[L] + s(stones, sum - stones[L], L + 1, R);
+		// p1
+		// L
+		int p1 = sum - stones[L] + s(stones, sum - stones[L], L + 1, R);
 		int against1 = f(stones, sum - stones[L], L + 1, R);
-		int get2 = sum - stones[R] + s(stones, sum - stones[R], L, R - 1);
+		//          p2
+		//          R
+		int p2 = sum - stones[R] + s(stones, sum - stones[R], L, R - 1);
 		int against2 = f(stones, sum - stones[R], L, R - 1);
-		return (get1 - against1) > (get2 - against2) ? get1 : get2;
+		return (p1 - against1) > (p2 - against2) ? p1 : p2;
 	}
 
+	// 后手！
 	public static int s(int[] stones, int sum, int L, int R) {
 		if (L == R) {
 			return 0;
 		}
+		// 当前的是后手
+		// 对手，先手！
 		int against1 = sum - stones[L] + s(stones, sum - stones[L], L + 1, R);
+		// 当前用户的得分！后手！是对手决定的！
 		int get1 = f(stones, sum - stones[L], L + 1, R);
 		int against2 = sum - stones[R] + s(stones, sum - stones[R], L, R - 1);
 		int get2 = f(stones, sum - stones[R], L, R - 1);
@@ -75,6 +84,7 @@ public class Code05_StoneGameVII {
 	// 要注意结算时机！这是这种尝试的核心！
 	public static int[] dp = new int[1000];
 
+	// 时间复杂度和刚才讲的一样！
 	public int stoneGameVII3(int[] s) {
 		int n = s.length;
 		Arrays.fill(dp, 0, n, 0);

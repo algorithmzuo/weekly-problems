@@ -9,7 +9,7 @@ package class_2022_12_2_week;
 // 最优解是KMP算法来解
 // 官方题解都没有写的最优解
 // 如果二叉树节点数是N，链表节点数M，时间复杂度为O(M+N)
-public class Code04_LinkedListInBinaryTree {
+public class Code05_LinkedListInBinaryTree {
 
 	// 不提交这个类
 	public class ListNode {
@@ -67,6 +67,9 @@ public class Code04_LinkedListInBinaryTree {
 		return next;
 	}
 
+	// 当前目标串 -> TreeNode cur 这个字符
+	// 一个叫match串，match，mi位置的字符
+	// 返回cur后续的路能不能把match串配完！
 	public static boolean find(TreeNode cur, int mi, int[] match, int[] next) {
 		if (mi == match.length) {
 			return true;
@@ -74,9 +77,13 @@ public class Code04_LinkedListInBinaryTree {
 		if (cur == null) {
 			return false;
 		}
+		// 当前目标串的字符 :  cur.val
+		// 当前match串的字符 : match[mi]
 		while (mi >= 0 && cur.val != match[mi]) {
 			mi = next[mi];
 		}
+		// 后续的字符，先走左，配去！
+		// 后续的字符，分裂可能性了！走右，配去！
 		return find(cur.left, mi + 1, match, next) || find(cur.right, mi + 1, match, next);
 	}
 
