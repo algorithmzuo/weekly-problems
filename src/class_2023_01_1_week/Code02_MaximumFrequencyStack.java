@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 // 测试链接 : https://leetcode.cn/problems/maximum-frequency-stack/
-public class Code04_MaximumFrequencyStack {
+public class Code02_MaximumFrequencyStack {
 
 	class FreqStack {
 
 		private int topTimes;
-
 		private HashMap<Integer, ArrayList<Integer>> cntValues = new HashMap<>();
-
 		private HashMap<Integer, Integer> valueTopTime = new HashMap<>();
 
 		public void push(int val) {

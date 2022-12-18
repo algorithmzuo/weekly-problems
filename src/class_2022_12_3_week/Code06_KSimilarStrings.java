@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.cn/problems/k-similar-strings/
-public class Code05_KSimilarStrings {
+public class Code06_KSimilarStrings {
 
 	public static int len;
 

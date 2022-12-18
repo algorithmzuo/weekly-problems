@@ -1,4 +1,4 @@
-package class_2023_01_1_week;
+package class_2022_12_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/kth-missing-positive-number/
 public class Code01_KthMissingPositiveNumber {

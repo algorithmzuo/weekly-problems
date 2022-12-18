@@ -12,7 +12,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code01_ClearAndPresentDanger {
+public class Code02_ClearAndPresentDanger {
 
 	public static int N = 100;
 	public static int M = 10000;
