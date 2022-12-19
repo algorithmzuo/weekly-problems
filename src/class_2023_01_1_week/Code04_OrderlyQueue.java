@@ -6,7 +6,7 @@ import java.util.Arrays;
 // 并把它加到字符串的末尾
 // 返回 在应用上述步骤的任意数量的移动后，字典上最小的字符串
 // 测试链接 : https://leetcode.cn/problems/orderly-queue/
-public class Code03_OrderlyQueue {
+public class Code04_OrderlyQueue {
 
 	public static String orderlyQueue(String s, int k) {
 		if (k > 1) {

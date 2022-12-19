@@ -1,7 +1,7 @@
 package class_2023_01_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/valid-permutations-for-di-sequence/
-public class Code04_ValidPermutationsForDiSequence {
+public class Code05_ValidPermutationsForDiSequence {
 
 	public static int numPermsDISequence1(String s) {
 		return ways1(s.toCharArray(), 0, s.length() + 1, s.length() + 1);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 // 测试链接 : https://leetcode.cn/problems/maximum-frequency-stack/
-public class Code02_MaximumFrequencyStack {
+public class Code03_MaximumFrequencyStack {
 
 	class FreqStack {
 

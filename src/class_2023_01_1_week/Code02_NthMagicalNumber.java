@@ -1,7 +1,7 @@
 package class_2023_01_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/nth-magical-number/
-public class Code01_NthMagicalNumber {
+public class Code02_NthMagicalNumber {
 
 	public static int nthMagicalNumber(int n, int a, int b) {
 		long lcm = (long)a / gcd(a, b) * b;
