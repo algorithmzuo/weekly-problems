@@ -1,4 +1,4 @@
-package class_2023_01_1_week;
+package class_2023_01_2_week;
 
 import java.util.ArrayList;
 import java.util.HashMap;

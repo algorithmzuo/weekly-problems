@@ -1,4 +1,4 @@
-package class_2022_12_3_week;
+package class_2022_12_4_week;
 
 // Floyd算法应用
 // 测试链接 : https://leetcode.cn/problems/shortest-path-visiting-all-nodes/

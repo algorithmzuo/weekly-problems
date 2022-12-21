@@ -1,4 +1,4 @@
-package class_2022_12_4_week;
+package class_2023_01_1_week;
 
 // 线段树建边
 // 测试链接 : https://www.luogu.com.cn/problem/P1983

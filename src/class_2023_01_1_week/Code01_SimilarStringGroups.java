@@ -1,4 +1,4 @@
-package class_2022_12_4_week;
+package class_2023_01_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/similar-string-groups/
 public class Code01_SimilarStringGroups {
