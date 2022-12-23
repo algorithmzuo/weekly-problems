@@ -26,25 +26,21 @@ public class Code03_FourKindsPaperQueryWays {
 	}
 
 	public static long query() {
-		long ans = dp[s];
+		long minus = 0;
 		for (int status = 1; status <= 15; status++) {
 			long t = s;
-			boolean add = true;
+			int sign = -1;
 			for (int j = 0; j <= 3; j++) {
 				if (((status >> j) & 1) == 1) {
 					t -= c[j] * (d[j] + 1);
-					add = !add;
+					sign = -sign;
 				}
 			}
 			if (t >= 0) {
-				if (add) {
-					ans += dp[(int) t];
-				} else {
-					ans -= dp[(int) t];
-				}
+				minus += dp[(int) t] * sign;
 			}
 		}
-		return ans;
+		return dp[s] - minus;
 	}
 
 	public static void main(String[] args) throws IOException {
