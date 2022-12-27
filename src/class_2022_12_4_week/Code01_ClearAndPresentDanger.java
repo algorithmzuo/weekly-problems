@@ -18,15 +18,16 @@ public class Code01_ClearAndPresentDanger {
 	public static int M = 10000;
 	public static int[] path = new int[M];
 	public static int[][] distance = new int[N][N];
+	public static int n, m, ans;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StreamTokenizer in = new StreamTokenizer(br);
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 		while (in.nextToken() != StreamTokenizer.TT_EOF) {
-			int n = (int) in.nval;
+			n = (int) in.nval;
 			in.nextToken();
-			int m = (int) in.nval;
+			m = (int) in.nval;
 			for (int i = 0; i < m; i++) {
 				in.nextToken();
 				path[i] = (int) in.nval - 1;
@@ -37,8 +38,8 @@ public class Code01_ClearAndPresentDanger {
 					distance[i][j] = (int) in.nval;
 				}
 			}
-			floyd(n);
-			int ans = 0;
+			floyd();
+			ans = 0;
 			for (int i = 1; i < m; i++) {
 				ans += distance[path[i - 1]][path[i]];
 			}
@@ -48,7 +49,7 @@ public class Code01_ClearAndPresentDanger {
 
 	}
 
-	public static void floyd(int n) {
+	public static void floyd() {
 		// O(N^3)的过程
 		// 枚举每个跳板
 		// 注意! 跳板要最先枚举，然后是from和to
