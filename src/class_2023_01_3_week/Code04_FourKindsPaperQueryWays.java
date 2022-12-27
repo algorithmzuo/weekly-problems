@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code03_FourKindsPaperQueryWays {
+public class Code04_FourKindsPaperQueryWays {
 
 	public static int limit = 100000;
 	public static long[] dp = new long[limit + 1];

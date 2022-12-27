@@ -1,7 +1,7 @@
 package class_2023_01_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-music-playlists/
-public class Code04_NumberOfMusicPlaylists {
+public class Code05_NumberOfMusicPlaylists {
 
 	public static int mod = 1000000007;
 
