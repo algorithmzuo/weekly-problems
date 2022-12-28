@@ -60,7 +60,18 @@ public class Code03_ShortestPathVisitingAllNodes {
 		return distance;
 	}
 
+	// status : 所有已经走过点的状态
+	// 0 1 2 3 4 5 
+	// int 
+	//        5 4 3 2 1 0
+	//        0 0 1 1 0 1
+	// cur : 当前所在哪个城市！
+	// n : 一共有几座城
+	// 返回值 : 从此时开始，逛掉所有的城市，至少还要走的路，返回！
 	public static int process(int status, int cur, int n, int[][] distance, int[][] dp) {
+		// 5 4 3 2 1 0
+		// 1 1 1 1 1 1
+		// 1 << 6 - 1
 		if (status == (1 << n) - 1) {
 			return 0;
 		}
@@ -68,6 +79,11 @@ public class Code03_ShortestPathVisitingAllNodes {
 			return dp[status][cur];
 		}
 		int ans = Integer.MAX_VALUE;
+		// status:
+		// 5 4 3 2 1 0
+		// 0 0 1 0 1 1
+		// cur : 0
+		// next : 2 4 5
 		for (int next = 0; next < n; next++) {
 			if ((status & (1 << next)) == 0 && distance[cur][next] != Integer.MAX_VALUE) {
 				int nextAns = process(status | (1 << next), next, n, distance, dp);

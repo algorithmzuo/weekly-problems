@@ -10,10 +10,10 @@ import java.util.PriorityQueue;
 public class Code06_KSimilarStrings {
 
 	public static class Node {
-		public int cost;
-		public int guess;
-		public int where;
-		public String str;
+		public int cost; // 代价，已经换了几回了！
+		public int guess;// 猜测还要换几回，能变对！
+		public int where;// 有必须去比对的下标，左边不再换了！
+		public String str; // 当前的字符
 
 		public Node(int r, int g, int i, String s) {
 			cost = r;

@@ -14,6 +14,7 @@ public class Code01_StampingTheGrid {
 	public static boolean possibleToStamp(int[][] grid, int h, int w) {
 		int n = grid.length;
 		int m = grid[0].length;
+		// 左上累加和矩阵
 		int[][] sum = new int[n + 1][m + 1];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
@@ -52,6 +53,9 @@ public class Code01_StampingTheGrid {
 		return sum[c][d] - sum[c][b - 1] - sum[a - 1][d] + sum[a - 1][b - 1] == 0;
 	}
 
+	// (3,4) (8,9)
+	// 3,4 +1
+	
 	public static void set(int[][] diff, int a, int b, int c, int d) {
 		diff[a][b] += 1;
 		diff[c + 1][d + 1] += 1;

@@ -53,9 +53,9 @@ public class Code02_ClearAndPresentDanger {
 		// O(N^3)的过程
 		// 枚举每个跳板
 		// 注意! 跳板要最先枚举，然后是from和to
-		for (int jump = 0; jump < n; jump++) {
-			for (int from = 0; from < n; from++) {
-				for (int to = 0; to < n; to++) {
+		for (int jump = 0; jump < n; jump++) { // 中途！
+			for (int from = 0; from < n; from++) { // from
+				for (int to = 0; to < n; to++) { // to
 					if (distance[from][jump] != Integer.MAX_VALUE && distance[jump][to] != Integer.MAX_VALUE
 							&& distance[from][to] > distance[from][jump] + distance[jump][to]) {
 						distance[from][to] = distance[from][jump] + distance[jump][to];
