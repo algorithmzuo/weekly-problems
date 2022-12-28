@@ -37,8 +37,8 @@ public class Code02_MinimumCostToHireKWorkers {
 				if (minTops.peek() > curQuality) {
 					qualitySum += curQuality - minTops.poll();
 					minTops.add(curQuality);
+					ans = Math.min(ans, qualitySum * employees[i].rubbishDegree);
 				}
-				ans = Math.min(ans, qualitySum * employees[i].rubbishDegree);
 			}
 		}
 		return ans;
