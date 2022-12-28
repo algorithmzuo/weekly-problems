@@ -14,7 +14,6 @@ import java.util.PriorityQueue;
 // 测试链接 : https://leetcode.cn/problems/minimum-number-of-refueling-stops/
 public class Code03_MinimumNumberOfRefuelingStops {
 
-	// 原问题，提交可以直接通过
 	public static int minRefuelStops(int target, int startFuel, int[][] stations) {
 		if (startFuel >= target) {
 			return 0;
