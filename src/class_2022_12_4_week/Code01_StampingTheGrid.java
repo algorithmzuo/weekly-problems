@@ -1,7 +1,7 @@
-package class_2023_01_3_week;
+package class_2022_12_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/stamping-the-grid/
-public class Code02_StampingTheGrid {
+public class Code01_StampingTheGrid {
 
 	public static boolean possibleToStamp(int[][] grid, int h, int w) {
 		int n = grid.length;

@@ -7,7 +7,7 @@ package class_2022_12_4_week;
 // 返回能够访问所有节点的最短路径的长度
 // 你可以在任一节点开始和停止，也可以多次重访节点，并且可以重用边
 // 测试链接 : https://leetcode.cn/problems/shortest-path-visiting-all-nodes/
-public class Code02_ShortestPathVisitingAllNodes {
+public class Code03_ShortestPathVisitingAllNodes {
 
 	public static int shortestPathLength(int[][] graph) {
 		int n = graph.length;

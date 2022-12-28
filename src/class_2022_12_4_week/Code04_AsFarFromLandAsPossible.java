@@ -7,7 +7,7 @@ package class_2022_12_4_week;
 // 我们这里说的距离是「曼哈顿距离」（ Manhattan Distance）：
 // (x0, y0) 和 (x1, y1) 这两个单元格之间的距离是 |x0 - x1| + |y0 - y1| 。
 // 测试链接 : https://leetcode.cn/problems/as-far-from-land-as-possible/
-public class Code03_AsFarFromLandAsPossible {
+public class Code04_AsFarFromLandAsPossible {
 
 	// 队列接受一个东西，比如(i,j)，就加到r位置
 	// queue[r][0] = i

@@ -16,7 +16,7 @@ import java.util.PriorityQueue;
 // 速度变化为 1 --> 2 --> 4 --> -1
 // 给你一个目标位置 target ，返回能到达目标位置的最短指令序列的长度。
 // 测试链接 : https://leetcode.cn/problems/race-car/
-public class Code04_RaceCar {
+public class Code05_RaceCar {
 
 	// Dijkstra算法
 	public static int racecar1(int target) {
