@@ -17,6 +17,7 @@ package class_2022_08_4_week;
 // D居民和E居民之间，假设有一条路
 // 那么D居民可以接上A、B、C，4个人可以用一辆车，去往E的话，就再耗费1的汽油
 // 求所有居民去办公室的路上，最少耗费多少汽油
+// 测试链接 : https://leetcode.cn/problems/minimum-fuel-cost-to-report-to-the-capital/
 import java.util.ArrayList;
 
 public class Code05_TravelMinFuel {
@@ -70,16 +71,36 @@ public class Code05_TravelMinFuel {
 		}
 	}
 
-	public static void main(String[] args) {
-		int[] a1 = { 0, 1, 1 };
-		int[] b1 = { 1, 2, 3 };
-		int n1 = 3;
-		System.out.println(minFuel(a1, b1, n1));
+	// 找到了这个题的在线测试链接 :
+	// https://leetcode.cn/problems/minimum-fuel-cost-to-report-to-the-capital/
+	// 如下方法提交了可以直接通过
+	public static long minimumFuelCost(int[][] roads, int seats) {
+		int n = roads.length;
+		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+		for (int i = 0; i <= n; i++) {
+			graph.add(new ArrayList<>());
+		}
+		for (int[] r : roads) {
+			graph.get(r[0]).add(r[1]);
+			graph.get(r[1]).add(r[0]);
+		}
+		int[] size = new int[n + 1];
+		long[] cost = new long[n + 1];
+		dfs(0, -1, seats, graph, size, cost);
+		return cost[0];
+	}
 
-		int[] a2 = { 1, 1, 1, 9, 9, 9, 9, 7, 8 };
-		int[] b2 = { 2, 0, 3, 1, 6, 5, 4, 0, 0 };
-		int n2 = 9;
-		System.out.println(minFuel(a2, b2, n2));
+	public static void dfs(int cur, int father, int seats, ArrayList<ArrayList<Integer>> graph, int[] size,
+			long[] cost) {
+		size[cur] = 1;
+		for (int next : graph.get(cur)) {
+			if (next != father) {
+				dfs(next, cur, seats, graph, size, cost);
+				size[cur] += size[next];
+				cost[cur] += cost[next];
+				cost[cur] += (size[next] + seats - 1) / seats;
+			}
+		}
 	}
 
 }
