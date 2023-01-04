@@ -1,4 +1,4 @@
-package class_2023_01_3_week;
+package class_2023_02_1_week;
 
 // 测试链接 : https://www.luogu.com.cn/problem/P1450
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-package class_2023_01_3_week;
+package class_2023_02_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/super-palindromes/
 public class Code03_SuperPalindromes {
