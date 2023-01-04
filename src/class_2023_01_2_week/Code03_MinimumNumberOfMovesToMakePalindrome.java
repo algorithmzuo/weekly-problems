@@ -19,16 +19,6 @@ public class Code03_MinimumNumberOfMovesToMakePalindrome {
 			int c = s.charAt(i) - 'a';
 			indies.get(c).add(j);
 		}
-		boolean findOdd = false;
-		for (int c = 0; c < 26; c++) {
-			if ((indies.get(c).size() & 1) == 1) {
-				if (findOdd) {
-					return -1;
-				} else {
-					findOdd = true;
-				}
-			}
-		}
 		int[] arr = new int[n + 1];
 		IndexTree it = new IndexTree(n);
 		for (int i = 0, l = 1; i < n; i++, l++) {
