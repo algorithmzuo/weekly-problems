@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/stamping-the-sequence/
-public class Code03_StampingTheSequence {
+public class Code02_StampingTheSequence {
 
 	public static int[] movesToStamp(String stamp, String target) {
 		char[] s = stamp.toCharArray();

@@ -1,7 +1,15 @@
 package class_2023_01_2_week;
 
-// 线段树建边
+// 一条单向的铁路线上，火车站编号为1~n
+// 每个火车站都有一个级别，最低为 1 级。
+// 现有若干趟车次在这条线路上行驶，
+// 每一趟都满足如下要求：
+// 如果这趟车次停靠了火车站 x，则始发站、终点站之间所有级别大于等于火车站x的都必须停靠。
+//（注意：起始站和终点站自然也算作事先已知需要停靠的站点）
+// 现有 m 趟车次的运行情况（全部满足要求），
+// 试推算这n个火车站至少分为几个不同的级别。
 // 测试链接 : https://www.luogu.com.cn/problem/P1983
+// 线段树建边
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
 // 提交如下方法，把主类名改成Main，可以直接通过
@@ -13,7 +21,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code04_BusStationsMinLevelNumbers {
+public class Code05_BusStationsMinLevelNumbers {
 
 	public static final int maxn = 100001;
 	// 停靠车站
