@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code05_BusStationsMinLevelNumbers {
+public class Code04_BusStationsMinLevelNumbers {
 
 	public static final int maxn = 100001;
 	// 停靠车站
