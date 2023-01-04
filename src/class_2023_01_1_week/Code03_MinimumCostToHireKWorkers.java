@@ -29,19 +29,30 @@ public class Code03_MinimumCostToHireKWorkers {
 		for (int i = 0; i < n; i++) {
 			employees[i] = new Employee(wage[i], quality[i]);
 		}
+		// 只根据垃圾指数排序
+		// 要价 / 能力
 		Arrays.sort(employees, (a, b) -> a.rubbishDegree <= b.rubbishDegree ? -1 : 1);
+		// 请维持力量最小的前K个力量
+		// 大根堆！门槛堆！
 		PriorityQueue<Integer> minTops = new PriorityQueue<Integer>((a, b) -> b - a);
 		double ans = Double.MAX_VALUE;
 		for (int i = 0, qualitySum = 0; i < n; i++) {
+			// i : 依次所有员工的下标
+			// qualitySum : 进入堆的力量总和！
+			// curQuality当前能力
 			int curQuality = employees[i].quality;
-			if (minTops.size() < k) {
+			if (minTops.size() < k) { // 堆没满
 				qualitySum += curQuality;
 				minTops.add(curQuality);
 				if (minTops.size() == k) {
 					ans = Math.min(ans, qualitySum * employees[i].rubbishDegree);
 				}
-			} else {
+			} else { // 来到当前员工的时候，堆是满的！
+				// 当前员工的能力，可以把堆顶干掉，自己进来！
 				if (minTops.peek() > curQuality) {
+//					qualitySum -= minTops.poll();
+//					qualitySum += curQuality;
+//					minTops.add(curQuality);
 					qualitySum += curQuality - minTops.poll();
 					minTops.add(curQuality);
 					ans = Math.min(ans, qualitySum * employees[i].rubbishDegree);

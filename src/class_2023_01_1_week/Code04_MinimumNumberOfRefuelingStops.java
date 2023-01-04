@@ -14,11 +14,16 @@ import java.util.PriorityQueue;
 // 测试链接 : https://leetcode.cn/problems/minimum-number-of-refueling-stops/
 public class Code04_MinimumNumberOfRefuelingStops {
 
+	// station里，英里数一定递增！
 	public static int minRefuelStops(int target, int startFuel, int[][] stations) {
 		if (startFuel >= target) {
 			return 0;
 		}
+		// 大根堆
+		// 维持的是：最值得加油的加油站，有多少油
+		// 最值得：加得次数少，跑的还最远
 		PriorityQueue<Integer> heap = new PriorityQueue<>((a, b) -> b - a);
+		// 当前车里的油，能达到的位置
 		int to = startFuel;
 		int cnt = 0;
 		for (int[] station : stations) {
@@ -38,6 +43,8 @@ public class Code04_MinimumNumberOfRefuelingStops {
 			}
 			heap.add(fuel);
 		}
+		// 最后一个加油站的位置，都达到了
+		// 但还没有到target
 		while (!heap.isEmpty()) {
 			to += heap.poll();
 			cnt++;
