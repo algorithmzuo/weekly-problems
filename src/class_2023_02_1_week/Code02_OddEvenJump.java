@@ -1,9 +1,9 @@
-package class_2023_02_2_week;
+package class_2023_02_1_week;
 
 import java.util.TreeMap;
 
 // 测试链接 : https://leetcode.cn/problems/odd-even-jump/
-public class Code05_OddEvenJump {
+public class Code02_OddEvenJump {
 
 	public static int oddEvenJumps(int[] arr) {
 		int n = arr.length;

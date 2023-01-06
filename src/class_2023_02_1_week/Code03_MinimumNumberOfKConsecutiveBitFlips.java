@@ -1,4 +1,4 @@
-package class_2023_02_2_week;
+package class_2023_02_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/
 public class Code03_MinimumNumberOfKConsecutiveBitFlips {
