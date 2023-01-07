@@ -3,7 +3,6 @@ package class_2023_02_2_week;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.cn/problems/vertical-order-traversal-of-a-binary-tree/
 public class Code01_VerticalOrderTraversalOfBinaryTree {
@@ -32,11 +31,11 @@ public class Code01_VerticalOrderTraversalOfBinaryTree {
 
 		@Override
 		public int compare(Info o1, Info o2) {
-			if (o1.row != o2.row) {
-				return o1.row - o2.row;
-			}
 			if (o1.col != o2.col) {
 				return o1.col - o2.col;
+			}
+			if (o1.row != o2.row) {
+				return o1.row - o2.row;
 			}
 			return o1.val - o2.val;
 		}
@@ -44,32 +43,31 @@ public class Code01_VerticalOrderTraversalOfBinaryTree {
 	}
 
 	public static List<List<Integer>> verticalTraversal(TreeNode root) {
-		PriorityQueue<Info> heap = new PriorityQueue<>(new InfoComparator());
+		ArrayList<Info> collects = new ArrayList<>();
 		Info rootInfo = new Info(0, 0, root.val);
-		heap.add(rootInfo);
-		dfs(root, rootInfo, heap);
+		collects.add(rootInfo);
+		dfs(root, rootInfo, collects);
 		List<List<Integer>> ans = new ArrayList<>();
-		while (!heap.isEmpty()) {
-			List<Integer> curLevel = new ArrayList<>();
-			Info curFirst = heap.peek();
-			while (!heap.isEmpty() && heap.peek().row == curFirst.row) {
-				curLevel.add(heap.poll().val);
+		collects.sort(new InfoComparator());
+		for (int i = 0; i < collects.size(); i++) {
+			if (i == 0 || collects.get(i - 1).col != collects.get(i).col) {
+				ans.add(new ArrayList<>());
 			}
-			ans.add(curLevel);
+			ans.get(ans.size() - 1).add(collects.get(i).val);
 		}
 		return ans;
 	}
 
-	public static void dfs(TreeNode root, Info rootInfo, PriorityQueue<Info> heap) {
+	public static void dfs(TreeNode root, Info rootInfo, ArrayList<Info> collects) {
 		if (root.left != null) {
-			Info leftInfo = new Info(rootInfo.row - 1, rootInfo.col + 1, root.left.val);
-			heap.add(leftInfo);
-			dfs(root.left, leftInfo, heap);
+			Info leftInfo = new Info(rootInfo.row + 1, rootInfo.col - 1, root.left.val);
+			collects.add(leftInfo);
+			dfs(root.left, leftInfo, collects);
 		}
 		if (root.right != null) {
 			Info rightInfo = new Info(rootInfo.row + 1, rootInfo.col + 1, root.right.val);
-			heap.add(rightInfo);
-			dfs(root.right, rightInfo, heap);
+			collects.add(rightInfo);
+			dfs(root.right, rightInfo, collects);
 		}
 	}
 
