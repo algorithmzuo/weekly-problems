@@ -1,4 +1,4 @@
-package class_2023_01_2_week;
+package class_2023_02_2_week;
 
 // 来自网易
 // 题目出处 : https://leetcode-cn.com/circle/discuss/uOnnUA/
