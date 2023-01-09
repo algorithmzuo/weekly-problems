@@ -17,16 +17,14 @@ public class Code01_ChairmanTree {
 
 	public static int MAXN = 200010;
 
+	// 输入数据相关
 	public static int[] origin = new int[MAXN];
-
 	public static int[] sorted = new int[MAXN];
-
 	public static int[] root = new int[MAXN];
 
+	// 建树相关
 	public static int[] left = new int[MAXN << 5];
-
 	public static int[] right = new int[MAXN << 5];
-
 	public static int[] sum = new int[MAXN << 5];
 
 	public static int cnt, n, m;
