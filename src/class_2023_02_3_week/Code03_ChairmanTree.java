@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code02_ChairmanTree {
+public class Code03_ChairmanTree {
 
 	public static int MAXN = 200010;
 
