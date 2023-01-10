@@ -33,7 +33,7 @@ public class Code01_ValidArrangementOfPairs {
 		ArrayList<int[]> record = new ArrayList<>();
 		dfs(from != null ? from : any, nexts, record);
 		int[][] ans = new int[record.size()][2];
-		for (int i = 0, j = record.size() - 1; i < record.size(); i++, j--) {
+		for (int i = 0, j = record.size() - 1; j >= 0; i++, j--) {
 			ans[j][0] = record.get(i)[0];
 			ans[j][1] = record.get(i)[1];
 		}
