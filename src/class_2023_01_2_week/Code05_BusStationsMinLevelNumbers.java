@@ -33,7 +33,7 @@ public class Code05_BusStationsMinLevelNumbers {
 	// id点的入度
 	public static int[] inDegree = new int[maxn << 3];
 	// id点拓扑排序统计的最大深度(只算路径上的单点数量)
-	public static int[] onlySingledeep = new int[maxn << 3];
+	public static int[] singleDeep = new int[maxn << 3];
 	// 链式前向星建图用
 	public static int[] head = new int[maxn << 3];
 	public static int[] to = new int[maxn << 3];
@@ -55,7 +55,7 @@ public class Code05_BusStationsMinLevelNumbers {
 			eth = 0;
 			Arrays.fill(single, 0, (n << 2) + m + 1, false);
 			Arrays.fill(inDegree, 0, (n << 2) + m + 1, 0);
-			Arrays.fill(onlySingledeep, 0, (n << 2) + m + 1, 0);
+			Arrays.fill(singleDeep, 0, (n << 2) + m + 1, 0);
 			build(1, n, 1);
 			for (int i = 0; i < m; i++) {
 				in.nextToken();
@@ -136,18 +136,17 @@ public class Code05_BusStationsMinLevelNumbers {
 			if (inDegree[i] == 0) {
 				queue[r++] = i;
 				if (single[i]) {
-					onlySingledeep[i] = 1;
+					singleDeep[i] = 1;
 				}
 			}
 		}
 		int ans = 0;
 		while (l < r) {
 			int curNode = queue[l++];
-			ans = Math.max(ans, onlySingledeep[curNode]);
+			ans = Math.max(ans, singleDeep[curNode]);
 			for (int edgeIndex = head[curNode]; edgeIndex != 0; edgeIndex = next[edgeIndex]) {
 				int child = to[edgeIndex];
-				onlySingledeep[child] = Math.max(onlySingledeep[child],
-						onlySingledeep[curNode] + (single[child] ? 1 : 0));
+				singleDeep[child] = Math.max(singleDeep[child], singleDeep[curNode] + (single[child] ? 1 : 0));
 				if (--inDegree[child] == 0) {
 					queue[r++] = child;
 				}
