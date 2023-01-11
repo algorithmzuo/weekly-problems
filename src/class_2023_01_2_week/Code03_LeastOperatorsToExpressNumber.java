@@ -29,9 +29,11 @@ public class Code03_LeastOperatorsToExpressNumber {
 			if (target == 1) {
 				ans = cost(i);
 			} else {
-				int t = target / x;
-				int r = target % x;
-				ans = Math.min(r * cost(i) + dp(i + 1, t, x, dp), (x - r) * cost(i) + dp(i + 1, t + 1, x, dp));
+				int div = target / x;
+				int mod = target % x;
+				int p1 = mod * cost(i) + dp(i + 1, div, x, dp);
+				int p2 = (x - mod) * cost(i) + dp(i + 1, div + 1, x, dp);
+				ans = Math.min(p1, p2);
 			}
 		}
 		if (!dp.containsKey(i)) {
@@ -42,7 +44,7 @@ public class Code03_LeastOperatorsToExpressNumber {
 	}
 
 	public static int cost(int x) {
-		return x > 0 ? x : 2;
+		return x == 0 ? 2 : x;
 	}
 
 }
