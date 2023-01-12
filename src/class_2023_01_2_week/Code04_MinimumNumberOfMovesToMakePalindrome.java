@@ -12,23 +12,38 @@ public class Code04_MinimumNumberOfMovesToMakePalindrome {
 	public static int minMovesToMakePalindrome(String s) {
 		int n = s.length();
 		ArrayList<ArrayList<Integer>> indies = new ArrayList<>();
+		// a -> 0 -> 含有a的所有位置{...}
+		// b -> 1 -> 含有b的所有位置{...}
 		for (int i = 0; i < 26; i++) {
 			indies.add(new ArrayList<>());
 		}
+		// AABAA...
+		// 12345
+		// A -> 0 : {1 2 4 5}
+		// B -> 1 : {3... }
 		for (int i = 0, j = 1; i < n; i++, j++) {
 			int c = s.charAt(i) - 'a';
 			indies.get(c).add(j);
 		}
+		// 原始下标 -> 该去往的下标 存在arr中
 		int[] arr = new int[n + 1];
+		// 建立好indexTree，初始时，下标1~n上认为全是1
 		IndexTree it = new IndexTree(n);
 		for (int i = 0, l = 1; i < n; i++, l++) {
+			// i -> 拿字符 从下标0开始
+			// l -> 从下标1开始
+			// arr[l] != 0
+			// 当前的l，曾经作为姘头之一的右侧，之前填过了！
 			if (arr[l] == 0) {
 				int c = s.charAt(i) - 'a';
+				// l......r
 				int r = indies.get(c).remove(indies.get(c).size() - 1);
 				if (l == r) {
 					arr[l] = (1 + n) / 2;
 					it.add(l, -1);
 				} else {
+					// l != r
+					// l -> 左边的序号！ 0...l累加和！
 					int kth = it.sum(l);
 					arr[l] = kth;
 					arr[r] = n - kth + 1;

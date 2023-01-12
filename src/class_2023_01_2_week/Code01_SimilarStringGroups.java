@@ -18,6 +18,7 @@ public class Code01_SimilarStringGroups {
 		UnionFind uf = new UnionFind(n);
 		for (int i = 0; i < n; i++) {
 			for (int j = i + 1; j < n; j++) {
+				// [i] [j]
 				if (uf.find(i) != uf.find(j)) {
 					int diff = 0;
 					for (int k = 0; k < m && diff < 3; k++) {

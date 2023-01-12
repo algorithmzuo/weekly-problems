@@ -24,12 +24,23 @@ import java.util.Arrays;
 public class Code05_BusStationsMinLevelNumbers {
 
 	public static final int maxn = 100001;
+	// 1 500 600 1000
+	// stops[1,500,600,1000]
 	// 停靠车站
 	public static int[] stops = new int[maxn];
 	// 一段线段树范围的id编号
+	// id[rt] = x，rt背后的范围这一段，给它的点编号是x
+	// rt -> 线段树的某个范围的固有属性，l~r,rt
 	public static int[] id = new int[maxn << 2];
+	
+	
+	
 	// id点是否为单点
+	// a 单点 范围 虚拟点？
+	// 70~90 rt = 60 -> 17 single[17] ? 
 	public static boolean[] single = new boolean[maxn << 3];
+	
+	
 	// id点的入度
 	public static int[] inDegree = new int[maxn << 3];
 	// id点拓扑排序统计的最大深度(只算路径上的单点数量)
@@ -67,7 +78,7 @@ public class Code05_BusStationsMinLevelNumbers {
 				int curVirtual = ++nth;
 				// 虚点向停靠车站连边
 				for (int j = 0; j < k; j++) {
-					vLinkSingle(curVirtual, stops[j], 1, n, 1);
+					vLinkStop(curVirtual, stops[j], 1, n, 1);
 				}
 				// 不停靠的连续车站向虚点连边
 				for (int j = 1; j < k; j++) {
@@ -109,15 +120,19 @@ public class Code05_BusStationsMinLevelNumbers {
 		}
 	}
 
-	public static void vLinkSingle(int vid, int single, int l, int r, int rt) {
+	// 17 17~17
+	public static void vLinkStop(int vid, int stop, int l, int r, int rt) {
 		if (l == r) {
 			addEdge(vid, id[rt]);
 		} else {
 			int m = (l + r) / 2;
-			if (single <= m) {
-				vLinkSingle(vid, single, l, m, rt << 1);
+			// 1~100
+			// 想去的车站是70 70~70
+			// 1~50 51~100
+			if (stop <= m) {
+				vLinkStop(vid, stop, l, m, rt << 1);
 			} else {
-				vLinkSingle(vid, single, m + 1, r, rt << 1 | 1);
+				vLinkStop(vid, stop, m + 1, r, rt << 1 | 1);
 			}
 		}
 	}
