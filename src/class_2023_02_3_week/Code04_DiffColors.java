@@ -20,7 +20,7 @@ import java.util.Arrays;
 // 提交如下方法，把主类名改成Main
 // 洛谷对java太不友好了，大量时间不是消耗在算法本身上，而是耗在了IO上
 // 多提交几次能全通过
-public class Code03_DiffColors {
+public class Code04_DiffColors {
 
 	public static int MAXN = 1000010;
 
