@@ -17,31 +17,15 @@ public class Code02_OddEvenJump {
 			even[i] = to == null ? -1 : orderMap.get(to);
 			orderMap.put(arr[i], i);
 		}
-		int ans = 0;
-		int[][] dp = new int[n][2];
-		for (int i = 0; i < n; i++) {
-			if (jump(i, 1, n - 1, odd, even, dp)) {
-				ans++;
-			}
+		boolean[][] dp = new boolean[n][2];
+		dp[n - 1][0] = true;
+		dp[n - 1][1] = true;
+		int ans = 1;
+		for (int i = n - 2; i >= 0; i--) {
+			dp[i][0] = odd[i] != -1 && dp[odd[i]][1];
+			dp[i][1] = even[i] != -1 && dp[even[i]][0];
+			ans += dp[i][0] ? 1 : 0;
 		}
-		return ans;
-	}
-
-	public static boolean jump(int cur, int status, int target, int[] odd, int[] even, int[][] dp) {
-		if (cur == target) {
-			return true;
-		}
-		if (dp[cur][status] != 0) {
-			return dp[cur][status] == 1;
-		}
-		boolean ans = false;
-		if (status == 1 && odd[cur] != -1) {
-			ans = jump(odd[cur], 0, target, odd, even, dp);
-		}
-		if (status == 0 && even[cur] != -1) {
-			ans = jump(even[cur], 1, target, odd, even, dp);
-		}
-		dp[cur][status] = ans ? 1 : -1;
 		return ans;
 	}
 
