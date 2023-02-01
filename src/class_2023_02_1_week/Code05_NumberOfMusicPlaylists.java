@@ -30,6 +30,7 @@ public class Code05_NumberOfMusicPlaylists {
 //			inv[i] = power(fac[i], mod - 2);
 //		}
 		// 费马小定理计算乘法逆元，优化如下
+		// 这一块叫：阶乘的逆元倒推
 		inv[limit] = power(fac[limit], mod - 2);
 		for (int i = limit; i > 1; i--) {
 			inv[i - 1] = ((long) i * inv[i]) % mod;
