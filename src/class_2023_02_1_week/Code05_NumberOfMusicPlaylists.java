@@ -60,4 +60,8 @@ public class Code05_NumberOfMusicPlaylists {
 		return (int) ans;
 	}
 
+	public static void main(String[] args) {
+
+	}
+
 }
