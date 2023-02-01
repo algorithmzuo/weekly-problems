@@ -15,12 +15,16 @@ import java.util.TreeSet;
 public class Code01_MinimizeDeviationInArray {
 
 	public int minimumDeviation(int[] nums) {
+		// 有序表，小 -> 大 组织
+		// 最大 set.last()
 		TreeSet<Integer> set = new TreeSet<>();
 		for (int num : nums) {
 			set.add(num % 2 == 0 ? num : num * 2);
 		}
+		// 答案
 		int ans = set.last() - set.first();
 		while (ans > 0 && set.last() % 2 == 0) {
+			// 最大值
 			int max = set.last();
 			set.remove(max);
 			set.add(max / 2);

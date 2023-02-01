@@ -15,10 +15,13 @@ public class Code03_MinimumNumberOfKConsecutiveBitFlips {
 		int r = 0;
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
+			// 双端队列有东西，l、r
+			//                 l    i
 			if (l != r && i - queue[l] == k) {
+				// 意味着，双端队列大小变了！
 				l++;
 			}
-			if (((r - l) & 1) == nums[i]) {
+			if (((r - l + 1) & 1) != nums[i]) {
 				queue[r++] = i;
 				ans++;
 			}

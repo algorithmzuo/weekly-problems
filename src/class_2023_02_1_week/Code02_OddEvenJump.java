@@ -22,22 +22,36 @@ public class Code02_OddEvenJump {
 
 	public static int oddEvenJumps(int[] arr) {
 		int n = arr.length;
+		// 来到了i位置，如果要遵循奇数规则，应该去哪？odd[i]
 		int[] odd = new int[n];
+		// 来到了i位置，如果要遵循偶数规则，应该去哪？even[i]
 		int[] even = new int[n];
+		// 有序表，
+		// key : 某个值
+		// value : key这个值，出现的最左位置
+		// >= key 且最小
+		// <= key 且最大
 		TreeMap<Integer, Integer> orderMap = new TreeMap<>();
 		for (int i = n - 1; i >= 0; i--) {
+			// i位置，arr[i]，奇数规则，>= arr[i]且最小的！
 			Integer to = orderMap.ceilingKey(arr[i]);
 			odd[i] = to == null ? -1 : orderMap.get(to);
+			// i位置，arr[i]，偶数规则，<= arr[i]且最大的！
 			to = orderMap.floorKey(arr[i]);
 			even[i] = to == null ? -1 : orderMap.get(to);
 			orderMap.put(arr[i], i);
 		}
+		// dp[i][0] : 当来到i位置，且在奇数规则下，最终能不能到结尾？
+		// dp[i][1] : 当来到i位置，且在偶数规则下，最终能不能到结尾？
 		boolean[][] dp = new boolean[n][2];
 		dp[n - 1][0] = true;
 		dp[n - 1][1] = true;
 		int ans = 1;
 		for (int i = n - 2; i >= 0; i--) {
+			// dp[i][0] : 当来到i位置，且在奇数规则下，最终能不能到结尾
+			// odd[i] -> 右走！ -1
 			dp[i][0] = odd[i] != -1 && dp[odd[i]][1];
+			// dp[i][1] : 当来到i位置，且在偶数规则下，最终能不能到结尾
 			dp[i][1] = even[i] != -1 && dp[even[i]][0];
 			ans += dp[i][0] ? 1 : 0;
 		}
