@@ -26,7 +26,7 @@ public class Code05_NumberOfMusicPlaylists {
 			fac[i] = ((long) i * fac[i - 1]) % mod;
 		}
 		// 费马小定理计算乘法逆元
-//		for (int i = limit; i >= 1; i--) {
+//		for (int i = 1; i <= limit; i++) {
 //			inv[i] = power(fac[i], mod - 2);
 //		}
 		// 费马小定理计算乘法逆元，优化如下
