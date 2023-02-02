@@ -1,7 +1,7 @@
 package class_2023_02_2_week;
 
 // 测试链接 : https://leetcode.cn/problems/super-palindromes/
-public class Code03_SuperPalindromes {
+public class Code04_SuperPalindromes {
 
 	public static int superpalindromesInRange(String left, String right) {
 		long l = Long.valueOf(left);

@@ -15,17 +15,23 @@ public class Code03_MinimumNumberOfKConsecutiveBitFlips {
 		int r = 0;
 		int ans = 0;
 		for (int i = 0; i < n; i++) {
-			// 双端队列有东西，l、r
-			//                 l    i
+			// 双端队列有东西，l、r           l    i
 			if (l != r && i - queue[l] == k) {
 				// 意味着，双端队列大小变了！
 				l++;
 			}
-			if (((r - l + 1) & 1) != nums[i]) {
+			// r - l 是双端队列的大小
+			// (r - l) & 1 == 1，
+			// 说明队列大小是奇数(尾部状态为0)，那么nums[i] == 1该加入(因为和尾部不同)
+			// (r - l) & 1 == 0，
+			// 说明队列大小是偶数(尾部状态为1)，那么nums[i] == 0该加入(因为和尾部不同)
+			// 所以综上，((r - l) & 1) == nums[i]，该加入
+			if (((r - l) & 1) == nums[i]) {
 				queue[r++] = i;
 				ans++;
 			}
 		}
+		// 最后的反转点长度够k，能翻转；否则不能
 		return (l != r && queue[r - 1] + k > n) ? -1 : ans;
 	}
 

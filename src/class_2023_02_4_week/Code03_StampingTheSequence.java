@@ -1,10 +1,10 @@
-package class_2023_02_2_week;
+package class_2023_02_4_week;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/stamping-the-sequence/
-public class Code05_StampingTheSequence {
+public class Code03_StampingTheSequence {
 
 	public static int[] movesToStamp(String stamp, String target) {
 		char[] s = stamp.toCharArray();

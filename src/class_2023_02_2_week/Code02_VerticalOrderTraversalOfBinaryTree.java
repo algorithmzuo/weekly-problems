@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 // 测试链接 : https://leetcode.cn/problems/vertical-order-traversal-of-a-binary-tree/
-public class Code01_VerticalOrderTraversalOfBinaryTree {
+public class Code02_VerticalOrderTraversalOfBinaryTree {
 
 	// 不提交这个类
 	public static class TreeNode {
