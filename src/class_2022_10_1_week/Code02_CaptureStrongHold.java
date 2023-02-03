@@ -26,10 +26,9 @@ public class Code02_CaptureStrongHold {
 			return cost[0];
 		}
 		int m = roads.length;
-		DoubleConnectedComponents dc 
-		= new DoubleConnectedComponents(n, m, roads);
+		DoubleConnectedComponents dc = new DoubleConnectedComponents(n, m, roads);
 		long ans = 0;
-		// dcc {a,b,c} {c,d,e} 
+		// dcc {a,b,c} {c,d,e}
 		if (dc.dcc.size() == 1) {
 			ans = Integer.MAX_VALUE;
 			for (int num : cost) {
@@ -60,9 +59,11 @@ public class Code02_CaptureStrongHold {
 	}
 
 	public static class DoubleConnectedComponents {
+		// 链式前向星建图
 		public int[] head;
 		public int[] next;
 		public int[] to;
+
 		public int[] dfn;
 		public int[] low;
 		public int[] stack;
