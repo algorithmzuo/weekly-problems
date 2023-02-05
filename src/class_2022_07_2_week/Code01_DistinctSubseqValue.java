@@ -36,7 +36,7 @@ public class Code01_DistinctSubseqValue {
 			count[x - 'a'] = (count[x - 'a'] + add) % m;
 		}
 		// {} 去掉！
-		return all - 1;
+		return (all - 1 + m) % m;
 	}
 
 	public static int zuo(String s) {
