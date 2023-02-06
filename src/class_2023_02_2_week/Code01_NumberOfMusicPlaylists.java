@@ -50,8 +50,8 @@ public class Code01_NumberOfMusicPlaylists {
 	}
 
 	public static int numMusicPlaylists(int n, int l, int k) {
-		long cur, ans = 0;
-		for (int i = 0, sign = 1; i <= n - k; i++, sign = sign == 1 ? (mod - 1) : 1) {
+		long cur, ans = 0, sign = 1;
+		for (int i = 0; i <= n - k; i++, sign = sign == 1 ? (mod - 1) : 1) {
 			cur = (sign * power(n - k - i, l - k)) % mod;
 			cur = (cur * fac[n]) % mod;
 			cur = (cur * inv[i]) % mod;
@@ -59,10 +59,6 @@ public class Code01_NumberOfMusicPlaylists {
 			ans = (ans + cur) % mod;
 		}
 		return (int) ans;
-	}
-
-	public static void main(String[] args) {
-
 	}
 
 }
