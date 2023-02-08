@@ -20,7 +20,9 @@ public class Code03_WidthOfBinaryTree {
 
 	// 提交以下所有的方法
 	public static class Info {
+		// 当前节点
 		public TreeNode node;
+		// 编号！
 		public int index;
 
 		public Info(TreeNode n, int i) {

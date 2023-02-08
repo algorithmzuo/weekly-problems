@@ -37,6 +37,7 @@ public class Code01_NumberOfMusicPlaylists {
 		}
 	}
 
+	// x的n次方，% mod之后，是多少？
 	public static long power(long x, int n) {
 		long ans = 1;
 		while (n > 0) {
@@ -49,9 +50,16 @@ public class Code01_NumberOfMusicPlaylists {
 		return ans;
 	}
 
+	// n * logn
 	public static int numMusicPlaylists(int n, int l, int k) {
 		long cur, ans = 0, sign = 1;
 		for (int i = 0; i <= n - k; i++, sign = sign == 1 ? (mod - 1) : 1) {
+			// cur -> 
+			// fac[n] -> n! % mod 的结果！
+			// inv[i] -> i! 的逆元！
+			// inv[n - k - i] -> (n - k - i)! 的逆元
+			// sign * 1 -> 1
+			//      * -1 -> mod - 1
 			cur = (sign * power(n - k - i, l - k)) % mod;
 			cur = (cur * fac[n]) % mod;
 			cur = (cur * inv[i]) % mod;
