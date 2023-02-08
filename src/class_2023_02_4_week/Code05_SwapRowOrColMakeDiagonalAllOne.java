@@ -23,7 +23,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code02_SwapRowOrColMakeDiagonalAllOne {
+public class Code05_SwapRowOrColMakeDiagonalAllOne {
 
 	public static int[][] out = new int[1000][2];
 

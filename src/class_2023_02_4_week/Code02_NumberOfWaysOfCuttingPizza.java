@@ -1,7 +1,7 @@
 package class_2023_02_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-ways-of-cutting-a-pizza/
-public class Code01_NumberOfWaysOfCuttingPizza {
+public class Code02_NumberOfWaysOfCuttingPizza {
 
 	public static int mod = 1000000007;
 
