@@ -45,12 +45,6 @@ public class Code05_SuperPalindromes {
 		}
 		return ans;
 	}
-	
-	public static void main(String[] args) {
-		long seed = 111;
-		System.out.println(enlarge1(seed));
-		System.out.println(enlarge2(seed));
-	}
 
 	public static boolean isValid(long ans, long l, long r) {
 		return isPalindrome(ans) && ans >= l && ans <= r;
