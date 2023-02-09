@@ -1,7 +1,7 @@
 package class_2023_03_1_week;
 
 // 测试链接 : https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/
-public class Code02_RecoverTreeFromPreorderTraversal {
+public class Code01_RecoverTreeFromPreorderTraversal {
 
 	// 不提交这个类
 	public static class TreeNode {

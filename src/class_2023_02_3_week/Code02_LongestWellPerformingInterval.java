@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 // 测试链接 : https://leetcode.cn/problems/longest-well-performing-interval/
-public class Code01_LongestWellPerformingInterval {
+public class Code02_LongestWellPerformingInterval {
 
 	// 哈希表
 	public static int longestWPI1(int[] hours) {
