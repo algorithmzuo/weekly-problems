@@ -1,13 +1,5 @@
 package class_2023_03_1_week;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.StreamTokenizer;
-import java.util.Arrays;
-
 // HH有一串由各种漂亮的贝壳组成的项链
 // HH 相信不同的贝壳会带来好运，所以每次散步完后，他都会随意取出一段贝壳，
 // 思考它们所表达的含义。HH 不断地收集新的贝壳，因此，他的项链变得越来越长。
@@ -17,9 +9,17 @@ import java.util.Arrays;
 // 测试链接 : https://www.luogu.com.cn/problem/P1972
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
-// 提交如下方法，把主类名改成Main
+// 提交以下所有代码，把主类名改成Main
 // 洛谷对java太不友好了，大量时间不是消耗在算法本身上，而是耗在了IO上
 // 多提交几次能全通过
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StreamTokenizer;
+import java.util.Arrays;
+
 public class Code03_DiffColors {
 
 	public static int MAXN = 1000010;

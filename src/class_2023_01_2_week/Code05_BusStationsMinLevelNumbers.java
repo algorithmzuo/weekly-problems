@@ -12,7 +12,7 @@ package class_2023_01_2_week;
 // 线段树建边
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
-// 提交如下方法，把主类名改成Main，可以直接通过
+// 提交以下所有代码，把主类名改成Main，可以直接通过
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
