@@ -1,10 +1,10 @@
-package class_2023_02_3_week;
+package class_2023_03_1_week;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-good-paths/
-public class Code03_NumberOfGoodPaths {
+public class Code02_NumberOfGoodPaths {
 
 	public static int numberOfGoodPaths(int[] vals, int[][] edges) {
 		int n = vals.length;

@@ -23,7 +23,7 @@ package class_2023_03_1_week;
 // 输入 : N = 10, sum = 4116
 // 输出 : 1 3 5 7 10 9 8 6 4 2 
 // 0 < n <= 10, sum随意
-public class Code03_LexicographicalSmallestPermutation {
+public class Code01_LexicographicalSmallestPermutation {
 
 	// 准备好杨辉三角形，作为每一项系数
 	public static int[][] matrix = {

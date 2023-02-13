@@ -1,4 +1,4 @@
-package class_2023_02_3_week;
+package class_2023_03_1_week;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 // HH 相信不同的贝壳会带来好运，所以每次散步完后，他都会随意取出一段贝壳，
 // 思考它们所表达的含义。HH 不断地收集新的贝壳，因此，他的项链变得越来越长。
 // 有一天，他突然提出了一个问题：某一段贝壳中，包含了多少种不同的贝壳？
-// 这个问题很难回答…… 因为项链实在是太长了
+// 这个问题很难回答... 因为项链实在是太长了
 // 于是，他只好求助睿智的你，来解决这个问题
 // 测试链接 : https://www.luogu.com.cn/problem/P1972
 // 请同学们务必参考如下代码中关于输入、输出的处理
@@ -20,7 +20,7 @@ import java.util.Arrays;
 // 提交如下方法，把主类名改成Main
 // 洛谷对java太不友好了，大量时间不是消耗在算法本身上，而是耗在了IO上
 // 多提交几次能全通过
-public class Code04_DiffColors {
+public class Code03_DiffColors {
 
 	public static int MAXN = 1000010;
 

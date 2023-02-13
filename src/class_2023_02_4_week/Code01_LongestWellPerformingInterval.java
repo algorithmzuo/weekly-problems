@@ -1,10 +1,10 @@
-package class_2023_02_3_week;
+package class_2023_02_4_week;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
 // 测试链接 : https://leetcode.cn/problems/longest-well-performing-interval/
-public class Code02_LongestWellPerformingInterval {
+public class Code01_LongestWellPerformingInterval {
 
 	// 哈希表
 	public static int longestWPI1(int[] hours) {

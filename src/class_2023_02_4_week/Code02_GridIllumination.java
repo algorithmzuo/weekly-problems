@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 // 测试链接 : https://leetcode.cn/problems/grid-illumination/
-public class Code01_GridIllumination {
+public class Code02_GridIllumination {
 
 	public static int[][] move = { { 0, 0 }, { 0, -1 }, { 0, 1 }, { -1, 0 }, { -1, -1 }, { -1, 1 }, { 1, 0 }, { 1, -1 },
 			{ 1, 1 } };

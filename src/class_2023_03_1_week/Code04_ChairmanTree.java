@@ -1,4 +1,4 @@
-package class_2023_02_3_week;
+package class_2023_03_1_week;
 
 // 主席树详解
 // 测试链接 : https://www.luogu.com.cn/problem/P3834
@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code05_ChairmanTree {
+public class Code04_ChairmanTree {
 
 	public static int MAXN = 200010;
 

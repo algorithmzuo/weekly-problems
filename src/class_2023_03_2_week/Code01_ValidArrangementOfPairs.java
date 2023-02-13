@@ -1,4 +1,4 @@
-package class_2023_03_1_week;
+package class_2023_03_2_week;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 // 欧拉路径问题
 // 测试链接 : https://leetcode.com/problems/valid-arrangement-of-pairs/
-public class Code02_ValidArrangementOfPairs {
+public class Code01_ValidArrangementOfPairs {
 
 	public static int[][] validArrangement(int[][] pairs) {
 		HashMap<Integer, LinkedList<Integer>> nexts = new HashMap<>();
