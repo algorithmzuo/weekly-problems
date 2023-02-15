@@ -1,4 +1,4 @@
-package class_2023_02_3_week;
+package class_2023_02_4_week;
 
 // 给你一个 rows * cols 大小的矩形披萨和一个整数 k
 // 矩形包含两种字符： 'A' （表示苹果）和 '.' （表示空白格子）
@@ -10,7 +10,7 @@ package class_2023_02_3_week;
 // 请你返回确保每一块披萨包含 至少 一个苹果的切披萨方案数
 // 由于答案可能是个很大的数字，请你返回它对 10^9 + 7 取余的结果
 // 测试链接 : https://leetcode.cn/problems/number-of-ways-of-cutting-a-pizza/
-public class Code03_NumberOfWaysOfCuttingPizza {
+public class Code02_NumberOfWaysOfCuttingPizza {
 
 	public static int mod = 1000000007;
 
