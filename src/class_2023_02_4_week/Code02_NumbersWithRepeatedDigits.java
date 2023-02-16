@@ -1,7 +1,7 @@
 package class_2023_02_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/numbers-with-repeated-digits/
-public class Code03_NumbersWithRepeatedDigits {
+public class Code02_NumbersWithRepeatedDigits {
 
 	public static int numDupDigitsAtMostN(int n) {
 		if (n <= 10) {
