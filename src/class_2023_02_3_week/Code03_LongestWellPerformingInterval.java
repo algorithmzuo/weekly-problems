@@ -12,15 +12,21 @@ public class Code03_LongestWellPerformingInterval {
 
 	// 哈希表
 	public static int longestWPI1(int[] hours) {
+		// key : 某个前缀和
+		// value : 这个前缀和最早出现的位置
 		HashMap<Integer, Integer> map = new HashMap<>();
+		// 0这个前缀和，最早出现在哪？一个数也没有的时候
 		map.put(0, -1);
 		int ans = 0;
 		int sum = 0;
 		for (int i = 0; i < hours.length; i++) {
 			sum += hours[i] > 8 ? 1 : -1;
-			if (sum > 1) {
+			if (sum > 0) {
+				// 0...i i+1
 				ans = i + 1;
 			} else {
+				// sum = -4
+				// -5最早出现在哪 j  j+1...i
 				if (map.containsKey(sum - 1)) {
 					ans = Math.max(ans, i - map.get(sum - 1));
 				}

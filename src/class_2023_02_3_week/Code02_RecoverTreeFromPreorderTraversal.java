@@ -54,6 +54,9 @@ public class Code02_RecoverTreeFromPreorderTraversal {
 		return f();
 	}
 
+	// 当前，消费的时间是 :
+	// 层 : queue[l]
+	// 节点值 : queue[l+1]
 	public static TreeNode f() {
 		int level = queue[l++];
 		TreeNode head = new TreeNode(queue[l++]);

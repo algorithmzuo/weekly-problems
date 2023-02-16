@@ -58,14 +58,23 @@ public class Code05_SendOutDiamondDays {
 	// 正式方法
 	// 时间复杂度O(N * (logN)的平方)
 	public static int days2(int[] diamonds) {
+		// n : 位置
 		int n = diamonds.length;
+		// 1 ~ n : 1
+		//  1 1 1 1 1 1 1
+		//  1 2 3 4 5 6 7
 		IndexTree it = new IndexTree(n);
+		//  7 6 2...
+		//  1 2 3....
 		SegmentTree st = new SegmentTree(diamonds);
 		int days = 0;
 		int find, start = 1;
 		while (it.sum(1, n) != 0) {
+			// start ..... find(后续....最小值，最左的位置)
 			find = find(st, start, n);
 			days += days(it, start, find, n);
+			//  1
+			// find
 			it.add(find, -1);
 			st.update(find, Integer.MAX_VALUE);
 			start = find;
@@ -74,6 +83,7 @@ public class Code05_SendOutDiamondDays {
 	}
 
 	public static int find(SegmentTree st, int start, int n) {
+		// start....n 左部分  1 ~ start-1 右
 		int l, r, min = st.min(1, n);
 		if (st.min(start, n) == min) {
 			l = start;
@@ -95,11 +105,11 @@ public class Code05_SendOutDiamondDays {
 		return ans;
 	}
 
-	public static int days(IndexTree sumIt, int start, int end, int n) {
-		if (start <= end) {
-			return sumIt.sum(start, end);
+	public static int days(IndexTree sumIt, int start, int find, int n) {
+		if (start <= find) {
+			return sumIt.sum(start, find);
 		} else {
-			return sumIt.sum(start, n) + sumIt.sum(1, end);
+			return sumIt.sum(start, n) + sumIt.sum(1, find);
 		}
 	}
 

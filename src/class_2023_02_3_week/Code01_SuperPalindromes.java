@@ -6,24 +6,30 @@ package class_2023_02_3_week;
 // 测试链接 : https://leetcode.cn/problems/super-palindromes/
 public class Code01_SuperPalindromes {
 
+	// L ... R    "123213213" ~ "31283712710381299823"
 	public static int superpalindromesInRange(String left, String right) {
 		long l = Long.valueOf(left);
 		long r = Long.valueOf(right);
-		long sqrtR = (long) Math.sqrt((double) r);
+		// 限制是根据开方的范围
+		long limit = (long) Math.sqrt((double) r);
 		int cnt = 0;
 		long seed = 1;
 		long enlarge = 0;
 		do {
+			// seed = 123
+			// 123321
 			enlarge = enlarge2(seed);
 			if (isValid(enlarge * enlarge, l, r)) {
 				cnt++;
 			}
+			// seed = 123
+			// 12321
 			enlarge = enlarge1(seed);
 			if (isValid(enlarge * enlarge, l, r)) {
 				cnt++;
 			}
 			seed++;
-		} while (enlarge < sqrtR);
+		} while (enlarge < limit);
 		return cnt;
 	}
 
@@ -51,10 +57,16 @@ public class Code01_SuperPalindromes {
 	}
 
 	public static boolean isPalindrome(long n) {
+		// n =    3721837
+		// help = 1000000
 		long help = 1;
 		while (n / help >= 10) {
 			help *= 10;
 		}
+		// n =    3  72183   7
+		// help = 1000000
+		// 左 : n / help = 3
+		// 右 : n % 10 = 7
 		while (n != 0) {
 			if (n / help != n % 10) {
 				return false;

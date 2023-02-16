@@ -43,17 +43,35 @@ public class Code04_OperateScores {
 	public static int[] operateScores2(int[] scores, int[][] operations) {
 		int n = scores.length;
 		Node[] nodes = new Node[n];
+		// 得分 -> 桶
 		TreeMap<Integer, Bucket> scoreBucketMap = new TreeMap<>();
 		for (int i = 0; i < n; i++) {
+			// 0号人，0号Node
+			// i号人，i号Node
 			nodes[i] = new Node(i);
+			// 17分 -> 桶
 			if (!scoreBucketMap.containsKey(scores[i])) {
 				scoreBucketMap.put(scores[i], new Bucket());
 			}
 			scoreBucketMap.get(scores[i]).add(nodes[i]);
 		}
+		// m次操作
 		for (int[] op : operations) {
 			if (op[0] == 1) {
+				// op[] = {1, 70, X}
+				// < 70
+				// merge 进 70号桶！
+				// <= 69 且最近的
+				// 13 45 53 65
+				// 65 -> 70 65X
+				// <= 69
+				// 13 45 53
+				// 53 -> 70 53X
+				// 13 45
+				// <= 69 记录没有了！
+				// <= 69 有没有记录！
 				Integer floorKey = scoreBucketMap.floorKey(op[1] - 1);
+				// 1)有 <= 69的记录！ 70号得分的桶却没有
 				if (floorKey != null && !scoreBucketMap.containsKey(op[1])) {
 					scoreBucketMap.put(op[1], new Bucket());
 				}
@@ -63,7 +81,12 @@ public class Code04_OperateScores {
 					floorKey = scoreBucketMap.floorKey(op[1] - 1);
 				}
 			} else {
+				// 2类型
+				// op = [2, 17号人，改成80分]
+				// cur就是当前人的Node
 				Node cur = nodes[op[1]];
+				// 链接last  cur   next
+				// 把last 和 next 串起来！cur去往新的桶
 				cur.conectLastNext();
 				if (!scoreBucketMap.containsKey(op[2])) {
 					scoreBucketMap.put(op[2], new Bucket());
@@ -84,6 +107,7 @@ public class Code04_OperateScores {
 		return ans;
 	}
 
+	// 桶，得分在有序表里！桶只作为有序表里的value，不作为key
 	public static class Bucket {
 
 		// 注意！
