@@ -1,7 +1,8 @@
-package class_2023_03_2_week;
+package class_2023_03_1_week;
 
+// 来自学员问题
 // 测试链接 : https://leetcode.cn/problems/jian-sheng-zi-ii-lcof/
-public class Code03_SplitNumberTimesMax {
+public class Code01_SplitNumberTimesMax {
 
 	public static int mod = 1000000007;
 
