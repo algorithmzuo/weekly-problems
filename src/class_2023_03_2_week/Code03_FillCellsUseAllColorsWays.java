@@ -40,9 +40,13 @@ public class Code03_FillCellsUseAllColorsWays {
 
 	// 正式方法
 	// 时间复杂度O(N*M)
+	public static int MAXN = 5001;
+
+	public static int[][] dp = new int[MAXN][MAXN];
+
+	public static int mod = 1000000007;
+
 	public static int ways2(int n, int m) {
-		int mod = 1000000007;
-		int[][] dp = new int[n + 1][m + 1];
 		for (int i = 1; i <= n; i++) {
 			dp[i][1] = m;
 		}
