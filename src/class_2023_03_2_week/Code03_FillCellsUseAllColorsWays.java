@@ -81,7 +81,7 @@ public class Code03_FillCellsUseAllColorsWays {
 
 		System.out.println("性能测试开始");
 		int n = 5000;
-		int m = 4763;
+		int m = 4877;
 		System.out.println("n : " + n);
 		System.out.println("m : " + m);
 		long start = System.currentTimeMillis();
