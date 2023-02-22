@@ -1,9 +1,12 @@
 package class_2023_02_4_week;
 
 // 来自学员最近的笔试
+// 请根据二叉树的前序遍历，中序遍历恢复二叉树，并打印出二叉树的右视图
+// 树的节点个数在10000以内
+// 节点值在10000以内且不重复
 // 测试链接 : https://www.nowcoder.com/practice/c9480213597e45f4807880c763ddd5f0
 // 把如下的类改名为"Solution"，整个提交可以直接通过
-public class Code01_RightViewArray {
+public class Code02_RightViewArray {
 
 	public static int MAXN = 10001;
 
