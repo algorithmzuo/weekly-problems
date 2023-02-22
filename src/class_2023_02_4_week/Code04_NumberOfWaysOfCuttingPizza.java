@@ -90,6 +90,7 @@ public class Code04_NumberOfWaysOfCuttingPizza {
 	}
 
 	// 动态规划 + 观察位置依赖的大优化
+	// 基本上LeetCode上面题解都没有做到这个复杂度的
 	// 时间复杂度O(N * M * K)
 	public static int ways3(String[] pizza, int k) {
 		int n = pizza.length;
