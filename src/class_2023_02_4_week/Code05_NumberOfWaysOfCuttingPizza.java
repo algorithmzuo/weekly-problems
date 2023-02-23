@@ -22,10 +22,16 @@ public class Code05_NumberOfWaysOfCuttingPizza {
 	}
 
 	// 暴力方法
+	// sum : 帮助你查询(a,b)做左上角，(c,d)做右下角，有几个苹果，快速查询! O(1)
+	// 披萨饼的整体规模 : n * m
+	// 剩余没切的披萨饼, 左上角点(row, col)，右下角点(n, m)
+	// 剩余的区域，一定要切出rest份!
+	// 返回有多少种方法!
 	public static int process(int[][] sum, int n, int m, int row, int col, int rest) {
 		if (apple(sum, row, col, n, m) == 0) {
 			return 0;
 		}
+		// 剩余区域上，有苹果
 		if (rest == 1) {
 			return 1;
 		}
@@ -114,10 +120,14 @@ public class Code05_NumberOfWaysOfCuttingPizza {
 		for (int level = 2; level <= k; level++) {
 			for (int r = 1; r <= n; r++) {
 				for (int c = 1; c <= m; c++) {
+					// (r,c) 剩余区域，离的最近的苹果，在哪一列
+					// (r,c) 剩余区域，离的最近的苹果，在哪一行
 					dp[r][c] = nearr[r][c] < n ? (rs[nearr[r][c] + 1][c]) : 0;
 					dp[r][c] = (dp[r][c] + (nearc[r][c] < m ? cs[r][nearc[r][c] + 1] : 0)) % mod;
 				}
 			}
+			// 并列关系！
+			// 又来两个for循环！！！！
 			setRowColSums(dp, rs, cs, n, m);
 		}
 		return dp[1][1];

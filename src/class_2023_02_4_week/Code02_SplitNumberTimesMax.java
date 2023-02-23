@@ -14,6 +14,7 @@ public class Code02_SplitNumberTimesMax {
 	public static int mod = 1000000007;
 
 	// x的n次方，% mod之后，是多少？
+	// 快速幂的方式，体系学习班，斐波那契数列章节
 	public static long power(long x, int n) {
 		long ans = 1;
 		while (n > 0) {
@@ -26,6 +27,7 @@ public class Code02_SplitNumberTimesMax {
 		return ans;
 	}
 
+	// 纯观察，没有为什么
 	public static int cuttingRope(int n) {
 		if (n == 2) {
 			return 1;
@@ -33,8 +35,30 @@ public class Code02_SplitNumberTimesMax {
 		if (n == 3) {
 			return 2;
 		}
+		// n >= 4
+		// n = 13
+		// n % 3 == 1
+		// 4 -> 2 * 2 (n-4) / 3 -> 3的(n-4)/3 次方
+		// n % 3 == 2
+		// 2 -> 2 (n-2)/3 -> 3的(n-2)/3次方
+		// n:
+		//
+		// last :
+		// n = 9
+		// 3 * 3 * 3 * 1
+		// n = 10
+		// 3 * 3 * (2 * 2)
+		// n = 11
+		// 3 * 3 * 3 * (2)
+		// n = 9
+		// rest = 9 -> 3 ?
+		// n = 10
+		// rest = 10 - 4 -> 6 ?
+		// n == 11
+		// rest = 11 - 2 = 9 ?
 		int rest = n % 3 == 0 ? n : (n % 3 == 1 ? (n - 4) : (n - 2));
 		int last = n % 3 == 0 ? 1 : (n % 3 == 1 ? 4 : 2);
+		// (3的(rest/3)次方 * last) % mod
 		return (int) ((power(3, rest / 3) * last) % mod);
 	}
 

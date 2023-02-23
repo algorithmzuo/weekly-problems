@@ -26,15 +26,18 @@ public class Code04_StampingTheSequence {
 		int m = s.length;
 		int n = t.length;
 		int[] inDegrees = new int[n - m + 1];
+		// 所有在target里开头的字符串，认为和stamp，每个位置都不一样
 		Arrays.fill(inDegrees, m);
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			graph.add(new ArrayList<>());
 		}
+		// 入度为0的开头，进入到queue里
 		int[] queue = new int[n - m + 1];
 		int l = 0;
 		int r = 0;
 		for (int i = 0; i <= n - m; i++) {
+			// i....撸m个字符
 			for (int j = 0; j < m; j++) {
 				if (t[i + j] == s[j]) {
 					if (--inDegrees[i] == 0) {
@@ -45,10 +48,12 @@ public class Code04_StampingTheSequence {
 				}
 			}
 		}
+		// visited[17] == true
 		boolean[] visited = new boolean[n];
 		int[] path = new int[n - m + 1];
 		int size = 0;
 		while (l < r) {
+			// cur位置开头的字符串，弹出了！入度为0！恭喜啊！！！！
 			int cur = queue[l++];
 			path[size++] = cur;
 			for (int i = 0; i < m; i++) {
@@ -65,6 +70,7 @@ public class Code04_StampingTheSequence {
 		if (size != n - m + 1) {
 			return new int[0];
 		}
+		// path里
 		for (int i = 0, j = size - 1; i < j; i++, j--) {
 			int tmp = path[i];
 			path[i] = path[j];
