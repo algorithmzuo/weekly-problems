@@ -9,7 +9,7 @@ import java.util.Arrays;
 // 一共有K个查询，每个查询只有一个数字X，表示请问在X时刻，
 // 有多少个车库包含车的数量>=3，请返回K个查询的答案
 // 1 <= M, N, K <= 10^5
-// 1 <= T <= 10 ^ 9
+// 1 <= T <= 10^9
 public class Code02_QueryGreaterThanOrEqualTo3Stores {
 
 	// 暴力方法
@@ -111,8 +111,7 @@ public class Code02_QueryGreaterThanOrEqualTo3Stores {
 				if (start != -1 && start <= point) {
 					st.add(start, point, 1);
 				}
-				count--;
-				if (count >= 3) {
+				if (--count >= 3) {
 					start = point + 1;
 				} else {
 					start = -1;
@@ -138,6 +137,8 @@ public class Code02_QueryGreaterThanOrEqualTo3Stores {
 		return ans;
 	}
 
+	// 线段树
+	// 维持任何时刻存车数量>=3的车库有几个
 	public static class SegmentTree {
 		private int tn;
 		private int[] sum;
