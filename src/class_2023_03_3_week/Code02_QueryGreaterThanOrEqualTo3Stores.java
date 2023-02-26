@@ -109,7 +109,7 @@ public class Code02_QueryGreaterThanOrEqualTo3Stores {
 				}
 			} else {
 				if (start != -1 && start <= point) {
-					st.add(start, point, 1);
+					st.add(start, point);
 				}
 				if (--count >= 3) {
 					start = point + 1;
@@ -139,6 +139,8 @@ public class Code02_QueryGreaterThanOrEqualTo3Stores {
 
 	// 线段树
 	// 维持任何时刻存车数量>=3的车库有几个
+	// 支持范围时刻的增加
+	// 支持单点时刻的查询
 	public static class SegmentTree {
 		private int tn;
 		private int[] sum;
@@ -164,43 +166,44 @@ public class Code02_QueryGreaterThanOrEqualTo3Stores {
 			}
 		}
 
-		public void add(int l, int r, int v) {
-			add(l, r, v, 1, tn, 1);
+		// l...r范围上每个时刻对应的数值+1
+		public void add(int l, int r) {
+			add(l, r, 1, tn, 1);
 		}
 
-		private void add(int L, int R, int C, int l, int r, int rt) {
+		private void add(int L, int R, int l, int r, int rt) {
 			if (L <= l && r <= R) {
-				sum[rt] += C * (r - l + 1);
-				lazy[rt] += C;
+				sum[rt] += r - l + 1;
+				lazy[rt] += 1;
 				return;
 			}
 			int mid = (l + r) >> 1;
 			pushDown(rt, mid - l + 1, r - mid);
 			if (L <= mid) {
-				add(L, R, C, l, mid, rt << 1);
+				add(L, R, l, mid, rt << 1);
 			}
 			if (R > mid) {
-				add(L, R, C, mid + 1, r, rt << 1 | 1);
+				add(L, R, mid + 1, r, rt << 1 | 1);
 			}
 			pushUp(rt);
 		}
 
-		public int query(int i) {
-			return query(i, i, 1, tn, 1);
+		// 查询单点时刻存车数量>=3的车库有几个
+		public int query(int index) {
+			return query(index, 1, tn, 1);
 		}
 
-		private int query(int L, int R, int l, int r, int rt) {
-			if (L <= l && r <= R) {
+		private int query(int index, int l, int r, int rt) {
+			if (l == r) {
 				return sum[rt];
 			}
-			int mid = (l + r) >> 1;
-			pushDown(rt, mid - l + 1, r - mid);
+			int m = (l + r) >> 1;
+			pushDown(rt, m - l + 1, r - m);
 			int ans = 0;
-			if (L <= mid) {
-				ans += query(L, R, l, mid, rt << 1);
-			}
-			if (R > mid) {
-				ans += query(L, R, mid + 1, r, rt << 1 | 1);
+			if (index <= m) {
+				ans = query(index, l, m, rt << 1);
+			} else {
+				ans = query(index, m + 1, r, rt << 1 | 1);
 			}
 			return ans;
 		}
