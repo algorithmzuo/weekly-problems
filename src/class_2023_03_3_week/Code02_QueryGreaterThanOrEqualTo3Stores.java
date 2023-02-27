@@ -68,7 +68,7 @@ public class Code02_QueryGreaterThanOrEqualTo3Stores {
 		for (int i = 0; i < k; i++) {
 			queries[i] = rank(times, queries[i]);
 		}
-		Arrays.sort(records, (a, b) -> a[0] != b[0] ? (a[0] - b[0]) : (a[1] - b[1]));
+		Arrays.sort(records, (a, b) -> a[0] - b[0]);
 		SegmentTree st = new SegmentTree(tn);
 		for (int l = 0; l < n;) {
 			int r = l;
