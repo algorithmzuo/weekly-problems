@@ -68,26 +68,26 @@ public class Code03_SplitToMakeIncreaseAndDecreaseWays {
 	// 组合公式，n个元素取r个的方法数
 	// n! / (r! * (n-r)!)
 	// 用乘法逆元并且有mod时候的做法
-	public static int mod = 1000000007;
-
 	public static int pascalTriangleModulus(int n, int r) {
+		int mod = 1000000007;
 		long up = 1;
 		long inv1 = 1;
 		long inv2 = 1;
 		for (int i = 1; i <= n; i++) {
 			up = (up * i) % mod;
 			if (i == r) {
-				inv1 = power(up, mod - 2);
+				inv1 = power(up, mod - 2, mod);
 			}
 			if (i == n - r) {
-				inv2 = power(up, mod - 2);
+				inv2 = power(up, mod - 2, mod);
 			}
 		}
-		return (int) ((((long) (up * inv1) % mod) * inv2) % mod);
+		return (int) ((((up * inv1) % mod) * inv2) % mod);
 	}
 
-	// x的n次方，% mod之后，是多少？
-	public static long power(long x, int n) {
+	// x的n次方，% mod之后，返回是多少
+	// 费马小定理
+	public static long power(long x, int n, int mod) {
 		long ans = 1;
 		while (n > 0) {
 			if ((n & 1) == 1) {
