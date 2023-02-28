@@ -1,4 +1,4 @@
-package class_2023_03_3_week;
+package class_2023_03_1_week;
 
 // 来自学员问题，国外算法面经帖子上的题
 // 给定一个数组A, 把它分成两个数组B和C
@@ -18,7 +18,7 @@ package class_2023_03_3_week;
 // 1 <= A的长度 <= 10^7
 // 1 <= A[i] <= 10^7
 // 最终结果可能很大，请返回对1000000007取余的结果
-public class Code03_SplitToMakeIncreaseAndDecreaseWays {
+public class Code02_SplitToMakeIncreaseAndDecreaseWays {
 
 	// 暴力方法
 	// 为了验证
