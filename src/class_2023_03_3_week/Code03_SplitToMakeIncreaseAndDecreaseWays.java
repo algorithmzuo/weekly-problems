@@ -124,12 +124,13 @@ public class Code03_SplitToMakeIncreaseAndDecreaseWays {
 			}
 		}
 		System.out.println("功能测试结束");
+
 		System.out.println("性能测试开始");
 		int n = 10000000;
 		int v = 10000000;
 		long start, end;
 		int[] arr = new int[n];
-		System.out.println("随机生成数据的测试 : ");
+		System.out.println("随机生成的数据测试 : ");
 		System.out.println("数组长度 : " + n);
 		System.out.println("数值范围 : [" + 1 + "," + v + "]");
 		for (int i = 0; i < n; i++) {
@@ -141,7 +142,7 @@ public class Code03_SplitToMakeIncreaseAndDecreaseWays {
 		end = System.currentTimeMillis();
 		System.out.println("运行时间 : " + (end - start) + " 毫秒");
 
-		System.out.println("运行最慢的测试 : ");
+		System.out.println("运行最慢的数据测试 : ");
 		System.out.println("数组长度 : " + n);
 		System.out.println("数值都是 : " + v);
 		System.out.println("这种情况其实是复杂度最高的情况");
