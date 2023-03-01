@@ -110,6 +110,14 @@ public class Code02_SplitToMakeIncreaseAndDecreaseWays {
 
 	// 为了测试
 	public static void main(String[] args) {
+		// 展示一下pascalTriangleModulus的用法
+		System.out.println("打印部分杨辉三角形");
+		for (int n = 0; n <= 10; n++) {
+			for (int r = 0; r <= n; r++) {
+				System.out.print(pascalTriangleModulus(n, r) + " ");
+			}
+			System.out.println();
+		}
 		int N = 10;
 		int V = 20;
 		int testTimes = 20000;

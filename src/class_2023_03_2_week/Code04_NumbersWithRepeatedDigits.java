@@ -3,7 +3,7 @@ package class_2023_03_2_week;
 // 给定正整数 n
 // 返回在 [1, n] 范围内具有 至少 1 位 重复数字的正整数的个数。
 // 测试链接 : https://leetcode.cn/problems/numbers-with-repeated-digits/
-public class Code03_NumbersWithRepeatedDigits {
+public class Code04_NumbersWithRepeatedDigits {
 
 	public static int numDupDigitsAtMostN(int n) {
 		if (n <= 10) {

@@ -26,7 +26,7 @@ package class_2023_03_1_week;
 public class Code01_LexicographicalSmallestPermutation {
 
 	// 准备好杨辉三角形，作为每一项系数
-	public static int[][] matrix = {
+	public static int[][] moduluses = { 
 			{},
 			{ 1 },
 			{ 1, 1 },
@@ -46,18 +46,17 @@ public class Code01_LexicographicalSmallestPermutation {
 			return new int[] { -1 };
 		}
 		int[][] dp = new int[1 << (n + 1)][sums[n] + 1];
-		process(((1 << (n + 1)) - 1) ^ 1, sum, 0, n, matrix[n], dp);
+		if (!process(((1 << (n + 1)) - 1) ^ 1, sum, 0, n, moduluses[n], dp)) {
+			return new int[] { -1 };
+		}
 		int[] ans = new int[n];
 		int index = 0;
 		int status = ((1 << (n + 1)) - 1) ^ 1;
 		int rest = sum;
 		while (status != 0) {
-			if (dp[status][rest] == -1) {
-				return new int[] { -1 };
-			}
 			ans[index] = dp[status][rest];
 			status ^= 1 << ans[index];
-			rest -= ans[index] * matrix[n][index];
+			rest -= ans[index] * moduluses[n][index];
 			index++;
 		}
 		return ans;
@@ -106,6 +105,22 @@ public class Code01_LexicographicalSmallestPermutation {
 		int sum2 = 4116;
 		int[] ans2 = lsp(N2, sum2);
 		for (int num : ans2) {
+			System.out.print(num + " ");
+		}
+		System.out.println();
+		
+		int N3 = 10;
+		int sum3 = 3688;
+		int[] ans3 = lsp(N3, sum3);
+		for (int num : ans3) {
+			System.out.print(num + " ");
+		}
+		System.out.println();
+		
+		int N4 = 10;
+		int sum4 = 4013;
+		int[] ans4 = lsp(N4, sum4);
+		for (int num : ans4) {
 			System.out.print(num + " ");
 		}
 		System.out.println();
