@@ -53,6 +53,8 @@ public class Code02_SplitToMakeIncreaseAndDecreaseWays {
 	// N是数组长度，M大概可以认为是数值范围
 	public static int ways2(int[] arr) {
 		int n = arr.length;
+		// [ 6 
+		//   5
 		int k = arr[0] - 1;
 		for (int i = 1; i < n && k > 0; i++) {
 			if (arr[i - 1] > arr[i]) {

@@ -70,29 +70,37 @@ public class Code03_DiffColors {
 				in.nextToken();
 				arr[i] = (int) in.nval;
 			}
+			// arr[i] : i位置的颜色
 			in.nextToken();
 			m = (int) in.nval;
 			for (int i = 1; i <= m; i++) {
 				in.nextToken();
+				// left
 				query[i][0] = (int) in.nval;
 				in.nextToken();
+				// right
 				query[i][1] = (int) in.nval;
+				// 第i个问题
 				query[i][2] = i;
 			}
+			// map[5] = 8
+			// 5这个颜色，上次出现在8位置
+			// map[5] = 0
+			// 5这个颜色，之前没出现过
 			Arrays.fill(map, 0);
 			buildTree();
 			Arrays.sort(query, 1, m + 1, (a, b) -> a[1] - b[1]);
-			for (int i = 1, j = 1; j <= m; j++) {
+			for (int s = 1, j = 1; j <= m; j++) {
 				int l = query[j][0];
 				int r = query[j][1];
 				int index = query[j][2];
-				for (; i <= r; i++) {
-					int cur = arr[i];
-					if (map[cur] != 0) {
-						add(map[cur], -1);
+				for (; s <= r; s++) {
+					int color = arr[s];
+					if (map[color] != 0) {
+						add(map[color], -1);
 					}
-					add(i, 1);
-					map[cur] = i;
+					add(s, 1);
+					map[color] = s;
 				}
 				ans[index] = sum(l, r);
 			}

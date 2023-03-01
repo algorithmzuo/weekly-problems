@@ -39,6 +39,8 @@ public class Code01_LexicographicalSmallestPermutation {
 			{ 1, 8, 28, 56, 70, 56, 28, 8, 1 },
 			{ 1, 9, 36, 84, 126, 126, 84, 36, 9, 1 } };
 
+	// sums[1] = 只有1这个数字，整出来的最大和不会超过sums[1]
+	// sum[i] =  只有1~i这些数字，整出来的最大和不会超过sums[i]
 	public static int[] sums = { 0, 1, 3, 9, 24, 61, 148, 350, 808, 1837, 4116 };
 
 	public static int[] lsp(int n, int sum) {
@@ -51,6 +53,10 @@ public class Code01_LexicographicalSmallestPermutation {
 		}
 		int[] ans = new int[n];
 		int index = 0;
+		// n = 7
+		// 000..000 100000000
+		// 000..000 011111111
+		// 000..000 011111110
 		int status = ((1 << (n + 1)) - 1) ^ 1;
 		int rest = sum;
 		while (status != 0) {
@@ -62,24 +68,48 @@ public class Code01_LexicographicalSmallestPermutation {
 		return ans;
 	}
 
+	// 一开始给你1 ~ 7
+	// 一开始的status :  000000..000011111110
+	// 1、2、3、4、5、6
+	// 当前还有2、4、5可用      
+	//                            6 5 4 3 2 1 0
+	// status :                   0 1 1 0 1 0 0
+	// status : 还能用的数字，都在status里！
+	// rest : 还剩多少和，需要去搞定!
+	// index : 当前可能把status里剩下的某个数字，拿出来用，需要 * 系数的！
+	//         modulus[index]就是当前的系数！
+	// 剩下的过程，能不能搞定rest这个和！
+	// 能搞定返回true，不能搞定返回false
+	// 递归最终要的目的，不仅仅是获得返回值！dp表填好!
 	public static boolean process(int status, int rest, int index, int n, int[] modulus, int[][] dp) {
 		if (rest < 0) {
 			return false;
 		}
-		if (status == 0) {
+		if (status == 0) { // 0000000000..000000000
 			return rest == 0 ? true : false;
 		}
+		// dp[status][rest] == 0 (status,rest)之前没算过！
+		// dp[status][rest] == -1 (status,rest)之前算过！返回了false！
+		// dp[status][rest] != -1  (status,rest)之前算过！返回了true！
+		// dp[status][rest] : 
+		// 从字典序小的数字开始试，一旦试出来，记录当前是哪个数字试出来的！
 		if (dp[status][rest] != 0) {
 			return dp[status][rest] != -1;
 		}
+		// n < 10  1 2 3 4 5 6... status里得有！
+		// n == 10 10 1 2 3 4 ... status里得有！
+		// ans : 哪个数字试出来的！
 		int ans = -1;
 		if (n == 10 && (status & (1 << 10)) != 0) {
+			// 真的可以先试10！
 			if (process(status ^ (1 << 10), rest - modulus[index] * 10, index + 1, n, modulus, dp)) {
 				ans = 10;
 			}
 		}
+		// ans == 10
 		if (ans == -1) {
 			for (int i = 1; i <= n; i++) {
+				// i : 1 2 3 ... n status得有才可以!
 				if ((status & (1 << i)) != 0) {
 					if (process(status ^ (1 << i), rest - modulus[index] * i, index + 1, n, modulus, dp)) {
 						ans = i;

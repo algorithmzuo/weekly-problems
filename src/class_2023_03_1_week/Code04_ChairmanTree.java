@@ -18,11 +18,22 @@ public class Code04_ChairmanTree {
 	public static int MAXN = 200010;
 
 	// 输入数据相关
+	// 数组 : {100, 35, 4,  800}
+	// 排序 : {4 , 35, 100, 800}
+	//        1    2    3    4
+	// 1  2   3   4
+	// 1 ~ 800
+	// 1 ~ 4
 	public static int[] origin = new int[MAXN];
 	public static int[] sorted = new int[MAXN];
+	
+	
+	// 每个版本的线段树头部
+	// 线段树不是基于下标的，基于值，基于值转化之后的rank
+	// root[i] : i位置的数，加入之后，线段树的头部节点编号
 	public static int[] root = new int[MAXN];
 
-	// 建树相关
+	// 建树相关，当你的数组个数是n，一般来讲开32 * n
 	public static int[] left = new int[MAXN << 5];
 	public static int[] right = new int[MAXN << 5];
 	public static int[] sum = new int[MAXN << 5];
@@ -56,6 +67,8 @@ public class Code04_ChairmanTree {
 				int R = (int) in.nval;
 				in.nextToken();
 				int K = (int) in.nval;
+				// L..R K
+				// R - (L-1)
 				int ansIndex = query(root[L - 1], root[R], K, 1, n);
 				out.println(sorted[ansIndex]);
 				out.flush();
@@ -63,6 +76,7 @@ public class Code04_ChairmanTree {
 		}
 	}
 
+	// 0版本来说，值的范围l~r, rt, 0个
 	public static int build(int l, int r) {
 		int rt = ++cnt;
 		sum[rt] = 0;
@@ -74,6 +88,10 @@ public class Code04_ChairmanTree {
 		return rt;
 	}
 
+	// 当前范围是 l ~ r
+	// pre：这个范围在上一个版本的编号
+	// 当前版本，在l~r上加数，加x
+	// 当前版本，l~r范围，编号返回
 	public static int insert(int pre, int l, int r, int x) {
 		int rt = ++cnt;
 		left[rt] = left[pre];
@@ -90,6 +108,11 @@ public class Code04_ChairmanTree {
 		return rt;
 	}
 
+	// 请查询  下标！在 : 32 ~ 54 范围上，排名第9的数字！
+	// 54版本 - 31版本的线段树，请加工出来！排名第9的数字！
+	// u : 31版本
+	// v : 54版本
+	// l ~ r : 值的范围，在线段树上!
 	public static int query(int u, int v, int k, int l, int r) {
 		if (l == r) {
 			return l;
