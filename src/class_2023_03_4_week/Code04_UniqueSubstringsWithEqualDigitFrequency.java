@@ -17,12 +17,12 @@ public class Code04_UniqueSubstringsWithEqualDigitFrequency {
 		long base = 1000000007;
 		HashSet<Long> set = new HashSet<>();
 		int[] cnts = new int[10];
-		for (int i = 0; i < s.length(); i++) {
+		for (int l = 0; l < s.length(); l++) {
 			Arrays.fill(cnts, 0);
 			long hashCode = 0;
 			int curVal, maxCnt = 0, maxKinds = 0, allKinds = 0;
-			for (int k = i; k < s.length(); k++) {
-				curVal = s.charAt(k) - '0';
+			for (int r = l; r < s.length(); r++) {
+				curVal = s.charAt(r) - '0';
 				hashCode = hashCode * base + curVal + 1;
 				cnts[curVal]++;
 				if (cnts[curVal] == 1) {
