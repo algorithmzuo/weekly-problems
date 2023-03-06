@@ -10,7 +10,8 @@ public class Code03_UniqueSubstringsWithEqualDigitFrequency {
 	// 可以构造出让这种方法不通过的例子，原因是这种简陋的hash函数太容易碰撞了
 	// 其实这个题，依然是使用DC3算法生成后缀数组来做的
 	// 但是很难，具体可以参考LongestChunkedPalindromeDecomposition问题
-	// 这里讲一下这种简陋的hash函数，算是一种博闻强识吧
+	// 在这里就简单提一下，详细的就不讲了，因为很少考这么难
+	// 这里讲一下这个很骚的方法，构造了简陋的hash函数，算是一种博闻强识吧
 	public static long base = 233;
 
 	public static int equalDigitFrequency(String s) {
