@@ -334,7 +334,8 @@ public class Code02_LongestChunkedPalindromeDecomposition {
 
 		// longestDecomposition2跑完是很快的
 		// 而且你构造不出让longestDecomposition2方法慢的例子
-		// 字符串长度在10^6以内，可以随意构造，longestDecomposition2方法都会很快
+		// 字符串长度在10^6以内，可以随意构造字符串
+		// longestDecomposition2方法都会很快
 		start = System.currentTimeMillis();
 		System.out.println("方法2的结果 : " + longestDecomposition2(t));
 		end = System.currentTimeMillis();
