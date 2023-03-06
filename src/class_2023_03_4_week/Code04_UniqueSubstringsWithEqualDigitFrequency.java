@@ -1,5 +1,6 @@
 package class_2023_03_4_week;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 // 测试链接 : https://leetcode.cn/problems/unique-substrings-with-equal-digit-frequency/
@@ -12,28 +13,29 @@ public class Code04_UniqueSubstringsWithEqualDigitFrequency {
 	// 但是很难，具体可以参考LongestChunkedPalindromeDecomposition问题
 	// 课上会简单提一下，详细的就不讲了，因为很少考这么难
 	// 课上重点讲一下这个很骚的方法，构造了简陋的hash函数，算是一种博闻强识吧
-	public static long base = 233;
-
 	public static int equalDigitFrequency(String s) {
+		long base = 1000000007;
 		HashSet<Long> set = new HashSet<>();
+		int[] cnts = new int[10];
 		for (int i = 0; i < s.length(); i++) {
-			int[] cnts = new int[10];
-			long cur = 0;
-			int maxv = 0, maxc = 0, curc = 0;
+			Arrays.fill(cnts, 0);
+			long hashCode = 0;
+			int curVal, maxCnt = 0, maxKinds = 0, allKinds = 0;
 			for (int k = i; k < s.length(); k++) {
-				cur = cur * base + (s.charAt(k) - '0') + 1;
-				int cnt = ++cnts[s.charAt(k) - '0'];
-				if (cnt == 1) {
-					curc++;
+				curVal = s.charAt(k) - '0';
+				hashCode = hashCode * base + curVal + 1;
+				cnts[curVal]++;
+				if (cnts[curVal] == 1) {
+					allKinds++;
 				}
-				if (cnt > maxv) {
-					maxv = cnt;
-					maxc = 1;
-				} else if (cnt == maxv) {
-					maxc++;
+				if (cnts[curVal] > maxCnt) {
+					maxCnt = cnts[curVal];
+					maxKinds = 1;
+				} else if (cnts[curVal] == maxCnt) {
+					maxKinds++;
 				}
-				if (maxc == curc) {
-					set.add(cur);
+				if (maxKinds == allKinds) {
+					set.add(hashCode);
 				}
 			}
 		}
