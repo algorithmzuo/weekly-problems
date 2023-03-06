@@ -298,18 +298,18 @@ public class Code03_LongestChunkedPalindromeDecomposition {
 		System.out.println("先展示一下DC3的用法");
 		String test = "aaabaaa";
 		DC3 dc3 = generateDC3(test.toCharArray(), test.length());
-		System.out.println("sa[i]表示排名第i的是什么位置开头的后缀串");
+		System.out.println("sa[i]表示字典序排名第i的是什么位置开头的后缀串");
 		int[] sa = dc3.sa;
 		for (int i = 0; i < test.length(); i++) {
 			System.out.println(i + " : " + sa[i]);
 		}
 
-		System.out.println("rank[i]表示i位置开头的后缀串排多少名");
+		System.out.println("rank[i]表示i位置开头的后缀串的字典序排多少名");
 		int[] rank = dc3.rank;
 		for (int i = 0; i < test.length(); i++) {
 			System.out.println(i + " : " + rank[i]);
 		}
-		System.out.println("height[i]表示排名i的后缀串和前一个排名的字符串，最长公共前缀是多长");
+		System.out.println("height[i]表示字典序排名i的后缀串和前一个排名的后缀串，最长公共前缀是多长");
 		int[] height = dc3.height;
 		for (int i = 0; i < test.length(); i++) {
 			System.out.println(i + " : " + height[i]);
