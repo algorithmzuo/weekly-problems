@@ -30,8 +30,16 @@ public class Code01_StoneGameII {
 		int best = 0;
 		int pre = 0;
 		// 先手根据m，做所有的尝试，选最好的
+		// 1 2 3 .. 2m
+		// index....i  几个，j个
+		// 1) index...index  1个    pre 
+		// 2) index...index+1 2个   pre
+		// 3) index...index+2 3个   pre 
+		// m = 100   1 2 3 ~ 200 1~2m
 		for (int i = index, j = 1; i < piles.length && j <= 2 * m; i++, j++) {
 			pre += piles[i];
+			// j个
+			// index...i  (i+1....
 			best = Math.max(best, pre + second1(piles, i + 1, Math.max(j, m)));
 		}
 		return best;
@@ -143,8 +151,14 @@ public class Code01_StoneGameII {
 		// 所以，先手获得的最大值 = sum - 对手在先手时后续所有可能性中的最小值
 		int[][] dp = new int[n][n + 1];
 		for (int i = n - 1; i >= 0; i--) {
+			// i == n - 1   sum = arr[n-1]
+			// i == n - 2   sum += arr[n-2]
+			// i == n - 3   sum += arr[n-3]
 			sum += piles[i];
 			for (int m = 1; m <= n; m++) {
+				// dp[4][1] ...
+				// dp[4][2] ...
+				// dp[i][m] 
 				if (i + 2 * m >= n) {
 					// 如果先手当前的拿取范围，可以全包下数组所有的数
 					// 那必然是全拿，不给对手任何机会

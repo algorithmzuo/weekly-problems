@@ -1,4 +1,4 @@
-package class_2023_03_2_week;
+package class_2023_03_3_week;
 
 // 布尔表达式 是计算结果不是 true 就是 false 的表达式
 // 有效的表达式需遵循以下约定：

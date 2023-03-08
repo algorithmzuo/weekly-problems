@@ -4,6 +4,8 @@ package class_2023_03_2_week;
 // 返回同时以 str1 和 str2 作为子序列的最短字符串
 // 如果答案不止一个，则可以返回满足条件的任意一个答案。
 // 测试链接 : https://leetcode.cn/problems/shortest-common-supersequence/
+// 体系学习班，最长公共子序列问题
+// 大厂刷题班，章节11，根据动态规划表，生成路径
 public class Code02_ShortestCommonSupersequence {
 
 	public static String shortestCommonSupersequence(String str1, String str2) {
@@ -18,11 +20,16 @@ public class Code02_ShortestCommonSupersequence {
 				}
 			}
 		}
+		// str1 n
+		// str2 m
+		// dp[n][m] n + m - dp[n][m]
 		char[] ans = new char[n + m - dp[n][m]];
 		int ansi = ans.length - 1;
 		int i = n;
 		int j = m;
 		while (i > 0 && j > 0) {
+			// i str1的前缀长度
+			// j str2的前缀长度
 			if (dp[i][j] == dp[i - 1][j - 1] + 1 && str1.charAt(i - 1) == str2.charAt(j - 1)) {
 				ans[ansi--] = str1.charAt(i - 1);
 				i--;

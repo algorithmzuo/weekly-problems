@@ -43,9 +43,15 @@ public class Code05_BraceExpansionII {
 		}
 	}
 
+	// exp[start..........]  遇到我的} 或者exp终止位置，停！
 	public static Info process(char[] exp, int start) {
+		// 最终的结果，返回
 		TreeSet<String> ans = new TreeSet<>();
+		// 集合A X 集合B X 集合C  ,  遇到, parts清空
+		// ................        遇到, parts清空
+		// 每一回的结果，加入到ans
 		List<TreeSet<String>> parts = new ArrayList<>();
+		// 收集字符
 		StringBuilder builder = new StringBuilder();
 		while (start != exp.length && exp[start] != '}') {
 			if (exp[start] == '{') {
@@ -58,7 +64,7 @@ public class Code05_BraceExpansionII {
 				addPartsToSet(ans, parts);
 				start++;
 				parts.clear();
-			} else {
+			} else { // 遇到英文字母
 				builder.append(exp[start]);
 				start++;
 			}
