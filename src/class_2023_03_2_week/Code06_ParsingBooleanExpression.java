@@ -43,28 +43,21 @@ public class Code06_ParsingBooleanExpression {
 				Info next = process(exp, index);
 				ans = !next.ans;
 				index = next.end + 1;
-			} else if (judge == '&') {
-				ans = true;
+			} else { // judge == '&' 或者 judge == '|'
+				ans = judge == '&';
 				while (index < exp.length && exp[index] != ')') {
 					if (exp[index] == ',') {
 						index++;
 					} else {
 						Info next = process(exp, index);
-						if (!next.ans) {
-							ans = false;
-						}
-						index = next.end + 1;
-					}
-				}
-			} else {
-				ans = false;
-				while (index < exp.length && exp[index] != ')') {
-					if (exp[index] == ',') {
-						index++;
-					} else {
-						Info next = process(exp, index);
-						if (next.ans) {
-							ans = true;
+						if (judge == '&') {
+							if (!next.ans) {
+								ans = false;
+							}
+						} else {
+							if (next.ans) {
+								ans = true;
+							}
 						}
 						index = next.end + 1;
 					}
