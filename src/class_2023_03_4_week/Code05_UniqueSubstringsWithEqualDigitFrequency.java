@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 // 测试链接 : https://leetcode.cn/problems/unique-substrings-with-equal-digit-frequency/
-public class Code04_UniqueSubstringsWithEqualDigitFrequency {
+public class Code05_UniqueSubstringsWithEqualDigitFrequency {
 
 	// 如下的方法是帖子上的一个很骚的方法
 	// 其实是不对的，只是可以通过所有当前的测试用例而已

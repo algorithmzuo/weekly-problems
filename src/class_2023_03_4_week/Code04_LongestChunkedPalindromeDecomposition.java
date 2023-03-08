@@ -1,7 +1,7 @@
 package class_2023_03_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/longest-chunked-palindrome-decomposition/
-public class Code03_LongestChunkedPalindromeDecomposition {
+public class Code04_LongestChunkedPalindromeDecomposition {
 
 	// 时间复杂度O(N^2)
 	// 题解上的做法

@@ -11,8 +11,7 @@ public class Code04_NumbersWithRepeatedDigits {
 		}
 		int len = 1;
 		int offset = 1;
-		int tmp = n;
-		tmp /= 10;
+		int tmp = n / 10;
 		while (tmp > 0) {
 			len++;
 			offset *= 10;
