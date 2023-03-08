@@ -13,7 +13,7 @@ import java.util.Arrays;
 // 1 <= n <= 10^5
 // 0 <= arr[i] <= 10^5
 // 1 <= k <= n
-public class Code01_SplitToSubsetMakeMinAverageSum {
+public class Code02_SplitToSubsetMakeMinAverageSum {
 
 	// 暴力方法
 	// 为了验证

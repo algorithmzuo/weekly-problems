@@ -1,7 +1,7 @@
-package class_2023_03_3_week;
+package class_2023_03_2_week;
 
 // 测试链接 : https://leetcode.cn/problems/parsing-a-boolean-expression/
-public class Code05_ParsingBooleanExpression {
+public class Code06_ParsingBooleanExpression {
 
 	public static boolean parseBoolExpr(String expression) {
 		return process(expression.toCharArray(), 0).ans;

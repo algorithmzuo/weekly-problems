@@ -1,4 +1,4 @@
-package class_2023_03_4_week;
+package class_2023_03_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/divide-array-into-increasing-sequences/
 public class Code01_DivideArrayIntoIncreasingSequences {

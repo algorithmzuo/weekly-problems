@@ -1,11 +1,11 @@
-package class_2023_03_3_week;
+package class_2023_03_2_week;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
 // 测试链接 : https://leetcode.cn/problems/brace-expansion-ii/
-public class Code04_BraceExpansionII {
+public class Code05_BraceExpansionII {
 
 	public static List<String> braceExpansionII(String expression) {
 		return new ArrayList<>(process(expression.toCharArray(), 0).ans);
