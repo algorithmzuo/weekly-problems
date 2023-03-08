@@ -53,7 +53,7 @@ public class Code04_NumbersWithRepeatedDigits {
 		}
 		int ans = 0;
 		int first = (n / offset) % 10;
-		for (int cur = 0; cur < Math.min(9, first); cur++) {
+		for (int cur = 0; cur < first; cur++) {
 			if ((status & (1 << cur)) != 0) {
 				ans += numberRest(offset / 10, status ^ (1 << cur));
 			}
