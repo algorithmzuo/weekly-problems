@@ -14,7 +14,7 @@ package class_2023_03_3_week;
 // 给你一个以字符串形式表述的 布尔表达式 expression，返回该式的运算结果。
 // 题目测试用例所给出的表达式均为有效的布尔表达式，遵循上述约定。
 // 测试链接 : https://leetcode.cn/problems/parsing-a-boolean-expression/
-public class Code06_ParsingBooleanExpression {
+public class Code03_ParsingBooleanExpression {
 
 	public static boolean parseBoolExpr(String expression) {
 		return process(expression.toCharArray(), 0).ans;
