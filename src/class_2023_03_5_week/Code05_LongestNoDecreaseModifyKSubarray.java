@@ -1,6 +1,6 @@
 package class_2023_03_5_week;
 
-// 来自蓝桥杯
+// 来自学员问题，蓝桥杯练习题
 // 给定一个长度为n的数组arr
 // 现在你有一次机会, 将其中连续的K个数全修改成任意一个值
 // 请你计算如何修改可以使修改后的数 列的最长不下降子序列最长
@@ -8,7 +8,7 @@ package class_2023_03_5_week;
 // 最长不下降子序列:子序列中的每个数不小于在它之前的数
 // 1 <= k, n <= 10^5
 // 1 <= arr[i] <= 10^6
-// 测试链接 : https://www.lanqiao.cn/problems/2088/learning/
+// 测试链接 : https://www.luogu.com.cn/problem/P8776
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
 // 提交以下的code，提交时请把编译语言选择"Java"，主类名改成"Main"
@@ -20,7 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code04_LongestNoDecreaseModifyKSubarray {
+public class Code05_LongestNoDecreaseModifyKSubarray {
 
 	public static int MAXN = 100001;
 

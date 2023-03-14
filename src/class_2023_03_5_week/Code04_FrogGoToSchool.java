@@ -1,6 +1,6 @@
 package class_2023_03_5_week;
 
-// 来自蓝桥杯
+// 来自学员问题，蓝桥杯练习题
 // 小青蛙住在一条河边, 它想到河对岸的学校去学习
 // 小青蛙打算经过河里 的石头跳到对岸
 // 河里的石头排成了一条直线, 小青蛙每次跳跃必须落在一块石头或者岸上
@@ -14,7 +14,7 @@ package class_2023_03_5_week;
 // 1 <= n <= 10^5
 // 1 <= arr[i] <= 10^4
 // 1 <= x <= 10^9
-// 测试链接 : https://www.lanqiao.cn/problems/2097/learning/
+// 测试链接 : https://www.luogu.com.cn/problem/P8775
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
 // 提交以下的code，提交时请把编译语言选择"Java"，主类名改成"Main"
@@ -26,7 +26,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code05_FrogGoToSchool {
+public class Code04_FrogGoToSchool {
 
 	public static int MAXN = 100001;
 
