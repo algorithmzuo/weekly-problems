@@ -3,7 +3,7 @@ package class_2023_03_5_week;
 import java.util.Arrays;
 
 // https://leetcode.cn/problems/maximum-earnings-from-taxi/
-public class Code02_MaximumEarningsFromTaxi {
+public class Code01_MaximumEarningsFromTaxi {
 
 	public static int MAXN = 100001;
 

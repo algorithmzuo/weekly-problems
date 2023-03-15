@@ -10,7 +10,7 @@ import java.util.Arrays;
 // 有多少个车库包含车的数量>=3，请返回K个查询的答案
 // 1 <= M, N, K <= 10^5
 // 1 <= T <= 10^9
-public class Code04_QueryGreaterThanOrEqualTo3Stores {
+public class Code05_QueryGreaterThanOrEqualTo3Stores {
 
 	// 暴力方法
 	// 为了验证
