@@ -2,7 +2,7 @@ package class_2023_03_3_week;
 
 import java.util.Arrays;
 
-// 来自学员问题，大厂面试面经帖子
+// 来自学员问题，大厂笔试面经帖子
 // 假设一共有M个车库，编号1~M，时间点从早到晚是从1~T
 // 一共有N个记录，每一条记录如下{a, b, c}
 // 表示一辆车在b时间点进入a车库，在c时间点从a车库出去
@@ -50,6 +50,7 @@ public class Code05_QueryGreaterThanOrEqualTo3Stores {
 	public static int[] getAns2(int m, int[][] records, int[] queries) {
 		int n = records.length;
 		int k = queries.length;
+		// n*2 + k
 		int tn = (n << 1) + k;
 		int[] times = new int[tn + 1];
 		int ti = 1;
@@ -68,6 +69,9 @@ public class Code05_QueryGreaterThanOrEqualTo3Stores {
 		for (int i = 0; i < k; i++) {
 			queries[i] = rank(times, queries[i]);
 		}
+		// 所有记录，根据车库编号排序，相同车库的记录就在一起了
+		// record  车库   入库时间    出库时间-1
+		//         0      1          2
 		Arrays.sort(records, (a, b) -> a[0] - b[0]);
 		SegmentTree st = new SegmentTree(tn);
 		for (int l = 0; l < n;) {
@@ -75,6 +79,7 @@ public class Code05_QueryGreaterThanOrEqualTo3Stores {
 			while (r < n && records[l][0] == records[r][0]) {
 				r++;
 			}
+			// 同一个车库的记录，records[l.....r-1] l......  l.......
 			countRange(records, l, r - 1, st);
 			l = r;
 		}
@@ -85,6 +90,10 @@ public class Code05_QueryGreaterThanOrEqualTo3Stores {
 		return ans;
 	}
 
+	// records[l.....r]
+	// 上面的记录都属于当前的车库
+	// 找到哪些时间段，车的数量是 >= 3的
+	// 改写线段树!
 	public static void countRange(int[][] records, int l, int r, SegmentTree st) {
 		int n = r - l + 1;
 		int[][] help = new int[n << 1][2];
@@ -120,6 +129,9 @@ public class Code05_QueryGreaterThanOrEqualTo3Stores {
 		}
 	}
 
+	// 所有的时间点，在sorted数组中排好序了
+	// 给我一个其中的时间点，v
+	// 返回，离散化之后的编号！
 	public static int rank(int[] sorted, int v) {
 		int l = 1;
 		int r = sorted.length;

@@ -34,6 +34,8 @@ public class Code03_MakeSumDivisibleByP {
 			find = (curMod - allMod + p) % p;
 			if (map.containsKey(find)) {
 				if (i != n - 1 || map.get(find) != -1) {
+					// 防止删掉整体！
+					// ...i(n-1)
 					ans = Math.min(ans, i - map.get(find));
 				}
 			}

@@ -17,11 +17,12 @@ package class_2023_03_3_week;
 public class Code04_ParsingBooleanExpression {
 
 	public static boolean parseBoolExpr(String expression) {
-		return process(expression.toCharArray(), 0).ans;
+		return f(expression.toCharArray(), 0).ans;
 	}
 
 	public static class Info {
 		public boolean ans;
+		// 结束下标！
 		public int end;
 
 		public Info(boolean a, int e) {
@@ -30,26 +31,42 @@ public class Code04_ParsingBooleanExpression {
 		}
 	}
 
-	public static Info process(char[] exp, int index) {
+	// 核心递归
+	public static Info f(char[] exp, int index) {
 		char judge = exp[index];
 		if (judge == 'f') {
 			return new Info(false, index);
 		} else if (judge == 't') {
 			return new Info(true, index);
 		} else {
+			// !
+			// &
+			// |
+			// 再说！
 			boolean ans;
+			// ! ( ?
+			// i i+1 i+2
+			// & ( ?
+			// i i+1 i+2
+			// | ( ?
+			// i i+1 i+2
 			index += 2;
 			if (judge == '!') {
-				Info next = process(exp, index);
+				// ! ( ?...... )
+				// i i+1 i+2
+				Info next = f(exp, index);
 				ans = !next.ans;
 				index = next.end + 1;
-			} else { // judge == '&' 或者 judge == '|'
+			} else {
+				// &
+				// i
+				// judge == '&' 或者 judge == '|'
 				ans = judge == '&';
-				while (index < exp.length && exp[index] != ')') {
+				while (exp[index] != ')') {
 					if (exp[index] == ',') {
 						index++;
 					} else {
-						Info next = process(exp, index);
+						Info next = f(exp, index);
 						if (judge == '&') {
 							if (!next.ans) {
 								ans = false;
@@ -66,5 +83,63 @@ public class Code04_ParsingBooleanExpression {
 			return new Info(ans, index);
 		}
 	}
+
+//	public static Info f(char[] exp, int index) {
+//		char judge = exp[index];
+//		if (judge == 'f') {
+//			return new Info(false, index);
+//		} else if (judge == 't') {
+//			return new Info(true, index);
+//		} else {
+//			// !
+//			// &
+//			// |
+//			// 再说！
+//			boolean ans;
+//			// ! ( ?
+//			// i i+1 i+2
+//			// & ( ?
+//			// i i+1 i+2
+//			// | ( ?
+//			// i i+1 i+2
+//			index += 2;
+//			if (judge == '!') {
+//				// ! ( ?...... )
+//				// i i+1 i+2
+//				Info next = f(exp, index);
+//				ans = !next.ans;
+//				index = next.end + 1;
+//			} else if (judge == '&') {
+//				// & ( ?... , ?.... , ?.... )
+//				// i i+1 index
+//				ans = true;
+//				while (exp[index] != ')') {
+//					if (exp[index] == ',') {
+//						index++;
+//					} else {
+//						Info next = f(exp, index);
+//						if (!next.ans) {
+//							ans = false;
+//						}
+//						index = next.end + 1;
+//					}
+//				}
+//			} else {
+//				ans = false;
+//				while (exp[index] != ')') {
+//					if (exp[index] == ',') {
+//						index++;
+//					} else {
+//						Info next = f(exp, index);
+//						if (next.ans) {
+//							ans = true;
+//						}
+//						index = next.end + 1;
+//					}
+//				}
+//			}
+//			return new Info(ans, index);
+//		}
+//	}
 
 }
