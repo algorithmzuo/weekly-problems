@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 
 //  测试链接 : https://leetcode.cn/problems/minimum-knight-moves/
-public class Code01_MinimumKnightMoves {
+public class Code02_MinimumKnightMoves {
 
 	// A*算法的实现
 	public static int minKnightMoves(int x, int y) {

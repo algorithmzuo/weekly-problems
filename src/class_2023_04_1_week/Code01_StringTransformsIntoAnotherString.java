@@ -1,7 +1,11 @@
-package class_2023_03_4_week;
+package class_2023_04_1_week;
 
 import java.util.Arrays;
 
+// 给出两个长度相同的字符串 str1 和 str2
+// 请你帮忙判断字符串 str1 能不能在 零次 或 多次 转化 后变成字符串 str2
+// 每一次转化时，你可以将 str1 中出现的 所有 相同字母变成其他 任何 小写英文字母
+// 只有在字符串 str1 能够通过上述方式顺利转化为字符串 str2 时才能返回 true 。​​
 // 测试链接 : https://leetcode.cn/problems/string-transforms-into-another-string/
 public class Code01_StringTransformsIntoAnotherString {
 
