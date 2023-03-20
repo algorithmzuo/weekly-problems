@@ -18,7 +18,7 @@ public class Code04_FrogHateStoneMinTimes {
 
 	public static int[] stone = new int[MAXN];
 
-	public static int[] far = new int[MAXN];
+	public static int[] distance = new int[MAXN];
 
 	public static int[] dp = new int[MAXL];
 
@@ -54,11 +54,10 @@ public class Code04_FrogHateStoneMinTimes {
 				out.println(ans);
 			} else {
 				for (int i = 1; i <= m; i++) {
-					int distance = Math.min(stone[i] - stone[i - 1], base);
-					far[i] = far[i - 1] + distance;
-					visited[far[i]] = true;
+					distance[i] = distance[i - 1] + Math.min(stone[i] - stone[i - 1], base);
+					visited[distance[i]] = true;
 				}
-				l = far[m] + base;
+				l = distance[m] + base;
 				Arrays.fill(dp, 1, l + 1, MAXN);
 				dp[0] = 0;
 				for (int i = 1; i <= l; i++) {
@@ -73,7 +72,7 @@ public class Code04_FrogHateStoneMinTimes {
 					}
 				}
 				int ans = MAXN;
-				for (int i = far[m]; i <= l; i++) {
+				for (int i = distance[m]; i <= l; i++) {
 					ans = Math.min(ans, dp[i]);
 				}
 				out.println(ans);
