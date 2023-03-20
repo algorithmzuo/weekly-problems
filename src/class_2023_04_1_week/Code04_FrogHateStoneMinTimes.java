@@ -46,7 +46,6 @@ public class Code04_FrogHateStoneMinTimes {
 				in.nextToken();
 				arr[i] = (int) in.nval;
 			}
-			Arrays.sort(arr, 1, m + 1);
 			if (s == t) {
 				int ans = 0;
 				for (int i = 1; i <= m; ++i) {
@@ -56,6 +55,7 @@ public class Code04_FrogHateStoneMinTimes {
 				}
 				out.println(ans);
 			} else {
+				Arrays.sort(arr, 1, m + 1);
 				base = reduce(s, t);
 				for (int i = 1; i <= m; i++) {
 					distance[i] = distance[i - 1] + Math.min(arr[i] - arr[i - 1], base);
