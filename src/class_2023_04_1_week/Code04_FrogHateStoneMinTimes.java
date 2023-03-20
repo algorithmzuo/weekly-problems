@@ -59,7 +59,6 @@ public class Code04_FrogHateStoneMinTimes {
 				}
 				l = distance[m] + base;
 				Arrays.fill(dp, 1, l + 1, MAXN);
-				dp[0] = 0;
 				for (int i = 1; i <= l; i++) {
 					for (int j = s; j <= t; j++) {
 						if (i - j >= 0) {
