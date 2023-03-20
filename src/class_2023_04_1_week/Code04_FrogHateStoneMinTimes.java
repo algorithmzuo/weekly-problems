@@ -16,13 +16,13 @@ public class Code04_FrogHateStoneMinTimes {
 
 	public static int MAXL = 100001;
 
-	public static int[] stone = new int[MAXN];
+	public static int[] arr = new int[MAXN];
 
 	public static int[] distance = new int[MAXN];
 
 	public static int[] dp = new int[MAXL];
 
-	public static boolean[] visited = new boolean[MAXL];
+	public static boolean[] stone = new boolean[MAXL];
 
 	public static int l, s, t, m, base;
 
@@ -41,21 +41,21 @@ public class Code04_FrogHateStoneMinTimes {
 			base = s * t;
 			for (int i = 1; i <= m; ++i) {
 				in.nextToken();
-				stone[i] = (int) in.nval;
+				arr[i] = (int) in.nval;
 			}
-			Arrays.sort(stone, 1, m + 1);
+			Arrays.sort(arr, 1, m + 1);
 			if (s == t) {
 				int ans = 0;
 				for (int i = 1; i <= m; ++i) {
-					if (stone[i] % s == 0) {
+					if (arr[i] % s == 0) {
 						ans++;
 					}
 				}
 				out.println(ans);
 			} else {
 				for (int i = 1; i <= m; i++) {
-					distance[i] = distance[i - 1] + Math.min(stone[i] - stone[i - 1], base);
-					visited[distance[i]] = true;
+					distance[i] = distance[i - 1] + Math.min(arr[i] - arr[i - 1], base);
+					stone[distance[i]] = true;
 				}
 				l = distance[m] + base;
 				Arrays.fill(dp, 1, l + 1, MAXN);
@@ -63,7 +63,7 @@ public class Code04_FrogHateStoneMinTimes {
 				for (int i = 1; i <= l; i++) {
 					for (int j = s; j <= t; j++) {
 						if (i - j >= 0) {
-							if (visited[i]) {
+							if (stone[i]) {
 								dp[i] = Math.min(dp[i - j] + 1, dp[i]);
 							} else {
 								dp[i] = Math.min(dp[i - j], dp[i]);
