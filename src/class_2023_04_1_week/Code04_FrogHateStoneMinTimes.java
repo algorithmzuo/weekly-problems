@@ -16,6 +16,8 @@ public class Code04_FrogHateStoneMinTimes {
 
 	public static int MAXL = 100001;
 
+	public static int MAXK = 201;
+
 	public static int[] arr = new int[MAXN];
 
 	public static int[] distance = new int[MAXN];
@@ -23,6 +25,8 @@ public class Code04_FrogHateStoneMinTimes {
 	public static int[] dp = new int[MAXL];
 
 	public static boolean[] stone = new boolean[MAXL];
+
+	public static boolean[] reach = new boolean[201];
 
 	public static int l, s, t, m, base;
 
@@ -38,7 +42,6 @@ public class Code04_FrogHateStoneMinTimes {
 			t = (int) in.nval;
 			in.nextToken();
 			m = (int) in.nval;
-			base = s * t;
 			for (int i = 1; i <= m; ++i) {
 				in.nextToken();
 				arr[i] = (int) in.nval;
@@ -53,6 +56,7 @@ public class Code04_FrogHateStoneMinTimes {
 				}
 				out.println(ans);
 			} else {
+				base = reduce(s, t);
 				for (int i = 1; i <= m; i++) {
 					distance[i] = distance[i - 1] + Math.min(arr[i] - arr[i - 1], base);
 					stone[distance[i]] = true;
@@ -78,6 +82,27 @@ public class Code04_FrogHateStoneMinTimes {
 			}
 			out.flush();
 		}
+	}
+
+	public static int reduce(int s, int t) {
+		Arrays.fill(reach, false);
+		int cnt = 0;
+		int ans = 0;
+		for (int i = 0; i < MAXK; i++) {
+			for (int j = i + s; j < Math.min(i + t + 1, MAXK); j++) {
+				reach[j] = true;
+			}
+			if (!reach[i]) {
+				cnt = 0;
+			} else {
+				cnt++;
+			}
+			if (cnt == t) {
+				ans = i;
+				break;
+			}
+		}
+		return ans;
 	}
 
 }
