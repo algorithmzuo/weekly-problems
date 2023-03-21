@@ -28,7 +28,7 @@ public class Code04_FrogHateStoneMinTimes {
 
 	public static boolean[] reach = new boolean[201];
 
-	public static int l, s, t, m, base;
+	public static int l, s, t, m, cut;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -56,22 +56,16 @@ public class Code04_FrogHateStoneMinTimes {
 				out.println(ans);
 			} else {
 				Arrays.sort(arr, 1, m + 1);
-				base = reduce(s, t);
+				cut = reduce(s, t);
 				for (int i = 1; i <= m; i++) {
-					distance[i] = distance[i - 1] + Math.min(arr[i] - arr[i - 1], base);
+					distance[i] = distance[i - 1] + Math.min(arr[i] - arr[i - 1], cut);
 					stone[distance[i]] = true;
 				}
-				l = distance[m] + base;
+				l = distance[m] + cut;
 				Arrays.fill(dp, 1, l + 1, MAXN);
 				for (int i = 1; i <= l; i++) {
-					for (int j = s; j <= t; j++) {
-						if (i - j >= 0) {
-							if (stone[i]) {
-								dp[i] = Math.min(dp[i - j] + 1, dp[i]);
-							} else {
-								dp[i] = Math.min(dp[i - j], dp[i]);
-							}
-						}
+					for (int j = Math.max(i - t, 0); j <= i - s; j++) {
+						dp[i] = Math.min(dp[i], dp[j] + (stone[i] ? 1 : 0));
 					}
 				}
 				int ans = MAXN;
