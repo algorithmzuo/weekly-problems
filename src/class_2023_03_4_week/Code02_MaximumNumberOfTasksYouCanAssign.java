@@ -1,6 +1,7 @@
 package class_2023_03_4_week;
 
 import java.util.Arrays;
+import java.util.TreeSet;
 
 // 来自华为
 // 给你 n 个任务和 m 个工人
@@ -20,8 +21,8 @@ import java.util.Arrays;
 // 测试链接 : https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/
 public class Code02_MaximumNumberOfTasksYouCanAssign {
 
-	public static int maxTaskAssign(int[] tasks, int[] workers, int pills, int strength) {
-		int[] help = new int[tasks.length];
+	// 时间复杂度O(N * (logN)平方)
+	public static int maxTaskAssign1(int[] tasks, int[] workers, int pills, int strength) {
 		int l = 0;
 		int r = tasks.length;
 		int m, ans = 0;
@@ -29,7 +30,7 @@ public class Code02_MaximumNumberOfTasksYouCanAssign {
 		Arrays.sort(workers);
 		while (l <= r) {
 			m = (l + r) / 2;
-			if (yeah(tasks, 0, m - 1, workers, workers.length - m, workers.length - 1, strength, help) <= pills) {
+			if (yeah1(tasks, 0, m - 1, workers, workers.length - m, workers.length - 1, strength) <= pills) {
 				ans = m;
 				l = m + 1;
 			} else {
@@ -39,7 +40,63 @@ public class Code02_MaximumNumberOfTasksYouCanAssign {
 		return ans;
 	}
 
-	public static int yeah(int[] tasks, int tl, int tr, int[] workers, int wl, int wr, int strength, int[] help) {
+	public static int yeah1(int[] tasks, int tl, int tr, int[] workers, int wl, int wr, int strength) {
+		if (wl < 0) {
+			return Integer.MAX_VALUE;
+		}
+		TreeSet<int[]> taskSet = new TreeSet<>((a, b) -> a[0] != b[0] ? (a[0] - b[0]) : (a[1] - b[1]));
+		for (int i = tl; i <= tr; i++) {
+			taskSet.add(new int[] { tasks[i], i });
+		}
+		int ans = 0;
+		int[] f = null;
+		for (int i = wl; i <= wr; i++) {
+			f = find(taskSet, workers[i]);
+			if (f != null) {
+				taskSet.remove(f);
+			} else {
+				f = find(taskSet, workers[i] + strength);
+				if (f != null) {
+					ans++;
+					taskSet.remove(f);
+				} else {
+					return Integer.MAX_VALUE;
+				}
+			}
+		}
+		return ans;
+	}
+
+	public static int[] find(TreeSet<int[]> taskSet, int w) {
+		int[] aim = { w, -1 };
+		int[] ceilling = taskSet.ceiling(aim);
+		if (ceilling != null && ceilling[0] == w) {
+			return ceilling;
+		}
+		return taskSet.floor(aim);
+	}
+
+	// 时间复杂度O(N * logN)
+	public static int maxTaskAssign2(int[] tasks, int[] workers, int pills, int strength) {
+		int[] help = new int[tasks.length];
+		int l = 0;
+		int r = tasks.length;
+		int m, ans = 0;
+		Arrays.sort(tasks);
+		Arrays.sort(workers);
+		while (l <= r) {
+			m = (l + r) / 2;
+			if (yeah2(tasks, 0, m - 1, workers, workers.length - m, workers.length - 1, strength, help) <= pills) {
+				ans = m;
+				l = m + 1;
+			} else {
+				r = m - 1;
+			}
+		}
+		return ans;
+	}
+
+	public static int yeah2(int[] tasks, int tl, int tr, int[] workers, int wl, int wr, int strength, int[] help) {
 		if (wl < 0) {
 			return Integer.MAX_VALUE;
 		}
