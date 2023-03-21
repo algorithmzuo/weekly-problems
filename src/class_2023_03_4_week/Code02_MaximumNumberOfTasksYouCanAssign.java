@@ -51,11 +51,11 @@ public class Code02_MaximumNumberOfTasksYouCanAssign {
 		int ans = 0;
 		int[] f = null;
 		for (int i = wl; i <= wr; i++) {
-			f = find(taskSet, workers[i]);
+			f = taskSet.floor(new int[] { workers[i], Integer.MAX_VALUE });
 			if (f != null) {
 				taskSet.remove(f);
 			} else {
-				f = find(taskSet, workers[i] + strength);
+				f = taskSet.floor(new int[] { workers[i] + strength, Integer.MAX_VALUE });
 				if (f != null) {
 					ans++;
 					taskSet.remove(f);
@@ -65,15 +65,6 @@ public class Code02_MaximumNumberOfTasksYouCanAssign {
 			}
 		}
 		return ans;
-	}
-
-	public static int[] find(TreeSet<int[]> taskSet, int w) {
-		int[] aim = { w, -1 };
-		int[] ceilling = taskSet.ceiling(aim);
-		if (ceilling != null && ceilling[0] == w) {
-			return ceilling;
-		}
-		return taskSet.floor(aim);
 	}
 
 	// 时间复杂度O(N * logN)
