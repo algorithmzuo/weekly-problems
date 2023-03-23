@@ -1,6 +1,5 @@
 package class_2022_03_2_week;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 // 来自字节飞书团队
@@ -14,46 +13,45 @@ import java.util.HashMap;
 public class Code04_SameTeams {
 
 	public static class TrieNode {
-		public ArrayList<Integer> indices;
+
+		public int pass;
+
 		public HashMap<Integer, TrieNode> nexts;
 
 		public TrieNode() {
-			indices = new ArrayList<>();
+			pass = 0;
 			nexts = new HashMap<>();
 		}
 
 	}
 
 	public static int[] sameTeamsArray(int[][] bs, int[][] as) {
-		int m = bs.length;
 		TrieNode root = new TrieNode();
 		TrieNode cur = null;
-		for (int i = 0; i < m; i++) {
-			int k = bs[i].length;
+		for (int i = 0; i < as.length; i++) {
 			cur = root;
-			for (int j = 1; j < k; j++) {
-				int diff = bs[i][j] - bs[i][j - 1];
+			for (int j = 1; j < as[i].length; j++) {
+				int diff = as[i][j] - as[i][j - 1];
 				if (!cur.nexts.containsKey(diff)) {
 					cur.nexts.put(diff, new TrieNode());
 				}
 				cur = cur.nexts.get(diff);
+				cur.pass++;
 			}
-			cur.indices.add(i);
 		}
-		int[] ans = new int[m];
-		int n = as.length;
-		for (int i = 0; i < n; i++) {
-			int k = as[i].length;
+		int[] ans = new int[bs.length];
+		for (int i = 0; i < bs.length; i++) {
 			cur = root;
-			for (int j = 1; j < k; j++) {
-				int diff = as[i][j] - as[i][j - 1];
+			for (int j = 1; j < bs[i].length; j++) {
+				int diff = bs[i][j] - bs[i][j - 1];
 				if (!cur.nexts.containsKey(diff)) {
+					cur = null;
 					break;
 				}
 				cur = cur.nexts.get(diff);
-				for (int index : cur.indices) {
-					ans[index]++;
-				}
+			}
+			if (cur != null) {
+				ans[i] = cur.pass;
 			}
 		}
 		return ans;
