@@ -1,4 +1,4 @@
-package class_2023_03_4_week;
+package class_2023_04_1_week;
 
 // 你会得到一个字符串 text
 // 你应该把它分成 k 个子字符串 (subtext1, subtext2，…， subtextk)
@@ -9,7 +9,7 @@ package class_2023_03_4_week;
 // subtexti == subtextk - i + 1 表示所有 i 的有效值( 即 1 <= i <= k )
 // 返回k可能最大值。
 // 测试链接 : https://leetcode.cn/problems/longest-chunked-palindrome-decomposition/
-public class Code04_LongestChunkedPalindromeDecomposition {
+public class Code05_LongestChunkedPalindromeDecomposition {
 
 	// 时间复杂度O(N^2)
 	// 题解上的做法

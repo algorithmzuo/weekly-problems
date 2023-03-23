@@ -13,7 +13,7 @@ import java.util.Arrays;
 // 你同时 最多 只能接一个订单。
 // 给你 n 和 rides ，请你返回在最优接单方案下，你能盈利 最多 多少元。
 // 注意：你可以在一个地点放下一位乘客，并在同一个地点接上另一位乘客。
-// https://leetcode.cn/problems/maximum-earnings-from-taxi/
+// 测试链接 : https://leetcode.cn/problems/maximum-earnings-from-taxi/
 public class Code03_MaximumEarningsFromTaxi {
 
 	public static int MAXN = 100001;
@@ -102,14 +102,21 @@ public class Code03_MaximumEarningsFromTaxi {
 		Arrays.sort(sorted, 0, m << 1);
 		Arrays.fill(dp, 0, m << 1, 0);
 		int dpi = 0;
+		// pre : 讲的时候的max，之前的最大收入
 		long pre = 0;
 		long ans = 0;
+		// 13  29  29  30  30  45
+		// 1   2       4       6
 		for (int[] ride : rides) {
 			int start = ride[0];
 			int end = ride[1];
 			int tips = ride[2];
+			// 29 -> 2
+			// 45 -> 6
 			int srank = rank(sorted, m << 1, start);
 			int erank = rank(sorted, m << 1, end);
+			// 70
+			// dp   dp[0......70] max值，之前的最大收入！
 			while (dpi <= srank) {
 				pre = Math.max(pre, dp[dpi++]);
 			}
