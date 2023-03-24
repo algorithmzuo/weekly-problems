@@ -12,24 +12,24 @@ public class Code01_DinnerPlateStacks {
 		private ArrayList<ArrayList<Integer>> stacks = new ArrayList<>();
 		private PriorityQueue<Integer> heap = new PriorityQueue<>();
 		private int capacity;
-		private int size;
+		private int maxIndex;
 
 		public DinnerPlates(int cap) {
 			capacity = cap;
-			size = 0;
+			maxIndex = 0;
 		}
 
 		public void push(int val) {
 			if (!heap.isEmpty()) {
-				while (cnt[size] == 0 && size > 0) {
-					size--;
+				while (cnt[maxIndex] == 0 && maxIndex > 0) {
+					maxIndex--;
 				}
-				if (heap.peek() >= size) {
-					while (!heap.isEmpty() && heap.peek() > size) {
+				if (heap.peek() >= maxIndex) {
+					while (!heap.isEmpty() && heap.peek() > maxIndex) {
 						heap.poll();
 					}
-					stacks.get(size).add(val);
-					cnt[size]++;
+					stacks.get(maxIndex).add(val);
+					cnt[maxIndex]++;
 				} else {
 					int cur = heap.peek();
 					cnt[cur]++;
@@ -39,25 +39,25 @@ public class Code01_DinnerPlateStacks {
 					}
 				}
 			} else {
-				if (cnt[size] == capacity && size < N) {
-					size++;
+				if (cnt[maxIndex] == capacity && maxIndex < N) {
+					maxIndex++;
 				}
-				if (cnt[size] == 0 && stacks.size() <= size) {
+				if (cnt[maxIndex] == 0 && stacks.size() == maxIndex) {
 					stacks.add(new ArrayList<>());
 				}
-				stacks.get(size).add(val);
-				cnt[size]++;
+				stacks.get(maxIndex).add(val);
+				cnt[maxIndex]++;
 			}
 		}
 
 		public int pop() {
-			if (size == 0 && cnt[size] == 0) {
+			if (maxIndex == 0 && cnt[maxIndex] == 0) {
 				return -1;
 			}
-			while (cnt[size] == 0 && size > 0) {
-				size--;
+			while (cnt[maxIndex] == 0 && maxIndex > 0) {
+				maxIndex--;
 			}
-			return stacks.get(size).remove(--cnt[size]);
+			return stacks.get(maxIndex).remove(--cnt[maxIndex]);
 		}
 
 		public int popAtStack(int index) {
