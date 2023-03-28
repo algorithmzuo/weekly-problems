@@ -6,6 +6,7 @@ package class_2023_04_2_week;
 // 做到 : 奇数层节点的值总和 与 偶数层节点的值总和 相差不超过1
 // 返回奇数层节点分配值的一个方案
 // 2 <= n <= 10^5 
+// 所以课上会讲怎么转化，然后如下的代码实现
 public class Code02_OddLevelEvenLevelSumClosed {
 
 	public static int[] team(int n, int k) {
