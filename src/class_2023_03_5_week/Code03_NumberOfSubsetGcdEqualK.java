@@ -1,4 +1,4 @@
-package class_2023_04_2_week;
+package class_2023_03_5_week;
 
 // 来自腾讯笔试
 // 给定一个长度为N的正数数组，还有一个正数K
@@ -52,7 +52,7 @@ public class Code03_NumberOfSubsetGcdEqualK {
 				for (int j = i; j < MAXN; j += i) {
 					counts = (counts + cnt[j]) % mod;
 				}
-				dp[i] = pow2[(int) counts] - 1;
+				dp[i] = (pow2[(int) counts] - 1 + mod) % mod;
 				for (int j = 2 * i; j < MAXN; j += i) {
 					dp[i] = (dp[i] - dp[j] + mod) % mod;
 				}

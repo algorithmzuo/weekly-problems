@@ -26,7 +26,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code03_FrogGoToSchool {
+public class Code05_FrogGoToSchool {
 
 	public static int MAXN = 100001;
 

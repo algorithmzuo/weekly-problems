@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-good-paths/
-public class Code02_NumberOfGoodPaths {
+public class Code04_NumberOfGoodPaths {
 
 	public static int numberOfGoodPaths(int[] vals, int[][] edges) {
 		int n = vals.length;
