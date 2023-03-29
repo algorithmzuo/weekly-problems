@@ -18,48 +18,68 @@ import java.util.Arrays;
 // 注意，一条路径和它反向的路径算作 同一 路径
 // 比方说， 0 -> 1 与 1 -> 0 视为同一条路径。单个节点也视为一条合法路径
 // 测试链接 : https://leetcode.cn/problems/number-of-good-paths/
-public class Code04_NumberOfGoodPaths {
+public class Code05_NumberOfGoodPaths {
 
+	// [1,2]
+	// 1点 -> 7
+	// 2点 -> 3
 	public static int numberOfGoodPaths(int[] vals, int[][] edges) {
 		int n = vals.length;
+		// 1) 当前这一种，最经典的建图方式
+		// 2) 邻接矩阵， N * N, 非常废空间，用于点的数量N不大的时候
+		// 3) 链式前向星，固定数组就可以建图，省空间，不用动态结构，实现麻烦！
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
 			graph.add(new ArrayList<>());
 		}
+		// a -> b  b -> a
+		// a {b}
+		// b {a}
 		for (int[] e : edges) {
 			graph.get(e[0]).add(e[1]);
 			graph.get(e[1]).add(e[0]);
 		}
+		// 所有节点
 		int[][] nodes = new int[n][2];
 		for (int i = 0; i < n; i++) {
+			// 编号，4号点
 			nodes[i][0] = i;
+			// 值，4号点的值
 			nodes[i][1] = vals[i];
 		}
 		Arrays.sort(nodes, (a, b) -> a[1] - b[1]);
+		UnionFind uf = new UnionFind(n);
+		// 标签只有maxIndex数组
 		int[] maxIndex = new int[n];
 		for (int i = 0; i < n; i++) {
 			maxIndex[i] = i;
 		}
-		int[] maxNumber = new int[n];
-		Arrays.fill(maxNumber, 1);
-		UnionFind uf = new UnionFind(n);
+		// maxCnts不是标签
+		// 单纯的最大值次数统计
+		int[] maxCnts = new int[n];
+		Arrays.fill(maxCnts, 1);
 		int ans = n;
+		// 已经根据值排序了！一定是从值小的点，遍历到值大的点
 		for (int[] node : nodes) {
 			int curi = node[0];
 			int curv = vals[curi];
 			int curCandidate = uf.find(curi);
 			int curMaxIndex = maxIndex[curCandidate];
+			// 遍历邻居
 			for (int nexti : graph.get(curi)) {
+				// 邻居值
 				int nextv = vals[nexti];
+				// 邻居的集合代表点
 				int nextCandidate = uf.find(nexti);
 				if (curCandidate != nextCandidate && curv >= nextv) {
+					// 邻居集合最大值的下标
 					int nextMaxIndex = maxIndex[nextCandidate];
 					if (curv == vals[nextMaxIndex]) {
-						ans += maxNumber[curMaxIndex] * maxNumber[nextMaxIndex];
-						maxNumber[curMaxIndex] += maxNumber[nextMaxIndex];
+						ans += maxCnts[curMaxIndex] * maxCnts[nextMaxIndex];
+						maxCnts[curMaxIndex] += maxCnts[nextMaxIndex];
 					}
-					int father = uf.union(curi, nexti);
-					maxIndex[father] = curMaxIndex;
+					int candidate = uf.union(curi, nexti);
+					maxIndex[candidate] = curMaxIndex;
 				}
 			}
 		}
