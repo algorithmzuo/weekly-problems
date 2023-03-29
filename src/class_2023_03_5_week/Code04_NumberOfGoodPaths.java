@@ -47,13 +47,13 @@ public class Code04_NumberOfGoodPaths {
 		for (int[] node : nodes) {
 			int curi = node[0];
 			int curv = vals[curi];
-			int curFather = uf.find(curi);
-			int curMaxIndex = maxIndex[curFather];
+			int curCandidate = uf.find(curi);
+			int curMaxIndex = maxIndex[curCandidate];
 			for (int nexti : graph.get(curi)) {
 				int nextv = vals[nexti];
-				int nextFather = uf.find(nexti);
-				if (curFather != nextFather && curv >= nextv) {
-					int nextMaxIndex = maxIndex[nextFather];
+				int nextCandidate = uf.find(nexti);
+				if (curCandidate != nextCandidate && curv >= nextv) {
+					int nextMaxIndex = maxIndex[nextCandidate];
 					if (curv == vals[nextMaxIndex]) {
 						ans += maxNumber[curMaxIndex] * maxNumber[nextMaxIndex];
 						maxNumber[curMaxIndex] += maxNumber[nextMaxIndex];
