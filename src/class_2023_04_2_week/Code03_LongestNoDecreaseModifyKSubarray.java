@@ -20,7 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code04_LongestNoDecreaseModifyKSubarray {
+public class Code03_LongestNoDecreaseModifyKSubarray {
 
 	public static int MAXN = 100001;
 

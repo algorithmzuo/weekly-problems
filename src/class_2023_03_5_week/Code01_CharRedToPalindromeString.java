@@ -1,4 +1,4 @@
-package class_2023_04_2_week;
+package class_2023_03_5_week;
 
 // 来百度
 // 用r、e、d三种字符，拼出一个回文子串数量等于x的字符串

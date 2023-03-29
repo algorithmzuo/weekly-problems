@@ -1,4 +1,4 @@
-package class_2023_04_2_week;
+package class_2023_04_3_week;
 
 // 来自百度
 // 连通块问题
@@ -8,8 +8,6 @@ package class_2023_04_2_week;
 // 求整棵树边的权重和
 // 1 <= 点的数量 <= 10^5
 // 1 <= 边的数量 <= 10^5
-public class Code02_ColorConnectNumbers {
-	
-	
-	
+public class Code01_ColorConnectNumbers {
+
 }

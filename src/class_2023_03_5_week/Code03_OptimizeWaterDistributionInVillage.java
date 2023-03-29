@@ -16,7 +16,7 @@ import java.util.Arrays;
 // 这道题很高频，引起注意
 // 本身也不难，转化一下变成最小生成树的问题即可
 // 测试链接 : https://leetcode.cn/problems/optimize-water-distribution-in-a-village/
-public class Code01_OptimizeWaterDistributionInVillage {
+public class Code03_OptimizeWaterDistributionInVillage {
 
 	public static int MAXN = 10010;
 

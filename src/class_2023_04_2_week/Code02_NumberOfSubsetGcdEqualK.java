@@ -1,4 +1,4 @@
-package class_2023_03_5_week;
+package class_2023_04_2_week;
 
 // 来自腾讯笔试
 // 给定一个长度为N的正数数组，还有一个正数K
@@ -20,7 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code03_NumberOfSubsetGcdEqualK {
+public class Code02_NumberOfSubsetGcdEqualK {
 
 	public static int MAXN = 100001;
 
