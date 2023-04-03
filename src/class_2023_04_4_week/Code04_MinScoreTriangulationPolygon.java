@@ -1,4 +1,4 @@
-package class_2023_04_3_week;
+package class_2023_04_4_week;
 
 // 测试链接 : https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/
 public class Code04_MinScoreTriangulationPolygon {

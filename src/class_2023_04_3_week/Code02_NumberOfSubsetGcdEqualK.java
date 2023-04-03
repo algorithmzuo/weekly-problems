@@ -1,4 +1,4 @@
-package class_2023_04_2_week;
+package class_2023_04_3_week;
 
 // 来自腾讯笔试
 // 给定一个长度为N的正数数组，还有一个正数K

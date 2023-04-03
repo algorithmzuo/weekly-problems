@@ -1,4 +1,4 @@
-package class_2023_04_1_week;
+package class_2023_04_2_week;
 
 // 来自华为社招笔试
 // 测试链接 : https://www.luogu.com.cn/problem/P1052

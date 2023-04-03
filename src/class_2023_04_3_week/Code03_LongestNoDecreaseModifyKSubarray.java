@@ -1,4 +1,4 @@
-package class_2023_04_2_week;
+package class_2023_04_3_week;
 
 // 来自学员问题，蓝桥杯练习题
 // 给定一个长度为n的数组arr

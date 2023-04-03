@@ -1,4 +1,4 @@
-package class_2023_04_1_week;
+package class_2023_04_2_week;
 
 // 你会得到一个字符串 text
 // 你应该把它分成 k 个子字符串 (subtext1, subtext2，…， subtextk)
