@@ -38,10 +38,11 @@ public class Code05_MinReverseOperations {
 				int left = Math.max(cur - k + 1, k - cur - 1);
 				int right = Math.min(cur + k - 1, n * 2 - k - cur - 1);
 				TreeSet<Integer> curSet = (left & 1) == 1 ? oddSet : evenSet;
-				for (Integer ceilling = curSet.ceiling(left); ceilling != null
-						&& ceilling <= right; ceilling = curSet.ceiling(left)) {
+				Integer ceilling = curSet.ceiling(left);
+				while (ceilling != null && ceilling <= right) {
 					queue[r++] = ceilling;
 					curSet.remove(ceilling);
+					ceilling = curSet.ceiling(left);
 				}
 			}
 			level++;
