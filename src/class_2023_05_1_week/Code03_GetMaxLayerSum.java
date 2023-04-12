@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // 测试链接 : https://leetcode.cn/problems/WInSav/
-public class Code05_GetMaxLayerSum {
+public class Code03_GetMaxLayerSum {
 
 	// 不提交这个类
 	public static class TreeNode {

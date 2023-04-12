@@ -8,7 +8,7 @@ import java.util.Arrays;
 // 每一次转化时，你可以将 str1 中出现的 所有 相同字母变成其他 任何 小写英文字母
 // 只有在字符串 str1 能够通过上述方式顺利转化为字符串 str2 时才能返回 true 。​​
 // 测试链接 : https://leetcode.cn/problems/string-transforms-into-another-string/
-public class Code01_StringTransformsIntoAnotherString {
+public class Code03_StringTransformsIntoAnotherString {
 
 	public static boolean canConvert(String str1, String str2) {
 		if (str1.equals(str2)) {

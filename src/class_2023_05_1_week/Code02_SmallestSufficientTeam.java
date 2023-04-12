@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // 测试链接 : https://leetcode.cn/problems/smallest-sufficient-team/
-public class Code03_SmallestSufficientTeam {
+public class Code02_SmallestSufficientTeam {
 
 	public static int[] smallestSufficientTeam(String[] skills, List<List<String>> people) {
 		Arrays.sort(skills);

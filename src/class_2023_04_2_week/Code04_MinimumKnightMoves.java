@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
 // 返回 骑士前去征服坐标为 [x, y] 的部落所需的最小移动次数
 // 本题确保答案是一定存在的。
 // 测试链接 : https://leetcode.cn/problems/minimum-knight-moves/
-public class Code02_MinimumKnightMoves {
+public class Code04_MinimumKnightMoves {
 
 	// A*算法的实现
 	public static int minKnightMoves(int x, int y) {
