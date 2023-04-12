@@ -84,7 +84,7 @@ public class Code06_FrogHateStoneMinTimes {
 					}
 				}
 				int ans = MAXN;
-				for (int i = distance[m]; i <= l; i++) {
+				for (int i = distance[m] + 1; i <= l; i++) {
 					ans = Math.min(ans, dp[i]);
 				}
 				out.println(ans);
