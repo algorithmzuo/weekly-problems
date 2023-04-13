@@ -17,17 +17,33 @@ public class Code02_ChemicalProblem {
 
 	public static int maxValue(int[] v, int[] w, int x, int c) {
 		int n = v.length;
+		// dp[0] ? dp[1] ? dp[2] ?  dp[c] ?
 		int[] dp = new int[c + 1];
+		// dp[i] = -1, 得到i体积，目前为止无方案
 		Arrays.fill(dp, -1);
+		// 天然有的规格，先填一下
 		for (int i = 0; i < n; i++) {
+			// 3 10  dp[3] = 10
+			// 5 13  dp[5] = 13
+			// 3 20  dp[3] = 20
 			if (v[i] <= c) {
 				dp[v[i]] = Math.max(dp[v[i]], w[i]);
 			}
 		}
+		// 1 ? 2 ? 3 ? c ? dp[1....c]
 		for (int i = 1; i <= c; i++) {
+			// i = 10体积
+			// 1 + 9
+			// 2 + 8
+			// 3 + 7
+			// 4 + 6
+			// 5 + 5 + x
 			for (int j = 1; j <= i / 2; j++) {
+				// dp[10] = dp[1] + dp[9]
+				//           能得到   能得到
 				if (dp[j] != -1 && dp[i - j] != -1) {
-					dp[i] = Math.max(dp[i], dp[j] + dp[i - j] + (j == i - j ? x : 0));
+					dp[i] = Math.max(dp[i], 
+							dp[j] + dp[i - j] + (j == i - j ? x : 0));
 				}
 			}
 		}
@@ -35,10 +51,24 @@ public class Code02_ChemicalProblem {
 	}
 
 	public static void main(String[] args) {
+		// 调配溶液
+		// 规格0 (体积5，含量2)
+		// 规格1 (体积3，含量4)
+		// 规格2 (体积4，含量1)
+		// 合并双方体积不等的情况下 : 
+		// (体积5，含量2) + (体积4，含量1) = (体积9，含量3)
+		// 合并双方体积相等的情况下 : 
+		// (体积5，含量5) + (体积5，含量2) = (体积10，含量5 + 2 + x)
+		// x，额外增加，固定int类参数，x= 10
+		// c，一定要得到c体积的溶液，含量最大能是多少 ?
 		int[] v = { 5, 3, 4 };
 		int[] w = { 2, 4, 1 };
 		int x = 4;
 		int c = 16;
+		// (体积3，含量4) + (体积3，含量4) = (体积6，含量12)
+		// (体积3，含量4) + (体积3，含量4) = (体积6，含量12)
+		// (体积6，含量12) + (体积6，含量12) = (体积12，含量28)
+		// (体积12，含量28) + (体积4，含量1) = (体积16，含量29)
 		System.out.println(maxValue(v, w, x, c));
 	}
 

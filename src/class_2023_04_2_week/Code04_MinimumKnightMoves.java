@@ -18,7 +18,17 @@ public class Code04_MinimumKnightMoves {
 
 	// A*算法的实现
 	public static int minKnightMoves(int x, int y) {
-		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> (a[0] + a[1]) - (b[0] + b[1]));
+		
+		// int[] cur = { 
+		// 0 : 出发点到当前位置跳了几次
+		// 1 : 当前位置跳到目标位置，估计还要跳几次
+		// 2 : 当前位置的行
+		// 3 : 当前位置的列
+		// f() : 出发点到当前位置跳了几次，谁次数少，谁先弹出
+		// f() + g() : 
+		PriorityQueue<int[]> heap = new PriorityQueue<>(
+				(a, b) -> (a[0] + a[1]) - (b[0] + b[1]));
+		// 从堆里弹出了什么位置，不要重复再考虑了
 		HashMap<Integer, HashSet<Integer>> closed = new HashMap<>();
 		heap.add(new int[] { 0, distance(0, 0, x, y), 0, 0 });
 		int ans = Integer.MAX_VALUE;

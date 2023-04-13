@@ -27,12 +27,16 @@ import java.util.PriorityQueue;
 // -(10^5) <= Ki < 0
 public class Code01_GroupBuyTickets {
 
+	// n个人
+	//
 	public static int enoughMoney(int n, int[][] games) {
 		PriorityQueue<Game> heap = new PriorityQueue<>((a, b) -> b.earn() - a.earn());
+		// m * log m
 		for (int[] g : games) {
 			heap.add(new Game(g[0], g[1]));
 		}
 		int ans = 0;
+		// n * log m
 		for (int i = 0; i < n; i++) {
 			if (heap.peek().earn() <= 0) {
 				break;
@@ -48,6 +52,8 @@ public class Code01_GroupBuyTickets {
 	public static class Game {
 		public int Ki;
 		public int Bi;
+		// 已经来了多少人
+		// 每来一个人，票价，减少 | K |
 		public int people;
 
 		public Game(int k, int b) {
@@ -56,6 +62,7 @@ public class Code01_GroupBuyTickets {
 			people = 0;
 		}
 
+		// 如果再来一个人，景区还能收获多少钱 ?
 		public int earn() {
 //			return  (Ki * (people + 1) + Bi) + Ki * people;
 			return (2 * people + 1) * Ki + Bi;
