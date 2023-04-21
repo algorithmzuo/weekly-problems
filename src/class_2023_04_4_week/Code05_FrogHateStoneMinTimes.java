@@ -1,4 +1,4 @@
-package class_2023_04_3_week;
+package class_2023_04_4_week;
 
 // 来自华为社招笔试
 // 在河上有一座独木桥，一只青蛙想沿着独木桥从河的一侧跳到另一侧
@@ -25,7 +25,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code04_FrogHateStoneMinTimes {
+public class Code05_FrogHateStoneMinTimes {
 
 	public static int MAXN = 101;
 

@@ -1,4 +1,4 @@
-package class_2023_04_3_week;
+package class_2023_04_4_week;
 
 // 来自学员问题，蓝桥杯练习题
 // 给定一个长度为n的数组arr
@@ -20,7 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code03_LongestNoDecreaseModifyKSubarray {
+public class Code01_LongestNoDecreaseModifyKSubarray {
 
 	public static int MAXN = 100001;
 
