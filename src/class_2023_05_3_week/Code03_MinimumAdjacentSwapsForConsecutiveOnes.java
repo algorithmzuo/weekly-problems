@@ -1,4 +1,4 @@
-package class_2023_05_2_week;
+package class_2023_05_3_week;
 
 // 来自小红书
 // 测试链接 : https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/
