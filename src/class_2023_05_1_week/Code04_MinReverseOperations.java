@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.TreeSet;
 
 // 测试链接 : https://leetcode.cn/problems/minimum-reverse-operations/
-public class Code05_MinReverseOperations {
+public class Code04_MinReverseOperations {
 
 	public static int[] minReverseOperations(int n, int p, int[] banned, int k) {
 		TreeSet<Integer> oddSet = new TreeSet<>();

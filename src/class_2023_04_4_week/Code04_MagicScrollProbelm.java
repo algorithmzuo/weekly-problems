@@ -1,4 +1,4 @@
-package class_2023_05_2_week;
+package class_2023_04_4_week;
 
 // 来自微众银行
 // 两个魔法卷轴问题
@@ -7,7 +7,7 @@ package class_2023_05_2_week;
 // 你有两个魔法卷轴，请返回数组尽可能大的累加和
 // 1 <= arr长度 <= 100000
 // -100000 <= arr里的值 <= 100000
-public class Code01_MagicScrollProbelm {
+public class Code04_MagicScrollProbelm {
 
 	// 暴力方法
 	// 为了测试

@@ -10,7 +10,7 @@ import java.util.List;
 // 其中 answer[i]是将 nums 中所有元素变成 queries[i] 的 最少 操作次数。
 // 注意，每次查询后，数组变回最开始的值。
 // 测试链接 : https://leetcode.cn/problems/minimum-operations-to-make-all-array-elements-equal/
-public class Code02_MinOpToMakeElementsEqual {
+public class Code03_MinOpToMakeElementsEqual {
 
 	public static List<Long> minOperations(int[] nums, int[] queries) {
 		int n = nums.length;

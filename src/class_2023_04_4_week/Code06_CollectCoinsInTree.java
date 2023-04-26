@@ -12,7 +12,7 @@ import java.util.ArrayList;
 // 你需要收集树中所有的金币，并且回到出发节点，请你返回最少经过的边数。
 // 如果你多次经过一条边，每一次经过都会给答案加一。
 // 测试链接 : https://leetcode.cn/problems/collect-coins-in-a-tree/
-public class Code03_CollectCoinsInTree {
+public class Code06_CollectCoinsInTree {
 
 	public static int collectTheCoins(int[] coins, int[][] edges) {
 		int n = coins.length;
