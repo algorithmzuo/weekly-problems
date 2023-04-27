@@ -49,21 +49,32 @@ public class Code04_MagicScrollProbelm {
 		if (arr.length == 0) {
 			return 0;
 		}
+		// 一个卷轴也不用
 		int p1 = 0;
 		for (int num : arr) {
 			p1 += num;
 		}
 		int n = arr.length;
+		// left[i] : 0 ~ i范围上，一定要用一次卷轴的情况下，最大累加和多少
 		int[] left = new int[n];
+		// left[0] = 0 : 0 ~ 0，一定要用一次卷轴的情况下，最大累加和多少
+		// 每一步的前缀和
+		// 0~0 前缀和
 		int sum = arr[0];
+		// 之前所有前缀和的，最大值
 		int maxSum = Math.max(0, sum);
 		for (int i = 1; i < n; i++) {
+			// left[i - 1] + arr[i]
+			// maxSum : 之前所有前缀和的，最大值
 			left[i] = Math.max(left[i - 1] + arr[i], maxSum);
 			sum += arr[i];
 			maxSum = Math.max(maxSum, sum);
 		}
+		// 只用一次卷轴，必须用，0~n-1范围上的解，第二种可能性
 		int p2 = left[n - 1];
+		// 第三种 ：一定要用两次卷轴
 		int[] right = new int[n];
+		// right[i] : i ~ n-1范围上，一定要用一次卷轴的情况下，最大累加和多少
 		sum = arr[n - 1];
 		maxSum = Math.max(0, sum);
 		for (int i = n - 2; i >= 0; i--) {
@@ -73,6 +84,9 @@ public class Code04_MagicScrollProbelm {
 		}
 		int p3 = Integer.MIN_VALUE;
 		for (int i = 1; i < n; i++) {
+			// 0..0 1...n-1
+			// 0..1 2...n-1
+			// 0..2 3...n-1
 			p3 = Math.max(p3, left[i - 1] + right[i]);
 		}
 		return Math.max(p1, Math.max(p2, p3));

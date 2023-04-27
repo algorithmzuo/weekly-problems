@@ -22,6 +22,7 @@ public class Code06_CollectCoinsInTree {
 			graph.add(new ArrayList<>());
 		}
 		for (int[] edge : edges) {
+			// 8 - 13
 			graph.get(edge[0]).add(edge[1]);
 			graph.get(edge[1]).add(edge[0]);
 			inDegree[edge[0]]++;
