@@ -1,4 +1,4 @@
-package class_2023_05_4_week;
+package class_2023_05_2_week;
 
 import java.util.Arrays;
 
