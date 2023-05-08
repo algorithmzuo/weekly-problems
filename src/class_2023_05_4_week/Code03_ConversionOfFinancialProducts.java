@@ -50,9 +50,8 @@ import java.util.Arrays;
 // 并且题目保证a > Math.max(b, c, d, ....)
 // 而且题目保证所有方案转化出来的产品编号一定是不重复的
 // 请返回最终能得到的第n-1号商品的最大值
-// 其实如下数据量也能通过
-// 1 <= n <= 10^5
-// 0 <= arr[i] <= 10^5
+// 1 <= n <= 100
+// 0 <= arr[i] <= 10^4
 // k < n
 public class Code03_ConversionOfFinancialProducts {
 
@@ -72,9 +71,9 @@ public class Code03_ConversionOfFinancialProducts {
 		n = arr.length;
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
-			indegree[i] = 0;
 			graph.add(new ArrayList<>());
 		}
+		Arrays.fill(indegree, 0, n, 0);
 		for (int[] relation : convert) {
 			for (int i = 1; i < relation.length; i++) {
 				graph.get(relation[0]).add(relation[i]);
@@ -99,7 +98,7 @@ public class Code03_ConversionOfFinancialProducts {
 		return ans;
 	}
 
-	public static boolean ok(int[] arr, ArrayList<ArrayList<Integer>> graph, int m) {
+	public static boolean ok(int[] arr, ArrayList<ArrayList<Integer>> graph, int aim) {
 		int l = 0;
 		int r = 0;
 		for (int i = 0; i < n; i++) {
@@ -109,7 +108,7 @@ public class Code03_ConversionOfFinancialProducts {
 			}
 		}
 		Arrays.fill(need, 0, n, 0);
-		need[n - 1] = m;
+		need[n - 1] = aim;
 		while (l < r) {
 			int cur = zeroQueue[l++];
 			int supplement = Math.max(need[cur] - arr[cur], 0);
