@@ -55,7 +55,7 @@ import java.util.Arrays;
 // k < n
 public class Code03_ConversionOfFinancialProducts {
 
-	public static int MAXN = 100001;
+	public static int MAXN = 101;
 
 	public static int[] indegree = new int[MAXN];
 
