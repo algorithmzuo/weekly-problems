@@ -1,6 +1,7 @@
 package class_2023_05_4_week;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // 来自招商银行
 // 原始题目描述
@@ -49,20 +50,35 @@ import java.util.ArrayList;
 // 并且题目保证a > Math.max(b, c, d, ....)
 // 而且题目保证所有方案转化出来的产品编号一定是不重复的
 // 请返回最终能得到的第n-1号商品的最大值
-// 1 <= n <= 100
-// 0 <= arr[i] <= 10^4
+// 其实如下数据量也能通过
+// 1 <= n <= 10^5
+// 0 <= arr[i] <= 10^5
 // k < n
 public class Code03_ConversionOfFinancialProducts {
 
+	public static int MAXN = 100001;
+
+	public static int[] indegree = new int[MAXN];
+
+	public static int[] help = new int[MAXN];
+
+	public static int[] zeroQueue = new int[MAXN];
+
+	public static int[] need = new int[MAXN];
+
+	public static int n;
+
 	public static int maxValue(int[] arr, int[][] convert) {
-		int n = arr.length;
+		n = arr.length;
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		for (int i = 0; i < n; i++) {
+			indegree[i] = 0;
 			graph.add(new ArrayList<>());
 		}
 		for (int[] relation : convert) {
 			for (int i = 1; i < relation.length; i++) {
 				graph.get(relation[0]).add(relation[i]);
+				indegree[relation[i]]++;
 			}
 		}
 		int l = arr[n - 1] + 1;
@@ -84,22 +100,15 @@ public class Code03_ConversionOfFinancialProducts {
 	}
 
 	public static boolean ok(int[] arr, ArrayList<ArrayList<Integer>> graph, int m) {
-		int n = arr.length;
-		int[] indegree = new int[n];
-		for (ArrayList<Integer> nexts : graph) {
-			for (int next : nexts) {
-				indegree[next]++;
-			}
-		}
-		int[] zeroQueue = new int[n];
 		int l = 0;
 		int r = 0;
 		for (int i = 0; i < n; i++) {
-			if (indegree[i] == 0) {
+			help[i] = indegree[i];
+			if (help[i] == 0) {
 				zeroQueue[r++] = i;
 			}
 		}
-		int[] need = new int[n];
+		Arrays.fill(need, 0, n, 0);
 		need[n - 1] = m;
 		while (l < r) {
 			int cur = zeroQueue[l++];
@@ -109,7 +118,7 @@ public class Code03_ConversionOfFinancialProducts {
 			}
 			for (int next : graph.get(cur)) {
 				need[next] += supplement;
-				if (--indegree[next] == 0) {
+				if (--help[next] == 0) {
 					zeroQueue[r++] = next;
 				}
 			}
