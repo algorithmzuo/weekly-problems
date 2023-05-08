@@ -42,16 +42,16 @@ import java.util.ArrayList;
 // 如下是改写后的题目描述
 // 给定一个数组arr，长度为n，产品编号从0~n-1
 // arr[i]代表初始时i号产品有多少份
-// 存在一系列的产品转化方案的数组convert，长度为k
-// 比如，convert[j] = {a, b, c, d, ....}
-// 表示j号方案转化出来的产品是a，转化1份a需要：1份b、1份c、1份d....
+// 存在一系列的产品转化方案的数组convert，长度为k，代表k个方案
+// 比如具体某一个方案，convert[j] = {a, b, c, d, ....}
+// 表示当前的j号方案转化出来的产品是a，转化1份a需要：1份b、1份c、1份d....
 // 其中a、b、c、d一定都在0~n-1范围内
-// 并且a > Math.max(b, c, d, ....)
-// 而且可以保证所有方案转化出来的产品一定不一样
+// 并且题目保证a > Math.max(b, c, d, ....)
+// 而且题目保证所有方案转化出来的产品编号一定是不重复的
 // 请返回最终能得到的第n-1号商品的最大值
 // 1 <= n <= 100
 // 0 <= arr[i] <= 10^4
-// k <= n
+// k < n
 public class Code03_ConversionOfFinancialProducts {
 
 	public static int maxValue(int[] arr, int[][] convert) {
