@@ -22,7 +22,7 @@ package class_2023_05_2_week;
 // 1 <= n <= 100000
 // 结果可能很大，对1000000007取模
 // 帖子链接 : https://www.mashibing.com/question/detail/67223
-public class Code03_LexicographicBiggerSumOfR {
+public class Code02_LexicographicBiggerSumOfR {
 
 	// 为了测试
 	// 暴力方法
