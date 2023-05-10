@@ -70,6 +70,7 @@ public class Code02_LexicographicBiggerSumOfR {
 		}
 		f[1] = 1;
 		for (int i = 2; i < MAXN; i++) {
+			// 2^i-1 + 2*f[i-1]
 			f[i] = (pow2[i - 1] + f[i - 1]) % mod;
 			f[i] = (f[i] + f[i - 1]) % mod;
 		}

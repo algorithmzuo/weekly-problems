@@ -16,13 +16,19 @@ import java.util.List;
 // 测试链接 : https://leetcode.cn/problems/smallest-sufficient-team/
 public class Code03_SmallestSufficientTeam {
 
+	// 需要的技能有 : "ABC" 、 "FG" 、 "ET"
+	// 人 ： "ABC" "ET" "BB"
+	// "ABC" 、 "FG" 、 "ET" -> "ABC" "ET" "FG" 
+	//                           0     1    2
+	// x  : "ABC" "ET" "BB" :      2   1    0
+	//                             0   1    1
 	public static int[] smallestSufficientTeam(String[] skills, List<List<String>> people) {
 		Arrays.sort(skills);
 		int n = skills.length;
 		int m = people.size();
 		int[] statuses = new int[m];
 		for (int i = 0; i < m; i++) {
-			int skillStatus = 0;
+			int skillStatus = 0; // 00000000000000
 			List<String> skill = people.get(i);
 			skill.sort((a, b) -> a.compareTo(b));
 			int p1 = 0;
@@ -51,6 +57,7 @@ public class Code03_SmallestSufficientTeam {
 		// 认为f是3技能
 		// 然后就可以把每个人的技能变成状态信息了
 		// 比如，A会的技能 : e f t x c
+		//                    feca
 		// 认为A会的技能状态为 : 1110
 		// 解释一下 :
 		// 第0位是0，说明A不会a技能
@@ -80,6 +87,7 @@ public class Code03_SmallestSufficientTeam {
 		// 这就是为什么需要动态规划表，因为答案的路径可以用动态规划表生成
 		// 一定要看一下这个课
 		while (status != (1 << n) - 1) {
+			//                    3人                 3人
 			if (i + 1 == m || dp[i][status] != dp[i + 1][status]) {
 				ans[ansi++] = i;
 				status |= statuses[i];
@@ -97,11 +105,14 @@ public class Code03_SmallestSufficientTeam {
 	// 当前在people[i....]范围上选择人，之前凑齐的技能状态是status，请问所有技能都凑齐，还需要至少几个人
 	// dp就是动态规划表，记录返回值的！
 	public static int process(int[] people, int n, int i, int status, int[][] dp) {
+		// n = 8
+		//    0000...0000 1111 1111 
 		if (status == (1 << n) - 1) {
 			// 技能已经凑齐了
 			// 还需要0个人
 			return 0;
 		}
+		// 还没凑齐！
 		if (i == people.length) {
 			// 技能还没凑齐
 			// 但是人已经没了

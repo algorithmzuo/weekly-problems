@@ -7,6 +7,8 @@ import java.util.Arrays;
 // 测试链接 : https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/
 public class Code04_PartitionToKEqualSumSubsets {
 
+	// 状态压缩的方法，正统，处理不了大长度
+	// 其实任何方法都处理不了
 	public static boolean canPartitionKSubsets1(int[] nums, int k) {
 		int sum = 0;
 		for (int num : nums) {
@@ -55,22 +57,32 @@ public class Code04_PartitionToKEqualSumSubsets {
 		return partitionK(new int[k], sum / k, nums, nums.length - 1);
 	}
 
+	// 100 10 -> 10
+	// 100 2 -> 50
+	// 100 4 -> 25
+	// 当前的数字，nums[index]
+	// nums[n-1] 给哪个桶
+	// nums[n-2] 给哪个桶
+	// ...
+	// nums[0] 给哪个桶
 	public static boolean partitionK(int[] group, int target, int[] nums, int index) {
 		if (index < 0) {
 			return true;
 		}
 		int num = nums[index];
+		// len是桶的数量! 就是k
 		int len = group.length;
 		for (int i = 0; i < len; i++) {
 			if (group[i] + num <= target) {
+				// 放入后，不超
 				group[i] += num;
 				if (partitionK(group, target, nums, index - 1)) {
 					return true;
 				}
 				group[i] -= num;
-				if (group[i] == 0) {
-					return false;
-				}
+//				if (group[i] == 0) {
+//					return false;
+//				}
 				while (i + 1 < group.length && group[i] == group[i + 1]) {
 					i++;
 				}
