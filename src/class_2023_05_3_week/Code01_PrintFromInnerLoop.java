@@ -1,4 +1,4 @@
-package class_2023_06_1_week;
+package class_2023_05_3_week;
 
 // 保证一定是n*n的正方形，实现从里到外转圈打印的功能
 // 如果n是奇数，中心点唯一，比如
@@ -18,7 +18,7 @@ package class_2023_06_1_week;
 // o p
 // u v
 // v是中心点，依次打印 : v u o p q w ....
-public class Code06_PrintFromInnerLoop {
+public class Code01_PrintFromInnerLoop {
 
 	public static void print(char[][] m) {
 		int n = m.length;

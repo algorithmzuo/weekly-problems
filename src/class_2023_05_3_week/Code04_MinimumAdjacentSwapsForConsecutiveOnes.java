@@ -2,7 +2,7 @@ package class_2023_05_3_week;
 
 // 来自小红书
 // 测试链接 : https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/
-public class Code03_MinimumAdjacentSwapsForConsecutiveOnes {
+public class Code04_MinimumAdjacentSwapsForConsecutiveOnes {
 
 	// . . . 1 0 1 0 0 | 0 0 X X |
 	//       3 4 5 6 7   8 9

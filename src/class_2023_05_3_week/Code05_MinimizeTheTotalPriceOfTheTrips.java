@@ -12,7 +12,7 @@ import java.util.ArrayList;
 // 在执行第一次旅行之前，你可以选择一些 非相邻节点 并将价格减半。
 // 返回执行所有旅行的最小价格总和。
 // 测试链接 : https://leetcode.cn/problems/minimize-the-total-price-of-the-trips/
-public class Code04_MinimizeTheTotalPriceOfTheTrips {
+public class Code05_MinimizeTheTotalPriceOfTheTrips {
 
 	public static int minimumTotalPrice(int n, int[][] edges, int[] price, int[][] trips) {
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();

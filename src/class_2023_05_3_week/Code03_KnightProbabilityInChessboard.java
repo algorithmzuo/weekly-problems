@@ -1,7 +1,7 @@
 package class_2023_05_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/knight-probability-in-chessboard/
-public class Code02_KnightProbabilityInChessboard {
+public class Code03_KnightProbabilityInChessboard {
 
 	public double knightProbability(int n, int k, int row, int column) {
 		double[][][] dp = new double[n][n][k + 1];

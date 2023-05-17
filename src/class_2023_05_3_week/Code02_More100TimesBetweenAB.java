@@ -5,7 +5,7 @@ package class_2023_05_3_week;
 // 尝试N次，其中大于100的次数在A次~B次之间的概率是多少?
 // 0 < P < 1, P是double类型
 // 1 <= A <= B <= N <= 100
-public class Code01_More100TimesBetweenAB {
+public class Code02_More100TimesBetweenAB {
 
 	public static double probability(double P, int N, int A, int B) {
 		double[][] dp = new double[N + 1][N + 1];
