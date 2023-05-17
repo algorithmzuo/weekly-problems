@@ -22,7 +22,10 @@ public class Code01_PrintFromInnerLoop {
 
 	public static void print(char[][] m) {
 		int n = m.length;
-		for (int a = (n - 1) / 2, b = (n - 1) / 2, c = n / 2, d = n / 2; a >= 0; a--, b--, c++, d++) {
+		for (int a = (n - 1) / 2, b = (n - 1) / 2,
+				c = n / 2, d = n / 2; 
+				a >= 0; 
+				a--, b--, c++, d++) {
 			loop(m, a, b, c, d);
 		}
 		System.out.println();

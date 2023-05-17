@@ -14,6 +14,8 @@ import java.util.ArrayList;
 // 测试链接 : https://leetcode.cn/problems/minimize-the-total-price-of-the-trips/
 public class Code05_MinimizeTheTotalPriceOfTheTrips {
 
+	// trips : a,b   c,k   s,t ....
+	// x -> y  x : y  y : x
 	public static int minimumTotalPrice(int n, int[][] edges, int[] price, int[][] trips) {
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 		ArrayList<ArrayList<int[]>> queries = new ArrayList<>();
@@ -28,9 +30,13 @@ public class Code05_MinimizeTheTotalPriceOfTheTrips {
 		int m = trips.length;
 		int[] lcs = new int[m];
 		for (int i = 0; i < m; i++) {
+			// a a
 			if (trips[i][0] == trips[i][1]) {
 				lcs[i] = trips[i][0];
 			} else {
+				// a b
+				// a [b,i]
+				// b [a,i]
 				queries.get(trips[i][0]).add(new int[] { trips[i][1], i });
 				queries.get(trips[i][1]).add(new int[] { trips[i][0], i });
 			}
@@ -40,6 +46,7 @@ public class Code05_MinimizeTheTotalPriceOfTheTrips {
 		tarjan(graph, 0, -1, uf, queries, fathers, lcs);
 		int[] cnts = new int[n];
 		for (int i = 0; i < m; i++) {
+			// a -> b lcs[i] -> father[lcs[i]]
 			cnts[trips[i][0]]++;
 			cnts[trips[i][1]]++;
 			cnts[lcs[i]]--;
@@ -52,8 +59,31 @@ public class Code05_MinimizeTheTotalPriceOfTheTrips {
 		return Math.min(ans[0], ans[1]);
 	}
 
-	public static void tarjan(ArrayList<ArrayList<Integer>> graph, int cur, int father, UnionFind uf,
-			ArrayList<ArrayList<int[]>> queries, int[] fathers, int[] lcs) {
+	// 整张图 : graph
+	// 当前来到cur点，父节点father
+	// uf : 并查集，一开始所有节点，独立的结合
+	// {a} {b} {c} .....
+	// uf.union(a,b) : a所在的集合，和b所在的集合，合并
+	// uf.setTag(a,x) : a所在的集合，整个集合打上tag x！
+	// uf.getTag(a) : a所在的集合，tag是啥
+	// ==== 
+	// {a,b}, {a,k}, {f,t}, {x, x}(被洗掉)
+	//  0      1      2   
+	// a(0) : {b, 0} 、{k, 1}
+	// b : {a, 0}
+	// k : {a, 1}
+	// f : {t, 2}
+	// t : {f, 2}
+	// int[] fathers : 所有节点的父亲节点，填好
+	// int[] lcs : 答案数组
+	public static void tarjan(
+			ArrayList<ArrayList<Integer>> graph,
+			int cur,
+			int father,
+			UnionFind uf,
+			ArrayList<ArrayList<int[]>> queries,
+			int[] fathers,
+			int[] lcs) {
 		fathers[cur] = father;
 		for (int next : graph.get(cur)) {
 			if (next != father) {
@@ -62,7 +92,10 @@ public class Code05_MinimizeTheTotalPriceOfTheTrips {
 				uf.setTag(cur, cur);
 			}
 		}
+		// 处理cur自己的问题!
 		for (int[] query : queries.get(cur)) {
+			// query : query[0] cur和它有问题！
+			//  query[1] 
 			int tag = uf.getTag(query[0]);
 			if (tag != -1) {
 				lcs[query[1]] = tag;
@@ -70,6 +103,12 @@ public class Code05_MinimizeTheTotalPriceOfTheTrips {
 		}
 	}
 
+	// a -> b a和b的最低公共祖先假设是x，x的父亲假设是f
+	// 当初一定做了这件事:
+	// cnts[a]++
+	// cnts[b]++
+	// cnts[x]--
+	// cnts[f]--
 	public static void dfs(ArrayList<ArrayList<Integer>> graph, int cur, int father, int[] cnts) {
 		for (int next : graph.get(cur)) {
 			if (next != father) {
@@ -79,8 +118,18 @@ public class Code05_MinimizeTheTotalPriceOfTheTrips {
 		}
 	}
 
-	public static int[] dp(ArrayList<ArrayList<Integer>> graph, int cur, int father, int[] cnts, int[] price) {
+
+	// 当前节点来到cur，cur的父节点是father
+	// cnts[cur]，当前节点的次数
+	// price[cur]，当前节点的价值
+	// 你可以把一些节点，价值减半！但是，减半的节点不能相邻!
+	// 返回整棵树的最小价值
+	// graph : 整棵树
+	public static int[] dp(ArrayList<ArrayList<Integer>> graph, 
+			int cur, int father, int[] cnts, int[] price) {
+		// 当前节点价值不减半! 当前节点的价值 : price[cur] * cnts[cur]
 		int no = price[cur] * cnts[cur];
+		// 当前节点价值决定减半! 当前节点的价值 : (price[cur] / 2) * cnts[cur]
 		int yes = (price[cur] / 2) * cnts[cur];
 		for (int next : graph.get(cur)) {
 			if (next != father) {
