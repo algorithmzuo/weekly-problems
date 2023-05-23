@@ -26,7 +26,7 @@ import java.util.HashSet;
 // 如果任何a、b、c都无法匹配上给定的调用耗时，返回0
 // 测试的次数T <= 100
 // 也就是说，一共最多给定100个数组，每一次让你返回a、b、c三元组可能的情况数
-public class Code02_NetworkDelayGuess {
+public class Code04_NetworkDelayGuess {
 
 	// 这个函数在测试时最多会调用100次，100次的整体运行时间1s以内
 	public static int ways(int[] times) {

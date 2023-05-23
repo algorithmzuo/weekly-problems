@@ -1,8 +1,11 @@
-package class_2023_06_2_week;
+package class_2023_05_4_week;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
+// 给你一个整数数组 arr 和一个整数 k
+// 现需要从数组中恰好移除 k 个元素
+// 请找出移除后数组中不同整数的最少数目
 // 测试链接 : https://leetcode.cn/problems/least-number-of-unique-integers-after-k-removals/
 public class Code01_LeastNumberOfUniqueAfterRemovals {
 	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 // 测试链接 : https://leetcode.cn/problems/dinner-plate-stacks/
-public class Code04_DinnerPlateStacks {
+public class Code05_DinnerPlateStacks {
 
 	class DinnerPlates {
 		private final int N = 100001;
