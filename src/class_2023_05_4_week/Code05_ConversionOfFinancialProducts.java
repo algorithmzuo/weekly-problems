@@ -132,7 +132,7 @@ public class Code05_ConversionOfFinancialProducts {
 
 		// 我构造了一个非常好的例子
 		// 课上说明一下
-		int[] arr2 = { 100, 5, 5, 10 };
+		int[] arr2 = { 100, 5, 5, 0 };
 		int[][] convert2 = { { 1, 0 }, { 2, 0, 1 }, { 3, 0, 1, 2 } };
 		System.out.println(maxValue(arr2, convert2));
 	}
