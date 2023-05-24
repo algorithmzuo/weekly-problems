@@ -1,4 +1,4 @@
-package class_2023_06_2_week;
+package class_2023_06_1_week;
 
 // 如果n = 1，打印
 // 1***
@@ -30,7 +30,7 @@ import java.util.Arrays;
 // 因为n=140时，最后的数字是9870
 // 如果n=141，那样最后的数字是10011，这样就会超过4位
 // 而超过4位之后的样子你并没有说，所以n最大是140，不要超过
-public class Code03_PrintZigZagWithStar {
+public class Code05_PrintZigZagWithStar {
 
 	public static int MAXN = 100001;
 
