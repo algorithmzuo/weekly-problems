@@ -1,7 +1,7 @@
 package class_2023_06_2_week;
 
 // 测试链接 : https://leetcode.com/problems/maximum-average-subarray-ii/
-public class Code04_MaximumAverageSubarrayII {
+public class Code05_MaximumAverageSubarrayII {
 
 	// 时间复杂度O(N * log(MaxValue))
 	public double findMaxAverage1(int[] nums, int k) {
