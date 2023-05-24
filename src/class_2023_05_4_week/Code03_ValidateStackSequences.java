@@ -11,6 +11,8 @@ public class Code03_ValidateStackSequences {
 		int n = pushed.length;
 		int size = 0;
 		for (int i = 0, j = 0; i < n; i++) {
+			// i : 入栈数组，哪个位置的数要进栈
+			// j : 出栈数组，对比的位置
 			pushed[size++] = pushed[i];
 			while (size > 0 && j < n && pushed[size - 1] == popped[j]) {
 				size--;

@@ -28,6 +28,38 @@ import java.util.HashSet;
 // 也就是说，一共最多给定100个数组，每一次让你返回a、b、c三元组可能的情况数
 public class Code05_NetworkDelayGuess {
 
+//	public static void zuo() {
+//
+//		// status[0] : a
+//		// status[1] : b
+//		// status[2] : c
+//		// status[3] : a + b
+//		// status[4] : a + c
+//		// status[5] : b + c
+//		// status[6] : a + b + c
+//		// status[4] = 0, a + c 没被选中！
+//		// status[4] > 0 , a + c 250
+//		int[] status = new int[7];
+//		int[] values = { 100, 50, 150, 250 };
+//
+//	}
+//
+//	public static void test(int[] status, int[] values, int i) {
+//		if (i == values.length) {
+//			// 分配之后，a、b、c求出来
+//		} else {
+//			// values[i] :
+//			for (int j = 0; j < status.length; j++) {
+//				if (status[j] == 0) {
+//					status[j] = values[i];
+//					test(status, values, i + 1);
+//					status[j] = 0;
+//				}
+//			}
+//		}
+//
+//	}
+
 	// 这个函数在测试时最多会调用100次，100次的整体运行时间1s以内
 	public static int ways(int[] times) {
 		int[] status = new int[7];
@@ -167,6 +199,7 @@ public class Code05_NetworkDelayGuess {
 		return cnt;
 	}
 
+	// a <= b <= c
 	public static boolean verify(int[] s, int a, int b, int c) {
 		if (a <= 0 || b <= 0 || c <= 0 || a > b || b > c) {
 			return false;

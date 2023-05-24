@@ -16,9 +16,7 @@ import java.util.Arrays;
 // 现计划根据这些方案，帮助部分愿意升级到最新产品的用户对产品进行升级
 // 请协助工作人员计算当前用户能够转换出的最新产品份额的最大值
 // 输入描述
-// 第一行包含整数N
-// 第二行包含N个整数ai
-// 第三行包含整数K
+// 第一行包含整数N，第二行包含N个整数ai，第三行包含整数K
 // 接下来的K行，每一行代表一个方案，每一行包含整数1和M(M>=1)
 // L为该方案产生的新产品的编号，M代表方案所需原产品个数
 // 接下来的M个整数代表了该方案所需的每个原产品的个数
@@ -80,6 +78,8 @@ public class Code06_ConversionOfFinancialProducts {
 				indegree[relation[i]]++;
 			}
 		}
+		// arr[n-1] 初始就有100份
+		// 101 ~ 整体累加和
 		int l = arr[n - 1] + 1;
 		int r = 0;
 		for (int num : arr) {
@@ -98,6 +98,9 @@ public class Code06_ConversionOfFinancialProducts {
 		return ans;
 	}
 
+	// arr里，是每一种商品的初始份额
+	// graph就是图，3 -> 0 1 2
+	// aim目标，一定要转化出这么多份！n-1号商品
 	public static boolean ok(int[] arr, ArrayList<ArrayList<Integer>> graph, int aim) {
 		int l = 0;
 		int r = 0;
@@ -110,7 +113,9 @@ public class Code06_ConversionOfFinancialProducts {
 		Arrays.fill(need, 0, n, 0);
 		need[n - 1] = aim;
 		while (l < r) {
+			// 当前商品的编号!
 			int cur = zeroQueue[l++];
+			// 需要底层给它供应的量
 			int supplement = Math.max(need[cur] - arr[cur], 0);
 			if (graph.get(cur).isEmpty() && supplement > 0) {
 				return false;

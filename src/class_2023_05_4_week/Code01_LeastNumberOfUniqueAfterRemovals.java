@@ -3,7 +3,7 @@ package class_2023_05_4_week;
 import java.util.Arrays;
 import java.util.HashMap;
 
-// 先来一个智力题
+// 先来一个智力题，来自美团面试题
 // 给定n个二维坐标，表示在二维平面的n个点，
 // 坐标为double类型，精度最多小数点后两位
 // 希望在二维平面上画一个圆，圈住其中的k个点，其他的n-k个点都要在圆外
@@ -21,17 +21,25 @@ public class Code01_LeastNumberOfUniqueAfterRemovals {
 		for (int num : arr) {
 			map.put(num, map.getOrDefault(num, 0) + 1);
 		}
+		// 2 : 5次
+		// 4 : 9次
+		// 7 : 2次
+		// 5 : 6次
 		int n = map.size();
 		int[] cnts = new int[n];
 		int i = 0;
 		for (int cnt : map.values()) {
 			cnts[i++] = cnt;
 		}
+		// [5, 9, 2, 6]
+		// [2, 5, 6, 9]
 		Arrays.sort(cnts);
 		for (i = 0; i < n; i++) {
 			k -= cnts[i];
 			if (k <= 0) {
+				// 该结束了
 				if (k == 0) {
+					// i位置词频，彻底耗费完了
 					i++;
 				}
 				break;

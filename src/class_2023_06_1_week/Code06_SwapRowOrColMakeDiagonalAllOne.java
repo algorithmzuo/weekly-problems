@@ -1,4 +1,4 @@
-package class_2023_05_4_week;
+package class_2023_06_1_week;
 
 // 来自网易
 // 题目出处 : https://leetcode-cn.com/circle/discuss/uOnnUA/
@@ -23,7 +23,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code07_SwapRowOrColMakeDiagonalAllOne {
+public class Code06_SwapRowOrColMakeDiagonalAllOne {
 
 	public static int[][] out = new int[1000][2];
 

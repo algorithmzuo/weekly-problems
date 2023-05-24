@@ -19,7 +19,17 @@ import java.util.PriorityQueue;
 public class Code04_EquipmentFirstToEnd {
 
 	public static int minCost(int[] arr, int[][] map, int n, int k) {
+		// 0 : {4,7,13,26}
+		// 1 : {5,45,3,17}
 		ArrayList<ArrayList<Integer>> own = new ArrayList<>();
+		//   0 1 2 3
+		// 0 1 0 1 0
+		// 1 0 1 1 0
+		// 2 1 1 1 1
+		// 3
+		// 0 : 0, 2
+		// 1 : 1, 2
+		// 2 : 0 1 2 3
 		ArrayList<ArrayList<Integer>> nexts = new ArrayList<>();
 		for (int i = 0; i < k; i++) {
 			own.add(new ArrayList<>());
@@ -36,25 +46,32 @@ public class Code04_EquipmentFirstToEnd {
 			}
 		}
 		// 放入的数据是一个长度为2的数组
-		// 0 : 来到的设备号
-		// 1 : 距离0号设备有多远
+		// 0 : 来到的地点号
+		// 1 : 距离0号地点有多远（根据代价排序）
+		// 堆里，小根堆 : {7, 10}
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[1] - b[1]);
 		heap.add(new int[] { 0, 0 });
 		boolean[] visited = new boolean[n];
 		while (!heap.isEmpty()) {
 			int[] cur = heap.poll();
-			int equipment = cur[0];
+			int position = cur[0];
 			int cost = cur[1];
-			if (!visited[equipment]) {
-				visited[equipment] = true;
-				if (equipment == n - 1) {
+			if (!visited[position]) {
+				visited[position] = true;
+				if (position == n - 1) {
 					return cost;
 				}
-				int model = arr[equipment];
+				// 你来到了一个地点，拿出型号!
+				int model = arr[position];
+				// 5 : {0,3,5,7}
+				// 0: ....
+				// 3: ....
+				// 5: ....
+				// 7: ....
 				for (int nextModel : nexts.get(model)) {
-					for (int nextEquipment : own.get(nextModel)) {
-						if (!visited[nextEquipment]) {
-							heap.add(new int[] { nextEquipment, cost + Math.abs(nextEquipment - equipment) });
+					for (int nextPosition : own.get(nextModel)) {
+						if (!visited[nextPosition]) {
+							heap.add(new int[] { nextPosition, cost + Math.abs(nextPosition - position) });
 						}
 					}
 				}
