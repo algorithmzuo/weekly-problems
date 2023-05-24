@@ -5,7 +5,7 @@ package class_2023_05_4_week;
 // 只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，
 // 返回 true；否则，返回 false 。
 // 测试链接 : https://leetcode.cn/problems/validate-stack-sequences/
-public class Code02_ValidateStackSequences {
+public class Code03_ValidateStackSequences {
 
 	public boolean validateStackSequences(int[] pushed, int[] popped) {
 		int n = pushed.length;

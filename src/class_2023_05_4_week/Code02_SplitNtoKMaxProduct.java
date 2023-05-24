@@ -1,9 +1,9 @@
-package class_2023_06_2_week;
+package class_2023_05_4_week;
 
 // 来自华为
 // 一个数字n，一定要分成k份
 // 得到的乘积尽量大是多少
-public class Code01_SplitNtoKMaxProduct {
+public class Code02_SplitNtoKMaxProduct {
 
 	// 暴力递归
 	// 一定能得到最优解

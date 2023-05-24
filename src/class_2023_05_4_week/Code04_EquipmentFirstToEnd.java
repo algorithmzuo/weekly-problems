@@ -16,7 +16,7 @@ import java.util.PriorityQueue;
 // 返回最小的修建代价，如果就是无法到达返回-1
 // 1 <= n <= 1000
 // 1 <= k <= 50
-public class Code03_EquipmentFirstToEnd {
+public class Code04_EquipmentFirstToEnd {
 
 	public static int minCost(int[] arr, int[][] map, int n, int k) {
 		ArrayList<ArrayList<Integer>> own = new ArrayList<>();
