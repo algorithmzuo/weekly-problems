@@ -1,4 +1,4 @@
-package class_2023_06_1_week;
+package class_2023_05_5_week;
 
 // 如果n = 1，打印
 // 1***

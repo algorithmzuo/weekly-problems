@@ -1,4 +1,4 @@
-package class_2023_06_1_week;
+package class_2023_05_5_week;
 
 // 来自字节
 // 给定一个n*m的二维矩阵，每个位置都是字符

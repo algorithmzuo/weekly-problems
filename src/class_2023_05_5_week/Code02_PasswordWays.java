@@ -1,4 +1,4 @@
-package class_2023_06_1_week;
+package class_2023_05_5_week;
 
 // 来自字节
 // 密码是一串长度为n的小写字母，一则关于密码的线索纸条

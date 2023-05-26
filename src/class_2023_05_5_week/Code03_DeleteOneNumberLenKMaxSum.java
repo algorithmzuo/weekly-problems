@@ -1,4 +1,4 @@
-package class_2023_06_1_week;
+package class_2023_05_5_week;
 
 // 来自字节
 // 给定整数数组arr，求删除任一元素后，
