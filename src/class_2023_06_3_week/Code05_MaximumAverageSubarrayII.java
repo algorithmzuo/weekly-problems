@@ -1,4 +1,4 @@
-package class_2023_06_2_week;
+package class_2023_06_3_week;
 
 // 测试链接 : https://leetcode.com/problems/maximum-average-subarray-ii/
 public class Code05_MaximumAverageSubarrayII {
