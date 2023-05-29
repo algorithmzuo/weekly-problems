@@ -1,6 +1,6 @@
 package class_2023_05_5_week;
 
-// 二维哈希的做法
+// 二维哈希的做法，二维哈希似乎只能在正方形上适用，我做了挺多实验
 // 如果一个正方形矩阵上下对称并且左右对称，对称的意思是互为镜像
 // 那么称这个正方形矩阵叫做神奇矩阵
 // 比如 :
@@ -89,9 +89,8 @@ public class Code07_NumberOfPalindromicSquares {
 	}
 
 	public static long hash(int a, int b, int c, int d) {
-		long ans = sum[c][d] - sum[a - 1][d] * powr[c - a + 1] - sum[c][b - 1] * powc[d - b + 1]
+		return sum[c][d] - sum[a - 1][d] * powr[c - a + 1] - sum[c][b - 1] * powc[d - b + 1]
 				+ sum[a - 1][b - 1] * powr[d - b + 1] * powc[c - a + 1];
-		return ans;
 	}
 
 	public static boolean ok(int a, int b, int c, int d) {
