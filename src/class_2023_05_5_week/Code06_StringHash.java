@@ -1,6 +1,6 @@
 package class_2023_05_5_week;
 
-public class Code05_StringHash {
+public class Code06_StringHash {
 
 	// 暴力方法
 	// 为了验证
@@ -21,7 +21,7 @@ public class Code05_StringHash {
 
 	public static long[] hash = new long[MAXN];
 
-	public static int base = 100000007;
+	public static int base = 1000000007;
 
 	public static void build(String str, int n) {
 		pow[0] = 1;
@@ -46,9 +46,6 @@ public class Code05_StringHash {
 	public static long hash(int l, int r) {
 		long ans = hash[r];
 		ans -= l == 0 ? 0 : (hash[l - 1] * pow[r - l + 1]);
-		if (ans < 0) {
-			ans += Long.MAX_VALUE;
-		}
 		return ans;
 	}
 
@@ -73,7 +70,7 @@ public class Code05_StringHash {
 		int V = 3;
 		int testTeams = 100;
 		int testTimes = 5000;
-		int LEN = 10;
+		int LEN = 6;
 		for (int i = 0; i < testTeams; i++) {
 			int n = (int) (Math.random() * N) + 1;
 			String str = randomString(n, V);

@@ -1,5 +1,6 @@
 package class_2023_05_5_week;
 
+// manacher算法的解法
 // 如果一个正方形矩阵上下对称并且左右对称，对称的意思是互为镜像
 // 那么称这个正方形矩阵叫做神奇矩阵
 // 比如 :
@@ -25,7 +26,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code06_NumberOfPalindromicSquares {
+public class Code05_NumberOfPalindromicSquares {
 
 	public static int MAXN = 1001;
 
