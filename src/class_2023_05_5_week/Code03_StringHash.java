@@ -1,6 +1,6 @@
 package class_2023_05_5_week;
 
-public class Code06_StringHash {
+public class Code03_StringHash {
 
 	// 暴力方法
 	// 为了验证

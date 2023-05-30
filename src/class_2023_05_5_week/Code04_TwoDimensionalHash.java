@@ -1,7 +1,7 @@
 package class_2023_05_5_week;
 
 // 二维哈希只适用于正方形的情况
-public class Code07_TwoDimensionalHash {
+public class Code04_TwoDimensionalHash {
 
 	public static int MAXN = 1001;
 

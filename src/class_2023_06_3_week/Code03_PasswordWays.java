@@ -1,4 +1,4 @@
-package class_2023_05_5_week;
+package class_2023_06_3_week;
 
 // 来自字节
 // 密码是一串长度为n的小写字母，一则关于密码的线索纸条
@@ -11,7 +11,7 @@ package class_2023_05_5_week;
 // 输出对1000000007取模的结果
 // 1 <= n <= 10^5
 // 0 <= ai <= 25
-public class Code02_PasswordWays {
+public class Code03_PasswordWays {
 
 	// 暴力递归
 	public static int ways1(int[] arr) {
