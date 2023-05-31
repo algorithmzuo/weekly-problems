@@ -64,8 +64,8 @@ public class Code05_TwoDimensionalHash {
 			int c = (int) (Math.random() * 90) + 1;
 			int d = (int) (Math.random() * 90) + 1;
 			int sizer = (int) (Math.random() * len) + 1;
-			int sizec = sizer;
-//			sizec = (int) (Math.random() * len) + 1;
+			int sizec = sizer; // 如果矩阵是正方形，完全可以使用
+//			sizec = (int) (Math.random() * len) + 1; // 如果矩阵不是正方形，不能用！会报错！
 			boolean ans1 = rightCheck(arr, a, b, c, d, sizer, sizec);
 			boolean ans2 = hashCheck(a, b, c, d, sizer, sizec);
 			if (ans1 != ans2) {
