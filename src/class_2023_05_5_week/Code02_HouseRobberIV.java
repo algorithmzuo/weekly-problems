@@ -1,7 +1,7 @@
 package class_2023_05_5_week;
 
 // 测试链接 : https://leetcode.cn/problems/house-robber-iv/
-public class Code03_HouseRobberIV {
+public class Code02_HouseRobberIV {
 
 	public static int minCapability(int[] nums, int k) {
 		int l = 1;
