@@ -1,7 +1,7 @@
 package class_2023_05_5_week;
 
 // 字符串哈希
-public class Code03_StringHash {
+public class Code04_StringHash {
 
 	// 暴力方法
 	// 为了验证
