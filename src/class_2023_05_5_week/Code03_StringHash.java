@@ -1,5 +1,6 @@
 package class_2023_05_5_week;
 
+// 字符串哈希
 public class Code03_StringHash {
 
 	// 暴力方法
