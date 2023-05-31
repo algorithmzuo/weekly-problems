@@ -29,9 +29,24 @@ public class Code05_NumberOfPalindromicSquares {
 
 	public static int MAXN = 1001;
 
+	public static int baser = 491;
+
+	public static int basec = 499;
+
 	public static long[] powr = new long[MAXN];
 
 	public static long[] powc = new long[MAXN];
+
+	static {
+		powr[0] = 1;
+		powc[0] = 1;
+		for (int i = 1; i < MAXN; i++) {
+			powr[i] = (powr[i - 1] * baser);
+		}
+		for (int i = 1; i < MAXN; i++) {
+			powc[i] = (powc[i - 1] * basec);
+		}
+	}
 
 	public static int[][] arr1 = new int[MAXN][MAXN];
 
@@ -44,10 +59,6 @@ public class Code05_NumberOfPalindromicSquares {
 	public static long[][] sum2 = new long[MAXN][MAXN];
 
 	public static long[][] sum3 = new long[MAXN][MAXN];
-
-	public static int baser = 491;
-
-	public static int basec = 499;
 
 	public static int n, m;
 
@@ -67,23 +78,11 @@ public class Code05_NumberOfPalindromicSquares {
 					arr3[i][m - j + 1] = arr1[i][j];
 				}
 			}
-			buildPower();
 			buildHash(arr1, sum1);
 			buildHash(arr2, sum2);
 			buildHash(arr3, sum3);
 			out.println(number());
 			out.flush();
-		}
-	}
-
-	public static void buildPower() {
-		powr[0] = 1;
-		powc[0] = 1;
-		for (int i = 1; i <= n; i++) {
-			powr[i] = (powr[i - 1] * baser);
-		}
-		for (int i = 1; i <= m; i++) {
-			powc[i] = (powc[i - 1] * basec);
 		}
 	}
 

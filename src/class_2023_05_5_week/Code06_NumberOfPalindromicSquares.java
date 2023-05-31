@@ -24,7 +24,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
-import java.util.Arrays;
 
 public class Code06_NumberOfPalindromicSquares {
 
@@ -140,17 +139,12 @@ public class Code06_NumberOfPalindromicSquares {
 		for (int r = row, c = col; r < n && c < m; r += radd, c += cadd) {
 			s[limit++] = arr[r][c];
 		}
-		Arrays.fill(p, 0, limit, 0);
 		int C = -1;
 		int R = -1;
 		for (int i = 0; i < limit; i++) {
 			p[i] = R > i ? Math.min(p[2 * C - i], R - i) : 1;
-			while (i + p[i] < limit && i - p[i] > -1) {
-				if (s[i + p[i]] == s[i - p[i]])
-					p[i]++;
-				else {
-					break;
-				}
+			while (i + p[i] < limit && i - p[i] > -1 && s[i + p[i]] == s[i - p[i]]) {
+				p[i]++;
 			}
 			if (i + p[i] > R) {
 				R = i + p[i];
