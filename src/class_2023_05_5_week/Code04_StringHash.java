@@ -1,6 +1,6 @@
 package class_2023_05_5_week;
 
-// 字符串哈希
+// 字符串哈希原理和实现
 public class Code04_StringHash {
 
 	// 暴力方法
