@@ -151,9 +151,9 @@ public class Code07_NumberOfPalindromicSquares {
 				C = i;
 			}
 		}
-		int[][] where = cadd == 1 ? rp : cp;
+		int[][] fill = cadd == 1 ? rp : cp;
 		for (int i = 0, r = row, c = col; i < limit; i++, r += radd, c += cadd) {
-			where[r][c] = p[i];
+			fill[r][c] = p[i];
 		}
 	}
 
