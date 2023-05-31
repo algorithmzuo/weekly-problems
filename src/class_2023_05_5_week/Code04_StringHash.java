@@ -22,13 +22,18 @@ public class Code04_StringHash {
 
 	public static long[] hash = new long[MAXN];
 
-	public static int base = 1000000007;
+	public static int base = 499;
 
 	public static void build(String str, int n) {
 		pow[0] = 1;
 		for (int j = 1; j < n; j++) {
 			pow[j] = pow[j - 1] * base;
 		}
+		// a -> 1
+		// b -> 2
+		// c -> 3
+		// z -> 26
+		// 前缀和的哈希值
 		hash[0] = str.charAt(0) - 'a' + 1;
 		for (int j = 1; j < n; j++) {
 			hash[j] = hash[j - 1] * base + str.charAt(j) - 'a' + 1;
@@ -44,7 +49,11 @@ public class Code04_StringHash {
 		return hash(l1, r1) == hash(l2, r2);
 	}
 
+	// s[l...r]
 	public static long hash(int l, int r) {
+		// hash[0] : s[0...0]
+		// hash[5] : s[0...5]
+		// hash[i] : s[0...i]
 		long ans = hash[r];
 		ans -= l == 0 ? 0 : (hash[l - 1] * pow[r - l + 1]);
 		return ans;

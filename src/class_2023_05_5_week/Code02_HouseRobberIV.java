@@ -12,12 +12,39 @@ package class_2023_05_5_week;
 // 测试链接 : https://leetcode.cn/problems/house-robber-iv/
 public class Code02_HouseRobberIV {
 
+	// https://leetcode.cn/problems/house-robber/
+	public static int rob(int[] arr) {
+		int n = arr.length;
+		if (n == 1) {
+			return arr[0];
+		}
+		if (n == 2) {
+			return Math.max(arr[0], arr[1]);
+		}
+		// dp[0]: lastLast
+		int lastLast = arr[0];
+		// dp[1] : last
+		int last = Math.max(arr[0], arr[1]);
+		for (int i = 2; i < n; i++) {
+			// lastLast : dp[i-2]
+			// last : dp[i-1];
+			// cur
+			int p1 = last;
+			int p2 = arr[i] + lastLast;
+			int cur = Math.max(p1, p2);
+			lastLast = last;
+			last = cur;
+		}
+		return last;
+	}
+
 	public static int minCapability(int[] nums, int k) {
 		int l = 1;
 		int r = 0;
 		for (int num : nums) {
 			r = Math.max(num, r);
 		}
+		// 1 ~ max
 		int m, ans = 0;
 		// 二分答案法
 		while (l <= r) {

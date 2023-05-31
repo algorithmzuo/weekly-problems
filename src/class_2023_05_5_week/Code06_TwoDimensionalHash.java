@@ -30,11 +30,13 @@ public class Code06_TwoDimensionalHash {
 		}
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= m; j++) {
+				//  左 * basec + arr[i][j]
 				sum[i][j] = sum[i][j - 1] * basec + arr[i][j];
 			}
 		}
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= m; j++) {
+				//   上 * baser
 				sum[i][j] += sum[i - 1][j] * baser;
 			}
 		}
@@ -75,8 +77,13 @@ public class Code06_TwoDimensionalHash {
 		System.out.println("测试结束");
 	}
 
+	// 当前矩阵，必须是正方形！
+	// 左上点(a,b)
+	// 右下点(c,d)
 	public static long hash(int a, int b, int c, int d) {
-		return sum[c][d] - sum[a - 1][d] * powr[c - a + 1] - sum[c][b - 1] * powc[d - b + 1]
+		return sum[c][d] 
+				- sum[a - 1][d] * powr[c - a + 1] 
+				- sum[c][b - 1] * powc[d - b + 1]
 				+ sum[a - 1][b - 1] * powr[d - b + 1] * powc[c - a + 1];
 	}
 

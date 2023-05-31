@@ -59,44 +59,47 @@ public class Code01_WhereCanReachNumber {
 	public static int number2(char[][] map) {
 		int n = map.length;
 		int m = map[0].length;
-		boolean[][] add = new boolean[n][m];
+		boolean[][] visited = new boolean[n][m];
 		// queue[i] = {行坐标、列坐标}
 		int[][] queue = new int[n * m][2];
 		int l = 0;
 		int r = 0;
 		int ans = 0;
+		// O在哪，目的地
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (map[i][j] == 'O') {
-					add[i][j] = true;
+					visited[i][j] = true;
 					queue[r][0] = i;
 					queue[r++][1] = j;
 					break;
 				}
 			}
 		}
-		while (l < r) {
+		// [] [] [] [] [] ...  
+		// l ...... r
+		while (l < r) { // 队列里还有位置！
 			ans++;
 			int[] cur = queue[l++];
 			int row = cur[0];
 			int col = cur[1];
-			if (row - 1 >= 0 && !add[row - 1][col] && (map[row - 1][col] == 'D' || map[row - 1][col] == '.')) {
-				add[row - 1][col] = true;
+			if (row - 1 >= 0 && !visited[row - 1][col] && (map[row - 1][col] == 'D' || map[row - 1][col] == '.')) {
+				visited[row - 1][col] = true;
 				queue[r][0] = row - 1;
 				queue[r++][1] = col;
 			}
-			if (row + 1 < n && !add[row + 1][col] && (map[row + 1][col] == 'U' || map[row + 1][col] == '.')) {
-				add[row + 1][col] = true;
+			if (row + 1 < n && !visited[row + 1][col] && (map[row + 1][col] == 'U' || map[row + 1][col] == '.')) {
+				visited[row + 1][col] = true;
 				queue[r][0] = row + 1;
 				queue[r++][1] = col;
 			}
-			if (col - 1 >= 0 && !add[row][col - 1] && (map[row][col - 1] == 'R' || map[row][col - 1] == '.')) {
-				add[row][col - 1] = true;
+			if (col - 1 >= 0 && !visited[row][col - 1] && (map[row][col - 1] == 'R' || map[row][col - 1] == '.')) {
+				visited[row][col - 1] = true;
 				queue[r][0] = row;
 				queue[r++][1] = col - 1;
 			}
-			if (col + 1 < m && !add[row][col + 1] && (map[row][col + 1] == 'L' || map[row][col + 1] == '.')) {
-				add[row][col + 1] = true;
+			if (col + 1 < m && !visited[row][col + 1] && (map[row][col + 1] == 'L' || map[row][col + 1] == '.')) {
+				visited[row][col + 1] = true;
 				queue[r][0] = row;
 				queue[r++][1] = col + 1;
 			}

@@ -1,6 +1,6 @@
 package class_2023_05_5_week;
 
-// 来自华为
+// 来自华为OD
 // 如果n = 1，打印
 // 1***
 // 如果n = 2，打印
@@ -76,9 +76,22 @@ public class Code03_PrintZigZagWithStar {
 		}
 	}
 
+	// 135,  i...
+	// 1 3 5 *
+	// i     
 	public static void insert(int cur, int i) {
+		//            X
+		// i +1 +2 +3 +4
 		int end = i + 4;
 		int bit = cur > 999 ? 4 : (cur > 99 ? 3 : (cur > 9) ? 2 : 1);
+		// 135 bit = 3
+		//     offset = 100
+		// (135 / 100) % 10 = 1
+		// (135 / 10) % 10 = 3
+		// (135 / 1) % 10 = 5
+		// 4567 bit = 4
+		//     offset = 1000
+		// (cur / offset) % 10 -> 提取每一位的数字
 		int offset = bit == 4 ? 1000 : (bit == 3 ? 100 : (bit == 2 ? 10 : 1));
 		while (offset > 0) {
 			space[i++] = (char) (((cur / offset) % 10) + '0');

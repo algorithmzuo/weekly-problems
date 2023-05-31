@@ -41,12 +41,24 @@ public class Code08_NumberOfPalindromicSquares {
 		}
 	}
 
+	// 扩充
+	// 1 1
+	// 1 1
+	// 
+	// 0 0 0 0 0
+	// 0 1 0 1 0
+	// 0 0 0 0 0
+	// 0 1 0 1 0
+	// 0 0 0 0 0
 	public static int[][] arr = new int[MAXN << 1 | 1][MAXN << 1 | 1];
 
+	// 每个点在行方向上，回文半径多大
 	public static int[][] rp = new int[MAXN << 1 | 1][MAXN << 1 | 1];
 
+	// 每个点在列方向上，回文半径多大
 	public static int[][] cp = new int[MAXN << 1 | 1][MAXN << 1 | 1];
 
+	// enlarge[i][j] : 以i，j点做中心，最多扩多大，还是神奇矩阵
 	public static int[][] enlarge = new int[MAXN << 1 | 1][MAXN << 1 | 1];
 
 	public static int[][] rmq = new int[MAXN << 1 | 1][13];

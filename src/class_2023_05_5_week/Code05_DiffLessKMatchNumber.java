@@ -85,14 +85,27 @@ public class Code05_DiffLessKMatchNumber {
 		return ans;
 	}
 
+	// s[l1......r1]
+	// p[l2......r2]
+	// 这两段一定等长!
+	// 返回，这两段上字符不一样的位置，是不是 <= k个的！
 	public static boolean diffLessK2(int l1, int r1, int l2, int r2, int k) {
 		int diff = 0;
+		// l1 <= r1 : 目前还剩下一些字符串
+		// diff <= k: 不一样的数量没有超!
 		while (l1 <= r1 && diff <= k) {
+			// 二分 : s[l1.......] p[l2........] 最长的相等长度!
+			// s : abcdefgiii....
+			// p : abcedfgihh....
 			int l = 1;
 			int r = r1 - l1 + 1;
 			int m, len = 0;
 			while (l <= r) {
 				m = (l + r) / 2;
+				// ok(l1, l2, m)
+				// s[l1...数m长度(包括l1)] 
+				// 是不是等于
+				// p[l2...数m长度(包括l2)] 
 				if (ok(l1, l2, m)) {
 					len = m;
 					l = m + 1;
@@ -134,6 +147,8 @@ public class Code05_DiffLessKMatchNumber {
 		int N = 100;
 		int M = 50;
 		int K = 10;
+		// a b c
+		// R =4 abcd
 		int R = 3;
 		int testTimes = 10000;
 		System.out.println("测试开始");

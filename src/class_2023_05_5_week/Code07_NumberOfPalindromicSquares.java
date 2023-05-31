@@ -49,12 +49,16 @@ public class Code07_NumberOfPalindromicSquares {
 		}
 	}
 
+	// 原始
 	public static int[][] arr1 = new int[MAXN][MAXN];
 
+	// 上下翻转
 	public static int[][] arr2 = new int[MAXN][MAXN];
 
+	// 左右翻转
 	public static int[][] arr3 = new int[MAXN][MAXN];
 
+	// 各自哈希
 	public static long[][] sum1 = new long[MAXN][MAXN];
 
 	public static long[][] sum2 = new long[MAXN][MAXN];
@@ -101,13 +105,17 @@ public class Code07_NumberOfPalindromicSquares {
 	}
 
 	public static long hash(long[][] sum, int a, int b, int c, int d) {
-		long ans = sum[c][d] - sum[a - 1][d] * powr[c - a + 1] - sum[c][b - 1] * powc[d - b + 1]
+		long ans = 
+				sum[c][d] 
+				- sum[a - 1][d] * powr[c - a + 1] 
+				- sum[c][b - 1] * powc[d - b + 1]
 				+ sum[a - 1][b - 1] * powr[d - b + 1] * powc[c - a + 1];
 		return ans;
 	}
 
 	public static int number() {
 		int ans = 0;
+		// 奇数长度，实点做中心
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= m; j++) {
 				int l = 1;
@@ -125,8 +133,11 @@ public class Code07_NumberOfPalindromicSquares {
 				ans += find;
 			}
 		}
+		// 偶数长度
+		// 虚点做中心
 		for (int i = 1; i < n; i++) {
 			for (int j = 1; j < m; j++) {
+				// 左上角点为代表
 				int l = 1;
 				int r = Math.min(Math.min(i, j), Math.min(n - i, m - j));
 				int m, find = 0;
