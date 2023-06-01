@@ -44,15 +44,6 @@ public class Code01_JumpGameOnLoop {
 		}
 	}
 
-	// 为了测试
-	public static int[] randomArray(int n, int v) {
-		int[] arr = new int[n];
-		for (int i = 0; i < n; i++) {
-			arr[i] = (int) (Math.random() * (v * 2 + 1)) - v;
-		}
-		return arr;
-	}
-
 	// 时间复杂度O(N)，记忆化搜索
 	public static int max2(int[] arr) {
 		if (arr.length == 1) {
@@ -115,6 +106,15 @@ public class Code01_JumpGameOnLoop {
 			next[3] = cur[3];
 		}
 		return Math.max(arr[0] + next[3], next[0]);
+	}
+
+	// 为了测试
+	public static int[] randomArray(int n, int v) {
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = (int) (Math.random() * (v * 2 + 1)) - v;
+		}
+		return arr;
 	}
 
 	// 为了测试
