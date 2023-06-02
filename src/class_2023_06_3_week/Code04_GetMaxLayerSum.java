@@ -1,10 +1,10 @@
-package class_2023_06_2_week;
+package class_2023_06_3_week;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // 测试链接 : https://leetcode.cn/problems/WInSav/
-public class Code06_GetMaxLayerSum {
+public class Code04_GetMaxLayerSum {
 
 	// 不提交这个类
 	public static class TreeNode {

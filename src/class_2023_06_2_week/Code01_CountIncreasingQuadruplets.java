@@ -1,7 +1,7 @@
-package class_2023_06_3_week;
+package class_2023_06_2_week;
 
 // 测试链接 : https://leetcode.cn/problems/count-increasing-quadruplets/
-public class Code04_CountIncreasingQuadruplets {
+public class Code01_CountIncreasingQuadruplets {
 
 	public long countQuadruplets1(int[] nums) {
 		int n = nums.length;

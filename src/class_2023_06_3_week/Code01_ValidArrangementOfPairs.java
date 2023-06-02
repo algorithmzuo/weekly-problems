@@ -1,4 +1,4 @@
-package class_2023_06_2_week;
+package class_2023_06_3_week;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.LinkedList;
 // 请你返回 任意一个 pairs 的合法重新排列
 // 注意：数据保证至少存在一个 pairs 的合法重新排列
 // 测试链接 : https://leetcode.cn/problems/valid-arrangement-of-pairs/
-public class Code04_ValidArrangementOfPairs {
+public class Code01_ValidArrangementOfPairs {
 
 	public static int[][] validArrangement(int[][] pairs) {
 		HashMap<Integer, LinkedList<Integer>> nexts = new HashMap<>();

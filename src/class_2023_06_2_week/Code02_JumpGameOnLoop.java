@@ -7,7 +7,7 @@ package class_2023_06_2_week;
 // 返回孩子能获得的最大分值
 // 1 <= n <= 10^6
 // -10^6 <= arr[i] <= 10^6
-public class Code01_JumpGameOnLoop {
+public class Code02_JumpGameOnLoop {
 
 	// 暴力方法
 	// 为了测试

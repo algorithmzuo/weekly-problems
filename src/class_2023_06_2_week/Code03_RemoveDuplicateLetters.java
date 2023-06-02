@@ -2,7 +2,7 @@ package class_2023_06_2_week;
 
 // 测试链接 : https://leetcode.cn/problems/remove-duplicate-letters/
 // 大厂刷题班讲过，不过那时没有讲出最优解，安排一下重讲
-public class Code02_RemoveDuplicateLetters {
+public class Code03_RemoveDuplicateLetters {
 
 	public static String removeDuplicateLetters(String s) {
 		int[] cnts = new int[26];
