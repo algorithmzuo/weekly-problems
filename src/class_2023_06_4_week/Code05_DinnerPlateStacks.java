@@ -1,4 +1,4 @@
-package class_2023_06_2_week;
+package class_2023_06_4_week;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;

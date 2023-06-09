@@ -3,7 +3,7 @@ package class_2023_06_2_week;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/maximum-length-of-pair-chain/
-public class Code04_MaximumLengthOfPairChain {
+public class Code05_MaximumLengthOfPairChain {
 
 	public static int findLongestChain(int[][] pairs) {
 		int n = pairs.length;

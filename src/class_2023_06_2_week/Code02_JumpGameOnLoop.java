@@ -3,10 +3,10 @@ package class_2023_06_2_week;
 // 来自华为od
 // 给定一个数组arr，长度为n，表示n个格子的分数，并且这些格子首尾相连
 // 孩子不能选相邻的格子，不能回头选，不能选超过一圈
-// 但是孩子可以决定从任何位置开始选
+// 但是孩子可以决定从任何位置开始选，也可以什么都不选
 // 返回孩子能获得的最大分值
 // 1 <= n <= 10^6
-// -10^6 <= arr[i] <= 10^6
+// 0 <= arr[i] <= 10^6
 public class Code02_JumpGameOnLoop {
 
 	// 暴力方法
@@ -112,7 +112,7 @@ public class Code02_JumpGameOnLoop {
 	public static int[] randomArray(int n, int v) {
 		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
-			arr[i] = (int) (Math.random() * (v * 2 + 1)) - v;
+			arr[i] = (int) (Math.random() * v);
 		}
 		return arr;
 	}
