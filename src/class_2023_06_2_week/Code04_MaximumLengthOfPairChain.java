@@ -10,7 +10,7 @@ import java.util.Arrays;
 // 找出并返回能够形成的 最长数对链的长度
 // 你不需要用到所有的数对，你可以以任何顺序选择其中的一些数对来构造。
 // 测试链接 : https://leetcode.cn/problems/maximum-length-of-pair-chain/
-public class Code03_MaximumLengthOfPairChain {
+public class Code04_MaximumLengthOfPairChain {
 
 	public static int findLongestChain(int[][] pairs) {
 		int n = pairs.length;
@@ -34,6 +34,9 @@ public class Code03_MaximumLengthOfPairChain {
 			if (find == -1) {
 				ends[size++] = pair[1];
 			} else {
+				// 1,5 1,3 1,8
+				// 3
+				// 1
 				ends[find] = Math.min(ends[find], pair[1]);
 			}
 		}

@@ -57,13 +57,27 @@ public class Code02_JumpGameOnLoop {
 			dp[i][2] = Integer.MIN_VALUE;
 			dp[i][3] = Integer.MIN_VALUE;
 		}
+		// 可能性1:
+		// 拿0位置的数 : arr[0] + process2(arr, 1, 1, 1, dp);
 		int ans = arr[0] + process2(arr, 1, 1, 1, dp);
+		// 可能性:
+		// 不拿0位置的数 : process2(arr, 1, 0, 0, dp)
 		ans = Math.max(ans, process2(arr, 1, 0, 0, dp));
 		return ans;
 	}
 
+	// arr[0....n-1]，注意0和n-1是相邻的！
+	// 当前来到的位置是i, 要，不要
+	// pre i位置的前一个数，
+	// pre == 1，i位置的前一个数已经拿了
+	// pre == 0，i位置的前一个数已经没拿
+	// end == 1，说明: 有朝一日来到n-1位置的话，不能拿
+	// end == 1，说明: 有朝一日来到n-1位置的话，可以考虑
+	// 返回值 : 在上面的设定下，i....n-1，能获得的最大累加和是多少
+	// 注意 : 不能拿相邻数字
 	public static int process2(int[] arr, int i, int pre, int end, int[][] dp) {
 		if (i == arr.length - 1) {
+			// 来到n-1位置了!
 			return (pre == 1 || end == 1) ? 0 : Math.max(0, arr[i]);
 		} else {
 			if (dp[i][(pre << 1) | end] != Integer.MIN_VALUE) {
@@ -76,6 +90,36 @@ public class Code02_JumpGameOnLoop {
 			}
 			int ans = Math.max(p1, p2);
 			dp[i][(pre << 1) | end] = ans;
+			return ans;
+		}
+	}
+	
+	// i : 0~n-1
+	// pre : 0 1
+	// end : 0 1
+	// int[][][] dp = new int[n][2][2];
+	// int[][] dp = new int[n][4];
+	// pre == 0 , end == 0   -> 0
+	// pre == 0 , end == 1   -> 1
+	// pre == 1 , end == 0   -> 2
+	// pre == 1 , end == 1   -> 3
+	// pre , end -> (pre << 1) | end
+	public static int zuo(int[] arr, int i, int pre, int end) {
+		if (i == arr.length - 1) {
+			// 来到n-1位置了!
+			return (pre == 1 || end == 1) ? 0 : Math.max(0, arr[i]);
+		} else {
+			// 没到最后
+			// 可能性1 : 不要i位置的数
+			// i+1, 0, end
+			int p1 = zuo(arr, i + 1, 0, end);
+			
+			// 可能性2 : 要i位置的数
+			int p2 = Integer.MIN_VALUE;
+			if (pre != 1) {
+				p2 = arr[i] + zuo(arr, i + 1, 1, end);
+			}
+			int ans = Math.max(p1, p2);
 			return ans;
 		}
 	}
