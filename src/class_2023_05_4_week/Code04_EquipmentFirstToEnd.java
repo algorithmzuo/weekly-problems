@@ -22,7 +22,7 @@ public class Code04_EquipmentFirstToEnd {
 		// 0 : {4,7,13,26}
 		// 1 : {5,45,3,17}
 		ArrayList<ArrayList<Integer>> own = new ArrayList<>();
-		//   0 1 2 3
+		// 0 1 2 3
 		// 0 1 0 1 0
 		// 1 0 1 1 0
 		// 2 1 1 1 1
@@ -40,7 +40,7 @@ public class Code04_EquipmentFirstToEnd {
 		}
 		for (int i = 0; i < k; i++) {
 			for (int j = 0; j < k; j++) {
-				if (i != j && map[i][j] == 1) {
+				if (map[i][j] == 1) {
 					nexts.get(i).add(j);
 				}
 			}
