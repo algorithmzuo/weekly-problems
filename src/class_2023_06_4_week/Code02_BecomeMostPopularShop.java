@@ -3,6 +3,7 @@ package class_2023_06_4_week;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+// 来自华为OD
 // 1号店铺贿赂问题
 // 店铺数量n，编号1~n
 // 人的数量m，编号1~m
