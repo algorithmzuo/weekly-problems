@@ -11,7 +11,7 @@ package class_2023_06_3_week;
 // 输出对1000000007取模的结果
 // 1 <= n <= 10^5
 // 0 <= ai <= 25
-public class Code02_PasswordWays {
+public class Code03_PasswordWays {
 
 	// 暴力递归
 	public static int ways1(int[] arr) {

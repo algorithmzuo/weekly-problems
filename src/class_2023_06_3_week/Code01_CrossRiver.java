@@ -1,4 +1,4 @@
-package class_2023_06_4_week;
+package class_2023_06_3_week;
 
 import java.io.BufferedReader;
 import java.io.IOException;

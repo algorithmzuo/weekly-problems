@@ -1,7 +1,7 @@
-package class_2023_06_5_week;
+package class_2023_06_3_week;
 
 // 测试链接 : https://leetcode.cn/problems/special-permutations/
-public class Code01_SpecialPermutations {
+public class Code06_SpecialPermutations {
 
 	public static int specialPerm(int[] nums) {
 		int n = nums.length;
