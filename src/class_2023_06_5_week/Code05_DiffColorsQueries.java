@@ -105,10 +105,9 @@ public class Code05_DiffColorsQueries {
 	}
 
 	public static void add(int cur, int father, int except) {
-		if (cnt[color[cur]] == 0) {
+		if (++cnt[color[cur]] == 1) {
 			total++;
 		}
-		cnt[color[cur]]++;
 		for (int next : graph.get(cur)) {
 			if (next != father && next != except) {
 				add(next, cur, except);
