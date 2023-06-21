@@ -94,12 +94,17 @@ public class Code06_BecomeMostPopularShop {
 		}
 	}
 
+	// n : 店铺的数量
+	// m : 人的数量
+	// arr : i [本来支持的店号, 如果改投1号店贿赂的钱]
 	public static long minCost2(int n, int m, int[][] arr) {
 		// 统计每个店铺的支持人数
+		// 1 ~ n
 		int[] cnts = new int[n + 1];
 		for (int[] p : arr) {
 			cnts[p[0]]++;
 		}
+		// needChange : 到底需不需要贿赂呢？
 		boolean needChange = false;
 		for (int i = 2; i <= n; i++) {
 			if (cnts[i] >= cnts[1]) {
@@ -111,6 +116,7 @@ public class Code06_BecomeMostPopularShop {
 		if (!needChange) {
 			return 0;
 		}
+		// 1号店铺目前不是人气最高，需要贿赂
 		// 把所有的人，根据改投的钱数排序
 		// 钱少的在前面
 		// 排序之后，人也重新编号了，因为每个人的下标变了
@@ -133,8 +139,14 @@ public class Code06_BecomeMostPopularShop {
 		}
 		// 某个用户是否已经改投1号店了
 		boolean[] used = new boolean[m];
+		// 最小的钱数
 		long ans = Long.MAX_VALUE;
+		// 1号店，已经有50人支持了，没赢！
+		// 51 52 53 ...
 		for (int i = cnts[1] + 1; i <= m; i++) {
+			// 1号店铺，只允许最终有i个人投它！
+			// 返回赢的情况下，最少的钱数
+			// 如果规定好的人数，怎么都赢不了，返回-1
 			long money = f(arr, n, cnts[1], i, shops, used);
 			if (money != -1) {
 				ans = Math.min(ans, money);
@@ -152,7 +164,10 @@ public class Code06_BecomeMostPopularShop {
 	// 返回值 :
 	// 如果一号店人数最后一定要达到must，并且一定可以成为人气最高的店，那么返回至少花的钱数
 	// 如果上面说的做不到，返回-1
-	public static long f(int[][] arr, int n, int already, int must, ArrayList<ArrayList<Integer>> shops,
+	public static long f(
+			int[][] arr, int n,
+			int already, int must,
+			ArrayList<ArrayList<Integer>> shops,
 			boolean[] used) {
 		// 最开始时，任何人都没有转投
 		Arrays.fill(used, false);

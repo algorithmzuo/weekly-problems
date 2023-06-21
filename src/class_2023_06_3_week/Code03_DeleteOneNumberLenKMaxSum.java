@@ -2,7 +2,7 @@ package class_2023_06_3_week;
 
 // 来自字节
 // 给定整数数组arr，求删除任一元素后，
-// 新数组中长度为k的子数组和的最大值
+// 新数组中长度为k的子数组累加和的最大值
 public class Code03_DeleteOneNumberLenKMaxSum {
 
 	// 暴力方法
@@ -56,11 +56,20 @@ public class Code03_DeleteOneNumberLenKMaxSum {
 		if (n <= k) {
 			return 0;
 		}
+		// 窗口内最小值的更新结构，双端队列！
+		// 看课！体系学习班，章节25
 		int[] window = new int[n];
 		int l = 0;
 		int r = 0;
+		// 维持窗口内的累加和
 		long sum = 0;
 		int ans = Integer.MIN_VALUE;
+		// k = 10
+		// 0,1,2,3,.....10 11 12 13
+		//   0... 10
+		//   1 ...11
+		//   2 ...12
+		//   3....13
 		for (int i = 0; i < n; i++) {
 			while (l < r && arr[window[r - 1]] >= arr[i]) {
 				r--;

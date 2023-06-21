@@ -32,10 +32,17 @@ public class Code01_UnhappyExperiment {
 	// 完全按照说的来实验
 	public static void experiment(int n, int t) {
 		double[] wealth = new double[n];
+		boolean[] hasMoney = new boolean[n];
 		Arrays.fill(wealth, 100);
 		for (int i = 0; i < t; i++) {
+			Arrays.fill(hasMoney, false);
 			for (int j = 0; j < n; j++) {
 				if (wealth[j] > 0) {
+					hasMoney[j] = true;
+				}
+			}
+			for (int j = 0; j < n; j++) {
+				if (hasMoney[j]) {
 					int other = j;
 					do {
 						other = (int) (Math.random() * n);
@@ -54,8 +61,7 @@ public class Code01_UnhappyExperiment {
 			}
 		}
 		System.out.println();
-		System.out.print("这个社会的基尼系数为 : ");
-		System.out.println(calculateGini(wealth));
+		System.out.println("这个社会的基尼系数为 : " + calculateGini(wealth));
 	}
 
 	// 计算基尼系数

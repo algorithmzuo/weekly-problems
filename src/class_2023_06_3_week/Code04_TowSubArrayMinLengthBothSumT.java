@@ -9,12 +9,13 @@ import java.util.HashMap;
 // 如果没有有效方法，返回-1
 // 正式 :
 // 2 <= n <= 10^6
-// 1 <= arr[i] <= 10000
+// 0 <= arr[i] <= 10000
 // 1 <= T <= 10^8
 // 扩展 : 
 // 2 <= n <= 10^6
 // -10000 <= arr[i] <= 10000
 // 1 <= T <= 10^8
+// 都能时间复杂度做到O(N)
 
 public class Code04_TowSubArrayMinLengthBothSumT {
 
