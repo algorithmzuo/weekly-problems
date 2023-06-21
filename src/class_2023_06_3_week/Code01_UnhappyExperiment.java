@@ -46,7 +46,7 @@ public class Code01_UnhappyExperiment {
 			}
 		}
 		Arrays.sort(wealth);
-		System.out.println("从贫穷到富有列出每个人的财富 : ");
+		System.out.println("列出每个人的财富(贫穷到富有) : ");
 		for (int i = 0; i < n; i++) {
 			System.out.print((int) wealth[i] + " ");
 			if (i % 10 == 9) {
