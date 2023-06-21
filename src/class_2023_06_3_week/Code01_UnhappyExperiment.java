@@ -8,7 +8,7 @@ import java.util.Arrays;
 // 在每一轮都做如下的事情 : 
 // 每个人都必须拿出1元钱给除自己以外的其他人，给谁完全随机
 // 如果某个人在这一轮的钱数为0，那么他可以不给，但是可以接收
-// 发生很多很多轮之后，这100人的社会是财富很均匀的吗？
+// 发生很多很多轮之后，这100人的社会财富分布很均匀吗？
 public class Code01_UnhappyExperiment {
 
 	public static void main(String[] args) {
