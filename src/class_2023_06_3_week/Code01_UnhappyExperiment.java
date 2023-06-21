@@ -20,9 +20,9 @@ public class Code01_UnhappyExperiment {
 		System.out.println("目前普遍认为，当基尼系数到达 0.5 时");
 		System.out.println("就意味着社会贫富差距非常大，分布非常不均匀");
 		System.out.println("社会可能会因此陷入危机，比如大量的犯罪或者经历社会动荡");
+		System.out.println("测试开始");
 		int n = 100;
 		int t = 1000000;
-		System.out.println("测试开始");
 		System.out.println("人数 : " + n);
 		System.out.println("轮数 : " + t);
 		experiment(n, t);
