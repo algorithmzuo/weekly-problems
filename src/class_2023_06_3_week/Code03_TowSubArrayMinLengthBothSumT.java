@@ -16,7 +16,7 @@ import java.util.HashMap;
 // -10000 <= arr[i] <= 10000
 // 1 <= T <= 10^8
 
-public class Code05_TowSubArrayMinLengthBothSumT {
+public class Code03_TowSubArrayMinLengthBothSumT {
 
 	// 暴力方法
 	// 为了验证
