@@ -1,4 +1,4 @@
-package class_2023_06_5_week;
+package class_2023_07_1_week;
 
 // 测试链接 : https://www.luogu.com.cn/problem/U41492
 
