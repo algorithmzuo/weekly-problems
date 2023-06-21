@@ -25,7 +25,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code04_CrossRiver {
+public class Code05_CrossRiver {
 
 	public static int MAXN = 100001;
 

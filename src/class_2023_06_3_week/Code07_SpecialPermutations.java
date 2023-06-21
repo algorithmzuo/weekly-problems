@@ -7,7 +7,7 @@ package class_2023_06_3_week;
 // 要么 nums[i+1] % nums[i] == 0
 // 请你返回特别排列的总数目，由于答案可能很大，请将它对 1000000007 取余 后返回
 // 测试链接 : https://leetcode.cn/problems/special-permutations/
-public class Code06_SpecialPermutations {
+public class Code07_SpecialPermutations {
 
 	public static int specialPerm(int[] nums) {
 		int n = nums.length;

@@ -3,7 +3,7 @@ package class_2023_06_3_week;
 // 来自字节
 // 给定整数数组arr，求删除任一元素后，
 // 新数组中长度为k的子数组和的最大值
-public class Code02_DeleteOneNumberLenKMaxSum {
+public class Code03_DeleteOneNumberLenKMaxSum {
 
 	// 暴力方法
 	// 为了测试
