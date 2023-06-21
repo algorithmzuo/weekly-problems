@@ -12,6 +12,12 @@ import java.util.Arrays;
 public class Code01_UnhappyExperiment {
 
 	public static void main(String[] args) {
+		System.out.println("一个社会的基尼系数是一个在0~1之间的小数");
+		System.out.println("基尼系数为0代表所有人的财富完全一样，基尼系数为1代表有1个人掌握了全社会的财富");
+		System.out.println("基尼系数越小，代表社会财富分布越均衡；越大则代表财富分布越不均衡");
+		System.out.println("在2022年，世界各国的平均基尼系数为0.44");
+		System.out.println("目前普遍认为，当基尼系数到达 0.5 时，就意味着社会贫富差距非常大，分布非常不均匀");
+		System.out.println("社会可能会因此陷入危机，比如犯罪或者战争");
 		int n = 100;
 		int t = 1000000;
 		System.out.println("测试开始");
@@ -39,13 +45,15 @@ public class Code01_UnhappyExperiment {
 		}
 		Arrays.sort(wealth);
 		System.out.println("从贫穷到富有列出每个人的财富 : ");
-		for (double num : wealth) {
-			System.out.print((int) num + " ");
+		for (int i = 0; i < n; i++) {
+			System.out.print((int) wealth[i] + " ");
+			if (i % 10 == 9) {
+				System.out.println();
+			}
 		}
 		System.out.println();
 		System.out.print("这个社会的基尼系数为 : ");
 		System.out.println(calculateGini(wealth));
-		System.out.println("注意 : 当基尼系数超过 0.5 时，就意味着社会贫富差距非常大，分布非常不均匀");
 	}
 
 	// 计算基尼系数
