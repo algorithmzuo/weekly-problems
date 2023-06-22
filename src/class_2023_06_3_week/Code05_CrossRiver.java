@@ -16,6 +16,9 @@ package class_2023_06_3_week;
 // 现在已知N个人的渡河时间Ti
 // Oliver 想要你告诉他，他们最少要花费多少时间，才能使所有人都过河
 // 注意，只有船在东岸（西岸）的人才能坐上船划到对岸。
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
+// 提交以下的code，提交时请把类名改成"Main"
 
 import java.io.BufferedReader;
 import java.io.IOException;
