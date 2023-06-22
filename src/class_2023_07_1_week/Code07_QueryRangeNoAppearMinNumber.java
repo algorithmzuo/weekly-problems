@@ -85,7 +85,7 @@ public class Code07_QueryRangeNoAppearMinNumber {
 					root[i] = update(root[i - 1], 0, n, value, i);
 				}
 			}
-			for (int i = 0; i < m; i++) {
+			for (int i = 1; i <= m; i++) {
 				in.nextToken();
 				int l = (int) in.nval;
 				in.nextToken();
