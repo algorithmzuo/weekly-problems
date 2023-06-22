@@ -1,5 +1,7 @@
 package class_2023_07_1_week;
 
+// 这道题java通过的人，在我之前有一个用多线程的货
+// 也就是一个查询开一个线程来执行......给大佬递烟......
 // 测试链接 : https://www.luogu.com.cn/problem/P4137
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
@@ -22,7 +24,8 @@ public class Code07_QueryRangeNoAppearMinNumber {
 	// 不过洛谷对java提交的空间判断很苛刻，所以改成刚够用的即可
 	// 这里通过实验，开23倍空间不会爆空间，也能通过
 	// 没办法，对java不友好
-	// 但如果是C++，可以直接开32倍空间
+	// 但如果是C++，可以直接开32倍空间，也不会超内存
+	// 哈哈，洛谷对java的歧视
 	public static int MAXM = MAXN * 23;
 
 	public static int[] left = new int[MAXM];
