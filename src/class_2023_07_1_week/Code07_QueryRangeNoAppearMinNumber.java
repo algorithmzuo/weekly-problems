@@ -78,11 +78,11 @@ public class Code07_QueryRangeNoAppearMinNumber {
 			cnt = 0;
 			for (int i = 1; i <= n; i++) {
 				in.nextToken();
-				int value = (int) in.nval + 1;
-				if (value > n) {
+				int value = (int) in.nval;
+				if (value >= n) {
 					root[i] = root[i - 1];
 				} else {
-					root[i] = update(root[i - 1], 1, n + 1, value, i);
+					root[i] = update(root[i - 1], 0, n, value, i);
 				}
 			}
 			for (int i = 0; i < m; i++) {
@@ -90,7 +90,7 @@ public class Code07_QueryRangeNoAppearMinNumber {
 				int l = (int) in.nval;
 				in.nextToken();
 				int r = (int) in.nval;
-				out.println(query(root[r], 1, n + 1, l) - 1);
+				out.println(query(root[r], 0, n, l));
 			}
 			out.flush();
 		}
