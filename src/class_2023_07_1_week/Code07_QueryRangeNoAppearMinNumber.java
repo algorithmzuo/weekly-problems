@@ -32,38 +32,38 @@ public class Code07_QueryRangeNoAppearMinNumber {
 
 	public static int[] right = new int[MAXM];
 
-	public static int[] minn = new int[MAXM];
+	public static int[] last = new int[MAXM];
 
 	public static int n, m, cnt;
 
-	public static int update(int pre, int l, int r, int pos, int val) {
+	public static int update(int pre, int l, int r, int val, int pos) {
 		int rt = ++cnt;
 		left[rt] = left[pre];
 		right[rt] = right[pre];
-		minn[rt] = minn[pre];
+		last[rt] = last[pre];
 		if (l == r) {
-			minn[rt] = val;
+			last[rt] = pos;
 		} else {
 			int mid = l + ((r - l) >> 2);
-			if (pos <= mid) {
-				left[rt] = update(left[pre], l, mid, pos, val);
+			if (val <= mid) {
+				left[rt] = update(left[pre], l, mid, val, pos);
 			} else {
-				right[rt] = update(right[pre], mid + 1, r, pos, val);
+				right[rt] = update(right[pre], mid + 1, r, val, pos);
 			}
-			minn[rt] = Math.min(minn[left[rt]], minn[right[rt]]);
+			last[rt] = Math.min(last[left[rt]], last[right[rt]]);
 		}
 		return rt;
 	}
 
-	public static int query(int rt, int l, int r, int val) {
+	public static int query(int rt, int l, int r, int pos) {
 		if (l == r) {
 			return l;
 		}
 		int mid = l + ((r - l) >> 2);
-		if (minn[left[rt]] < val) {
-			return query(left[rt], l, mid, val);
+		if (last[left[rt]] < pos) {
+			return query(left[rt], l, mid, pos);
 		} else {
-			return query(right[rt], mid + 1, r, val);
+			return query(right[rt], mid + 1, r, pos);
 		}
 	}
 
