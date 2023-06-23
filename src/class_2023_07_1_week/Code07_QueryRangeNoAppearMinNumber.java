@@ -30,11 +30,13 @@ public class Code07_QueryRangeNoAppearMinNumber {
 
 	// 正常来讲，可持久化线段树要开MAXN * 32的空间
 	// 不过洛谷对java提交的空间判断很苛刻，所以改成刚够用的即可
-	// 这里通过实验，开23倍空间不会爆空间，也能通过
-	// 没办法，对java不友好
-	// 但如果是C++，可以直接开32倍空间，也不会超内存
+	// 这里通过实验，开19倍空间不会爆空间也能通过
+	// 为什么是19倍，因为支持的范围是0~200001，2的18次方刚超过200001
+	// 也就是每一个版本的线段树，在一个范围不断二分，至少需要18个新空间
+	// 但是有时候二分可能会再下一层，所以开19倍空间肯定够用
+	// 对java不友好，如果是C++，可以直接开32倍空间，也不会超内存
 	// 哈哈，洛谷对java的歧视
-	public static int MAXM = MAXN * 23;
+	public static int MAXM = MAXN * 19;
 
 	public static int[] left = new int[MAXM];
 
@@ -52,7 +54,7 @@ public class Code07_QueryRangeNoAppearMinNumber {
 		if (l == r) {
 			last[rt] = pos;
 		} else {
-			int mid = l + ((r - l) >> 2);
+			int mid = (l + r) / 2;
 			if (val <= mid) {
 				left[rt] = update(left[pre], l, mid, val, pos);
 			} else {
@@ -67,7 +69,7 @@ public class Code07_QueryRangeNoAppearMinNumber {
 		if (l == r) {
 			return l;
 		}
-		int mid = l + ((r - l) >> 2);
+		int mid = (l + r) / 2;
 		if (last[left[rt]] < pos) {
 			return query(left[rt], l, mid, pos);
 		} else {
