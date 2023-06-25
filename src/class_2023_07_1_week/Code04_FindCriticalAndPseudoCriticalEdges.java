@@ -173,6 +173,8 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		// 那么p和t都是重复链接，因为单独删掉p或者t，不会影响联通性
 		// 而这种重复链接，在求桥的模版中是不支持的
 		// 也就是说求桥的模版中，默认没有重复链接，才能去用模版
+		// 如果有重复链接，直接用模版，那么会出现忽略重复链接的处理
+		// 也就是对tarjen算法来说，就认为p和t这两条无向边只出现了一条
 		// 所以这里要单独判断，如果有重复链接被设置成了桥，要把它改成伪关键边状态
 		for (int i = 0; i < k; i++) {
 			List<int[]> nexts = graph.get(i);
