@@ -3,7 +3,6 @@ package class_2023_07_1_week;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 // 给你一个 n 个点的带权无向连通图，节点编号为 0 到 n-1
 // 同时还有一个数组 edges ，其中 edges[i] = [fromi, toi, weighti]
@@ -43,6 +42,21 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 	public static int[] low = new int[MAXN];
 	public static int cnt;
 
+	// 哈希表相关
+	public static int[] id = new int[MAXN];
+
+	// 通过集合编号建图相关
+	// 想再一步省空间，就用链式前向星吧
+	public static List<List<int[]>> graph = new ArrayList<>();
+
+	public static int k;
+
+	static {
+		for (int i = 0; i < MAXN; i++) {
+			graph.add(new ArrayList<>());
+		}
+	}
+
 	public static List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] e) {
 		buildUnoinSet(n);
 		m = e.length;
@@ -68,10 +82,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			}
 			teamStart = teamEnd + 1;
 		}
-		List<List<Integer>> ans = new ArrayList<>();
-		ans.add(real);
-		ans.add(pseudo);
-		return ans;
+		return Arrays.asList(real, pseudo);
 	}
 
 	// 并查集初始化
@@ -123,26 +134,26 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 	}
 
 	public static void bridge(int start, int end) {
-		int n = 0;
-		HashMap<Integer, Integer> id = new HashMap<>();
 		for (int i = start; i <= end; i++) {
-			int a = find(edges[i][1]);
-			int b = find(edges[i][2]);
-			if (!id.containsKey(a)) {
-				id.put(a, n++);
+			id[find(edges[i][1])] = -1;
+			id[find(edges[i][2])] = -1;
+		}
+		k = 0;
+		for (int i = start; i <= end; i++) {
+			if (id[find(edges[i][1])] == -1) {
+				id[find(edges[i][1])] = k++;
 			}
-			if (!id.containsKey(b)) {
-				id.put(b, n++);
+			if (id[find(edges[i][2])] == -1) {
+				id[find(edges[i][2])] = k++;
 			}
 		}
-		List<List<int[]>> graph = new ArrayList<>();
-		for (int i = 0; i < n; i++) {
-			graph.add(new ArrayList<>());
+		for (int i = 0; i < k; i++) {
+			graph.get(i).clear();
 		}
 		for (int i = start; i <= end; i++) {
 			int index = edges[i][0];
-			int a = id.get(find(edges[i][1]));
-			int b = id.get(find(edges[i][2]));
+			int a = id[find(edges[i][1])];
+			int b = id[find(edges[i][2])];
 			if (a != b) {
 				record[index] = 1;
 				graph.get(a).add(new int[] { index, b });
@@ -151,7 +162,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 				record[index] = 2;
 			}
 		}
-		criticalConnections(n, graph);
+		criticalConnections();
 		// 处理重复连接
 		// 什么是重复连接？不是自己指向自己，那叫自环
 		// 重复连接指的是:
@@ -163,7 +174,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		// 而这种重复链接，在求桥的模版中是不支持的
 		// 也就是说求桥的模版中，默认没有重复链接，才能去用模版
 		// 所以这里要单独判断，如果有重复链接被设置成了桥，要把它改成伪关键边状态
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < k; i++) {
 			List<int[]> nexts = graph.get(i);
 			nexts.sort((a, b) -> a[1] - b[1]);
 			for (int j = 1; j < nexts.size(); j++) {
@@ -175,25 +186,25 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		}
 	}
 
-	public static void criticalConnections(int n, List<List<int[]>> graph) {
-		Arrays.fill(dfn, 0, n, 0);
-		Arrays.fill(low, 0, n, 0);
+	public static void criticalConnections() {
+		Arrays.fill(dfn, 0, k, 0);
+		Arrays.fill(low, 0, k, 0);
 		cnt = 0;
-		for (int init = 0; init < n; init++) {
+		for (int init = 0; init < k; init++) {
 			if (dfn[init] == 0) {
-				tarjan(init, init, -1, -1, graph);
+				tarjan(init, init, -1, -1);
 			}
 		}
 	}
 
-	public static void tarjan(int init, int cur, int father, int ei, List<List<int[]>> graph) {
+	public static void tarjan(int init, int cur, int father, int ei) {
 		dfn[cur] = low[cur] = ++cnt;
 		for (int[] edge : graph.get(cur)) {
 			int edgei = edge[0];
 			int nodei = edge[1];
 			if (nodei != father) {
 				if (dfn[nodei] == 0) {
-					tarjan(init, nodei, cur, edgei, graph);
+					tarjan(init, nodei, cur, edgei);
 					low[cur] = Math.min(low[cur], low[nodei]);
 				} else {
 					low[cur] = Math.min(low[cur], dfn[nodei]);
