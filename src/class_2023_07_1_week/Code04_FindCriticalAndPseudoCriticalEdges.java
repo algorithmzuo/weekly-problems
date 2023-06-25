@@ -166,28 +166,28 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		Arrays.fill(dfn, 0, n, 0);
 		Arrays.fill(low, 0, n, 0);
 		cnt = 0;
-		for (int i = 0; i < n; i++) {
-			if (dfn[i] == 0) {
-				tarjan(i, i, -1, -1, graph);
+		for (int init = 0; init < n; init++) {
+			if (dfn[init] == 0) {
+				tarjan(init, init, -1, -1, graph);
 			}
 		}
 	}
 
-	public static void tarjan(int start, int cur, int father, int ei, List<List<int[]>> graph) {
+	public static void tarjan(int init, int cur, int father, int ei, List<List<int[]>> graph) {
 		dfn[cur] = low[cur] = ++cnt;
 		for (int[] edge : graph.get(cur)) {
-			int nei = edge[0];
-			int nni = edge[1];
-			if (nni != father) {
-				if (dfn[nni] == 0) {
-					tarjan(start, nni, cur, nei, graph);
-					low[cur] = Math.min(low[cur], low[nni]);
+			int edgei = edge[0];
+			int nodei = edge[1];
+			if (nodei != father) {
+				if (dfn[nodei] == 0) {
+					tarjan(init, nodei, cur, edgei, graph);
+					low[cur] = Math.min(low[cur], low[nodei]);
 				} else {
-					low[cur] = Math.min(low[cur], dfn[nni]);
+					low[cur] = Math.min(low[cur], dfn[nodei]);
 				}
 			}
 		}
-		if (low[cur] == dfn[cur] && cur != start) {
+		if (low[cur] == dfn[cur] && cur != init) {
 			record[ei] = 0;
 		}
 	}
