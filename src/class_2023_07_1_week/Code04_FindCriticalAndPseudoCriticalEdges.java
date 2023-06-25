@@ -12,12 +12,29 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 
 	public static int MAXM = 201;
 
-	public static int[] critical = new int[MAXM];
+	// 记录
+	public static int[] record = new int[MAXM];
+
+	// 并查集相关
+	public static int[] father = new int[MAXN];
+	public static int[] size = new int[MAXN];
+	public static int[] help = new int[MAXN];
+	public static int sets = 0;
+
+	// 边相关
+	public static int[][] edges = new int[MAXM][4];
+	public static int m;
+
+	// 找桥相关
+	public static int[] dfn = new int[MAXN];
+	public static int[] low = new int[MAXN];
+	public static int cnt;
 
 	public static List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] e) {
 		buildUnoinSet(n);
+		m = e.length;
 		buildEdges(e);
-		Arrays.fill(critical, 0, m, -1);
+		Arrays.fill(record, 0, m, -1);
 		List<Integer> real = new ArrayList<>();
 		List<Integer> pseudo = new ArrayList<>();
 		int teamStart = 0;
@@ -29,9 +46,9 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			bridge(teamStart, teamEnd);
 			for (int i = teamStart; i <= teamEnd; i++) {
 				int ei = edges[i][0];
-				if (critical[ei] == 0) {
+				if (record[ei] == 0) {
 					real.add(ei);
-				} else if (critical[ei] == 1) {
+				} else if (record[ei] == 1) {
 					pseudo.add(ei);
 				}
 				union(edges[i][1], edges[i][2]);
@@ -43,12 +60,6 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		ans.add(pseudo);
 		return ans;
 	}
-
-	// 并查集相关
-	public static int[] father = new int[MAXN];
-	public static int[] size = new int[MAXN];
-	public static int[] help = new int[MAXN];
-	public static int sets = 0;
 
 	// 并查集初始化
 	public static void buildUnoinSet(int n) {
@@ -88,14 +99,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		}
 	}
 
-	// 边相关
-
-	public static int[][] edges = new int[MAXM][4];
-
-	public static int m;
-
 	public static void buildEdges(int[][] e) {
-		m = e.length;
 		for (int i = 0; i < m; i++) {
 			edges[i][0] = i;
 			edges[i][1] = e[i][0];
@@ -104,14 +108,6 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		}
 		Arrays.sort(edges, 0, m, (a, b) -> a[3] - b[3]);
 	}
-
-	// 找桥相关
-
-	public static int[] dfn = new int[MAXN];
-
-	public static int[] low = new int[MAXN];
-
-	public static int cnt;
 
 	public static void bridge(int start, int end) {
 		int n = 0;
@@ -135,23 +131,32 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			int a = id.get(find(edges[i][1]));
 			int b = id.get(find(edges[i][2]));
 			if (a != b) {
-				critical[index] = 1;
+				record[index] = 1;
 				graph.get(a).add(new int[] { index, b });
 				graph.get(b).add(new int[] { index, a });
 			} else {
-				critical[index] = 2;
+				record[index] = 2;
 			}
 		}
 		criticalConnections(n, graph);
-		// 处理重复链接
-		// 如果重复链接被设置成了桥，要改成伪关键边
+		// 处理重复连接
+		// 什么是重复连接？不是自己指向自己，那叫自环
+		// 重复连接指的是:
+		// 集合a到集合b有一条边，边的序号是p
+		// 于是，a的邻接表里有(p,b)，b的邻接表里有(p,a)
+		// 集合a到集合b又有一条边，边的序号是t
+		// 于是，a的邻接表里有(t,b)，b的邻接表里有(t,a)
+		// 那么p和t都是重复链接，因为单独删掉p或者t，不会影响联通性
+		// 而这种重复链接，在求桥的模版中是不支持的
+		// 也就是说求桥的模版中，默认没有重复链接，才能去用模版
+		// 所以这里要单独判断，如果有重复链接被设置成了桥，要把它改成伪关键边状态
 		for (int i = 0; i < n; i++) {
 			List<int[]> nexts = graph.get(i);
 			nexts.sort((a, b) -> a[1] - b[1]);
 			for (int j = 1; j < nexts.size(); j++) {
 				if (nexts.get(j)[1] == nexts.get(j - 1)[1]) {
-					critical[nexts.get(j)[0]] = 1;
-					critical[nexts.get(j - 1)[0]] = 1;
+					record[nexts.get(j)[0]] = 1;
+					record[nexts.get(j - 1)[0]] = 1;
 				}
 			}
 		}
@@ -183,7 +188,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			}
 		}
 		if (low[cur] == dfn[cur] && cur != start) {
-			critical[ei] = 0;
+			record[ei] = 0;
 		}
 	}
 
