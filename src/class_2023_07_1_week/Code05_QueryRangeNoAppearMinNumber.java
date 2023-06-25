@@ -22,7 +22,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code07_QueryRangeNoAppearMinNumber {
+public class Code05_QueryRangeNoAppearMinNumber {
 
 	public static int MAXN = 200001;
 
