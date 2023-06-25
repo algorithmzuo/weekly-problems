@@ -1,5 +1,10 @@
 package class_2023_07_2_week;
 
+// 给一棵根为1的树，每次询问子树颜色种类数
+// 假设节点总数为n，颜色总数为m
+// 每个节点的颜色，依次给出，整棵树以1节点做头
+// 有k次查询，询问某个节点为头的子树，一共有多少种颜色
+// 1 <= n, m, k <= 10^5
 // 测试链接 : https://www.luogu.com.cn/problem/U41492
 
 import java.io.BufferedReader;
