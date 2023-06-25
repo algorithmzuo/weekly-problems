@@ -26,64 +26,13 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 
 	// 记录
 	public static int[] record = new int[MAXM];
+	public static int m;
 
 	// 并查集相关
 	public static int[] father = new int[MAXN];
 	public static int[] size = new int[MAXN];
 	public static int[] help = new int[MAXN];
 	public static int sets = 0;
-
-	// 边相关
-	public static int[][] edges = new int[MAXM][4];
-	public static int m;
-
-	// 找桥相关
-	public static int[] dfn = new int[MAXN];
-	public static int[] low = new int[MAXN];
-	public static int cnt;
-
-	// 哈希表相关
-	public static int[] id = new int[MAXN];
-
-	// 通过集合编号建图相关
-	// 想再一步省空间，就用链式前向星吧
-	public static List<List<int[]>> graph = new ArrayList<>();
-
-	public static int k;
-
-	static {
-		for (int i = 0; i < MAXN; i++) {
-			graph.add(new ArrayList<>());
-		}
-	}
-
-	public static List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] e) {
-		buildUnoinSet(n);
-		m = e.length;
-		buildEdges(e);
-		Arrays.fill(record, 0, m, -1);
-		List<Integer> real = new ArrayList<>();
-		List<Integer> pseudo = new ArrayList<>();
-		int teamStart = 0;
-		while (sets != 1) {
-			int teamEnd = teamStart;
-			while (teamEnd + 1 < m && edges[teamEnd + 1][3] == edges[teamStart][3]) {
-				teamEnd++;
-			}
-			bridge(teamStart, teamEnd);
-			for (int i = teamStart; i <= teamEnd; i++) {
-				int ei = edges[i][0];
-				if (record[ei] == 0) {
-					real.add(ei);
-				} else if (record[ei] == 1) {
-					pseudo.add(ei);
-				}
-				union(edges[i][1], edges[i][2]);
-			}
-			teamStart = teamEnd + 1;
-		}
-		return Arrays.asList(real, pseudo);
-	}
 
 	// 并查集初始化
 	public static void buildUnoinSet(int n) {
@@ -123,6 +72,9 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		}
 	}
 
+	// 边相关
+	public static int[][] edges = new int[MAXM][4];
+
 	public static void buildEdges(int[][] e) {
 		for (int i = 0; i < m; i++) {
 			edges[i][0] = i;
@@ -133,12 +85,101 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		Arrays.sort(edges, 0, m, (a, b) -> a[3] - b[3]);
 	}
 
+	// 通过集合编号建图相关
+	// 链式前向星建图
+	// 为啥用这玩意儿建图？没啥，就是想秀
+	public static int[] head = new int[MAXN];
+	public static int[][] info = new int[MAXM][3];
+	public static int[] next = new int[MAXM];
+	public static int edgeSize;
+
+	public static void buildGraph(int k) {
+		for (int i = 0; i < k; i++) {
+			head[i] = -1;
+			edgeSize = 0;
+		}
+	}
+
+	public static void addEdge(int a, int b, int ei) {
+		next[edgeSize] = head[a];
+		info[edgeSize][0] = ei;
+		info[edgeSize][1] = a;
+		info[edgeSize][2] = b;
+		head[a] = edgeSize++;
+	}
+
+	// 哈希表相关
+	public static int[] id = new int[MAXN];
+
+	// 找桥相关
+	public static int[] dfn = new int[MAXN];
+	public static int[] low = new int[MAXN];
+	public static int cnt;
+
+	public static void criticalConnections(int k) {
+		Arrays.fill(dfn, 0, k, 0);
+		Arrays.fill(low, 0, k, 0);
+		cnt = 0;
+		for (int init = 0; init < k; init++) {
+			if (dfn[init] == 0) {
+				tarjan(init, init, -1, -1);
+			}
+		}
+	}
+
+	public static void tarjan(int init, int cur, int father, int ei) {
+		dfn[cur] = low[cur] = ++cnt;
+		for (int i = head[cur]; i != -1; i = next[i]) {
+			int edgei = info[i][0];
+			int nodei = info[i][2];
+			if (nodei != father) {
+				if (dfn[nodei] == 0) {
+					tarjan(init, nodei, cur, edgei);
+					low[cur] = Math.min(low[cur], low[nodei]);
+				} else {
+					low[cur] = Math.min(low[cur], dfn[nodei]);
+				}
+			}
+		}
+		if (low[cur] == dfn[cur] && cur != init) {
+			record[ei] = 0;
+		}
+	}
+
+	public static List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] e) {
+		buildUnoinSet(n);
+		m = e.length;
+		buildEdges(e);
+		Arrays.fill(record, 0, m, -1);
+		List<Integer> real = new ArrayList<>();
+		List<Integer> pseudo = new ArrayList<>();
+		int teamStart = 0;
+		while (sets != 1) {
+			int teamEnd = teamStart;
+			while (teamEnd + 1 < m && edges[teamEnd + 1][3] == edges[teamStart][3]) {
+				teamEnd++;
+			}
+			bridge(teamStart, teamEnd);
+			for (int i = teamStart; i <= teamEnd; i++) {
+				int ei = edges[i][0];
+				if (record[ei] == 0) {
+					real.add(ei);
+				} else if (record[ei] == 1) {
+					pseudo.add(ei);
+				}
+				union(edges[i][1], edges[i][2]);
+			}
+			teamStart = teamEnd + 1;
+		}
+		return Arrays.asList(real, pseudo);
+	}
+
 	public static void bridge(int start, int end) {
 		for (int i = start; i <= end; i++) {
 			id[find(edges[i][1])] = -1;
 			id[find(edges[i][2])] = -1;
 		}
-		k = 0;
+		int k = 0;
 		for (int i = start; i <= end; i++) {
 			if (id[find(edges[i][1])] == -1) {
 				id[find(edges[i][1])] = k++;
@@ -147,22 +188,20 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 				id[find(edges[i][2])] = k++;
 			}
 		}
-		for (int i = 0; i < k; i++) {
-			graph.get(i).clear();
-		}
+		buildGraph(k);
 		for (int i = start; i <= end; i++) {
 			int index = edges[i][0];
 			int a = id[find(edges[i][1])];
 			int b = id[find(edges[i][2])];
 			if (a != b) {
 				record[index] = 1;
-				graph.get(a).add(new int[] { index, b });
-				graph.get(b).add(new int[] { index, a });
+				addEdge(a, b, index);
+				addEdge(b, a, index);
 			} else {
 				record[index] = 2;
 			}
 		}
-		criticalConnections();
+		criticalConnections(k);
 		// 处理重复连接
 		// 什么是重复连接？不是自己指向自己，那叫自环
 		// 重复连接指的是:
@@ -176,45 +215,20 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		// 如果有重复链接，直接用模版，那么会出现忽略重复链接的处理
 		// 也就是对tarjen算法来说，就认为p和t这两条无向边只出现了一条
 		// 所以这里要单独判断，如果有重复链接被设置成了桥，要把它改成伪关键边状态
-		for (int i = 0; i < k; i++) {
-			List<int[]> nexts = graph.get(i);
-			nexts.sort((a, b) -> a[1] - b[1]);
-			for (int j = 1; j < nexts.size(); j++) {
-				if (nexts.get(j)[1] == nexts.get(j - 1)[1]) {
-					record[nexts.get(j)[0]] = 1;
-					record[nexts.get(j - 1)[0]] = 1;
+		Arrays.sort(info, 0, edgeSize, (a, b) -> a[1] != b[1] ? (a[1] - b[1]) : (a[2] - b[2]));
+		int right, left = 0;
+		while (left < edgeSize) {
+			right = left + 1;
+			while (right < edgeSize && info[left][1] == info[right][1]) {
+				right++;
+			}
+			for (int i = left + 1; i < right; i++) {
+				if (info[i][2] == info[i - 1][2]) {
+					record[info[i][0]] = 1;
+					record[info[i - 1][0]] = 1;
 				}
 			}
-		}
-	}
-
-	public static void criticalConnections() {
-		Arrays.fill(dfn, 0, k, 0);
-		Arrays.fill(low, 0, k, 0);
-		cnt = 0;
-		for (int init = 0; init < k; init++) {
-			if (dfn[init] == 0) {
-				tarjan(init, init, -1, -1);
-			}
-		}
-	}
-
-	public static void tarjan(int init, int cur, int father, int ei) {
-		dfn[cur] = low[cur] = ++cnt;
-		for (int[] edge : graph.get(cur)) {
-			int edgei = edge[0];
-			int nodei = edge[1];
-			if (nodei != father) {
-				if (dfn[nodei] == 0) {
-					tarjan(init, nodei, cur, edgei);
-					low[cur] = Math.min(low[cur], low[nodei]);
-				} else {
-					low[cur] = Math.min(low[cur], dfn[nodei]);
-				}
-			}
-		}
-		if (low[cur] == dfn[cur] && cur != init) {
-			record[ei] = 0;
+			left = right;
 		}
 	}
 
