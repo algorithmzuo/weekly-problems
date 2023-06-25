@@ -18,6 +18,7 @@ import java.util.ArrayList;
 // 并查集、最小生成树，在体系学习班
 // 求桥，在每周有营养的大厂算法面试题，2022年10月第1周
 // 务必打好基础，再来看这个题的解析
+// 这个实现打败100%的提交者
 public class Code04_FindCriticalAndPseudoCriticalEdges {
 
 	public static int MAXN = 101;
