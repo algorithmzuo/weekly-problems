@@ -72,7 +72,7 @@ public class Code03_PaintingTheWalls {
 		Arrays.fill(dp, Integer.MAX_VALUE);
 		dp[0] = 0;
 		for (int i = n - 1; i >= 0; i--) {
-			for (int s = n; s >= 0; s--) {
+			for (int s = n; s >= 1; s--) {
 				if (s - 1 - time[i] <= 0) {
 					dp[s] = Math.min(dp[s], cost[i]);
 				} else if (dp[s - 1 - time[i]] != Integer.MAX_VALUE) {
