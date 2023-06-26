@@ -12,6 +12,9 @@ public class Code03_PaintingTheWalls {
 		return process(cost, time, 0, n);
 	}
 
+	// 来到i位置的墙，在i....n-1范围上，还有s面墙需要刷
+	// 认为只需要选s面墙即可，剩下的都刷完了
+	// 返回刷完所有墙的最少花费
 	public static int process(int[] cost, int[] time, int i, int s) {
 		if (s <= 0) {
 			return 0;
