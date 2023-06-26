@@ -25,9 +25,11 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 
 	public static int MAXM = 201;
 
-	// 记录
-	public static int[] record = new int[MAXM];
-	public static int m;
+	// 边状态的记录
+	// status[ei] = 0，代表ei这个边既不是关键边也不是伪关键边
+	// status[ei] = 1，代表ei这个边是伪关键边
+	// status[ei] = 2，代表ei这个边是关键边
+	public static int[] status = new int[MAXM];
 
 	// 并查集相关
 	public static int[] father = new int[MAXN];
@@ -75,6 +77,8 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 
 	// 边相关
 	public static int[][] edges = new int[MAXM][4];
+	
+	public static int m;
 
 	public static void buildEdges(int[][] e) {
 		for (int i = 0; i < m; i++) {
@@ -143,7 +147,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			}
 		}
 		if (low[cur] == dfn[cur] && cur != init) {
-			record[ei] = 0;
+			status[ei] = 2;
 		}
 	}
 
@@ -151,7 +155,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		buildUnoinSet(n);
 		m = e.length;
 		buildEdges(e);
-		Arrays.fill(record, 0, m, -1);
+		Arrays.fill(status, 0, m, 0);
 		List<Integer> real = new ArrayList<>();
 		List<Integer> pseudo = new ArrayList<>();
 		int teamStart = 0;
@@ -163,9 +167,9 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			bridge(teamStart, teamEnd);
 			for (int i = teamStart; i <= teamEnd; i++) {
 				int ei = edges[i][0];
-				if (record[ei] == 0) {
+				if (status[ei] == 2) {
 					real.add(ei);
-				} else if (record[ei] == 1) {
+				} else if (status[ei] == 1) {
 					pseudo.add(ei);
 				}
 				union(edges[i][1], edges[i][2]);
@@ -195,11 +199,9 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			int a = id[find(edges[i][1])];
 			int b = id[find(edges[i][2])];
 			if (a != b) {
-				record[index] = 1;
+				status[index] = 1;
 				addEdge(a, b, index);
 				addEdge(b, a, index);
-			} else {
-				record[index] = 2;
 			}
 		}
 		criticalConnections(k);
@@ -211,11 +213,9 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		// 集合a到集合b又有一条边，边的序号是t
 		// 于是，a的邻接表里有(t,b)，b的邻接表里有(t,a)
 		// 那么p和t都是重复链接，因为单独删掉p或者t，不会影响联通性
-		// 而这种重复链接，在求桥的模版中是不支持的
-		// 也就是说求桥的模版中，默认没有重复链接，才能去用模版
-		// 如果有重复链接，直接用模版，那么会出现忽略重复链接的处理
-		// 也就是对tarjen算法来说，就认为p和t这两条无向边只出现了一条
-		// 所以这里要单独判断，如果有重复链接被设置成了桥，要把它改成伪关键边状态
+		// 而在求桥的模版中，是默认没有重复链接的
+		// 如果有重复链接就直接用模版，那么会出现重复链接被认为是桥的情况
+		// 所以这里要单独判断，如果有重复链接被设置成了桥，要把它改成伪关键边的状态
 		Arrays.sort(info, 0, edgeSize, (a, b) -> a[1] != b[1] ? (a[1] - b[1]) : (a[2] - b[2]));
 		int right, left = 0;
 		while (left < edgeSize) {
@@ -225,8 +225,8 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			}
 			for (int i = left + 1; i < right; i++) {
 				if (info[i][2] == info[i - 1][2]) {
-					record[info[i][0]] = 1;
-					record[info[i - 1][0]] = 1;
+					status[info[i][0]] = 1;
+					status[info[i - 1][0]] = 1;
 				}
 			}
 			left = right;
