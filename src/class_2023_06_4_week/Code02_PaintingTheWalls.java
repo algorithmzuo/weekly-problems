@@ -1,9 +1,9 @@
-package class_2023_07_1_week;
+package class_2023_06_4_week;
 
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/painting-the-walls/
-public class Code03_PaintingTheWalls {
+public class Code02_PaintingTheWalls {
 
 	// 暴力递归
 	// 展示了主要的思路
