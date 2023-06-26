@@ -3,7 +3,6 @@ package class_2023_07_1_week;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/xepqZ5/
-
 public class Code02_StrongestForceField {
 
 	public static int fieldOfGreatestBlessing(int[][] fields) {
