@@ -152,20 +152,20 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 	}
 
 	public static List<List<Integer>> findCriticalAndPseudoCriticalEdges(int n, int[][] e) {
-		buildUnoinSet(n);
 		m = e.length;
-		buildEdges(e);
 		Arrays.fill(status, 0, m, 0);
+		buildUnoinSet(n);
+		buildEdges(e);
 		List<Integer> bridge = new ArrayList<>();
 		List<Integer> pseudo = new ArrayList<>();
-		int teamStart = 0;
+		int start = 0;
 		while (sets != 1) {
-			int teamEnd = teamStart;
-			while (teamEnd + 1 < m && edges[teamEnd + 1][3] == edges[teamStart][3]) {
-				teamEnd++;
+			int end = start + 1;
+			while (end < m && edges[start][3] == edges[end][3]) {
+				end++;
 			}
-			connect(teamStart, teamEnd);
-			for (int i = teamStart; i <= teamEnd; i++) {
+			connect(start, end);
+			for (int i = start; i < end; i++) {
 				int ei = edges[i][0];
 				if (status[ei] == 2) {
 					bridge.add(ei);
@@ -174,18 +174,18 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 				}
 				union(edges[i][1], edges[i][2]);
 			}
-			teamStart = teamEnd + 1;
+			start = end;
 		}
 		return Arrays.asList(bridge, pseudo);
 	}
 
 	public static void connect(int start, int end) {
-		for (int i = start; i <= end; i++) {
+		for (int i = start; i < end; i++) {
 			id[find(edges[i][1])] = -1;
 			id[find(edges[i][2])] = -1;
 		}
 		int k = 0;
-		for (int i = start; i <= end; i++) {
+		for (int i = start; i < end; i++) {
 			if (id[find(edges[i][1])] == -1) {
 				id[find(edges[i][1])] = k++;
 			}
@@ -194,7 +194,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			}
 		}
 		buildGraph(k);
-		for (int i = start; i <= end; i++) {
+		for (int i = start; i < end; i++) {
 			int index = edges[i][0];
 			int a = id[find(edges[i][1])];
 			int b = id[find(edges[i][2])];
