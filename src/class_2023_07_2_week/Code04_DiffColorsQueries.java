@@ -6,6 +6,9 @@ package class_2023_07_2_week;
 // 有k次查询，询问某个节点为头的子树，一共有多少种颜色
 // 1 <= n, m, k <= 10^5
 // 测试链接 : https://www.luogu.com.cn/problem/U41492
+// 请同学们务必参考如下代码中关于输入、输出的处理
+// 这是输入输出处理效率很高的写法
+// 提交以下的code，提交时请把类名改成"Main"，可以直接通过
 
 import java.io.BufferedReader;
 import java.io.IOException;
