@@ -77,7 +77,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 
 	// 边相关
 	public static int[][] edges = new int[MAXM][4];
-	
+
 	public static int m;
 
 	public static void buildEdges(int[][] e) {
@@ -121,7 +121,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 	public static int[] low = new int[MAXN];
 	public static int cnt;
 
-	public static void criticalConnections(int k) {
+	public static void findBridge(int k) {
 		Arrays.fill(dfn, 0, k, 0);
 		Arrays.fill(low, 0, k, 0);
 		cnt = 0;
@@ -156,7 +156,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 		m = e.length;
 		buildEdges(e);
 		Arrays.fill(status, 0, m, 0);
-		List<Integer> real = new ArrayList<>();
+		List<Integer> bridge = new ArrayList<>();
 		List<Integer> pseudo = new ArrayList<>();
 		int teamStart = 0;
 		while (sets != 1) {
@@ -164,11 +164,11 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			while (teamEnd + 1 < m && edges[teamEnd + 1][3] == edges[teamStart][3]) {
 				teamEnd++;
 			}
-			bridge(teamStart, teamEnd);
+			connect(teamStart, teamEnd);
 			for (int i = teamStart; i <= teamEnd; i++) {
 				int ei = edges[i][0];
 				if (status[ei] == 2) {
-					real.add(ei);
+					bridge.add(ei);
 				} else if (status[ei] == 1) {
 					pseudo.add(ei);
 				}
@@ -176,10 +176,10 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 			}
 			teamStart = teamEnd + 1;
 		}
-		return Arrays.asList(real, pseudo);
+		return Arrays.asList(bridge, pseudo);
 	}
 
-	public static void bridge(int start, int end) {
+	public static void connect(int start, int end) {
 		for (int i = start; i <= end; i++) {
 			id[find(edges[i][1])] = -1;
 			id[find(edges[i][2])] = -1;
@@ -204,7 +204,7 @@ public class Code04_FindCriticalAndPseudoCriticalEdges {
 				addEdge(b, a, index);
 			}
 		}
-		criticalConnections(k);
+		findBridge(k);
 		// 处理重复连接
 		// 什么是重复连接？不是自己指向自己，那叫自环
 		// 重复连接指的是:
