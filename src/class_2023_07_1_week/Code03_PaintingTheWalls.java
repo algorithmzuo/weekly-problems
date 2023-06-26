@@ -8,14 +8,13 @@ public class Code03_PaintingTheWalls {
 	// 暴力递归
 	// 展示了主要的思路
 	public static int paintWalls1(int[] cost, int[] time) {
-		int n = cost.length;
-		return process(cost, time, 0, n);
+		return process1(cost, time, 0, cost.length);
 	}
 
 	// 来到i位置的墙，在i....n-1范围上，还有s面墙需要刷
 	// 认为只需要选s面墙即可，剩下的都刷完了
 	// 返回刷完所有墙的最少花费
-	public static int process(int[] cost, int[] time, int i, int s) {
+	public static int process1(int[] cost, int[] time, int i, int s) {
 		if (s <= 0) {
 			return 0;
 		}
@@ -23,9 +22,9 @@ public class Code03_PaintingTheWalls {
 		if (i == cost.length) {
 			return Integer.MAX_VALUE;
 		} else {
-			int p1 = process(cost, time, i + 1, s);
+			int p1 = process1(cost, time, i + 1, s);
 			int p2 = Integer.MAX_VALUE;
-			int next2 = process(cost, time, i + 1, s - 1 - time[i]);
+			int next2 = process1(cost, time, i + 1, s - 1 - time[i]);
 			if (next2 != Integer.MAX_VALUE) {
 				p2 = cost[i] + next2;
 			}
@@ -38,9 +37,7 @@ public class Code03_PaintingTheWalls {
 		int n = cost.length;
 		int[][] dp = new int[n + 1][n + 1];
 		for (int i = 0; i <= n; i++) {
-			for (int j = 0; j <= n; j++) {
-				dp[i][j] = -1;
-			}
+			Arrays.fill(dp[i], -1);
 		}
 		return process2(cost, time, 0, n, dp);
 	}
