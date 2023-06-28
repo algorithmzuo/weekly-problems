@@ -26,17 +26,17 @@ public class Code06_StrongestForceField {
 			ys[p++] = (y << 1) - r;
 			ys[p++] = (y << 1) + r;
 		}
-		int sx = sort(xs);
-		int sy = sort(ys);
-		int[][] diff = new int[sx + 2][sy + 2];
+		int sizex = sort(xs);
+		int sizey = sort(ys);
+		int[][] diff = new int[sizex + 2][sizey + 2];
 		for (int i = 0, a, b, c, d; i < n; i++) {
 			long x = fields[i][0];
 			long y = fields[i][1];
 			long r = fields[i][2];
-			a = rank(xs, (x << 1) - r, sx);
-			b = rank(ys, (y << 1) - r, sy);
-			c = rank(xs, (x << 1) + r, sx);
-			d = rank(ys, (y << 1) + r, sy);
+			a = rank(xs, (x << 1) - r, sizex);
+			b = rank(ys, (y << 1) - r, sizey);
+			c = rank(xs, (x << 1) + r, sizex);
+			d = rank(ys, (y << 1) + r, sizey);
 			set(diff, a, b, c, d);
 		}
 		int ans = 0;
