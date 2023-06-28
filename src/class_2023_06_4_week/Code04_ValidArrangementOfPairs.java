@@ -60,10 +60,10 @@ public class Code04_ValidArrangementOfPairs {
 		}
 		ArrayList<int[]> record = new ArrayList<>();
 		dfs(from, graph, record);
-		int[][] ans = new int[record.size()][2];
-		for (int i = 0, j = record.size() - 1; j >= 0; i++, j--) {
-			ans[j][0] = record.get(i)[0];
-			ans[j][1] = record.get(i)[1];
+		int n = record.size();
+		int[][] ans = new int[n][2];
+		for (int i = n - 1, j = 0; j < n; i--, j++) {
+			ans[i] = record.get(j);
 		}
 		return ans;
 	}
