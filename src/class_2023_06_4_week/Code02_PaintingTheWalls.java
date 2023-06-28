@@ -18,7 +18,11 @@ public class Code02_PaintingTheWalls {
 		return process1(cost, time, 0, cost.length);
 	}
 
-	// 来到i位置的墙，在i....n-1范围上，还有s面墙需要刷
+	
+	
+	
+	
+	// 来到i位置的墙，整体还有s面墙需要刷
 	// 认为只需要选s面墙即可，剩下的都刷完了
 	// 返回刷完所有墙的最少花费
 	public static int process1(int[] cost, int[] time, int i, int s) {
@@ -29,7 +33,9 @@ public class Code02_PaintingTheWalls {
 		if (i == cost.length) {
 			return Integer.MAX_VALUE;
 		} else {
+			// 付费的人，就是不选第i面墙
 			int p1 = process1(cost, time, i + 1, s);
+			// 付费的人，就是选第i面墙
 			int p2 = Integer.MAX_VALUE;
 			int next2 = process1(cost, time, i + 1, s - 1 - time[i]);
 			if (next2 != Integer.MAX_VALUE) {

@@ -69,8 +69,10 @@ public class Code03_FrogHateStoneMinTimes {
 					}
 				}
 				out.println(ans);
-			} else {
+			} else { // s < t
 				Arrays.sort(arr, 1, m + 1);
+				// 可以直接给一个保守的距离，不需要算
+				// 因为s和t，不大，<= 10
 				cut = reduce(s, t);
 				for (int i = 1; i <= m; i++) {
 					distance[i] = distance[i - 1] + Math.min(arr[i] - arr[i - 1], cut);
@@ -93,6 +95,7 @@ public class Code03_FrogHateStoneMinTimes {
 		}
 	}
 
+	// 一旦s和t定了，那么距离多远就可以缩减
 	public static int reduce(int s, int t) {
 		Arrays.fill(reach, false);
 		int cnt = 0;
