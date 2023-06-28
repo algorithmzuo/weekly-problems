@@ -63,7 +63,7 @@ public class Code03_FrogHateStoneMinTimes {
 			}
 			if (s == t) {
 				int ans = 0;
-				for (int i = 1; i <= m; ++i) {
+				for (int i = 1; i <= Math.min(l, m); ++i) {
 					if (arr[i] % s == 0) {
 						ans++;
 					}
