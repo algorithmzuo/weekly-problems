@@ -76,7 +76,7 @@ public class Code03_FrogHateStoneMinTimes {
 					distance[i] = distance[i - 1] + Math.min(arr[i] - arr[i - 1], cut);
 					stone[distance[i]] = true;
 				}
-				l = distance[m] + cut;
+				l = Math.min(l, distance[m] + cut);
 				Arrays.fill(dp, 1, l + 1, MAXN);
 				for (int i = 1; i <= l; i++) {
 					for (int j = Math.max(i - t, 0); j <= i - s; j++) {
