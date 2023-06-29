@@ -24,7 +24,7 @@ import java.util.ArrayList;
 // 1. 先遍历cur的轻儿子，并计算树上每个节点的答案，但不保留遍历后对cnt数组的影响
 // 2. 再遍历cur的重儿子，保留对cnt数组的影响
 // 3. 再遍历cur的轻儿子，加入这些结点的贡献，以得到cur的答案
-public class Code04_DiffColorsQueries {
+public class Code03_DiffColorsQueries {
 
 	// 准备空间的参数
 	public static int MAXN = 200005;
