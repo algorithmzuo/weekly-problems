@@ -4,15 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+// 给定一个字符串 s 和一个字符串数组 words。 words 中所有字符串 长度相同。
+// s 中的 串联子串 是指一个包含  words 中所有字符串以任意顺序排列连接起来的子串。
+// 例如，如果 words = ["ab","cd","ef"]
+// 那么 "abcdef"， "abefcd"，"cdabef"
+// "cdefab"，"efabcd"， 和 "efcdab" 都是串联子串
+// "acdbef" 不是串联子串，因为他不是任何 words 排列的连接。
+// 返回所有串联字串在 s 中的开始索引
+// 你可以以 任意顺序 返回答案
+// 1 <= s.length <= 10^4
+// 1 <= words.length <= 5000
+// 1 <= words[i].length <= 30
+// words[i] 和 s 由小写英文字母组成
 // 测试链接 : https://leetcode.cn/problems/substring-with-concatenation-of-all-words/
-// 用字符串哈希做，时间复杂度才能到最优
-// 如果s的长度为n，words里所有单词的总长度为m
-// 时间复杂度O(n + m)，最优解的时间复杂度与单词个数、单词长度是无关的
-// 所有题解都没有做到这个复杂度的
-// 虽然这个做法打败比例没有到100%，但那是因为数据量不够大
-// 所以最优解的时间复杂度优势没有体现出来
 public class Code04_SubstringWithConcatenationOfAllWords {
 
+	// 用字符串哈希做，时间复杂度才能到最优
+	// 如果s的长度为n，words里所有单词的总长度为m
+	// 时间复杂度O(n + m)，最优解的时间复杂度与单词个数、单词长度是无关的
+	// 所有题解都没有做到这个复杂度的
+	// 虽然这个做法打败比例没有到100%，但那是因为数据量不够大
+	// 所以最优解的时间复杂度优势没有体现出来
 	// 选一个质数做进制数
 	public static int BASE = 499;
 
