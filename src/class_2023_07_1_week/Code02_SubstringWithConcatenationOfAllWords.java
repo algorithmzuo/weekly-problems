@@ -17,7 +17,7 @@ import java.util.List;
 // 1 <= words[i].length <= 30
 // words[i] 和 s 由小写英文字母组成
 // 测试链接 : https://leetcode.cn/problems/substring-with-concatenation-of-all-words/
-public class Code03_SubstringWithConcatenationOfAllWords {
+public class Code02_SubstringWithConcatenationOfAllWords {
 
 	// 用字符串哈希做，时间复杂度才能到最优
 	// 如果s的长度为n，words里所有单词的总长度为m
