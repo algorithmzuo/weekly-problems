@@ -64,15 +64,32 @@ public class Code01_KillMonsterEverySkillUseOnce {
 		}
 	}
 
+	// n : 固定参数，一共有几个技能
+	// kill: 技能伤害
+	// blood : 血<=多少，触发双倍伤害
+	// rest : 怪兽的剩余血量
+	// i : 可变参数，全排列代码
+	// kill[0...i-1] 使用过的技能，顺序就是从0到i-1
+	// blood[0...i-1] 使用过的技能，顺序就是从0到i-1
+	// i .... 最后，是还没有使用过的技能
+	// 每一个没有使用过的技能，全试一遍
 	public static int f(int n, int i, int rest) {
+		// 0 1 2 3 i(4) .. n-1
 		if (rest <= 0) {
 			return i;
 		}
+		// 血 > 0
 		if (i == n) {
 			return Integer.MAX_VALUE;
 		}
+		// 血 > 0 还有技能
+		// .....   (y,i,s,k,e)
+		// ..... y....
+		// ..... i....
 		int ans = Integer.MAX_VALUE;
 		for (int j = i; j < n; j++) {
+			// j == i. i.....n-1
+			// j 当前要释放的技能是谁！
 			swap(i, j);
 			if (rest > blood[i]) {
 				ans = Math.min(ans, f(n, i + 1, rest - kill[i]));

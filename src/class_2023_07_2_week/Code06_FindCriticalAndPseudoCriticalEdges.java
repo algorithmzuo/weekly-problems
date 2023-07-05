@@ -1,4 +1,4 @@
-package class_2023_07_1_week;
+package class_2023_07_2_week;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 // 求桥，在每周有营养的大厂算法面试题，2022年10月第1周
 // 务必打好基础，再来看这个题的解析
 // 这个实现打败100%的提交者
-public class Code04_FindCriticalAndPseudoCriticalEdges {
+public class Code06_FindCriticalAndPseudoCriticalEdges {
 
 	public static int MAXN = 101;
 

@@ -10,7 +10,7 @@ package class_2023_07_1_week;
 // 只能通过通过行交换、或者列交换的方式调整矩阵，
 // 判断这个矩阵的对角线是否能全为1，如果不能打印-1
 // 如果能，打印需要交换的次数，并且打印怎么交换
-// 在线测试链接 : http://acm.hdu.edu.cn/showproblem.php?pid=2819
+// 测试链接 : http://acm.hdu.edu.cn/showproblem.php?pid=2819
 // 请同学们务必参考如下代码中关于输入、输出的处理
 // 这是输入输出处理效率很高的写法
 // 提交以下的所有代码，并把主类名改成"Main"
@@ -23,7 +23,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code05_SwapRowOrColMakeDiagonalAllOne {
+public class Code04_SwapRowOrColMakeDiagonalAllOne {
 
 	public static int[][] out = new int[1000][2];
 

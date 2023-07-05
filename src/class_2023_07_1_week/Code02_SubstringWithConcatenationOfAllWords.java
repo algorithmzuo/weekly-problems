@@ -75,6 +75,9 @@ public class Code02_SubstringWithConcatenationOfAllWords {
 		if (s == null || s.length() == 0 || words == null || words.length == 0) {
 			return ans;
 		}
+		// "abc" : 2
+		// "fct" : 1
+		// Long : string -> long
 		HashMap<Long, Integer> map = new HashMap<>();
 		for (String key : words) {
 			long v = hashValue(key);
@@ -87,7 +90,11 @@ public class Code02_SubstringWithConcatenationOfAllWords {
 		int allLen = wordLen * wordNum;
 		HashMap<Long, Integer> window = new HashMap<>();
 		for (int init = 0; init < wordLen && init + allLen <= n; init++) {
+			// [0...5) [5...10) [10...15) ... 
+			// [1...6) [6...11) [11...16) ...
+			// [2...7) [7...12) [12...17) ...
 			int debt = wordNum;
+			// [0...5) [5...10) [10...15)
 			for (int l = init, r = init + wordLen, part = 0; part < wordNum; l += wordLen, r += wordLen, part++) {
 				long cur = hashValue(l, r);
 				window.put(cur, window.getOrDefault(cur, 0) + 1);
@@ -98,8 +105,12 @@ public class Code02_SubstringWithConcatenationOfAllWords {
 			if (debt == 0) {
 				ans.add(init);
 			}
+			// [5...10) [10...15) [15...20)
+			// [10...15) [15...20)[20...25]
 			for (int l1 = init, r1 = init + wordLen, l2 = init + allLen,
-					r2 = init + allLen + wordLen; r2 <= n; l1 += wordLen, r1 += wordLen, l2 += wordLen, r2 += wordLen) {
+					r2 = init + allLen + wordLen; r2 <= n; 
+					l1 += wordLen, r1 += wordLen, l2 += wordLen, r2 += wordLen) {
+				// l1...r1 .......  l2...r2
 				long out = hashValue(l1, r1);
 				long in = hashValue(l2, r2);
 				window.put(out, window.get(out) - 1);

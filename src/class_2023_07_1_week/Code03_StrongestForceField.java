@@ -15,6 +15,7 @@ public class Code03_StrongestForceField {
 
 	public static int fieldOfGreatestBlessing(int[][] fields) {
 		int n = fields.length;
+		// n : 矩形的个数，x 2*n个坐标
 		long[] xs = new long[n << 1];
 		long[] ys = new long[n << 1];
 		for (int i = 0, k = 0, p = 0; i < n; i++) {
