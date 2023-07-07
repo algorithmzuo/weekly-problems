@@ -20,9 +20,7 @@ public class Code03_CanChangeMoneyNumbers {
 
 	public static int MAXM = 100001;
 
-	public static boolean[] ok = new boolean[MAXM];
-
-	public static boolean[] window = new boolean[MAXM];
+	public static boolean[] dp = new boolean[MAXM];
 
 	public static int n, m;
 
@@ -43,48 +41,53 @@ public class Code03_CanChangeMoneyNumbers {
 					in.nextToken();
 					cnt[i] = (int) in.nval;
 				}
-				out.println(dp());
+				out.println(compute());
 				out.flush();
 			}
 		}
 	}
 
-	public static int dp() {
-		Arrays.fill(ok, 1, m + 1, false);
-		ok[0] = true;
-		int ans = 0;
+	public static int compute() {
+		Arrays.fill(dp, 1, m + 1, false);
+		dp[0] = true;
 		for (int i = 1; i <= n; i++) {
 			if (cnt[i] == 1) {
 				for (int j = m; j >= val[i]; j--) {
-					if (!ok[j] && ok[j - val[i]]) {
-						ok[j] = true;
-						ans++;
+					if (dp[j - val[i]]) {
+						dp[j] = true;
 					}
 				}
 			} else if (val[i] * cnt[i] > m) {
 				for (int j = val[i]; j <= m; j++) {
-					if (!ok[j] && ok[j - val[i]]) {
-						ok[j] = true;
-						ans++;
+					if (dp[j - val[i]]) {
+						dp[j] = true;
 					}
 				}
 			} else {
 				for (int mod = 0; mod < val[i]; mod++) {
 					int trueCnt = 0;
-					int l = 0;
-					int r = 0;
-					for (int j = mod; j <= m; j += val[i]) {
-						if (r - l == cnt[i] + 1) {
-							trueCnt -= window[l++] ? 1 : 0;
+					for (int j = m - mod, size = 0; j >= 0 && size <= cnt[i]; j -= val[i], size++) {
+						trueCnt += dp[j] ? 1 : 0;
+					}
+					for (int j = m - mod, l = j - val[i] * (cnt[i] + 1); j >= 1; j -= val[i], l -= val[i]) {
+						if (dp[j]) {
+							trueCnt--;
+						} else {
+							if (trueCnt != 0) {
+								dp[j] = true;
+							}
 						}
-						window[r++] = ok[j];
-						trueCnt += ok[j] ? 1 : 0;
-						if (!ok[j] && trueCnt != 0) {
-							ok[j] = true;
-							ans++;
+						if (l >= 0) {
+							trueCnt += dp[l] ? 1 : 0;
 						}
 					}
 				}
+			}
+		}
+		int ans = 0;
+		for (int i = 1; i <= m; i++) {
+			if (dp[i]) {
+				ans++;
 			}
 		}
 		return ans;
