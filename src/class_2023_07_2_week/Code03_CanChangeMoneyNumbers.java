@@ -42,6 +42,7 @@ public class Code03_CanChangeMoneyNumbers {
 					cnt[i] = (int) in.nval;
 				}
 				out.println(compute());
+			} else {
 				out.flush();
 			}
 		}
