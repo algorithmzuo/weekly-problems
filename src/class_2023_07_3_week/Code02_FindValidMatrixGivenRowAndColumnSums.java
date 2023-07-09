@@ -1,4 +1,4 @@
-package class_2023_07_2_week;
+package class_2023_07_3_week;
 
 // 给你两个非负整数数组 rowSum 和 colSum
 // 其中 rowSum[i] 是二维矩阵中第 i 行元素的和
