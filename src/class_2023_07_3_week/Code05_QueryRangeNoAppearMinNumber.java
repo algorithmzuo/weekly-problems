@@ -1,4 +1,4 @@
-package class_2023_07_2_week;
+package class_2023_07_3_week;
 
 // 有一个长度为 n 的数组，{ a1, a2, ... an }
 // 有m次询问，每次询问一个区间内最小没有出现过的自然数
@@ -22,7 +22,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
-public class Code04_QueryRangeNoAppearMinNumber {
+public class Code05_QueryRangeNoAppearMinNumber {
 
 	public static int MAXN = 200001;
 
