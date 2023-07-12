@@ -64,11 +64,10 @@ public class Code03_RobotPassThroughBuilding {
 	public static boolean ok(int sum, int max) {
 		// 注意！
 		// 如果你给的能量值很大，那么这个能量增长的将非常恐怖
-		// 甚至有可能超出long的范围，真的！你可以举个例子试试
-		// 这就是为什么改成long也不对
-		// 所以要加这一句判断，一旦能量累加和超过高度的最大值
+		// 甚至有可能超出long的范围，这就是为什么改成long也不对
+		// 所以要加sum <= max这一句判断，一旦能量累加和超过高度的最大值
 		// 后面肯定通关了，可以提前返回
-		// 总之这里很阴
+		// 总之是很阴
 		for (int i = 0; i < n && sum >= 0 && sum <= max; i++) {
 			if (sum <= arr[i]) {
 				sum -= arr[i] - sum;
