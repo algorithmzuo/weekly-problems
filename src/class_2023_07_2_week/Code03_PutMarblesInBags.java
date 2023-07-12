@@ -11,7 +11,7 @@ import java.util.Arrays;
 // 一个珠子分配方案的 分数 是所有 k 个背包的价格之和。
 // 请你返回所有分配方案中，最大分数 与 最小分数 的 差值 为多少。
 // 测试链接 : https://leetcode.cn/problems/put-marbles-in-bags/
-public class Code02_PutMarblesInBags {
+public class Code03_PutMarblesInBags {
 
 	public long putMarbles(int[] weights, int k) {
 		int n = weights.length;
