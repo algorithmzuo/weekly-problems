@@ -17,6 +17,7 @@ import java.util.ArrayList;
 // 本题用到并查集、最小生成树、求联通图中的桥
 // 并查集、最小生成树，在体系学习班
 // 求桥，在每周有营养的大厂算法面试题，2022年10月第1周
+// 链式前向星，2022年10月第1周
 // 务必打好基础，再来看这个题的解析
 // 这个实现打败100%的提交者
 public class Code05_FindCriticalAndPseudoCriticalEdges {
@@ -94,6 +95,7 @@ public class Code05_FindCriticalAndPseudoCriticalEdges {
 	// 链式前向星建图
 	// 为啥用这玩意儿建图？没啥，就是想秀
 	public static int[] head = new int[MAXN];
+	// int[] to : i号边是去哪的！
 	public static int[][] info = new int[MAXM][3];
 	public static int[] next = new int[MAXM];
 	public static int edgeSize;
@@ -114,6 +116,7 @@ public class Code05_FindCriticalAndPseudoCriticalEdges {
 	}
 
 	// 哈希表相关
+	// 一个集合，给一个编号
 	public static int[] id = new int[MAXN];
 
 	// 找桥相关
@@ -164,6 +167,7 @@ public class Code05_FindCriticalAndPseudoCriticalEdges {
 			while (end < m && edges[start][3] == edges[end][3]) {
 				end++;
 			}
+			// start....end-1 start...
 			connect(start, end);
 			for (int i = start; i < end; i++) {
 				int ei = edges[i][0];
@@ -179,6 +183,9 @@ public class Code05_FindCriticalAndPseudoCriticalEdges {
 		return Arrays.asList(bridge, pseudo);
 	}
 
+	// 大团子，一个集合，缩成一个点
+	// 当前的边，[start...end)
+	// 做图！大团子的图，找桥！
 	public static void connect(int start, int end) {
 		for (int i = start; i < end; i++) {
 			id[find(edges[i][1])] = -1;
@@ -194,6 +201,7 @@ public class Code05_FindCriticalAndPseudoCriticalEdges {
 			}
 		}
 		buildGraph(k);
+		// 大团子，有边！用链式前向星建图，大团子的图！
 		for (int i = start; i < end; i++) {
 			int index = edges[i][0];
 			int a = id[find(edges[i][1])];

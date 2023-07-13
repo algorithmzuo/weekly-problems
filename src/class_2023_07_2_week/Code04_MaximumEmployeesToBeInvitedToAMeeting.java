@@ -23,17 +23,12 @@ public class Code04_MaximumEmployeesToBeInvitedToAMeeting {
 			}
 		}
 		boolean[] zeroVisited = new boolean[n];
-		int visited = 0;
 		while (l < r) {
 			int cur = queue[l++];
 			zeroVisited[cur] = true;
-			visited++;
 			if (--degree[favorite[cur]] == 0) {
 				queue[r++] = favorite[cur];
 			}
-		}
-		if (visited == n) {
-			return 0;
 		}
 		boolean[] cycleVisited = new boolean[n];
 		int arrangeTwoCycle = 0;
@@ -60,12 +55,18 @@ public class Code04_MaximumEmployeesToBeInvitedToAMeeting {
 	}
 
 	// 生成被喜欢表
+	// favorite[3] = 7
+	// favorite[5] = 7
+	// size[
 	public static int[][] beLoved(int[] favorite) {
 		int n = favorite.length;
 		int[] size = new int[n];
+		// size[7] : 有多少人喜欢7
 		for (int love : favorite) {
 			size[love]++;
 		}
+		// 7 : 3 5
+		// 9 : 0 1 4
 		int[][] loved = new int[n][];
 		for (int i = 0; i < n; i++) {
 			loved[i] = new int[size[i]];

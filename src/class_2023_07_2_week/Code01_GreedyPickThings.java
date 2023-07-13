@@ -23,6 +23,8 @@ public class Code01_GreedyPickThings {
 
 	public static int MAXN = 101;
 
+	// mv[i][0]
+	// mv[i][1]
 	public static int[][] mv = new int[MAXN][2];
 
 	public static int n, t;
