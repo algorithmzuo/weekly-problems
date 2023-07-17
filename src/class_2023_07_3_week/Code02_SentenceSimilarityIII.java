@@ -14,7 +14,7 @@ package class_2023_07_3_week;
 // 给你两个句子 sentence1 和 sentence2
 // 如果 sentence1 和 sentence2 是相似的，请你返回 true ，否则返回 false
 // 测试链接 : https://leetcode.cn/problems/sentence-similarity-iii/
-public class Code01_SentenceSimilarityIII {
+public class Code02_SentenceSimilarityIII {
 
 	public static boolean areSentencesSimilar(String s1, String s2) {
 		String[] w1 = s1.split(" ");
