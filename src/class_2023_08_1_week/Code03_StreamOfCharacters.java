@@ -8,7 +8,7 @@ public class Code03_StreamOfCharacters {
 	// 就是AC自动机阉割版
 	class StreamChecker {
 
-		public static class Node {
+		class Node {
 			public boolean end;
 			public Node fail;
 			public Node[] nexts;
