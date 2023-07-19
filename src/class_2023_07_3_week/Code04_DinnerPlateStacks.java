@@ -34,11 +34,11 @@ public class Code04_DinnerPlateStacks {
 		}
 
 		public int pop() {
-			if (rightStack == 0 && cnt[rightStack] == 0) {
-				return -1;
-			}
 			while (cnt[rightStack] == 0 && rightStack > 0) {
 				rightStack--;
+			}
+			if (rightStack == 0 && cnt[rightStack] == 0) {
+				return -1;
 			}
 			return stacks.get(rightStack).remove(--cnt[rightStack]);
 		}
@@ -70,8 +70,14 @@ public class Code04_DinnerPlateStacks {
 					rightStack--;
 				}
 				if (heap.peek() >= rightStack) {
-					while (!heap.isEmpty() && heap.peek() > rightStack) {
+					while (!heap.isEmpty()) {
 						heap.poll();
+					}
+					if(cnt[rightStack] == capacity) {
+						rightStack++;
+					}
+					if(stacks.size() == rightStack) {
+						stacks.add(new ArrayList<>());
 					}
 					stacks.get(rightStack).add(val);
 					cnt[rightStack]++;
