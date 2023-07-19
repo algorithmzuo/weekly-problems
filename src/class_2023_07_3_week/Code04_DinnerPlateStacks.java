@@ -16,56 +16,31 @@ public class Code04_DinnerPlateStacks {
 
 	class DinnerPlates {
 		private final int N = 100001;
-		private int[] cnt = new int[N + 1];
-		private ArrayList<ArrayList<Integer>> stacks = new ArrayList<>();
-		private PriorityQueue<Integer> heap = new PriorityQueue<>();
 		private int capacity;
-		private int maxIndex;
+		// 所有栈的结构
+		private ArrayList<ArrayList<Integer>> stacks = new ArrayList<>();
+		// 每个栈里有多少数字
+		private int[] cnt = new int[N + 1];
+		// 曾经满了，然后又因为popAtStack方法变得不满的栈
+		// 编号放在这个堆里，小根堆
+		// 可以理解为空洞栈组成的堆
+		private PriorityQueue<Integer> heap = new PriorityQueue<>();
+		// 拥有数字的栈中，最右栈的编号
+		private int rightStack;
 
 		public DinnerPlates(int cap) {
 			capacity = cap;
-			maxIndex = 0;
-		}
-
-		public void push(int val) {
-			if (!heap.isEmpty()) {
-				while (cnt[maxIndex] == 0 && maxIndex > 0) {
-					maxIndex--;
-				}
-				if (heap.peek() >= maxIndex) {
-					while (!heap.isEmpty() && heap.peek() > maxIndex) {
-						heap.poll();
-					}
-					stacks.get(maxIndex).add(val);
-					cnt[maxIndex]++;
-				} else {
-					int cur = heap.peek();
-					cnt[cur]++;
-					stacks.get(cur).add(val);
-					if (cnt[cur] == capacity) {
-						heap.poll();
-					}
-				}
-			} else {
-				if (cnt[maxIndex] == capacity && maxIndex < N) {
-					maxIndex++;
-				}
-				if (cnt[maxIndex] == 0 && stacks.size() == maxIndex) {
-					stacks.add(new ArrayList<>());
-				}
-				stacks.get(maxIndex).add(val);
-				cnt[maxIndex]++;
-			}
+			rightStack = 0;
 		}
 
 		public int pop() {
-			if (maxIndex == 0 && cnt[maxIndex] == 0) {
+			if (rightStack == 0 && cnt[rightStack] == 0) {
 				return -1;
 			}
-			while (cnt[maxIndex] == 0 && maxIndex > 0) {
-				maxIndex--;
+			while (cnt[rightStack] == 0 && rightStack > 0) {
+				rightStack--;
 			}
-			return stacks.get(maxIndex).remove(--cnt[maxIndex]);
+			return stacks.get(rightStack).remove(--cnt[rightStack]);
 		}
 
 		public int popAtStack(int index) {
@@ -74,11 +49,43 @@ public class Code04_DinnerPlateStacks {
 			}
 			int ans = stacks.get(index).remove(cnt[index] - 1);
 			if (cnt[index] == capacity) {
-				heap.offer(index);
+				heap.add(index);
 			}
 			cnt[index]--;
 			return ans;
 		}
+
+		public void push(int val) {
+			if (heap.isEmpty()) {
+				if (cnt[rightStack] == capacity && rightStack < N) {
+					rightStack++;
+				}
+				if (cnt[rightStack] == 0 && stacks.size() == rightStack) {
+					stacks.add(new ArrayList<>());
+				}
+				stacks.get(rightStack).add(val);
+				cnt[rightStack]++;
+			} else {
+				while (cnt[rightStack] == 0 && rightStack > 0) {
+					rightStack--;
+				}
+				if (heap.peek() >= rightStack) {
+					while (!heap.isEmpty() && heap.peek() > rightStack) {
+						heap.poll();
+					}
+					stacks.get(rightStack).add(val);
+					cnt[rightStack]++;
+				} else {
+					int cur = heap.peek();
+					cnt[cur]++;
+					stacks.get(cur).add(val);
+					if (cnt[cur] == capacity) {
+						heap.poll();
+					}
+				}
+			}
+		}
+
 	}
 
 }
