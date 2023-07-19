@@ -51,6 +51,7 @@ public class Code05_QueryRangeNoAppearMinNumber {
 
 	public static int[] right = new int[MAXM];
 
+	// 最重要的信息 : l ~ r范围上，所有数字最右出现的位置中，最左是在哪
 	public static int[] last = new int[MAXM];
 
 	public static int n, m, cnt;
@@ -80,8 +81,15 @@ public class Code05_QueryRangeNoAppearMinNumber {
 		}
 		int mid = (l + r) / 2;
 		if (last[left[rt]] < pos) {
+			// l...mid范围上，所有数字最右出现的位置中，最左的位置在pos以左
+			// 说明l...mid范围上，一定有缺失的数字
 			return query(left[rt], l, mid, pos);
 		} else {
+			// l...mid范围上，所有数字最右出现的位置中，最左的位置在pos以右
+			// 说明l...mid范围上，没有缺失的数字
+			// 那么缺失的数字一定在右侧！mid+1....r
+			// 因为l...r一定有缺失的数字才会来到这个范围的
+			// 如果左侧不缺失，那缺失的数字一定在右侧范围上
 			return query(right[rt], mid + 1, r, pos);
 		}
 	}
