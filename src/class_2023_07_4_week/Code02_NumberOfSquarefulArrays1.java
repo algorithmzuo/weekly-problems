@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-squareful-arrays/
-public class Code03_NumberOfSquarefulArrays1 {
+public class Code02_NumberOfSquarefulArrays1 {
 
 	public static int MAXN = 13;
 

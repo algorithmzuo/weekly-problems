@@ -3,7 +3,7 @@ package class_2023_07_4_week;
 import java.util.Arrays;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-squareful-arrays/
-public class Code03_NumberOfSquarefulArrays2 {
+public class Code02_NumberOfSquarefulArrays2 {
 
 	public static int MAXN = 13;
 

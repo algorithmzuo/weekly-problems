@@ -8,7 +8,7 @@ package class_2023_07_4_week;
 // 且该矩阵满足 rowSum 和 colSum 的要求
 // 请你返回任意一个满足题目要求的二维矩阵，题目保证存在 至少一个 可行矩阵。
 // 测试链接 : https://leetcode.cn/problems/find-valid-matrix-given-row-and-column-sums/
-public class Code02_FindValidMatrixGivenRowAndColumnSums {
+public class Code01_FindValidMatrixGivenRowAndColumnSums {
 
 	public int[][] restoreMatrix(int[] rowSum, int[] colSum) {
 		int n = rowSum.length;

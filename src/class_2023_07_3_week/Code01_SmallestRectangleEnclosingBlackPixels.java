@@ -24,6 +24,7 @@ public class Code01_SmallestRectangleEnclosingBlackPixels {
 	}
 
 	public static int left(char[][] image, int col) {
+		// .....左？....... col
 		int l = 0, r = col - 1, m, ans = col;
 		boolean find;
 		while (l <= r) {

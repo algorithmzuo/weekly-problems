@@ -61,26 +61,50 @@ public class Code03_CanChangeMoneyNumbers {
 	public static int compute() {
 		Arrays.fill(dp, 1, m + 1, false);
 		dp[0] = true;
+		// 每一种货币，遍历
 		for (int i = 1; i <= n; i++) {
 			if (cnt[i] == 1) {
+				// // 等于当前货币就1张
 				for (int j = m; j >= val[i]; j--) {
 					if (dp[j - val[i]]) {
 						dp[j] = true;
 					}
 				}
 			} else if (val[i] * cnt[i] > m) {
+				// 等于当前货币无限张
 				for (int j = val[i]; j <= m; j++) {
 					if (dp[j - val[i]]) {
 						dp[j] = true;
 					}
 				}
 			} else {
+				// 既不是1张，也不是无限张
 				for (int mod = 0; mod < val[i]; mod++) {
+					// val[i] = 3元
+					// 0 : ....
+					// 1 : ....
+					// 2 : ....
 					int trueCnt = 0;
+					// 0 : m元 m-3元 m-6元 m-9元
+					// 1 : m-1元 m-4元 m-7元 m-10元 
+					// 2 : m-2元 
+					//
+					// 3元，4张
+					//
+					//
+					//     9  12  【15  18  21  24】
+					//                   
 					for (int j = m - mod, size = 0; j >= 0 && size <= cnt[i]; j -= val[i], size++) {
 						trueCnt += dp[j] ? 1 : 0;
 					}
+//				    // 9  12  【15  18  21  24】
+					// 9 【12  15  18  21】 24
+					// 每次窗口出去一个下标
+					// 进来一个下标
 					for (int j = m - mod, l = j - val[i] * (cnt[i] + 1); j >= 1; j -= val[i], l -= val[i]) {
+						// dp[j] = 上一行的值
+						// dp[j] 更新成 本行的值
+						
 						if (dp[j]) {
 							trueCnt--;
 						} else {
