@@ -37,7 +37,7 @@ public class Code04_DinnerPlateStacks {
 			while (cnt[rightStack] == 0 && rightStack > 0) {
 				rightStack--;
 			}
-			if (rightStack == 0 && cnt[rightStack] == 0) {
+			if (cnt[rightStack] == 0) {
 				return -1;
 			}
 			return stacks.get(rightStack).remove(--cnt[rightStack]);
@@ -60,7 +60,7 @@ public class Code04_DinnerPlateStacks {
 				if (cnt[rightStack] == capacity && rightStack < N) {
 					rightStack++;
 				}
-				if (cnt[rightStack] == 0 && stacks.size() == rightStack) {
+				if (stacks.size() == rightStack) {
 					stacks.add(new ArrayList<>());
 				}
 				stacks.get(rightStack).add(val);
@@ -73,10 +73,10 @@ public class Code04_DinnerPlateStacks {
 					while (!heap.isEmpty()) {
 						heap.poll();
 					}
-					if(cnt[rightStack] == capacity) {
+					if (cnt[rightStack] == capacity) {
 						rightStack++;
 					}
-					if(stacks.size() == rightStack) {
+					if (stacks.size() == rightStack) {
 						stacks.add(new ArrayList<>());
 					}
 					stacks.get(rightStack).add(val);
