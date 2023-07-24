@@ -1,13 +1,13 @@
-package class_2023_07_4_week;
+package class_2023_08_2_week;
 
 import java.util.Arrays;
-import java.util.ArrayList;
 
 // 测试链接 : https://leetcode.cn/problems/number-of-squareful-arrays/
-public class Code02_NumberOfSquarefulArrays1 {
+public class Code02_NumberOfSquarefulArrays2 {
 
 	public static int MAXN = 13;
 
+	// 阶乘表
 	public static int[] f = new int[MAXN];
 	static {
 		f[0] = 1;
@@ -16,26 +16,45 @@ public class Code02_NumberOfSquarefulArrays1 {
 		}
 	}
 
+	// 链式前向星建图
+	public static int[] head = new int[MAXN];
+	public static int[] to = new int[MAXN * MAXN];
+	public static int[] next = new int[MAXN * MAXN];
+	public static int cnt;
+	// 动态规划表
+	public static int[][] dp = new int[MAXN][1 << MAXN];
+
+	public static void build(int n) {
+		cnt = 0;
+		for (int i = 0; i < n; i++) {
+			head[i] = -1;
+			Arrays.fill(dp[i], 0, 1 << n, -1);
+		}
+	}
+
+	public static void addEdge(int i, int j) {
+		int top = head[i];
+		head[i] = cnt;
+		to[cnt] = j;
+		next[cnt] = top;
+		cnt++;
+	}
+
 	public static int numSquarefulPerms(int[] nums) {
 		int n = nums.length;
-		ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-		int[][] dp = new int[n][1 << n];
-		for (int i = 0; i < n; ++i) {
-			graph.add(new ArrayList<>());
-			Arrays.fill(dp[i], -1);
-		}
+		build(n);
 		for (int i = 0; i < n; i++) {
 			for (int j = i + 1, s; j < n; j++) {
 				s = (int) (Math.sqrt(nums[i] + nums[j]));
 				if (s * s == nums[i] + nums[j]) {
-					graph.get(i).add(j);
-					graph.get(j).add(i);
+					addEdge(i, j);
+					addEdge(j, i);
 				}
 			}
 		}
 		int ans = 0;
 		for (int i = 0; i < n; ++i) {
-			ans += dfs(graph, i, 1 << i, n, dp);
+			ans += dfs(i, 1 << i, n);
 		}
 		// 去重的关键逻辑
 		Arrays.sort(nums);
@@ -50,7 +69,7 @@ public class Code02_NumberOfSquarefulArrays1 {
 		return ans;
 	}
 
-	public static int dfs(ArrayList<ArrayList<Integer>> graph, int i, int s, int n, int[][] dp) {
+	public static int dfs(int i, int s, int n) {
 		if (s == (1 << n) - 1) {
 			return 1;
 		}
@@ -58,9 +77,9 @@ public class Code02_NumberOfSquarefulArrays1 {
 			return dp[i][s];
 		}
 		int ans = 0;
-		for (int next : graph.get(i)) {
-			if ((s & (1 << next)) == 0) {
-				ans += dfs(graph, next, s | (1 << next), n, dp);
+		for (int edge = head[i]; edge != -1; edge = next[edge]) {
+			if ((s & (1 << to[edge])) == 0) {
+				ans += dfs(to[edge], s | (1 << to[edge]), n);
 			}
 		}
 		dp[i][s] = ans;

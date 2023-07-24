@@ -1,4 +1,4 @@
-package class_2023_07_4_week;
+package class_2023_08_2_week;
 
 // 有一个长度为 n 的数组，{ a1, a2, ... an }
 // 有m次询问，每次询问一个区间内最小没有出现过的自然数
