@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-public class Code01_TeamDP {
+public class Code02_TeamDP {
 
 	public static int MAXN = 1001;
 

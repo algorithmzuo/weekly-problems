@@ -7,7 +7,7 @@ package class_2023_07_4_week;
 // 并且工作的成员总数最多为 n
 // 有多少种计划可以选择？因为答案很大，所以 返回结果模 10^9 + 7 的值。
 // 测试链接 : https://leetcode.cn/problems/profitable-schemes/
-public class Code04_ProfitableSchemes {
+public class Code05_ProfitableSchemes {
 
 	public static int profitableSchemes1(int n, int minProfit, int[] group, int[] profit) {
 		return f1(group, profit, 0, n, minProfit);

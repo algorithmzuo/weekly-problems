@@ -12,7 +12,7 @@ package class_2023_07_4_week;
 // 请你返回房子涂色方案的最小总花费，使得每个房子都被涂色后，恰好组成 target 个街区
 // 如果没有可用的涂色方案，请返回 -1
 // 测试链接 : https://leetcode.cn/problems/paint-house-iii/
-public class Code05_PaintHouseIII {
+public class Code06_PaintHouseIII {
 
 	public static int minCost1(int[] houses, int[][] cost, int m, int n, int target) {
 		int[][][] dp = new int[m][target + 1][n + 1];
