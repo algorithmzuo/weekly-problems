@@ -35,9 +35,9 @@ public class Code02_MinimumOperationsToHalveArraySum {
 		}
 		sum /= 2;
 		int ans = 0;
-		for (long minus = 0, cur; minus < sum; ans++, minus += cur) {
+		for (long minus = 0; minus < sum; ans++) {
 			help[0] /= 2;
-			cur = help[0];
+			minus += help[0];
 			heapify(0, n);
 		}
 		return ans;
