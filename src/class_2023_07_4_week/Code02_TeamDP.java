@@ -22,6 +22,9 @@ public class Code02_TeamDP {
 
 	public static int MAXM = 1001;
 
+	// arr[i][0] 重量
+	// arr[i][1] 价值
+	// arr[i][2] 组号
 	public static int[][] arr = new int[MAXN][3];
 
 	public static int[] dp = new int[MAXM];
@@ -33,8 +36,10 @@ public class Code02_TeamDP {
 		StreamTokenizer in = new StreamTokenizer(br);
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 		while (in.nextToken() != StreamTokenizer.TT_EOF) {
+			// 总背包的载重
 			m = (int) in.nval;
 			in.nextToken();
+			// 物品数量
 			n = (int) in.nval;
 			for (int i = 0; i < n; i++) {
 				in.nextToken();
@@ -44,7 +49,12 @@ public class Code02_TeamDP {
 				in.nextToken();
 				arr[i][2] = (int) in.nval;
 			}
+			
+			// 根据组号排序
+			// 1 : a b c   2 : d e  3 : f g h
 			Arrays.sort(arr, 0, n, (a, b) -> a[2] - b[2]);
+			// dp[位置][剩余重量]
+			// dp[重量] 
 			Arrays.fill(dp, 0, m + 1, 0);
 			out.println(compute());
 			out.flush();
@@ -53,6 +63,10 @@ public class Code02_TeamDP {
 
 	public static int compute() {
 		for (int start = 0, end = 1; start < n;) {
+			// start(首个物品)
+			// end(当前这个组的越界物品)
+			// a b c  |  d e  | f g
+			// 0 1 2     3 4    5 6
 			while (end < n && arr[end][2] == arr[start][2]) {
 				end++;
 			}

@@ -1,5 +1,6 @@
 package class_2023_07_4_week;
 
+// 多维费用背包（概念没用）
 // 给你一个二进制字符串数组 strs 和两个整数 m 和 n
 // 请你找出并返回 strs 的最大子集的长度，该子集中 最多 有 m 个 0 和 n 个 1
 // 如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 子集
@@ -64,6 +65,8 @@ public class Code04_OnesAndZeroes {
 		return process2(arr, 0, m, n, dp);
 	}
 
+	// "101010101" -> 0 4个  1 5个 [4,5]
+	// "000111"  -> [3,3]
 	public static int process2(int[][] arr, int i, int z, int o, int[][][] dp) {
 		if (i == arr.length) {
 			return 0;
@@ -72,6 +75,7 @@ public class Code04_OnesAndZeroes {
 			return dp[i][z][o];
 		}
 		int p1 = process2(arr, i + 1, z, o, dp);
+		// 要当前字符串
 		int p2 = 0;
 		if (arr[i][0] <= z && arr[i][1] <= o) {
 			p2 = 1 + process2(arr, i + 1, z - arr[i][0], o - arr[i][1], dp);

@@ -14,7 +14,12 @@ package class_2023_07_4_week;
 // 测试链接 : https://leetcode.cn/problems/paint-house-iii/
 public class Code06_PaintHouseIII {
 
-	public static int minCost1(int[] houses, int[][] cost, int m, int n, int target) {
+	public static int minCost1(int[] houses, // 每个房子固有的颜色，0 ：去涂，>0: 不能改的
+			int[][] cost,// cost[i][j] : i号房子，涂上j这个颜色，花费多少
+			int m, // 房子数量
+			int n,  // 颜色数量
+			int target // 恰好组成 target 个街区
+			) {
 		int[][][] dp = new int[m][target + 1][n + 1];
 		for (int i = 0; i < m; i++) {
 			for (int k = 0; k <= target; k++) {
@@ -27,25 +32,43 @@ public class Code06_PaintHouseIII {
 		return ans == Integer.MAX_VALUE ? -1 : ans;
 	}
 
-	public static int process1(int[] houses, int[][] cost, int n, int i, int k, int c, int[][][] dp) {
+	// i.... 涂色，必须整出k个街区来！
+	// 上一个房子的颜色是c
+	// 返回最小花费
+	// 返回Integer.MAX_VALUE：做不到
+	// 返回正常值，代表最小花费
+	public static int process1(
+			int[] houses, int[][] cost,
+			int n, // 颜色总数，1 ~ n，固定！
+			int i, // 来到的房子编号，可变
+			int k, // i.... 必须整出k个街区来！，可变
+			int c, // 上一个房子的颜色，可变
+			int[][][] dp) {
 		if (k < 0) {
 			return Integer.MAX_VALUE;
 		}
 		if (i == houses.length) {
 			return k == 0 ? 0 : Integer.MAX_VALUE;
 		}
+		// k >= 0, 还有房
 		if (dp[i][k][c] != -1) {
 			return dp[i][k][c];
 		}
+		// 最小花费
 		int ans = Integer.MAX_VALUE;
 		if (houses[i] != 0) {
+			// 不能涂，已经有颜色了
+			// houses[i] = 3
 			if (houses[i] != c) {
 				ans = process1(houses, cost, n, i + 1, k - 1, houses[i], dp);
 			} else {
 				ans = process1(houses, cost, n, i + 1, k, houses[i], dp);
 			}
 		} else {
+			// houses[i] == 0
+			// 能涂
 			for (int fill = 1, next; fill <= n; fill++) {
+				// 尝试每一种颜色
 				if (fill == c) {
 					next = process1(houses, cost, n, i + 1, k, fill, dp);
 				} else {
@@ -120,7 +143,9 @@ public class Code06_PaintHouseIII {
 			}
 		}
 		int[] memo = new int[n + 1];
+		// 0~0 0~1 0~2 0~i
 		int[] minl = new int[n + 2];
+		// n ~ n n-1 ~n n-2 ~n i ~n
 		int[] minr = new int[n + 2];
 		minl[0] = minr[0] = minl[n + 1] = minr[n + 1] = Integer.MAX_VALUE;
 		for (int i = m - 1; i >= 0; i--) {
@@ -136,10 +161,13 @@ public class Code06_PaintHouseIII {
 					}
 				}
 			} else {
+				// O(k)
 				for (int k = target; k >= 0; k--) {
+					// O(n)
 					for (int c = 0; c <= n; c++) {
 						memo[c] = dp[k][c];
 					}
+					// O(n)
 					for (int fill = 1; fill <= n; fill++) {
 						if (k == 0 || dp[k - 1][fill] == Integer.MAX_VALUE) {
 							minl[fill] = minl[fill - 1];
@@ -147,6 +175,7 @@ public class Code06_PaintHouseIII {
 							minl[fill] = Math.min(minl[fill - 1], cost[i][fill - 1] + dp[k - 1][fill]);
 						}
 					}
+					// O(n)
 					for (int fill = n; fill >= 1; fill--) {
 						if (k == 0 || dp[k - 1][fill] == Integer.MAX_VALUE) {
 							minr[fill] = minr[fill + 1];
@@ -154,6 +183,7 @@ public class Code06_PaintHouseIII {
 							minr[fill] = Math.min(minr[fill + 1], cost[i][fill - 1] + dp[k - 1][fill]);
 						}
 					}
+					// O(n)
 					for (int c = 0, ans; c <= n; c++) {
 						if (c == 0 || memo[c] == Integer.MAX_VALUE) {
 							ans = Integer.MAX_VALUE;

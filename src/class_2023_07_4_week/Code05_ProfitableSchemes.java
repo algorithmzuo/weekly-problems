@@ -9,20 +9,35 @@ package class_2023_07_4_week;
 // 测试链接 : https://leetcode.cn/problems/profitable-schemes/
 public class Code05_ProfitableSchemes {
 
+	// n : 员工的额度 ， 不能超
+	// p : 利润的额度 ， 不能少
+	// group[i] : 需要几个人
+	// profit[i] : 产生的利润
+
 	public static int profitableSchemes1(int n, int minProfit, int[] group, int[] profit) {
 		return f1(group, profit, 0, n, minProfit);
 	}
 
+	// i : 来到i号项目
+	// r : 员工还有r人
+	// s : 利润还有s才能达成目标！
+	// 返回 : 有多少种方案
 	public static int f1(int[] g, int[] p, int i, int r, int s) {
 		if (r <= 0) {
+			// 人已经没了
+			// s为0，或者负数，都叫完成工作了
 			return s <= 0 ? 1 : 0;
 		}
+		// r > 0
 		if (i == g.length) {
+			// 项目已经没了
+			// s为0，或者负数，都叫完成工作了
 			return s <= 0 ? 1 : 0;
 		}
 		int p1 = f1(g, p, i + 1, r, s);
 		int p2 = 0;
 		if (g[i] <= r) {
+			// 100  400  -300 -> 0
 			p2 = f1(g, p, i + 1, r - g[i], s - p[i]);
 		}
 		return p1 + p2;
@@ -53,7 +68,6 @@ public class Code05_ProfitableSchemes {
 		if (dp[i][r][s] != -1) {
 			return dp[i][r][s];
 		}
-
 		int p1 = f2(g, p, i + 1, r, s, dp);
 		int p2 = 0;
 		if (g[i] <= r) {

@@ -12,8 +12,17 @@ public class Code03_MaximumValueOfKcoinsFromPiles {
 
 	public int maxValueOfCoins(List<List<Integer>> piles, int k) {
 		int[] dp = new int[k + 1];
-		for (List<Integer> stack : piles) {
-			for (int w = k; w > 0; w--) {
+		// 物品总量，n  2000内
+		// 组的数量，m  1000内
+		// 挑选的次数，k 2000内
+		// O( k * n)
+		// O( m * k^2)
+		// min (  O( k * n) ,   O( m * k^2)  )
+		for (List<Integer> stack : piles) { // 组
+			for (int w = k; w > 0; w--) { // 背包容量
+				// i = 1 sum = 0
+				// i = 2 sum = arr[0]
+				// i = 3 sum = arr[0] + arr[1]
 				for (int i = 1, sum = 0; i <= Math.min(stack.size(), w); i++) {
 					sum += stack.get(i - 1);
 					dp[w] = Math.max(dp[w], sum + dp[w - i]);
