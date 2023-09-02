@@ -2,7 +2,6 @@ package class_2022_10_2_week;
 
 import java.util.PriorityQueue;
 
-// 来自华为
 // 给定一个N*M的二维矩阵，只由字符'O'、'X'、'S'、'E'组成
 // 'O'表示这个地方是可通行的平地
 // 'X'表示这个地方是不可通行的障碍
@@ -17,6 +16,7 @@ import java.util.PriorityQueue;
 // 1 <= N,M <= 1000
 // 1 <= a,b <= 100000
 // 只会有一个士兵、一个敌人
+// 没有测试链接，对数器验证
 public class Code05_SoldierFindEnemy {
 
 	// 暴力dfs

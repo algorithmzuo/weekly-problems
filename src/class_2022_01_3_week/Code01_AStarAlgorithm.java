@@ -3,15 +3,12 @@ package class_2022_01_3_week;
 import java.util.PriorityQueue;
 
 // A*算法
-// 过程和Dijskra高度相处
-// 有到终点的预估函数
-// 只要预估值<=客观上最优距离，就是对的
+// 过程和Dijskra高度相似，增加了到终点的预估函数
+// 只要预估值 <= 客观上最优距离，就是对的
 // 预估函数是一种吸引力：
 // 1）合适的吸引力可以提升算法的速度
 // 2）吸引力“过强”会出现错误
-// 讲述A*算法
 // 预估终点距离选择曼哈顿距离
-// 要求先在体系学习班图的章节听过"Dijkstra算法"
 public class Code01_AStarAlgorithm {
 
 	// Dijkstra算法
@@ -67,8 +64,6 @@ public class Code01_AStarAlgorithm {
 		}
 		int n = map.length;
 		int m = map[0].length;
-		// [20,1,7]
-		// [20,?,1,7]
 		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> (a[0] + a[1]) - (b[0] + b[1]));
 		boolean[][] closed = new boolean[n][m];
 		heap.add(new int[] { map[startX][startY], distance(startX, startY, targetX, targetY), startX, startY });
